@@ -1,0 +1,167 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DECLARATION DE LA CLASSE DU DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Utiliser le format suivant:
+% \documentclass[type de papier% ("letterpaper" demandé)
+% , simple ou recto verso% ("oneside" ou "twoside")%
+% , taille de la police% ("12pt" demandé)%
+% , type de document% ("these", "memoire" ou "thesepararticles")%
+% , langue du document ("francais" ou "english")%
+% , options supplémentaires% ("creativecommons" pour préciser que le document est soumis à la licence créative commomns, "hyperref", "withAlgo2e" pour utiliser le package algorithm2e avec la mise en page correcte de la liste des algorithmes)
+%]{thETS}
+
+%% Exemple pour une thèse creative commons, utilisant le package hyperref 
+\documentclass[letterpaper%
+, twoside%
+, 12pt%
+, memoire%
+, francais
+, creativecommons, hyperref, withAlgo2e%
+]{thETS} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IMPORTANT: NOTES D'IMPRESSION POUR RESPECTER LES MARGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Si vous créez un fichier PDF directement avec PDFLatex, et vous utilisez Acrobat Reader
+%% pour faire l'impression, n'oubliez-pas de changer l'option <<Mise à l'échelle>> pour la valeur
+%% <<Aucune>> pour que les marges soient imprimés correctement.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DECLARATION DES INFORMATIONS DE LA PAGE TITRE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Titre du document}
+
+\author{Prénom NOM DE FAMILLE}
+\authorcopyright{Prénom Nom}
+
+\datesoutenance{``Date de soutenance''}
+
+\datedepot{``Date du dépôt au Bureau des cycles supérieurs''}
+
+\directeur{M.}{Prénom Nom}{Nom du département et institution}
+
+%\codirecteurB{M.}{Prénom Nom}{département et institution}
+
+\president{M.}{Prénom Nom}{département et institution}
+
+\examinexterne{M.}{Prénom Nom}{département et institution}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CHANGEMENT DE L'INTITULÉ DU DIPLOME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Il est possible de modifier l'intitulé du diplome en redéfinissant la commande
+% \lediplome, comme dans l'exemple suivant:
+
+%\renewcommand{\lediplome}{
+%    DE LA\\MAÎTRISE EN GÉNIE ÉLECTRIQUE\\M.Sc.A.
+%    }
+
+\listfiles
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CORPS DU DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\pagenumbering{Roman}
+
+%%- Affichage de la page titre -%%
+\maketitle
+
+%%- Affichage de la présentation du jury -%%
+\presentjury
+
+%%%- Avant propos -%%
+\begin{avantpropos}
+	\input{content/preface}
+\end{avantpropos}
+
+
+%%- Remerciements -%%
+\begin{remerciements}
+	\input{content/acknowledgements}
+\end{remerciements}
+
+
+%%- Sommaire -%%
+\begin{sommaire}{mot-clé1, mot-clé2}
+	\input{content/abstract_fr}
+\end{sommaire}
+
+
+%%- Abstract -%%
+\begin{abstract}{Titre en anglais}{keyword1, keyword2}
+	\input{content/abstract_en}
+\end{abstract}
+
+
+%%- Affichage de la table des matières -%%
+\tableofcontents
+
+
+%%- Affichage de la liste des tableaux -%%
+\listoftables
+
+
+%%- Affichage de la liste des Figures -%%
+\listoffigures
+
+
+%%- Déclaration et affichage de la liste des abbréviations -%%
+\begin{listofabbr}[3cm]
+	\input{content/abbreviations}
+\end{listofabbr}
+
+
+%%- Déclaration et affichage de la liste des symboles -%%
+\begin{listofsymbols}[3cm]
+	\input{content/symbols}
+\end{listofsymbols}
+
+
+\cleardoublepage
+
+\pagenumbering{arabic}
+
+% Marginpar à gauche du document
+\reversemarginpar
+
+
+%%- Corps du document -%%
+\begin{introduction}
+	\input{content/introduction}
+\end{introduction}
+
+\begin{revuedelitterature}
+	\input{content/litterature_review}
+\end{revuedelitterature}
+
+\input{content/chapter1}
+
+\begin{conclusion}
+	\input{content/conclusion}
+\end{conclusion}
+
+
+%%- Annexes -%%
+\appendix
+
+%% Lorsqu'on a plus qu'une annexe.
+\multiannexe
+
+\input{content/annex1}
+
+
+%%- Bibliographie -%%
+\newpage % Interligne sinmple pour la bibliographie
+\begin{spacing}{1}  
+	\nocite{*} % Utiliser la commande nocite pour afficher des références qui n'ont pas été citées dans le document. '*' permet de toutes les afficher.
+	\bibliographystyle{bibETS} % Utilisation du style bibliographique de l'ETS
+	\addcontentsline{toc}{chapter}{BIBLIOGRAPHIE} % Ajout de la bibliographie à la table des matières
+	
+	\bibliography{./bibliography/bibliography} % Liste des fichiers bib de bibliographie, biblio.bib est un exemple
+\end{spacing}
+
+\end{document}
