@@ -14,9 +14,9 @@
 \documentclass[letterpaper%
 , twoside%
 , 12pt%
-,these%
-,francais
-,creativecommons,hyperref%
+, these%
+, francais
+, creativecommons, hyperref, withAlgo2e%
 ]{thETS} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,14 +26,6 @@
 %% pour faire l'impression, n'oubliez-pas de changer l'option <<Mise à l'échelle>> pour la valeur
 %% <<Aucune>> pour que les marges soient imprimés correctement.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DECLARATION D'UNE LISTE DE RÉFÉRENCES SUPPLÉMENTAIRE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Exemple de création d'une liste de références en plus de la liste bibliographique
-% "refs" est utilisé en suffixe des commandes de citation de de bibliogtraphie
-\newcites{refs}{LISTE DE RÉFÉRENCES}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DECLARATION DES INFORMATIONS DE LA PAGE TITRE
@@ -50,17 +42,11 @@
 
 \directeur{M.}{Prénom Nom}{Nom du département et institution}
 
-%\directeur{Mme.}{Prénom Nom}{Nom du département et institution}
-
-\codirecteur{Mme.}{Prénom Nom}{département et institution}
-
 %\codirecteurB{M.}{Prénom Nom}{département et institution}
 
 \president{M.}{Prénom Nom}{département et institution}
 
 \examinexterne{M.}{Prénom Nom}{département et institution}{}
-
-%\jury{Mme.}{Prénom Nom}{département et institution}{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHANGEMENT DE L'INTITULÉ DU DIPLOME
@@ -71,7 +57,6 @@
 %\renewcommand{\lediplome}{
 %    DE LA\\MAÎTRISE EN GÉNIE ÉLECTRIQUE\\M.Sc.A.
 %    }
-
 
 \listfiles
 
@@ -96,18 +81,15 @@
 \end{avantpropos}
 
 
-
 %%- Remerciements -%%
 \begin{remerciements}
 
 \lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
 
-
 \end{remerciements}
 
 
 %%- Sommaire -%%
-
 \begin{sommaire}{mot-clé1, mot-clé2}
 
 \lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
@@ -168,7 +150,7 @@
 \begin{figure}
 	\centering % Les figures doivent être centrées
 	\fbox{ % Les figures doivent être délimitées par un rectangle
-		\includegraphics[width=0.75\textwidth]{Figures/vueEts.jpg} % Spécification du paramètres "width", la largeur de l'image (en conservant les proportions). La largeur est ici restreinte à 0.75 fois "\textwidth", qui est la largeur maximale du texte dans le document en prenant en compte les marges
+		\includegraphics[width=0.75\textwidth]{figures/vueEts.jpg} % Spécification du paramètres "width", la largeur de l'image (en conservant les proportions). La largeur est ici restreinte à 0.75 fois "\textwidth", qui est la largeur maximale du texte dans le document en prenant en compte les marges
 	}
 	 \\ \parbox{0.75\textwidth}{\caption{Test de longue légende, avec utilisation de framebox et parbox pour restreindre la largeur de la légende.}\label{fig:vueEts}} % Utilisation d'une parbox pour restreindre la largeur de la légende. Ici la taille maximale a été fixée à la largeur choisie pour l'image (0.75\textwidth). Le décanat demande d'éviter d'avoir des légendes qui dépasse les figures, dans la mesure du possible (si l'image est trop petite, la légende peut dépasser sa largeur).
 \end{figure}
@@ -265,10 +247,6 @@ Les tableaux sont soumis aux mêmes contraintes que les figures, en dehors de la
 
 Citation d'une référence de la bibliographie \cite{Arica2002}.
 
-\subsection{Références à la liste de références "refs"}
-
-Citation d'une référence de la liste de référence "refs" déclarée au début du document \citerefs{Test}.
-
 \subsection{Références à un label du document}
 
 Référence à une Figure associée à un label: Figure \ref{fig:vueEts}.
@@ -285,23 +263,6 @@ Utilisation de href, pour intégrer un lien dans une portion de texte:
 Utilisation de url pour citer un lien cliquable:
 \url{http://www.etsmtl.ca/Etudiants-actuels/Cycles-sup/Realisation-etudes/Guides-gabarits}.
 
-%%- Troisième chapitre de démonstration -%%
-\chapter{Exemple de thèse par articles intégrés}
-
-% Utilisation de \articleAuthors{Noms}{Affiliations} pour affichier les auteurs de l'article et leur affiliation. Noms doit être sous la forme {Nom1 Prenom1}{Nom2 Prenom2}... , ainsi que les affiliations.
-%Exemple \articleAuthors{{Nom1 Prenom1}}{{Affiliation 1}}
-
-\articleAuthors{
-{Prenom Nom\up{1}}{Prenom Nom\up{1}}
-}{
-{\up{1} Département de Génie Mécanique, École de Technologie Supérieure,\\
-1100 Notre-Dame Ouest, Montréal, Québec, Canada H3C 1K3\\
-Article soumis à la revue « Vecteur environnement » en septembre 2010.}
-}
-
-\section{Section 1}
-
-\lipsum[1]
 
 %%- Conclusion -%%
 \begin{conclusion}
@@ -333,7 +294,7 @@ Article soumis à la revue « Vecteur environnement » en septembre 2010.}
 \begin{figure}
 	\centering
 	\fbox{
-		\includegraphics[width=0.75\textwidth]{Figures/vueEts.jpg}
+		\includegraphics[width=0.75\textwidth]{figures/vueEts.jpg}
 	}
 	 \\ \parbox{0.75\textwidth}{\caption{Figure en Annexe.}\label{fig:testAp}}
 \end{figure}
@@ -372,38 +333,13 @@ Même chose pour les tableaux (exemple, Tableau \ref{tab:testAp}).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%- Bibliographie -%%
-\newpage
-%Interligne sinmple pour la bibliographie
+\newpage % Interligne sinmple pour la bibliographie
 \begin{spacing}{1}  
 	\nocite{*} % Utiliser la commande nocite pour afficher des références qui n'ont pas été citées dans le document. '*' permet de toutes les afficher.
 	\bibliographystyle{bibETS} % Utilisation du style bibliographique de l'ETS
 	\addcontentsline{toc}{chapter}{BIBLIOGRAPHIE} % Ajout de la bibliographie à la table des matières
 	
 	\bibliography{biblio} % Liste des fichiers bib de bibliographie, biblio.bib est un exemple
-	
-\end{spacing}
-
-%%- Références, exemple des références "refs" --%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% IMPORTANT: NOTES POUR COMPILER ET AFFICHER LES RÉFÉRENCES ADDITIONNELLES (remplacer "refs" par le suffixe choisi)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Suivre les trois étapes:
-%   1. Compiler le document une fois pour renseigner les références utilisées dans refs.aux 
-%   2. Lancer la compilation des références
-% 		- Sous Linux: Utilser la commande "bibtex refs" dans le dossier du document
-%		- Sous MacOSX (distribution MacTex): Utilser la commande "/usr/texbin/bibtex refs" dans le dossier du document	
-%		- Sous Windows: Éditer le script "update_refs.bat" pour renseigner le bon suffixe, et le lancer
-%   3. Recompiler le document deux fois
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-% Le fonctionnement est similaire, en rajoutant le suffixe choisi "refs" à la fin de chaque commande de bibliographie
-\begin{spacing}{1} 
-	%\nociterefs{*}
-	\bibliographystylerefs{bibETS}
-	\addcontentsline{toc}{chapter}{LISTE DE RÉFÉRENCES}
-
-	\bibliographyrefs{refs} % Liste des fichiers bib de référence, refs.bib est un exemple
 	
 \end{spacing}
 
