@@ -1,0 +1,36 @@
+\documentclass[letterpaper,twoside,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english, francais]{babel}
+\usepackage{geometry}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{lipsum}
+
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\linespread{1.5}
+\setlength{\droptitle}{-4em}
+\renewcommand\familydefault{ptm}
+
+\title{MTR871~: Lectures dirigées \\
+	\large}
+\author{Erwan \bsc{Normand} (NORE16059404)}
+\date{\today}
+
+\begin{document}
+
+	\maketitle
+
+	\input{content/introduction}
+	\input{content/litterature_review}
+	\input{content/conclusion}
+
+	%%- Bibliographie -%%
+	\newpage
+	\begin{spacing}{1}
+		\bibliographystyle{plain}
+		\bibliography{bibliography/bibliography}
+	\end{spacing}
+
+\end{document}
