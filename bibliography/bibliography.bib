@@ -187,6 +187,19 @@
   pages =         {270}
 }
 
+@InProceedings{BiBalakrishnan2009,
+  author =                      {Bi, Xiaojun and Balakrishnan, Ravin},
+  title =                       {Comparing usage of a large high-resolution display to single or dual desktop displays for daily work},
+  booktitle =                   {Proceedings of the SIGCHI Conference on Human Factors in Computing Systems},
+  year =                        {2009},
+  pages =                       {1005--1014},
+  organization =                {ACM},
+  __markedentry =               {[Erwan:2]},
+  file =                        {:BiBalakrishnan2009.pdf:PDF},
+  owner =                       {Erwan},
+  timestamp_added_to_database = {2016-04-15 18:01}
+}
+
 @Article{BillinghurstGrassetLooser2005,
   author =                      {Billinghurst, Mark and Grasset, Raphael and Looser, Julian},
   title =                       {Designing augmented reality interfaces},
@@ -713,6 +726,41 @@
   publisher =     {Elsevier}
 }
 
+@Article{KimReedMartin2010,
+  author =                      {Kim, K Han and Reed, Matthew P and Martin, Bernard J},
+  title =                       {A model of head movement contribution for gaze transitions},
+  journal =                     {Ergonomics},
+  year =                        {2010},
+  volume =                      {53},
+  number =                      {4},
+  pages =                       {447--457},
+  __markedentry =               {[Erwan:2]},
+  file =                        {:KimReedMartin2010 - A model of head movement contribution for gaze transitions.pdf:PDF},
+  keywords =                    {relevant},
+  owner =                       {Erwan},
+  publisher =                   {Taylor \& Francis},
+  review =                      {[Problème de recherche] 
+Quelle est la proportion de mouvement de la tête vs. le mouvement des yeux pour regarder une cible, nommé « head movement contribution ratio (HMCR) » ?
+
+[Solution] 
+Mesurer les mouvements de têtes vs le degré horizontal et/ou vertical de la cible par rapport au sujet.
+
+[Méthodologie] 
+10 personnes (5 femmes) de 22,3+-1,8 ans avec une vision 20/20. Les positions possibles à l'horizontale : 0°, 20°, 45°, 90° ; et les positions à la verticale : -25°, 0°, 25°.
+
+[Résultats] 
+HMCR est de 69% à l'horizontale, de 52% au dessus de la tête, et 8% en dessous.
+
+[Limites]
+
+[Concepts-clés]
+
+[Futurs travaux]
+
+[Références centrales]},
+  timestamp_added_to_database = {2016-04-15 15:32}
+}
+
 @InProceedings{KishishitaKiyokawaOrloskyEtAl2014,
   author =                      {Kishishita, Naohiro and Kiyokawa, Kiyoshi and Orlosky, Jason and Mashita, Tomohiro and Takemura, Hiroshi and Kruijff, Ernst},
   title =                       {Analysing the effects of a wide field of view augmented reality display on search performance in divided attention tasks},
@@ -1232,7 +1280,6 @@
   publisher =                   {Springer},
   year =                        {2013},
   pages =                       {18--35},
-  __markedentry =               {[Erwan:]},
   file =                        {:SeifertBayerRukzio2013 - PointerPhone_ Using mobile phones for direct pointing interactions with remote displays.pdf:PDF},
   owner =                       {Erwan},
   timestamp_added_to_database = {2016-04-13 12:05}
@@ -1260,7 +1307,7 @@
   organization =                {ACM},
   __markedentry =               {[Erwan:5]},
   file =                        {:SerranoEnsYangEtAl2015 - Desktop-Gluey_ Augmenting Desktop Environments with Wearable Devices.pdf:PDF},
-  keywords =                    {Head-Worn Display, distributed displays, multi-display environments, input redirection, content migration, rank3},
+  keywords =                    {rank3},
   owner =                       {Erwan},
   review =                      {[Problème de recherche]
 
@@ -1298,6 +1345,46 @@ Construire et tester expérimentalement des prototypes implémentant ces designs
 [3] Marquardt, Nicolai, Ken Hinckley, and Saul Greenberg. "Cross-device interaction via micro-mobility and f-formations." Proc. UIST ’13.
 [5] Serrano, M., Ens, B., Yang, X-D., and Irani, P. 2015. Gluey: Developing a Head-Worn Display Interface to Unify the Interaction Experience in Distributed Display Environments. Proc. MobileHCI ’15.},
   timestamp_added_to_database = {2016-04-14 20:31}
+}
+
+@InProceedings{SerranoEnsYangEtAl2015a,
+  author =                      {Serrano, Marcos and Ens, Barrett and Yang, Xing-Dong and Irani, Pourang},
+  title =                       {Gluey: Developing a Head-Worn Display Interface to Unify the Interaction Experience in Distributed Display Environments},
+  booktitle =                   {Proceedings of the 17th International Conference on Human-Computer Interaction with Mobile Devices and Services},
+  year =                        {2015},
+  pages =                       {161--171},
+  organization =                {ACM},
+  __markedentry =               {[Erwan:2]},
+  file =                        {:SerranoEnsYangEtAl2015a.pdf:PDF},
+  keywords =                    {rank3},
+  owner =                       {Erwan},
+  review =                      {[Problème de recherche]
+Comment utiliser un HWD dans un « distributed display environment » (DDE), au delà d'un simple écran supplémentaire, et pour résoudre les problèmes des DDE : le coût du changement d'appareil en cours d'utilisation, et celui du transfert d'information entre deux appareils.
+Plus précisement, les auteurs ont conçu une interface respectant tous les critères suivants : redirection de périphérique d'entrée, migration de l'information entre appareils, compatibilité entre tous les appareils de l'environnement, un méchanisme d'enregistrement d'appareil, un modèle spatial de l'environnement, un retour à l'utilisateur constant et une interface qui peut être mobile.
+
+[Solution]
+Création et implémentation d'une interface utilisateur dans le HWD facilitant de manière transparente l'utilisation entre plusieurs appareils et permettant d'utiliser n'importe quel périphérique d'entrée sur n'importe que appareil.
+L'appareil en cours d'utilisation est celui dans le champs de vue de l'utilisateur.
+
+[Méthodologie]
+Des marqueurs 2x2cm sont posés sur les appareils et sont suivis par une caméra et ARToolKit. La tête est suivie pour situer le pointeur, qui se trouve au centre de l'affichade du HWD.
+FoV de 23°, avec 960x540 pixels.
+Tests non formels avec interviews avec 12 participants, étudiants (une femme), entre 21 et 36 ans.
+
+[Résultats]
+Il est possible de copier/coller du contenu entre différents appareils, via le HWD. Ce contenu est donc mobile, l'utilisateur pouvant se déplacer pour atteindre d'autres appareils. Il est possible de prendre une photo, ou de sélectionner une couleur sur un objet réel et de la coller dans l'interface d'un appareil.  Les différentes entrées possibles sont le clavier, la souris, les mouvements de doigts en l'air.
+Les utilisateurs ont globalement aimé, en premier pouvoir rediriger du contenu et la redirection de périphérique d'entrée. Est aussi validé la sélection de l'appareil par la direction de la tête. Cependant, tous les périphériques ne sont pas adaptés à tous les affichages d'appareils. L'interface du HWD peut être génante dans un contexte mobile. Les feedbacks sont très importants, ainsi qu'introduire un délai quand l'utilisateur change de contexte 
+
+[Limites]
+Pas de réelle expérimentation controllée pour valider le concept. Propose une expérience unifiée en permettant de découpler l'utilisation des appareils et des périphériques d'entrée mais c'est nier leurs différences : chaque interaction se fait de manière différente, il faudrait explorer ces différences et leurs conséquences sur l'utilisation du DDE. Limites du matériel : pas mobile, FoV limité, latence trop haute.
+
+[Concepts-clés]
+Head-Worn Display; Distributed displays; Multi-display environments; Input redirection; Content migration.
+
+[Futurs travaux]
+
+[Références centrales]},
+  timestamp_added_to_database = {2016-04-15 12:02}
 }
 
 @ARTICLE{ShibataKimHoffmanEtAl2011,
@@ -1501,6 +1588,20 @@ Construire et tester expérimentalement des prototypes implémentant ces designs
   __markedentry =               {[Erwan:2]},
   file =                        {:VogelBalakrishnan2010 - Occlusion-aware interfaces.pdf:PDF},
   timestamp_added_to_database = {2016-03-16 10:24}
+}
+
+@InProceedings{WallaceMandrykInkpen2008,
+  author =                      {Wallace, James R and Mandryk, Regan L and Inkpen, Kori M},
+  title =                       {Comparing content and input redirection in MDEs},
+  booktitle =                   {Proceedings of the 2008 ACM conference on Computer supported cooperative work},
+  year =                        {2008},
+  pages =                       {157--166},
+  organization =                {ACM},
+  __markedentry =               {[Erwan:3]},
+  file =                        {:WallaceMandrykInkpen2008.pdf:PDF},
+  keywords =                    {relevant},
+  owner =                       {Erwan},
+  timestamp_added_to_database = {2016-04-15 14:51}
 }
 
 @INPROCEEDINGS{WangMcGuffinBerardEtAl2011,
