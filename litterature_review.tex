@@ -6,15 +6,48 @@
 \usepackage{titling}
 \usepackage{graphicx}
 \usepackage{setspace}
-\usepackage{lipsum}
+\usepackage{lipsum} %TODO : à supprimer
+\usepackage{letltxmacro}
+\usepackage[round]{natbibETS} % Style de citation de l'ÉTS
+\usepackage{caption} % Sauts de lignes possibles dans \caption
 
-\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
-\linespread{1.5}
-\setlength{\droptitle}{-4em}
-\renewcommand\familydefault{ptm}
+%% Configuration %%
+
+\selectlanguage{francais} % Package babel
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm} % Package geometry
+
+\setlength{\droptitle}{-4em} % Marge du titre
+\linespread{1.5} % Interligne
+\renewcommand{\familydefault}{ptm} % Police par défaut
+
+% Tiré de thETS.cls
+\newcommand{\bibAnd}{et}
+\newcommand{\bibed}{éd.}
+
+% Formattage des passages en langue étrangère
+\LetLtxMacro{\oldforeignlanguage}{\foreignlanguage}
+\renewcommand{\foreignlanguage}[2]{\oldforeignlanguage{#1}{\emph{#2}}}
+
+% Tiré de thETS.cls
+\captionsetup[figure]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=below}
+\captionsetup[table]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=above}
+
+% Figure selon les normes de l'ÉTS
+\newcommand{\figureETS}[3]{
+	\begin{figure}
+		\centering % Les figures doivent être centrées
+		\fbox{ % Les figures doivent être délimitées par un rectangle
+			\includegraphics[width=0.75\textwidth]{#1} % Spécification du paramètres "width", la largeur de l'image (en conservant les proportions). La largeur est ici restreinte à 0.75 fois "\textwidth", qui est la largeur maximale du texte dans le document en prenant en compte les marges
+		}
+		 \\ \parbox{0.75\textwidth}{\caption{#2}\label{fig:#3}} % Utilisation d'une parbox pour restreindre la largeur de la légende. Ici la taille maximale a été fixée à la largeur choisie pour l'image (0.75\textwidth). Le décanat demande d'éviter d'avoir des légendes qui dépasse les figures, dans la mesure du possible (si l'image est trop petite, la légende peut dépasser sa largeur).
+	\end{figure}
+}
+\newcommand{\reffig}[1]{(\emph{Voir} Figure \ref{fig:#1})}
+
+%% Document %%
 
 \title{MTR871~: Lectures dirigées \\
-	\large}
+	\large }
 \author{Erwan \bsc{Normand} (NORE16059404)}
 \date{\today}
 
@@ -26,10 +59,10 @@
 	\input{content/litterature_review}
 	\input{content/conclusion}
 
-	%%- Bibliographie -%%
+	% Bibliographie
 	\newpage
 	\begin{spacing}{1}
-		\bibliographystyle{plain}
+		\bibliographystyle{bibETS}
 		\bibliography{bibliography/bibliography}
 	\end{spacing}
 
