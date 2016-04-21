@@ -1,92 +1,112 @@
 Plan
 
-Intro : VR monte, mobile devient de plus en plus puissants + affichage + capteurs. AR cousine de VR, semble avenir promis meilleur, malgré son retard (du pb technologiques). Tout va devenir plus mobile, donc intéressant de combiner les deux ?
+Intro : RV monte, mobile devient de plus en plus puissants + affichage + capteurs. AR cousine de RV, semble avenir promis meilleur, malgré son retard (du pb technologiques). Tout va devenir plus mobile, donc intéressant de combiner les deux ?
 \cite{DeSaChurchill2013}
+Limites : on s'intéresse aux interfaces et aux interactions, ainsi que pour la RA pour le sens visuel seulement ; pas les pb technologiques directement (seulement s'ils influent sur l'ui et les interactions), ni les pbs d'acceptation sociale 
+
+La RA peut toucher tous les sens humains. Cependant, elle est souvent désignée sous ce terme comme s'adressant au sens visuel, et c'est sous cette signification qu'elle sera employée dans cette revue de littérature.
+
 
 Définition + Historique
 TODO : améliorer le contenu avec \cite{Chalon2004}
 
 Ce qui amène à la problématique : desktop-gluey, multifi, ethereal planes, personal cockpit -> arguments pour combiner mobile et HMD (avancées des articles) + ça n'a pas encore été bien fait (limites des articles)
-+ les problématiques du mobile actuellement : petit écran face à grand contenu (wedge/halo : \cite{BaudischRosenholtz2003} \cite{GustafsonBaudischGutwinEtAl2008} \cite{BurigatChittaro2011}), le multi-tache (partir du personal cockpit)
++ les problématiques du mobile actuellement : petit écran face à grand contenu (wedge/halo : \cite{BaudischRosenholtz2003} \cite{GustafsonBaudischGutwinEtAl2008} \cite{BurigatChittaro2011}), le multi-tache couteux (partir du personal cockpit)
++ concernant le multi-tache, c'est une problématique des systèmes RA (\cite{SchmalstiegFuhrmannHesinaEtAl2002} et background de \cite{EnsFinneganIrani2014}) : donc c'est naturel de lier le portable à la RA (TODO trouver un article le disant), surtout si on suit le \"information spaces\" de \cite{EnsHincapie-RamosIrani2014}
 + problématique de désynchronisation réel/virtuel peut être comblé avec cette RA mobile : \cite{Chalon2004} et Gluey qui fait des photos du réels pour les coller sur l'écran
 + les challenges techniques sur le Mobile Augmented Reality commencent à être atteints, donc on va pouvoir commencer à développer des applications réelles, et se concentrer sur la conception -> ce qui est nécessaire pour que ce genre de prototypes puissent aller au delà du laboratoire
+« We need a better understanding of how to display data
+to a user and how the user should interact with the data. » Azura 2001
 -> concevoir, expérimenter, évaluer un prototype répondant à la problématique
 
+ancêtre de ce que l'on veut faire, accroche des fenêtres virtuelles aux objets : \cite{FeinerMacIntyreHauptEtAl1993}
+
+explorer tout ce qui lié à \"SideSight: Multi-“touch” Interaction Around Small Devices \" : interactions avec petits écrans mais sans feedback -> nous ajoutons à ces recherches le feedback qui a la possibilité d'être permanent avec un HMD
+
 Conception (interfaces, interactions) importants et surtout les non-explorés encore = les sous-problèmes
-    Input 
-        Technique (interactions spatiales)
-            With hand (Ens, 2014) 
-            Gaze + taffi 
-            Only touch on phone 
-            Gaze + touch on phone 
-            3D mouse 
-
-        Resolution 
-
-    Output 
-
-        FoV (Czerwinski, 2002) (Patterson, 2006) (Kishishita, 2014) 
+        FoV (Czerwinski, 2002) (Patterson, 2006) \cite{KishishitaKiyokawaOrloskyEtAl2014} 
 
         Resolution 
 
         Reference frame for virtual content 
-            World-fixed (Ens, 2014) 
-            Body-fixed (Ens, 2014) 
+            World-fixed \cite{EnsFinneganIrani2014} 
+            Body-fixed \cite{EnsFinneganIrani2014} 
                 Head centered vs dominant hand centered 
-            Head-fixed (Ens, 2014) 
-            Phone-fixed 
+            Head-fixed \cite{EnsFinneganIrani2014} 
+            Phone-fixed
+            Movability \cite{EnsHincapie-RamosIrani2014}
 
         Context switching 
             Number of displays (Raschid, 2012) (Cauchard, 2012) 
             Design of context vs design with large one app display (Ball, 2008) 
 
-        Content display 
+        Content display
             Size of virtual elements = angular width (Shupp, 2006) (Ball, 2008) 
-            Distance of virtual content (Hezel, 1994) (Ankrum, 1999) (Tan, 2003) (Chan, 2010) (Ens, 2014) 
-            Angular separation (Mayer, 1993) (Ens, 2014) (Kishishita, 2014) (Alger, 2015) 
+            Distance of virtual content (Hezel, 1994) (Ankrum, 1999) (Tan, 2003) \cite{ChanKaoChenEtAl2010} \cite{EnsFinneganIrani2014} 
+            Angular separation (Mayer, 1993) \cite{EnsFinneganIrani2014} \cite{KishishitaKiyokawaOrloskyEtAl2014} (Alger, 2015) 
             Curved layout vs flat layout (Shupp, 2006) 
-            Direction of content (top, bottom, left, right) (Ens, 2014) 
-            Display continuity (Raschid, 2012) 
+            Direction of content (top, bottom, left, right) \cite{EnsFinneganIrani2014} 
+            Display continuity \cite{TanCzerwinski2003} (Raschid, 2012)
+
+        Content interactions
+        	Technique (interactions spatiales)
+	        	Expliquer que c'est difficile de faire du WIMP ou du 6 DoF, donc il faut trouver autre chose \citet{AzumaBaillotBehringerEtAl2001} + il n'y a encore aucun paradigme en 2010 pour la RA \cite{VanKrevelenPoelman2010}
+	        	Indirect (\cite{TeatherStuerzlinger2011}) vs direct (revoir ethereal planes)
+	            Mid-hair hand \cite{EnsFinneganIrani2014} \cite{ChanKaoChenEtAl2010} \cite{JonesSodhiForsythEtAl2012}
+	            Gaze + taffi 
+	            Only touch on phone 
+	            Gaze + touch on phone
+
+	        Tangibilité
+
+            importance multimodal oviatt \cite{Oviatt2003}
+            multimodal sur mobile \cite{HuerstVanWezel2011}
 
         Virtual multi-display vs real multi-display 
 
         Technique 
-            2D vs 3D virtual content 
-            Same content accross outputs vs different content according to the output (Grubert, 2014) 
+            2D vs 3D virtual content (\cite{SerranoHildebrandtSubramanianEtAl2014})
+            Same appareance for a same content accross outputs vs different appareance according to the output \cite{GrubertHeinischQuigleyEtAl2015} 
 
 Les techniques, le hardware, choix technologiques
 
-Comment évaluer ? Taches de tests, et taches plus écologiques (proches des usages réels du quotidien)
+Comment évaluer ? Taches de tests, et taches plus écologiques (proches des usages réels du quotidien) \cite{DuenserGrassetBillinghurst2008}
     Type
         Visualisation 
-        Navigation (Ens, 2014) (Raschid, 2012) 
-        Selection (Ens, 2014) 
+        Navigation \cite{EnsFinneganIrani2014} (Raschid, 2012) 
+        Selection \cite{EnsFinneganIrani2014}
+        Tri \cite{RobertsonCzerwinskiLarsonEtAl1998}
         Multitasking 
-            Start, Question, My contacts, Calendar, Map (Cauchar, 2012) (Ens, 2014) 
+            Start, Question, My contacts, Calendar, Map (Cauchar, 2012) \cite{EnsFinneganIrani2014} 
     Difficulty
 
 
 
-\section*{Introduction}
+\section*{La réalité augmentée}
+\subsection*{Définition}
+La réalité augmentée (RA) consiste à combiner du contenu virtuel (généré par une système informatique) à l'environnement d'un utilisateur, et cela en temps réel. Ainsi la RA permet d'augmenter la perception du réel par les sens humains et d'augmenter les interactions possibles d'un utilisateur avec l'environnement \citep{Azuma1997}, le contenu virtuel ajouté étant créée par un système informatique.
 
-La réalité augmentée (RA) consiste à combiner du contenu virtuel (généré par une système informatique) à l'environnement d'une personne, et cela en temps réel~: la perception du réel par les sens humains est donc augmentée. L’œil peut voir plus d'informations, celles du réel et celles ajoutées au réel, ou l'oreille peut entendre plus qu'elle n'est capable d'entendre : toutes ces informations supplémentaires sont le contenu virtuel que la machine créé et ajoute au réel.\\
-La réalité augmentée peut toucher tous les sens humains. Cependant, elle est souvent désignée sous ce terme comme s'adressant au sens visuel, et c'est cette signification qui sera utilisé dans cette revue de littérature.
+\subsection*{Historique}
+\paragraph*{Débuts du domaine de recherche}
+Le domaine de recherche de la RA débute dans les années 60, mais se développe lentement durant les décennies suivantes. C'est \citet{Sutherland1968} qui développa le premier prototype de RA~: ce visiocasque permettait déjà de visualiser du contenu virtuel en 3D, affiché à l'utilisateur du visiocasque selon sa perspective visible depuis la position de sa tête, lui donnant ainsi l'illusion d'un contenu virtuel réellement présent dans l'espace. La recherche se développe par la suite lentement dans les décennies suivantes \citep{VanKrevelenPoelman2010} \citep{CarmignianiFurhtAnisettiEtAl2011}.
 
-\section*{Historique}
-Le domaine de recherche de la RA débute tôt, dans les années 60, mais se développe lentement durant les décennies suivantes. C'est \citet{Sutherland1968} qui développa le premier prototype de RA~: ce visiocasque permettait déjà de visualiser du contenu virtuel en 3D, affiché à l'utilisateur du visiocasque selon sa perspective visible depuis la position de sa tête, lui donnant ainsi l'illusion d'un contenu virtuel réellement présent dans l'espace.\\
-Quelques travaux sont notables par la suite. (\textbf{TODO citer} Caudell and Mizell, 1975 Myron Krueger, Steven Feiner, Blair MacIntyre and Doree Seligmann).
+\paragraph*{Établissement du domaine}
+C'est dans les années 90 où la RA devient un domaine de recherche à part entière. Cela se voit tout d'abord par la création de plusieurs conférences dédiées, réunies aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence désormais majeure pour la recherche et l'industrie \citep{AzumaBaillotBehringerEtAl2001}.\\
+En outre, \citet{MilgramKishino1994} réalisent une clarification des concepts du domaine, encore en usage aujourd'hui, en proposant une échelle ordonnée nommée \foreignlanguage{english}{Reality-Virtuality Continuum} \reffig{MilgramKishino1994-Figure1}, sur laquelle sont opposés deux extremum~: les environnements réels et les environnements de réalité virtuelle (RV). Un environnement de RV est alors entendu comme immergeant totalement l'utilisateur dans un monde virtuel. Ainsi, tout environnement mélangeant à la fois des éléments réels et virtuels, tel que la RA, se situe donc entre ces deux extremum est nommé, de façon générale, réalité mixte (RM) \citep{MilgramKishino1994}.\\
+Enfin, \citet{Azuma1997} réalise le premier état de l'art du domaine, qu'il complétera, suite au développement rapide du domaine \citet{AzumaBaillotBehringerEtAl2001}. \citet{Azuma1997} propose aussi une première définition formelle de la RA~: il indique qu'un environnement RA doit 
+\begin{enumerate*}[label=\emph{\arabic*})]
+\item combiner des éléments réels et virtuels
+\item être interactif en temps réel
+\item les éléments virtuels et réels doivent être alignés dans l'environnement
+\end{enumerate*}.
 
-C'est dans les années 90 où la RA devient un domaine de recherche à part entière. Cela se voit tout d'abord par la création de plusieurs conférences dédiées, réunies aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence désormais majeure pour la recherche et l'industrie \citep{VanKrevelenPoelman2010}.\\
-En outre, \citet{MilgramKishino1994} réalisent une clarification des concepts du domaine, encore en usage aujourd'hui, en proposant une échelle ordonnée nommée \foreignlanguage{english}{Reality-Virtuality Continuum} \reffig{MilgramKishino1994-Figure1}, sur laquelle sont opposés deux extremum~: les environnements réels aux environnements de réalité virtuelle (VR). Un environnement de VR est alors entendu comme immergeant totalement l'utilisateur dans un monde virtuel. Ainsi, tout environnement mélangeant à la fois des éléments réels et virtuels, tel que la RA, se situe donc entre ces deux extremum est nommé, de façon générale, réalité mixte (RM) \citep{MilgramKishino1994}.\\
-Enfin, \citet{Azuma1997} réalise le premier état de l'art du domaine.\\
+\paragraph*{}
+Les années 2000 et le mobile \cite{HuangHuiPeyloEtAl2013}
+Le manque de précision des capteurs étaient problématiques en 1997 \citep{Azuma1997} (capteurs nécessaires pour intégrer et aligner la RA dans l'environnement réel), mais les progrès en mobile ont permis de les perfectionner, de les démocratiser et de les rendre peu chers = vont permettre à l'AR d'être portable et mobile \cite{VanKrevelenPoelman2010}
 
-Les années 2000 et le mobile
+\figureETS{figures/MilgramKishino1994-Figure1.png}{L'échelle \foreignlanguage{english}{Reality-Virtuality Continuum} de Milgram\\ Tiré de \citet[p. 3]{MilgramKishino1994}}{MilgramKishino1994-Figure1}
 
-\figureETS{figures/MilgramKishino1994-Figure1.png}{L'échelle \foreignlanguage{english}{Reality-Virtuality Continuum} de Milgram\\ Tiré de \cite[p. 3]{MilgramKishino1994}}{MilgramKishino1994-Figure1}
-
-Applications \citep{VanKrevelenPoelman2010} \citet{CarmignianiFurhtAnisettiEtAl2011}
-
-Mais elles sont limitées + sont plus demandantes que la VR technologiquement c'est pour ça que pas encore mature sur le marché + ont héritage -> Historique + attentes aujourd'hui
+Mais elles sont limitées + sont plus demandantes que la RV technologiquement c'est pour ça que pas encore mature sur le marché + ont héritage -> Historique + attentes aujourd'hui
 Premier prototype en 1966 avec Sutherland. Puis les années 90 ont vu l'arrivée des PC avec la miniaturisation, qui s'est poursuivie par la suite avec les PDA et les smartphones dans les années 2000. L'AR est peu mobile, les prototypes sont souvent dans les labos. L'AR est devenue un champs de recherche à part entière à la fin des 90s
 
 Amène au mobile qui a explosé cette décennie
@@ -99,6 +119,6 @@ Les plateformes et techniques
 
 Il existe aujourd'hui plusieurs techniques de RA, classées en trois catégories \reffig{BimberRaskar2005-Figure31}. La catégorie dominant actuellement le marché est celle des visiocasques (ou \foreignlanguage{english}{Head-Mounted Display}) \citep{VanKrevelenPoelman2010}~: on le voit par la présence médiatique des visiocasques grand public tel que l'Oculus Rift, le HTC Vive ou Microsoft HoloLens. Seule cette catégorie sera explorée dans cette revue de littérature. Les techniques de cette catégorie consistent à placer un casque devant les yeux de l'utilisateur pour y diffuser la RA. Un premier type de ces techniques, dites \foreignlanguage{english}{video see-through}, vont remplacer l'environnement par une image filmée et augmentée de cet environnement. Cela va se faire en utilisant des caméras à l'avant du casque et en modifiant les images filmées pour les renvoyer l'écran du casque. Un second type de ces techniques, dites \foreignlanguage{english}{optical see-through}, vont laisser voir à l'utilisateur directement l'environnement, et, par un jeu de miroirs et de lentilles, vont y superposer les images de RA.
 
-\figureETS{figures/BimberRaskar2005-Figure31.png}{Catégories des techniques d'affichages de RA\\ Tiré de \cite[p. 72]{BimberRaskar2005}}{BimberRaskar2005-Figure31}
+\figureETS{figures/BimberRaskar2005-Figure31.png}{Catégories des techniques d'affichages de RA\\ Tiré de \citet[p. 72]{BimberRaskar2005}}{BimberRaskar2005-Figure31}
 
 \section*{Conclusion}
