@@ -764,6 +764,14 @@ FUNCTION {empty.misc.check}
   if$
 }
 
+% Fonction ajoutée par E.Normand (21 avril 2016) pour insérer le titre du site web d'une notice bibliographique d'une page dans un site web
+FUNCTION {format.in.publisher}
+{ publisher empty$
+    { "" }
+    { "In " publisher emphasize * }
+  if$
+}
+
 FUNCTION {format.thesis.type}
 { type empty$
     'skip$
@@ -1135,6 +1143,7 @@ FUNCTION {misc}
   format.date output
   title howpublished new.block.checkb
   format.qtitle output
+  format.in.publisher output
   howpublished new.block.checka
   howpublished output
   format.issn output
