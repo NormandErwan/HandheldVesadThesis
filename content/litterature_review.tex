@@ -1,7 +1,8 @@
 \section*{Introduction}
-Intro : RV monte, mobile devient de plus en plus puissants + affichage + capteurs. AR cousine de RV, semble avenir promis meilleur, malgré son retard (du pb technologiques). Tout va devenir plus mobile, donc intéressant de combiner les deux ?
+Intro : RV monte, mobile devient de plus en plus puissants + affichage + capteurs. Et les mobiles ont fait une révolution les 10-15 dernières années, tout le monde en possède. AR cousine de RV, semble avenir promis meilleur (\cite{BelliniChenSugiyamaEtAl2016}), malgré son retard (du pb technologiques). Tout va devenir plus mobile, donc intéressant de combiner les deux ?
 \cite{DeSaChurchill2013} \\
-Limites : on s'intéresse aux interfaces et aux interactions, ainsi que pour la RA pour le sens visuel seulement ; pas les pb technologiques directement (seulement s'ils influent sur l'ui et les interactions), ni les pbs d'acceptation sociale \\
+Rêve : interfaces dans l'idée de celles du film minority report ou celles de la ville de Zion dans The Matrix \cite{WachowskiSilver2003}, hologrammes dans l'espace de l'utilisateur manipulés naturellement mais en mobile, embarqué avec le smartphone \\
+Limites : on s'intéresse aux interfaces et aux interactions, ainsi que pour la RA pour le sens visuel seulement ; pas les pb technologiques directement (seulement s'ils influent sur l'ui et les interactions), ni les pbs d'acceptation sociale (exploré ici : \cite{KoelleKranzMoeller2015}, déjà questionné ici : \cite{AzumaBaillotBehringerEtAl2001}) \\
 
 La RA peut toucher tous les sens humains. Cependant, elle est souvent désignée sous ce terme comme s'adressant au sens visuel, et c'est sous cette signification qu'elle sera employée dans cette revue de littérature.
 
@@ -52,10 +53,14 @@ worlds. » Ens 2014
 
 
 \section*{Problématiques de la conception d'interfaces humain-machine pour la réalité augmentée et pour le mobile}
-Ce qui amène à la problématique : ancêtre de ce que l'on veut faire, accroche des fenêtres virtuelles aux objets : \cite{FeinerMacIntyreHauptEtAl1993}, desktop-gluey, multifi, ethereal planes, personal cockpit -> arguments pour combiner mobile et HMD (avancées des articles) + ça n'a pas encore été bien fait (limites des articles)
+Ce qui amène à la problématique : ancêtre de ce que l'on veut faire, accroche des fenêtres virtuelles aux objets : \cite{FeinerMacIntyreHauptEtAl1993}, information spaces \cite{Fitzmaurice1993}, desktop-gluey \cite{SerranoEnsYangEtAl2015}, multifi \cite{GrubertHeinischQuigleyEtAl2015}, ethereal planes \cite{EnsHincapie-RamosIrani2014}, personal cockpit \cite{EnsFinneganIrani2014} -> arguments pour combiner mobile et HMD (avancées des articles) + ça n'a pas encore été bien fait (limites des articles)
 
-+ les problématiques du mobile actuellement : petit écran face à grand contenu (wedge/halo : \cite{BaudischRosenholtz2003} \cite{GustafsonBaudischGutwinEtAl2008} \cite{BurigatChittaro2011}), le multi-tache couteux (partir du personal cockpit)
-insister sur le potentiel d'augmenter l'écran avec les travaux comparant le desktop aux murs \cite{LiuChapuisBeaudouin-LafonEtAl2014} \cite{ShuppBallYostEtAl2006}
++ les problématiques du mobile actuellement : petit écran face à grand contenu 
+incapacité à gérer de grandes infos 
+avec wedge/halo \cite{BaudischRosenholtz2003} \cite{GustafsonBaudischGutwinEtAl2008} \cite{BurigatChittaro2011} 
++ potentiel d'augmenter la taille l'affichage avec les travaux comparant le desktop aux murs \cite{LiuChapuisBeaudouin-LafonEtAl2014} \cite{ShuppBallYostEtAl2006} \cite{TanGergleScupelliEtAl2003}
++ le multi-tache couteux \cite{EnsFinneganIrani2014} \cite{RashidNacentaQuigley2012a}
++ designer pour la périphérie \cite{JonesBenkoOfekEtAl2013} \cite{CockburnKarlsonBederson2009}
 
 + concernant le multi-tache, c'est une problématique des systèmes RA (\cite{SchmalstiegFuhrmannHesinaEtAl2002} et background de \cite{EnsFinneganIrani2014}) : donc c'est naturel de lier le portable à la RA (TODO trouver un article le disant), surtout si on suit le \"information spaces\" de \cite{EnsHincapie-RamosIrani2014}
 \cite{TanCzerwinski2003}
@@ -64,17 +69,36 @@ insister sur le potentiel d'augmenter l'écran avec les travaux comparant le des
 
 + les challenges techniques sur le Mobile Augmented Reality commencent à être atteints, donc on va pouvoir commencer à développer des applications réelles, et se concentrer sur la conception -> ce qui est nécessaire pour que ce genre de prototypes puissent aller au delà du laboratoire
 « We need a better understanding of how to display data
-to a user and how the user should interact with the data. » Azura 2001
--> concevoir, expérimenter, évaluer un prototype répondant à la problématique
+to a user and how the user should interact with the data. » \cite{AzumaBaillotBehringerEtAl2001}
+cad les hmd *vont* être léger, puissants, mobiles, pleins de capteurs, et moins intrusifs (parler des data glasses ou HWD) ET permettent d'avoir de l'info feedback en permanence et de laisser les mains libres, donc naturel (MultiFi, Gluey) de s'en servir en synergie avec nos appareils mobiles et desktop
+mais
+
+« It has been shown that combinations of touch screens
+with smartglasses have the potential to lead to a more ef-
+ficient interaction compared to smartlgass only interaction » \cite{GrubertHeinischQuigleyEtAl2015}
 
 explorer tout ce qui lié à \"SideSight: Multi-“touch” Interaction Around Small Devices \" : interactions avec petits écrans mais sans feedback -> nous ajoutons à ces recherches le feedback qui a la possibilité d'être permanent avec un HMD
 
+-> concevoir, expérimenter, évaluer un prototype répondant à la problématique
+utiliser l'espace autour du téléphone et concevoir pour cet espace, pour augmenter et/ou compléter le contenu du téléphone 
++ concevoir pour la périphérie (focus+context \cite{CockburnKarlsonBederson2009}, illuniroom \cite{JonesBenkoOfekEtAl2013}) 
++ pour pouvoir naviguer mieux dans les larges «information spaces» \cite{RaedleJetterMuellerEtAl2014} (ici le sweet spot va converger vers le 130° de wide display et le design pour la périphérie ?) -> Pour cela, faire une preuve de concept, explorer les dimensions de conception et les analyser avec expérimentations (comme personal cockpit), pour discuter comment des projets concrets en industrie pourrait faire suivre le concept
+Questions : Quelles interactions sont les meilleures pour quelles taches ? Est-ce que le contenu virtuel doit être conçu seulement pour la périphérie ou peut faire l'objet de focus ? Comment lier cette conception pour la périphérie avec le multi-tâche ? Quels sont les meilleurs paramètres pour concevoir ce mobile augmenté spatial (suite de gluey-desktop) ? Est-ce que le contenu doit-être deviced-fixed (gluey-desktop), ou est-ce qu'il doit être body-fixe/world-fixed (selon contexte) et le téléphone utilisé comme un «peophole» sur ce contenu ? Pour quelles raisons le téléphone devrait-il être un «peephole» : la résolution (les HMD auront une bonne résolution, mais quand et pour quel prix ?) ou pour les interactions tangibles qu'il permet ? Le contenu virtuel devrait-il être en 2D ou en 3D, et dans quels modes (device-fixed, body-fixed peephole) ? 
 
-\section*{Facteurs de conception d'une réalité augmentée mobile}
+\section*{Facteurs de conception d'une réalité augmentée spatiale et mobile}
+« However, to date, what is not well understood is which fac-
+tors inhibit or support the interaction across multiple dis-
+plays on and around the body i.e. “body proximate” dis-
+plays. Within this paper we review four key design and tech-
+nological challenges inherent in body proximate display
+ecosystems, i.e. combinations of wearable displays (e.g.,
+smartwatches and smartglasses) and handheld devices
+(e.g., tablets and smartphones). » \cite{GrubertKranzQuigley2015} %TODO : réviser l'article comme point de départ de cette section + les design factors de Personal Cockpit
+
 Conception (interfaces, interactions) importants et surtout les non-explorés encore = les sous-problèmes
         FoV (Czerwinski, 2002) (Patterson, 2006) \cite{KishishitaKiyokawaOrloskyEtAl2014} 
 
-        Resolution 
+        Resolution
 
         Reference frame for virtual content 
             World-fixed \cite{EnsFinneganIrani2014} 
@@ -85,19 +109,20 @@ Conception (interfaces, interactions) importants et surtout les non-explorés en
             Movability \cite{EnsHincapie-RamosIrani2014}
 
         Context switching 
-            Number of displays (Raschid, 2012) (Cauchard, 2012) 
-            Design of context vs design with large one app display (Ball, 2008) 
+            Number of displays \cite{RashidNacentaQuigley2012} \cite{CauchardLoechtefeldFraserEtAl2012}
+            Design of context vs design with large one app display \cite{BallNorth2008}
 
         Content display
-            Size of virtual elements = angular width (Shupp, 2006) (Ball, 2008) 
+            Size of virtual elements = angular width \cite{ShuppBallYostEtAl2006} \cite{BallNorth2008}
             Distance of virtual content (Hezel, 1994) (Ankrum, 1999) (Tan, 2003) \cite{ChanKaoChenEtAl2010} \cite{EnsFinneganIrani2014} 
             Angular separation (Mayer, 1993) \cite{EnsFinneganIrani2014} \cite{KishishitaKiyokawaOrloskyEtAl2014} (Alger, 2015) 
-            Curved layout vs flat layout (Shupp, 2006) 
+            Curved layout vs flat layout \cite{ShuppBallYostEtAl2006} 
             Direction of content (top, bottom, left, right) \cite{EnsFinneganIrani2014} 
-            Display continuity \cite{TanCzerwinski2003} (Raschid, 2012)
+            Display continuity \cite{TanCzerwinski2003} \cite{RashidNacentaQuigley2012}
+            Allocatin space for new elements \cite{BellFeiner2000}
 
         Content interactions
-        	Reprendre \cite{Bernatchez2008}
+        	Reprendre \cite{Bernatchez2008} et \cite{JankowskiHachet2013}
         	Technique (interactions spatiales)
 	        	Expliquer que c'est difficile de faire du WIMP ou du 6 DoF, donc il faut trouver autre chose \citet{AzumaBaillotBehringerEtAl2001} + il n'y a encore aucun paradigme en 2010 pour la RA \cite{VanKrevelenPoelman2010}
 	        	Indirect (\cite{TeatherStuerzlinger2011}) vs direct (revoir ethereal planes)
@@ -108,13 +133,13 @@ Conception (interfaces, interactions) importants et surtout les non-explorés en
 
 	        Tangibilité
 
-            importance multimodal oviatt \cite{Oviatt2003}
+            Importance multimodal oviatt \cite{Oviatt2003}
             multimodal sur mobile \cite{HuerstVanWezel2011}
 
-        Virtual multi-display vs real multi-display 
+        Evaluating virtual multi-display vs real multi-display 
 
         Technique 
-            2D vs 3D virtual content (\cite{SerranoHildebrandtSubramanianEtAl2014})
+            2D vs 3D virtual content \cite{JansenDragicevicFekete2013} \cite{SerranoHildebrandtSubramanianEtAl2014}
             Same appareance for a same content accross outputs vs different appareance according to the output \cite{GrubertHeinischQuigleyEtAl2015} 
 
 
