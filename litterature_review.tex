@@ -5,20 +5,20 @@
 \usepackage{geometry}
 \usepackage{titling}
 \usepackage{graphicx}
-\usepackage{setspace}
-\usepackage{lipsum} %TODO : à supprimer
+\usepackage{setspace}	
 \usepackage{letltxmacro}
 \usepackage[round]{natbibETS} % Style de citation de l'ÉTS
 \usepackage{caption} % Sauts de lignes possibles dans \caption
 \usepackage[inline]{enumitem}
+\usepackage{textcomp} % Commande \textdegree
 
 %% Configuration %%
 
 \selectlanguage{francais} % Package babel
+\renewcommand{\baselinestretch}{1.5} % Interligne
 \geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm} % Package geometry
 
 \setlength{\droptitle}{-4em} % Marge du titre
-\linespread{1.5} % Interligne
 \renewcommand{\familydefault}{ptm} % Police par défaut
 
 % Tiré de thETS.cls
@@ -47,15 +47,16 @@
 
 %% Document %%
 
-\title{MTR871~: Lectures dirigées \\
+\title{
+	MTR871~: Lectures dirigées \\
 	\large Conception d'une réalité augmentée spatiale et mobile}
 \author{Erwan \bsc{Normand} (NORE16059404)}
 \date{\today}
 
 \begin{document}
-
+	
 	\maketitle
-
+	
 	\input{content/litterature_review}
 
 	% Bibliographie
