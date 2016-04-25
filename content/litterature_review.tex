@@ -1,15 +1,16 @@
 \section*{Introduction}
 Après quelques années de développement, le marché de la réalité virtuelle (RV) est attendu à exploser en 2016 avec la sortie des version publiques des visiocasques Oculus Rift et HTC Vive. En outre, Microsoft, une des plus grandes entreprises en technologies de l'information, s'est lancé dans la conception d'un casque de réalité augmentée (RA), le HoloLens, dont il livrera une première version destinée aux développeurs dans le courant de l'année 2016. Dans un rapport Goldman Sachs Research estime que les marchés de la RV et de la RA pèseront, ensemble, entre 23 milliards et 80 milliards de dollars de revenus par an d'ici 2025 \citep{BelliniChenSugiyamaEtAl2016}. De plus, malgré son retard technologique sur la RV, la RA semble promise à un avenir meilleur. \citep{BelliniChenSugiyamaEtAl2016} En effet, si la RV immerge totalement l'utilisateur dans un environnement virtuel, la RA introduit des éléments virtuels dans l'environnement réel. Ainsi, la RA peut émuler la RV, et permet de construire des interfaces humain-machines (IHM) autour d'un utilisateur dans sa vie quotidienne et augmenter les interactions possibles qu'il peut avoir avec son environnement.
 
-L'émergence de la RA permet de rêver à la réalisation d'IHM qui n'étaient encore présentent que dans les imaginaires. On peut citer par exemple les IHM vues dans les films Minority Report \reffig{MinorityReport-Hologram} ou ceux de la trilogie The Matrix \reffig{WachowskiSilver2003-ZionUI}. Si ces exemples montrent des IHM fixées à des bureaux de travail, les lunettes de RA Google Glass ont montré que les interactions en RA avec un téléphone intelligent étaient prometteuses. Nous pensons que l'adoption massive des téléphones intelligents et tablettes, et la future révolution des lunettes de RA promettent des interaction en synergies à explorer. Dans quelle mesure la RA pourrait augmenter les interactions possibles avec un téléphone intelligent ?
+L'émergence de la RA permet de rêver à la réalisation d'IHM qui n'étaient encore présentent que dans les imaginaires. On peut citer par exemple les IHM vues dans les films Minority Report \reffig{MinorityReport-Hologram} ou ceux de la trilogie The Matrix \reffig{WachowskiSilver2003-ZionUI}. Si ces exemples montrent des IHM fixées à des bureaux de travail, les lunettes de RA Google Glass ont montré que les interactions en RA avec un téléphone intelligent étaient prometteuses. Nous pensons que l'adoption des téléphones intelligents et tablettes qui a été massive ces dernières années, et la future révolution des lunettes de RA promettent des interactions conjointes à explorer entre ces deux types d'appareils. Dans quelle mesure la RA pourrait augmenter les interactions possibles avec un téléphone intelligent ?
 
 \figureETS{figures/MinorityReport-Hologram.png}{IHM de l'hologramme du film \foreignlanguage{english}{Minority Report}\\ Tiré de \citet{Spielberg2002}}{MinorityReport-Hologram}
 
 \figureETS{figures/WachowskiSilver2003-ZionUI.jpg}{IHM d'une tour de contrôle du film \foreignlanguage{english}{The Matrix Reloaded}\\ Tiré de \citet{WachowskiSilver2003}}{WachowskiSilver2003-ZionUI}
 
-La RA peut toucher tous les sens humains, cependant, elle est souvent désignée sous ce terme comme s'adressant au sens visuel. C'est sous cette signification qu'elle sera employée dans cette revue de littérature. En outre, nous nous intéressons ici à la conception d'IHM pour la RA~: les considérations techniques ne seront pas abordées directement, les problématiques d'acceptation sociale de la RA.
+La RA peut toucher tous les sens humains, cependant, elle est souvent désignée sous ce terme comme s'adressant au sens visuel. C'est sous cette signification qu'elle sera employée dans cette revue de littérature. En outre, nous nous intéressons ici à la conception d'IHM pour la RA~: les considérations techniques ne seront pas abordées directement, les problématiques d'acceptation sociale de la RA. Les problématiques de travail collaboratif ne seront pas non plus abordées.
 
-Cette revue de littérature s'organisera en plusieurs sections allant du plus général au plus spécifique, aboutissant aux questions de recherche que nous pensons nécessaires d'explorer pour répondre au problème désigné plus haut. La première section donnera le contexte du sujet, en définissant la RA et en dressant son historique. La seconde section explora les recherches réalisée dans la conception d'IHM pour des RA mobile et portable et décrira les futurs travaux nécessaires. Enfin, une synthèse sera faite.
+Cette revue de littérature s'organisera en plusieurs sections allant du plus général au plus spécifique, aboutissant aux questions de recherche que nous pensons nécessaires d'explorer pour répondre au problème désigné plus haut. La première partie donnera le contexte du sujet, en définissant la RA et en dressant son historique. La seconde partie explora les recherches réalisée dans la conception d'IHM pour des RA mobile et portable et décrira les futurs travaux nécessaires. Enfin, une synthèse sera faite dans une troisième partie.
+
 
 \section*{Définitions}
 \subsection*{Définition de la réalité augmentée}
@@ -44,49 +45,86 @@ Enfin, \citet{Azuma1997} propose une première définition formelle de la RA~: i
 
 \figureETS{figures/MilgramKishino1994-Figure1.png}{L'échelle \foreignlanguage{english}{Reality-Virtuality Continuum} de Milgram\\ Tiré de \citet[p. 3]{MilgramKishino1994}}{MilgramKishino1994-Figure1}
 
-\paragraph*{Développement du domaine de recherche vers des réalités augmentées portables et mobiles}
-A partir des années 2000, avec la révolution des téléphones intelligents, le RA est amenée à devenir portable et mobile pour pouvoir s'émanciper des simples prototypes des laboratoires. Tout d'abord, le domaine s'étant développé rapidement depuis 1997, \citet{AzumaBaillotBehringerEtAl2001} complète son travail précédent par un second état de l'art. Il note en particulier que les progrès techniques (capteurs et capacités de calculs) permettent désormais de concevoir des RA mobile, avec par exemple des PC portables embarqués dans un sac. Dans un état de l'art plus récent, \citet{VanKrevelenPoelman2010} notent que l'un des plus grands potentiels de la RA pourrait être dans une RA portable et mobile, par exemple pour réaliser un assistant personnel.
+\paragraph*{Développement du domaine de recherche vers des réalités augmentées mobiles et portables}
+A partir des années 2000, avec la révolution des téléphones intelligents, le RA est amenée à devenir portable et mobile pour pouvoir s'émanciper des simples prototypes des laboratoires. Tout d'abord, dans un second état de l'art complétant le premier, le domaine s'étant développé rapidement depuis 1997, \citet{AzumaBaillotBehringerEtAl2001} notent  que les progrès techniques sur les capteurs et sur les capacités de calculs permet désormais de concevoir des RA mobiles. Cela pouvait se réaliser, par exemple, des PC portables embarqués avec les capteurs dans un sac à dos~: mais ce genre d'équipement était lourd et encombrant. \citep{DeSaChurchill2013}
 
-Ainsi, pour réaliser une telle RA portable et mobile, il pourrait être intéressant d'utiliser les téléphones intelligents. Leur puissance, leur légèreté, ainsi que leurs capacités ont explosés et ils ont permis de concevoir des capteurs bon marchés et efficaces~: les téléphones intelligents peuvent donc être utilisés pour supporter des systèmes RA. \cite{DeSaChurchill2013} En outre, \citet{CarmignianiFurhtAnisettiEtAl2011} constate qu'entre 2002 et 2010, de plus en plus de prototypes de RA sont réalisés sur des systèmes mobiles. \citet{VanKrevelenPoelman2010} souligne également que les téléphones intelligents permettent d'atteindre une RA mobile et utilisable au quotidien par le grand public, malgré les difficultés techniques et technologiques plus importantes en RA qu'en RV. Dans un état de l'art récent de la RA mobile, \citet{HuangHuiPeyloEtAl2013} concluent que malgré ces challenges techniques, la RA a déjà montré qu'elle fonctionne et qu'elle peut devenir, pour ses utilisateurs, un moyen important d’interaction avec leur environnement.
-% TODO : dire que la technologie va aboutir mais beaucoup à faire dans l'IHM plutôt + = facteur de succès (iPhone se vent si bien et a fait exploser le marché car soin sur techno ET sur l'UX)
+Pour réaliser de telles RA mobiles, il a alors été intéressant d'utiliser les téléphones intelligents. En effet, leur puissance, leur légèreté, ainsi que leurs capacités ont explosés et ils ont permis de concevoir des capteurs bon marchés et efficaces~: les téléphones intelligents peuvent donc être utilisés pour créer des systèmes RA léger et facilement portable par un utilisateur. \citep{DeSaChurchill2013} \citet{VanKrevelenPoelman2010} soulignent que les téléphones intelligents permettent d'atteindre une RA mobile et utilisable au quotidien par le grand public, malgré des difficultés techniques et technologiques encore restantes de performances, coûts, efficacité énergétique, poids. Pour \citeauthor{VanKrevelenPoelman2010}, l'un des plus grands potentiels de la RA pourrait être dans sous une forme mobile (\textbf{TODO détailler applications ?}). En outre, \citet{CarmignianiFurhtAnisettiEtAl2011} constatent dans leur état de l'art de la RA, qu'entre les années 2002 et 2010, de plus en plus de prototypes de RA sont réalisés sur des systèmes mobiles, car c'est sous cette forme que la RA a le plus de chance de réussir auprès du grand public. Dans un état de l'art récent plus spécifique à la RA mobile, \citet{HuangHuiPeyloEtAl2013} concluent que malgré les challenges techniques encore non résolus, la RA mobile a déjà montré qu'elle fonctionne et qu'elle peut devenir, pour ses utilisateurs, un moyen important d’interaction avec leur environnement.
 
+
+\section*{Conception d'interfaces humain-machine pour une réalité augmentée portable et mobile}
+\subsection*{}
+\cite{DeSaChurchill2013}
+% interlude pour montrer qu'on enchaine sur les HI sur il y a eu beaucoup de travail sur la technologie mais peu sur l'ihm \cite{DeSaChurchill2013}
+% + argument : la technologie va aboutir mais beaucoup à faire dans l'IHM plutôt + = facteur de succès (iPhone se vent si bien et a fait exploser le marché car soin sur techno ET sur l'UX)
+
+\subsection*{L'utilisation conjointe des visiocasques et des téléphones intelligents pour réaliser une réalité augmentée portable et mobile}
+% bien marquer le lien avec la fin de la section précédente, pour reprendre sur non plus les pb technos mais les pbs d'UX et pourquoi c'est mieux de faire de la RA avec HMD qu'avec un smartphone
+L'utilisation de téléphones intelligents pour la RA présente  certains inconvénients importants \footnotetext{Cela peut être des facteurs expliquant, entre autres, de la encore faible adoption de tels systèmes par le grand public}. On peut noter que leurs écrans sont petits et que le téléphone doit être tenu à bout de bras à la hauteur des yeux pour que la caméra puisse filmer du point de vue du regard de l'utilisateur. Cela peut se révéler fatiguant pour l'utilisateur et donc limiter l'usage du système de RA. Cependant, l'expérimentation de Google Glass a permis de montrer, malgré les problèmes de vie privée et d'acceptation sociale qu'elle a posée, qu'il était intéressant de combiner un visiocasque avec un téléphone intelligent~: le système proposait à l'utilisateur d'interagir avec son téléphone via le visiocasque avec interactions à la voix ou avec des gestes en l'air, lus et décodés par la caméra du visiocasque. Ainsi, pour \citet{HuangHuiPeyloEtAl2013} l'avenir de la RA mobile se trouve dans l'utilisation de visiocasques de ce type. 
+% caméras et écrans à hauteur d'oeil comme on a vu donc : Ils permettent en effet de créer une expérience à mains libres, ainsi qu'un retour d'information direct et permanent.
+
+
+% TODO à redispatcher dans les paragraphes autours
+% les challenges techniques sur le Mobile Augmented Reality commencent à être atteints, donc on va pouvoir commencer à développer des applications réelles, et se concentrer sur la conception -> ce qui est nécessaire pour que ce genre de prototypes puissent aller au delà du laboratoire
+% « We need a better understanding of how to display data to a user and how the user should interact with the data. » \cite{AzumaBaillotBehringerEtAl2001} 
+% cad les hmd *vont* être léger, puissants, mobiles, pleins de capteurs, et moins intrusifs (parler des data glasses ou HWD) ET permettent d'avoir de l'info feedback en permanence et de laisser les mains libres, donc naturel (MultiFi, Gluey) de s'en servir en synergie avec nos appareils mobiles et desktop
+
+
+% Les limites des HMDs RA actuels : pas de la RA totalement (pas de 3D, ni d'alignement du réel / virtuel) + on peut pas remplacer les téléphones car les IHM 6 DoF pour la RA ne fonctionnent pas bien (il faut du tangible), ni les IHM WIMP pour la RA (comment afficher les trucs, on sait pas) -> donc le mobile va rester là encore jusqu'à nouvel ordre : il est tangible et ce qui ce fait de mieux en IHM mobile et portable pour l'instant
+Une limite cependant du Google Glass est son IHM, qui est affichée sur un plan virtuel à une distance fixe des yeux. Ce n'est alors pas totalement de la RA au sens de \citet{AzumaBaillotBehringerEtAl2001}, car les éléments virtuels ne sont pas alignés avec les éléments réels.
+% expliquer que c'est pas totalement de la RA au sens de la def de Azuma
+
+% grace au feedback et au hand-free, et comme le HMD peut pas remplacer, pourquoi ne pas se servir du HMD en RA pour augmenter les interactions du smartphone ?
+% + ça a un nom : les Distributed display environments
+% + c'est du design spatial : expliquer en donnant l'origine : ancêtre de ce que l'on veut faire, accroche des fenêtres virtuelles aux objets \cite{FeinerMacIntyreHauptEtAl1993}
+Les mains sont libres d'utiliser un autre système tel qu'un ordinateur de bureau ou téléphone intelligent, et il serait possible et intéressant de faire travailler en synergie le système de RA du visiocasque avec les autres systèmes informatique de l'utilisateur. \citep{SerranoEnsYangEtAl2015a} \citep{SerranoEnsYangEtAl2015}
+« It has been shown that combinations of touch screens
+with smartglasses have the potential to lead to a more ef-
+ficient interaction compared to smartlgass only interaction » \cite{GrubertKranzQuigley2015}
+
+
+\subsection*{Problématique}
 % « Our work is inspired by a number of interfaces that leverage spatial memory to bridge the gap between real and digital worlds. » Ens 2014
 
-\section*{Problématiques de la conception d'interfaces humain-machine pour une réalité augmentée portable et mobile}
-Le domaine de la RA mobile est donc récent, et, mdonc encore relativement peu mature.
+% 1 exploiter l'espace 3D autour du tel : personal cockpit \cite{EnsFinneganIrani2014}
+% + mais pas tangible et cause des soucis (\cite{ChanKaoChenEtAl2010}) + ils ont fait dans un CAVE pas sur un HMD
+
+% 2 multifi \cite{GrubertHeinischQuigleyEtAl2015} fait du tangible + information spaces pour l'appuyer \cite{Fitzmaurice1993}
+
+% 3 gluey \cite{SerranoEnsYangEtAl2015a}
+
+% 4 desktop-gluey \cite{SerranoEnsYangEtAl2015} et ethereal planes \cite{EnsHincapie-RamosIrani2014} pour préciser le manque : une IHM OS pour HMD + mobile
+
+% + explorer tout ce qui lié à \"SideSight: Multi-“touch” Interaction Around Small Devices \" : interactions avec petits écrans mais sans feedback -> nous ajoutons à ces recherches le feedback qui a la possibilité d'être permanent avec un HMD
+
+-> concevoir, expérimenter, évaluer un prototype répondant à la problématique
+utiliser l'espace autour du téléphone et concevoir pour cet espace, pour augmenter et/ou compléter le contenu du téléphone 
++ concevoir pour la périphérie (focus+context \cite{CockburnKarlsonBederson2009}, illuniroom \cite{JonesBenkoOfekEtAl2013}) 
++ pour pouvoir naviguer mieux dans les larges «information spaces» \cite{RaedleJetterMuellerEtAl2014} (ici le sweet spot va converger vers le 130\textdegree de wide display et le design pour la périphérie ?) -> Pour cela, faire une preuve de concept, explorer les dimensions de conception et les analyser avec expérimentations (comme personal cockpit), pour discuter comment des projets concrets en industrie pourrait faire suivre le concept
 
 
-Ce qui amène à la problématique : ancêtre de ce que l'on veut faire, accroche des fenêtres virtuelles aux objets : \cite{FeinerMacIntyreHauptEtAl1993}, information spaces \cite{Fitzmaurice1993}, desktop-gluey \cite{SerranoEnsYangEtAl2015}, multifi \cite{GrubertHeinischQuigleyEtAl2015}, ethereal planes \cite{EnsHincapie-RamosIrani2014}, personal cockpit \cite{EnsFinneganIrani2014} -> arguments pour combiner mobile et HMD (avancées des articles) + ça n'a pas encore été bien fait (limites des articles)
-
-+ les problématiques du mobile actuellement : petit écran face à grand contenu 
+\subsection*{Related works}
+\paragraph*{}
+les problématiques du mobile actuellement : petit écran face à grand contenu 
 incapacité à gérer de grandes infos 
 avec wedge/halo \cite{BaudischRosenholtz2003} \cite{GustafsonBaudischGutwinEtAl2008} \cite{BurigatChittaro2011} 
 + potentiel d'augmenter la taille l'affichage avec les travaux comparant le desktop aux murs \cite{LiuChapuisBeaudouin-LafonEtAl2014} \cite{ShuppBallYostEtAl2006} \cite{TanGergleScupelliEtAl2003}
 + le multi-tache couteux \cite{EnsFinneganIrani2014} \cite{RashidNacentaQuigley2012a}
 + designer pour la périphérie \cite{JonesBenkoOfekEtAl2013} \cite{CockburnKarlsonBederson2009}
 
-+ concernant le multi-tache, c'est une problématique des systèmes RA (\cite{SchmalstiegFuhrmannHesinaEtAl2002} et background de \cite{EnsFinneganIrani2014}) : donc c'est naturel de lier le portable à la RA (TODO trouver un article le disant), surtout si on suit le \"information spaces\" de \cite{EnsHincapie-RamosIrani2014}
+\paragraph*{}
+concernant le multi-tache, c'est une problématique des systèmes RA (\cite{SchmalstiegFuhrmannHesinaEtAl2002} et background de \cite{EnsFinneganIrani2014}) : donc c'est naturel de lier le portable à la RA (TODO trouver un article le disant), surtout si on suit le \"information spaces\" de \cite{EnsHincapie-RamosIrani2014}
 \cite{TanCzerwinski2003}
 
-+ problématique de désynchronisation réel/virtuel peut être comblé avec cette RA mobile : \cite{Chalon2004} et Gluey qui fait des photos du réels pour les coller sur l'écran
+\paragraph*{}
+problématique de désynchronisation réel/virtuel peut être comblé avec cette RA mobile : \cite{Chalon2004} et Gluey qui fait des photos du réels pour les coller sur l'écran
 
-+ les challenges techniques sur le Mobile Augmented Reality commencent à être atteints, donc on va pouvoir commencer à développer des applications réelles, et se concentrer sur la conception -> ce qui est nécessaire pour que ce genre de prototypes puissent aller au delà du laboratoire
-« We need a better understanding of how to display data
-to a user and how the user should interact with the data. » \cite{AzumaBaillotBehringerEtAl2001}
-cad les hmd *vont* être léger, puissants, mobiles, pleins de capteurs, et moins intrusifs (parler des data glasses ou HWD) ET permettent d'avoir de l'info feedback en permanence et de laisser les mains libres, donc naturel (MultiFi, Gluey) de s'en servir en synergie avec nos appareils mobiles et desktop
-mais
+\paragraph*{}
++ concevoir pour la périphérie (focus+context \cite{CockburnKarlsonBederson2009}, illuniroom \cite{JonesBenkoOfekEtAl2013})
 
-« It has been shown that combinations of touch screens
-with smartglasses have the potential to lead to a more ef-
-ficient interaction compared to smartlgass only interaction » \cite{GrubertHeinischQuigleyEtAl2015}
 
-explorer tout ce qui lié à \"SideSight: Multi-“touch” Interaction Around Small Devices \" : interactions avec petits écrans mais sans feedback -> nous ajoutons à ces recherches le feedback qui a la possibilité d'être permanent avec un HMD
-
--> concevoir, expérimenter, évaluer un prototype répondant à la problématique
-utiliser l'espace autour du téléphone et concevoir pour cet espace, pour augmenter et/ou compléter le contenu du téléphone 
-+ concevoir pour la périphérie (focus+context \cite{CockburnKarlsonBederson2009}, illuniroom \cite{JonesBenkoOfekEtAl2013}) 
-+ pour pouvoir naviguer mieux dans les larges «information spaces» \cite{RaedleJetterMuellerEtAl2014} (ici le sweet spot va converger vers le 130\textdegree de wide display et le design pour la périphérie ?) -> Pour cela, faire une preuve de concept, explorer les dimensions de conception et les analyser avec expérimentations (comme personal cockpit), pour discuter comment des projets concrets en industrie pourrait faire suivre le concept
+\subsection*{title}
 Questions : Quelles interactions sont les meilleures pour quelles taches ? Est-ce que le contenu virtuel doit être conçu seulement pour la périphérie ou peut faire l'objet de focus ? Comment lier cette conception pour la périphérie avec le multi-tâche ? Quels sont les meilleurs paramètres pour concevoir ce mobile augmenté spatial (suite de gluey-desktop) ? Est-ce que le contenu doit-être deviced-fixed (gluey-desktop), ou est-ce qu'il doit être body-fixe/world-fixed (selon contexte) et le téléphone utilisé comme un «peophole» sur ce contenu ? Pour quelles raisons le téléphone devrait-il être un «peephole» : la résolution (les HMD auront une bonne résolution, mais quand et pour quel prix ?) ou pour les interactions tangibles qu'il permet ? Le contenu virtuel devrait-il être en 2D ou en 3D, et dans quels modes (device-fixed, body-fixed peephole) ? 
+
 
 \section*{Facteurs de conception d'une réalité augmentée spatiale et mobile}
 « However, to date, what is not well understood is which fac-
@@ -157,6 +195,8 @@ Comment évaluer ? Taches de tests, et taches plus écologiques (proches des usa
         Multitasking 
             Start, Question, My contacts, Calendar, Map (Cauchar, 2012) \cite{EnsFinneganIrani2014} 
     Difficulty
+
+    taches ecologiques en réel avec toutes les problématiques que ça ouvre \cite{KoelleKranzMoeller2015} \cite{DenningDehlawiKohno2014}
 
 
 \section*{Synthèse}
