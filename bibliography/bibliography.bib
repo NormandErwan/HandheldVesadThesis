@@ -923,31 +923,44 @@ switching on head-worn displays. Proc. CHI ’14, ACM (2014), 3171-3180.
 }
 
 @InProceedings{JansenDragicevicFekete2013,
-  author =        {Jansen, Yvonne and Dragicevic, Pierre and Fekete, Jean-Daniel},
-  title =         {Evaluating the efficiency of physical visualizations},
-  booktitle =     {Proceedings of the SIGCHI Conference on Human Factors in Computing Systems},
-  year =          {2013},
-  pages =         {2593--2602},
-  organization =  {ACM},
+  author        = {Jansen, Yvonne and Dragicevic, Pierre and Fekete, Jean-Daniel},
+  title         = {Evaluating the efficiency of physical visualizations},
+  booktitle     = {Proceedings of the SIGCHI Conference on Human Factors in Computing Systems},
+  year          = {2013},
+  pages         = {2593--2602},
+  organization  = {ACM},
   __markedentry = {[Erwan:5]},
-  file =          {:JansenDragicevicFekete2013.pdf:PDF},
-  owner =         {Erwan},
-  review =        {[Problème de recherche] 
+  file          = {:JansenDragicevicFekete2013.pdf:PDF},
+  owner         = {Erwan},
+  review        = {[Problème de recherche] 
+Une visualisation consiste à traduire un ensemble de données selon certaines variables ("visual mapping" : couleur, taille, posisiton, ...) pour l'afficher. Cet affichage se réalise selon une modalité ("modality"), c-à-d. selon un support : par exemple, traduit en un objet physique ("physical-modality"), ou affiché sur un écran ("on-screen modality"). Chaque modalité a ses caractéristiques, et un affichage en 3D est plus problématique sur un écran que une traduction en un objet physique (problèmes de distorsion, d'occlusion, et de navigation). Une modalité peut-être hybride : par exemple en utilisant des contrôleurs physiques pour interragir avec une visualisation sur un écran.
+Or les modalités physiques et d'écran n'ont jamais été formellement comparées pour des visualisations 3D.
 
 [Solution] 
+Réaliser une expérience contrôlée pour comparer des visualisations 3D identiques entre une modalité physique et une modalité sur écran.
 
 [Méthodologie] 
+1 même lot de données sur des données de 10 pays sur 10 ans sur 16 indicateurs, traduit en 3D bar-chart.
+3 tâches : (i) tâche de plage : indiquer la plage de valeur pour un pays et un indicateur, (ii) tâche d'ordre : ranger par ordre décroissant les valeurs pour un pays et un indicateur, (iii) tache de comparaison : parmi trois paires pays/années pour un indicateur, déterminer la paire avec la valeur la plus basse.
+3 techniques : (i) condition de contrôle affichage en 2D sur l'écran, (ii) bar-chart 3D sur écran, (iii) bar-chart 3D physique, (iv) bar-chart 3D sur écran avec stéréoscopie. Les (ii) et (iii) sont identiques.
+
+2 mesures : temps d'exécution de la tâche, et taux d'erreur.
 
 [Résultats] 
+Expérience 1. Pas de différences entre sur le taux d'erreur entre les techniques. Pas de preuves que la stéro permet d'être plus rapide qu'avec la mono. (iii) physique plus rapide que (ii) écran-3D, mais écran-2D le plus significativement rapide. Utilisateurs ont aussi préféré.
+Expérience 2 : c'est le pouvoir toucher (pas retour tactile, action de poser ses doigts sur la forme et 'marquer' des données), et non la rotation directe, qui permet de meilleures performances avec le physique par rapport à l'écran. 
 
 [Limites] 
+Expérience 1 : la modalité à l'écran demande des entrées indirectes avec l'usage de souris, alors que la modalité physique est une entrée directe.
 
 [Concepts-clés] 
+Physical visualization; evaluation; 3D visualization.
 
 [Futurs travaux] 
+Tester sur d'autres visualisation que les bar-charts. Étudier d'autres modalités. Étudier avec d'autres tâches, un peu plus haut-niveau. Comment designer la traduction des données en modalité physique ?, explorer les critères.
 
 [Références centrales]},
-  timestamp =     {2016-04-12 16:19}
+  timestamp     = {2016-04-12 16:19},
 }
 
 @InProceedings{JonesBenkoOfekEtAl2013,
@@ -1015,8 +1028,11 @@ Il faudrait explorer le concept pour les films ou du contenu télévisé : comme
   keywords =      {relevant},
   owner =         {Erwan},
   review =        {[Problème de recherche] 
+Le petit écran des smartphones posent plusieurs pbs. Il est difficile de naviguer dans de larges espaces de données, comme explorer une carte, voir une image, naviguer dans les icones d'applications, lire un article ou jouer à un jeu. Ainsi un petit écran fait faire des petits gestes répétitifs. De plus, dans les espaces multi-échelles, un utilisateur va devoir souvent switcher entre zommer sur les données (zooming) et prendre une vue panoramique (panning).
+Enfin, l'écran étant tactile, la msin de l'utilisateur crée de l'occlusion.
 
 [Solution] 
+
 
 [Méthodologie] 
 
@@ -2160,5 +2176,23 @@ Premier prototype en 1966 avec Sutherland. Puis les années 90 ont vu l'arrivée
   timestamp =     {2016-04-28 13:25}
 }
 
-@comment{jabref-meta: fileDirectory:D:\\erwan\\Documents\\ETS\\Maitrise\\Rapport\\bibliography;}
+@Misc{BCTQ2016,
+  author        = {{Bureau du cinéma et de la télévision du Québec}},
+  title         = {Étude de potentiel pour la création d’un pôle québécois d’excellence en réalité augmentée (RA) et réalité virtuelle (RV)},
+  month         = {jan},
+  year          = {2016},
+  __markedentry = {[Erwan:2]},
+  file          = {:BCTQ2016.pdf:PDF},
+  owner         = {Erwan},
+  review        = {[Notes]
+La décenenie 1994-2004 a vu connaitre l'essorts du www et de la téléphonie mobile, celle de 2004-2014 a vu celle des réseaux sociaux et l'explosion de la téléphonie mobile. La RV/RA se présente comme la prochaine technologie marquante, en changeant nos expériences, communications et interactions personnelles, sociales et professionnelles les rendant plus immersives, plus collectives.
+La RV est en propulsion depuis 2015 déjà avec les investissements de tous les grands groupes mondiaux dans la technologie, et elle prendra son essort en 2016. La RA aura plus de temps de retard, une décennie peut être.
 
+« La présence de nos mains dans l’univers RA/RV est très importante car elle permet à notre cerveau de mieux s’adapter à l’environnement et de mieux saisir les distances. »},
+  timestamp     = {2016-05-11 11:37},
+  url           = {http://www.bctq.ca/uploads/files/PDF/bctq-etude-creation-d-un-pole-d-excellence-en-rv-ra_1.pdf},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
+
+@Comment{jabref-meta: fileDirectory:D:\\erwan\\Documents\\ETS\\Maitrise\\Rapport\\bibliography;}
