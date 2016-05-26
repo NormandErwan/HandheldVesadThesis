@@ -39,18 +39,18 @@
 		 \\ \parbox{0.75\textwidth}{\caption{#2}\label{figureETS:#3}} % Utilisation d'une parbox pour restreindre la largeur de la légende. Ici la taille maximale a été fixée à la largeur choisie pour l'image (0.75\textwidth). Le décanat demande d'éviter d'avoir des légendes qui dépasse les figures, dans la mesure du possible (si l'image est trop petite, la légende peut dépasser sa largeur).
 	\end{figure}
 }
-\newcommand{\refFigureETS}[1]{(\emph{Voir} Figure \ref{figureETS:#1})}
+\newcommand{\reffigureETS}[1]{(\emph{Voir} Figure \ref{figureETS:#1})}
 \captionsetup[figure]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=below}
 
 % Tableau selon les normes de l'ÉTS
 \newenvironment{tableETS}[2]{
 	\begin{table}
-	\parbox{0.65\textwidth}{\caption{#1}\label{figureETS:#2}} % Contrainte manuelle de la largeur de la légende
+	\parbox{0.65\textwidth}{\caption{#1}\label{tableETS:#2}} % Contrainte manuelle de la largeur de la légende
 	\centering
 }{
 	\end{table}
 }
-\newcommand{\refTableETS}[1]{(\emph{Voir} Tableay \ref{tableETS:#1})}
+\newcommand{\reftableETS}[1]{(\emph{Voir} Tableau \ref{tableETS:#1})}
 \captionsetup[table]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=above}
 
 %% Document %%
