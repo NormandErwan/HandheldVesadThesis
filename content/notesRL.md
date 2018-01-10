@@ -1,4 +1,13 @@
-\chapter{Notes}
+# Notes revue de littérature
+
+## Projets similaire de video see-through AR
+
+- https://pdfs.semanticscholar.org/a53a/3d25b8258b5331c23056d4696691dabd8eb9.pdf
+- https://link.springer.com/content/pdf/10.1007/s11554-016-0640-9.pdf
+- AR-Rift: https://vr.cs.ucl.ac.uk/portfolio-item/ar-rift/
+- OculAR: https://arxiv.org/abs/1604.08848
+- AR-Rift 2: http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7892261
+- Impact of visual and experiential realism on distance perception in VR using a custom video see-through system: https://dl.acm.org/citation.cfm?id=3119892
 
 ## Berard2009 - Did \"Minority Report\" Get It Wrong? Superiority of the Mouse over 3D Input Devices in a 3D Placement Task
 
@@ -51,38 +60,3 @@ Notre condition téléphone seul est en fait un static navigation peephole, et n
 
 « Subjects viewed a spatial layout containing two lines on a static display screen. Only a part of the screen—the peephole—was visible. Subjects had to discriminate line length by either moving a dynamic peephole across a static layout of the lines or by moving a dynamic layout behind a static peephole. »
 « Discrimination thresholds for static peephole navigation were 50–75\% higher than for dynamic peephole navigation. Furthermore, static peephole navigation took 24\% more time than dynamic peephole navigation »
-
-## Matériel et méthodes
-
-## Casque
-
-- Principe, choix des caméras, tracking du DK2 : inspiré de SteptoeAR-Rift2014
-
-### ArUco Unity
-
-- Voir 2016-01-25 pour l'archi :
-    - Parler du principe pour dialoguer avec un plugin C++ : couche en C, gestion des pointeurs en faisant une API C# qui encapsule ces appels à la couche C : plugin C++ OpenCV <-> couche en C <-> couche C# reproduisant la couche C++ 
-    - couche Unity avec des gameobjects et components au dessus de la couche C#
-- Aussi parler de la mémoire partagée entre Unity et OpenCv sur les images :
-    - calcul de taille : 2 cameras * 950 px * 960 px * 3 bytes (RGB) = 5,47 MB
-    - lecture du buffer dans sens différents (voir note 2017-04-11)
-    - Threads et ordonnancement + copies des buffers images (c'était plus rapide de faire des copies que de faire attendre l'affichage avant le nouveau detect : voir note 2017-05-10) -> il n'y a pas d'attente/blocages entre les threads hormis sur les copies de buffer
-- La doc qui a été faite, la petite PR pour rendre compatible les modues aruco et ccalib, le package Unity, les forks et ajouts sur internet, le package pour ovrvision (preuve que c'est extensible (citer les termes du cours MGL843))
-- Utiliser des boards de 2 markers minimum pour la détection : beaucoup plus robuste qu'utiliser des markers seuls
-
-### Calibration
-
-- Voir AdrianKaehler2017 - Learning OpenCV 3 
-    - Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + calibration
-    - Chapitre 19 pour la calibration stereo + LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
-    - OpenCV3.3.0-CcalibModule (car module fisheye buggé et citer le papier qui dit que le modèle de caméra omnidir s'appliquer aussi aux caméras fisheye) pour la calibration fisheye
-- Voir BuJo p.150 + AR-Rift PArt 5 pour les équations de configuration de la caméra virtuelle et du placement du background pour qu'il soit aligné avec le contenu 3D filmé par la caméra virtuelle
-- Conseils/notes calibrations :
-    - Utiliser une board la plus plate possible (attention à l'humidité de l'air qui est absorbée par le papier)
-    - Utiliser une bonne lumière pour que la board soit bien détectée et sans reflets
-    - Désactiver l'autofocus de la caméra : une calibration se fait pour une focale fixe (les distorsions restent les même mais pas la camera matrix)
-    - La caméra ou la board doit rester fixe pendant la calibration
-    - Prendre des dizaines de captures remplissant uniformément l'espace de capture de la caméra en variant les angles de 
-    - L'objectif est d'avoir une erreur de reprojection inférieure à 1 pixel
-    - OpenCV est système main droite dans son système de coordonnées (http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT9/img4.gif) alors qu'Unity est système main gauche : il suffit d'inverser l'axe des Y (https://answers.unity.com/storage/temp/8053-spaces.jpg) : faire un petit graphe comme la 2e image
-    - OpenCV encode sa rotation dans un vecteur dont les coordonnées normalisées donnent l'axe et sa norme l'angle autour de cet axe, alors qu'Unity utilise des quaternions. Adapté ce calcul (http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/) pour passer du premier au second : https://github.com/enormand/aruco-unity/blob/master/src/aruco_unity_package/Assets/ArucoUnity/Scripts/Plugin/Cv/Vec3d.cs
