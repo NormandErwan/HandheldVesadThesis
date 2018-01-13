@@ -6,7 +6,7 @@
 
 « We believe MR should be human and object centric, and use the world as a device (aka “clickable world”) »
 
-### Berard2009 - Did \"Minority Report\" Get It Wrong? Superiority of the Mouse over 3D Input Devices in a 3D Placement Task
+### Berard2009 - Did "Minority Report" Get It Wrong? Superiority of the Mouse over 3D Input Devices in a 3D Placement Task
 
 « Interaction is not defined by an input device alone, but by the combination of a device and an interaction technique. In the example of 3D object rotation, the mouse is typically used with the virtual sphere technique while a free-space device is used with a direct mapping (either absolute or relative) Thus, each device must be matched with its most suitable interaction technique in making performance comparisons, rather than choosing a single interaction technique for all devices. »
 
