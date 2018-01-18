@@ -1,167 +1,118 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DECLARATION DE LA CLASSE DU DOCUMENT
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Utiliser le format suivant:
-% \documentclass[type de papier% ("letterpaper" demandé)
-% , simple ou recto verso% ("oneside" ou "twoside")%
-% , taille de la police% ("12pt" demandé)%
-% , type de document% ("these", "memoire" ou "thesepararticles")%
-% , langue du document ("francais" ou "english")%
-% , options supplémentaires% ("creativecommons" pour préciser que le document est soumis à la licence créative commomns, "hyperref", "withAlgo2e" pour utiliser le package algorithm2e avec la mise en page correcte de la liste des algorithmes)
-%]{thETS}
-
-%% Exemple pour une thèse creative commons, utilisant le package hyperref 
-\documentclass[letterpaper%
-, twoside%
-, 12pt%
-, memoire%
-, francais
-, creativecommons, hyperref, withAlgo2e%
+\documentclass[letterpaper, twoside, 12pt,%
+  memoire, francais, creativecommons, hyperref, withAlgo2e%
 ]{thETS} 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% IMPORTANT: NOTES D'IMPRESSION POUR RESPECTER LES MARGES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%  Si vous créez un fichier PDF directement avec PDFLatex, et vous utilisez Acrobat Reader
-%% pour faire l'impression, n'oubliez-pas de changer l'option <<Mise à l'échelle>> pour la valeur
-%% <<Aucune>> pour que les marges soient imprimés correctement.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DECLARATION DES INFORMATIONS DE LA PAGE TITRE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{textcomp}
 
 \title{Titre du document}
 
-\author{Prénom NOM DE FAMILLE}
-\authorcopyright{Prénom Nom}
+\author{Erwan NORMAND}
+\authorcopyright{Erwan Normand}
 
 \datesoutenance{``Date de soutenance''}
-
 \datedepot{``Date du dépôt au Bureau des cycles supérieurs''}
 
-\directeur{M.}{Prénom Nom}{Nom du département et institution}
-
-%\codirecteurB{M.}{Prénom Nom}{département et institution}
-
+\directeur{M.}{Michael J. McGuffin}{Département de génie logiciel et des TI
+à l’École de technologie supérieure}
 \president{M.}{Prénom Nom}{département et institution}
-
 \examinexterne{M.}{Prénom Nom}{département et institution}{}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% CHANGEMENT DE L'INTITULÉ DU DIPLOME
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Il est possible de modifier l'intitulé du diplome en redéfinissant la commande
-% \lediplome, comme dans l'exemple suivant:
-
-%\renewcommand{\lediplome}{
-%    DE LA\\MAÎTRISE EN GÉNIE ÉLECTRIQUE\\M.Sc.A.
-%    }
 
 \listfiles
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% CORPS DU DOCUMENT
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formattage des passages en langue étrangère
+\let\oldforeignlanguage\foreignlanguage
+\renewcommand{\foreignlanguage}[2]{\oldforeignlanguage{#1}{\emph{#2}}}
+
+% Figure selon les normes de l'ÉTS
+\newcommand{\figureETS}[3]{%
+  \begin{figure}%
+    \centering%
+    \fbox{%
+      \includegraphics[width=0.75\textwidth]{#1}
+    }%
+     \\ \parbox{0.75\textwidth}{\caption{#2}\label{figureETS:#3}}
+  \end{figure}
+}
+\newcommand{\reffigureETS}[1]{Figure \ref{figureETS:#1}}
+\captionsetup[figure]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=below}
+
+% Tableau selon les normes de l'ÉTS
+\newenvironment{tableETS}[2]{%
+  \begin{table}%
+  \parbox{0.65\textwidth}{\caption{#1}\label{tableETS:#2}}%
+  \centering%
+}{%	
+  \end{table}%
+}
+\newcommand{\reftableETS}[1]{Tableau \ref{tableETS:#1}}
+\captionsetup[table]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=above}
+
 \begin{document}
 
 \pagenumbering{Roman}
 
-%%- Affichage de la page titre -%%
 \maketitle
 
-%%- Affichage de la présentation du jury -%%
 \presentjury
 
-%%%- Avant propos -%%
 \begin{avantpropos}
-	\input{content/preface}
+  \input{content/preface}
 \end{avantpropos}
 
-
-%%- Remerciements -%%
 \begin{remerciements}
-	\input{content/acknowledgements}
+  \input{content/acknowledgements}
 \end{remerciements}
 
-
-%%- Sommaire -%%
 \begin{sommaire}{mot-clé1, mot-clé2}
-	\input{content/abstract_fr}
+  \input{content/abstract_fr}
 \end{sommaire}
 
-
-%%- Abstract -%%
 \begin{abstract}{Titre en anglais}{keyword1, keyword2}
-	\input{content/abstract_en}
+  \input{content/abstract_en}
 \end{abstract}
 
-
-%%- Affichage de la table des matières -%%
 \tableofcontents
-
-
-%%- Affichage de la liste des tableaux -%%
 \listoftables
-
-
-%%- Affichage de la liste des Figures -%%
 \listoffigures
 
-
-%%- Déclaration et affichage de la liste des abbréviations -%%
 \begin{listofabbr}[3cm]
-	\input{content/abbreviations}
+  \input{content/abbreviations}
 \end{listofabbr}
 
-
-%%- Déclaration et affichage de la liste des symboles -%%
-\begin{listofsymbols}[3cm]
-	\input{content/symbols}
-\end{listofsymbols}
-
+%\begin{listofsymbols}[3cm]
+%  \input{content/symbols}
+%\end{listofsymbols}
 
 \cleardoublepage
-
 \pagenumbering{arabic}
-
-% Marginpar à gauche du document
 \reversemarginpar
 
-
-%%- Corps du document -%%
 \begin{introduction}
-	\input{content/introduction}
+  \input{content/introduction}
 \end{introduction}
 
 \begin{revuedelitterature}
-	\input{content/litterature_review}
+  \input{content/litterature_review}
 \end{revuedelitterature}
 
-\input{content/notes}
+\input{content/methodology}
+\input{content/experiment}
+\input{content/discussion}
 
 \begin{conclusion}
-	\input{content/conclusion}
+  \input{content/conclusion}
 \end{conclusion}
 
+%\appendix
+%\multiannexe %% Lorsqu'on a plus qu'une annexe.
+%\input{content/annex1}
 
-%%- Annexes -%%
-\appendix
-
-%% Lorsqu'on a plus qu'une annexe.
-\multiannexe
-
-\input{content/annex1}
-
-
-%%- Bibliographie -%%
-\newpage % Interligne sinmple pour la bibliographie
-\begin{spacing}{1}  
-	\nocite{*} % Utiliser la commande nocite pour afficher des références qui n'ont pas été citées dans le document. '*' permet de toutes les afficher.
-	\bibliographystyle{bibETS} % Utilisation du style bibliographique de l'ETS
-	\addcontentsline{toc}{chapter}{BIBLIOGRAPHIE} % Ajout de la bibliographie à la table des matières
-	
-	\bibliography{./bibliography/bibliography} % Liste des fichiers bib de bibliographie, biblio.bib est un exemple
+\newpage
+\begin{spacing}{1}
+  \nocite{*}
+  \bibliographystyle{bibETS}
+  \addcontentsline{toc}{chapter}{BIBLIOGRAPHIE}
+  \bibliography{./bibliography/thesis}
 \end{spacing}
 
 \end{document}
