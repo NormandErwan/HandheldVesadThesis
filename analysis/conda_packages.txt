@@ -1,0 +1,2 @@
+conda create -n master-thesis jupyter pandas matplotlib
+activate master-thesis
