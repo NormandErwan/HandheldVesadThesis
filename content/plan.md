@@ -2,20 +2,29 @@
 
 ## Introduction
 
-- Définition et principe RA http://doc-ok.org/?p=337
-  - Video see trough vs. optical see trough
-  - Méthodes : CAVE, HMD, lentille
-- État rapide de la recherche
-- Pourquoi étudier les IHM en RA : les interfaces en RA ont commencé à être étudiée et ont des avantages/faiblesses et le touchscreen a d'autre propriétés. Les deux ne sont pas beaucoup étudiés conjointement pourtant vont coexister dans les années à venir. Montrer qu'on arrive à un problème précis.
-- Expliquer rapidement projet (ce que j'ai fait) et pourquoi : appareil mobile tenu en main + HMD RA + IHM
+- Les dernières innovations RA en date, état rapide de l'industrie :
+  - Magic Leap, HoloLens, Meta, ARKit et ARCore, OpenXR
+  - Données sur la croissance du marché en 2016, 2017 + potentiels marchés à atteindre + évolution hype curve RA
+- Définition et principe de la RA
+  - Définition vulgarisée
+    - « generate digital [3D content that] blend seamlessly with [real world content] to produce lifelike digital objects that coexist in the real world. This [...] allows our brain to naturally process digital objects the same way we do real-world objects, making it comfortable to use for long periods of time. » (https://www.magicleap.com/)
+    - Métaphore du téléphone portable placé dans des lunettes
+  - Définition technique
+    - http://doc-ok.org/?p=337
+    - Reprendre Azura 1997 : contenu 3D virtuel, aligné avec le contenu réel, en temps réel
+    - Stereoscopie, effet de parallaxe)
+  - Méthodes : CAVE, écran d'appareil mobile, HMD (Video see trough vs. optical see trough), lentille
+- État rapide de la recherche :
+  - Les domaines qui interviennent : computer graphics, computer vision, human-computer interactions
+  - Les connaissances techniques
+  - Les connaissances en IHM pour la RA
+- Pourquoi étudier les IHM en RA (+ designer interfaces 3D et interactions multimodales)
+  - « We live and think in a 3D world, not on a flat screen. Our spatial interface includes multiple input modes including voice, gesture, head pose and eye tracking. This collective input system provides the tools needed to break free from outdated conventions of point and click interfaces, delivering a more natural and intuitive way to interact with technology. »
+  - « We believe MR should be human and object centric, and use the world as a device (aka “clickable world”) » UnityFutureMRPartIII2017
+- Problématique : les interfaces en RA ont commencé à être étudiée et ont des avantages/faiblesses et le touchscreen a d'autre propriétés. Les deux ne sont pas beaucoup étudiés conjointement pourtant vont coexister dans les années à venir.
+- Expliquer rapidement projet (ce que j'ai fait) et pourquoi : comparaison de techniques d'interactions, de sélection et de mouvement de contenu 3D, projeté en RA autour d'un appareil mobile tenu en main, aligné sur le même plan de l'écran de cet appareil mobile (+ HMD RA video + librairie RA pour Unity)
 - Contributions
 - Plan du mémoire
-
-### Refs de l'industrie
-
-- https://www.magicleap.com/ :
-  - def RA : « generate digital [3D content that] blend seamlessly with [real world content] to produce lifelike digital objects that coexist in the real world. This [...] allows our brain to naturally process digital objects the same way we do real-world objects, making it comfortable to use for long periods of time. »
-  - Pourquoi faire du contenu 3D et du multimodal : « We live and think in a 3D world, not on a flat screen. Our spatial interface includes multiple input modes including voice, gesture, head pose and eye tracking. This collective input system provides the tools needed to break free from outdated conventions of point and click interfaces, delivering a more natural and intuitive way to interact with technology. »
 
 ## Revue de littérature
 
@@ -25,20 +34,20 @@ Voire notes_RL.md
 
 ### Matériel
 
-- Video see trough
-    - Principe
-    - Avantages/inconvénients par rapport à l'optical see through
+- Choix du video see trough
+  - Principe
+  - Avantages/inconvénients par rapport à l'optical see through
 - Principe inspiré de SteptoeAR-Rift2014
-    - Choix des caméras : même fov, même résolution + stéréo. Choix ovrvision
-    - Tracking du DK2
+  - Choix des caméras : même fov, même résolution + stéréo. Choix ovrvision
+  - Tracking du DK2
 - Téléphone
 
 ### Logiciels
 
 - Unity
 - OpenCV
-    - ArUco
-    - Calibration
+  - ArUco
+  - Calibration
 - Unity networking
 
 ### AR video see through
@@ -99,7 +108,7 @@ good description of the projection model : http://csc.lsu.edu/~kooima/pdfs/gen-p
 
 ### Calibration
 
-- Voir  
+- Voir
     - AdrianKaehler2017 - Learning OpenCV 3 - Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + calibration
     - AdrianKaehler2017 - Learning OpenCV 3 - Chapitre 19 pour la calibration stereo + LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
     - OpenCV3.3.0-CcalibModule (car module fisheye buggé et citer le papier qui dit que le modèle de caméra omnidir s'appliquer aussi aux caméras fisheye) pour la calibration fisheye
