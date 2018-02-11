@@ -1,1 +1,58 @@
-\lipsum[1]
+- Les dernières innovations RA en date, état rapide de l'industrie :
+  - Magic Leap, HoloLens, Meta, ARKit et ARCore, OpenXR
+  - Données sur la croissance du marché en 2016, 2017 + potentiels marchés à atteindre + évolution hype curve RA
+- Définition et principe de la RA
+  - Définition vulgarisée
+    - « generate digital [3D content that] blend seamlessly with [real world content] to produce lifelike digital objects that coexist in the real world. This [...] allows our brain to naturally process digital objects the same way we do real-world objects, making it comfortable to use for long periods of time. » (https://www.magicleap.com/)
+    - Métaphore du téléphone portable placé dans des lunettes
+  - Définition technique
+    - http://doc-ok.org/?p=337
+    - Reprendre Azura 1997 : contenu 3D virtuel, aligné avec le contenu réel, en temps réel
+    - Stereoscopie, effet de parallaxe)
+  - Méthodes : CAVE, écran d'appareil mobile, HMD (Video see trough vs. optical see trough), lentille
+- État rapide de la recherche :
+  - Les domaines qui interviennent : computer graphics, computer vision, human-computer interactions
+  - Les connaissances techniques
+  - Les connaissances en IHM pour la RA
+- Pourquoi étudier les IHM en RA (+ designer interfaces 3D et interactions multimodales)
+  - « We live and think in a 3D world, not on a flat screen. Our spatial interface includes multiple input modes including voice, gesture, head pose and eye tracking. This collective input system provides the tools needed to break free from outdated conventions of point and click interfaces, delivering a more natural and intuitive way to interact with technology. »
+  - « We believe MR should be human and object centric, and use the world as a device (aka “clickable world”) » UnityFutureMRPartIII2017
+- Sujet :
+  - Les interfaces en RA ont commencé à être étudiée et ont des avantages/faiblesses et le touchscreen a d'autre propriétés. Les deux ne sont pas beaucoup étudiés conjointement pourtant vont coexister dans les années à venir. On cherche à mieux comprendre comment les combiner.
+    - Est-ce que les HMD peuvent être utiles dans la vie quotidienne ? Comment leur utilisation peut aider à être plus productifs, efficaces ?
+    - Les smartphones sont de plus ne plus puissants et de plus en plus utilisés, mais leur écran reste limité ; est-ce qu'il y aurait avantage à augmenter leurs écrans avec de la réalité augmentée ?
+    - Un HMD est assez limité seul, quels sont les intérêts à le coupler avec un smartphone ?
+    - Comme le téléphone et les écrans ont des basses résolutions + comme les techniques d'interactions sont peu maitrisées en IHM pour la RA/3D, il nous faut des tâches les plus fondamentales possibles : pointage et  compréhension -> Justifie la tâche exp
+  - « Une problématique formule un écart constaté entre une situation de départ, insatisfaisante, et une situation d’arrivée, désirable. Et traite d’une relation entre au moins deux variables. »
+  - Hypothèses : « Une hypothèse est une réponse anticipée au problème de recherche, exprimant une relation entre deux ou plusieurs concepts. C’est la déclinaison de la problématique en termes opérationnels. Elle doit être précise, explicable et vérifiable. »
+  - Limites du sujet
+- Expliquer rapidement projet (ce que j'ai fait) et pourquoi : comparaison de techniques d'interactions, de sélection et de mouvement de contenu 3D, projeté en RA autour d'un appareil mobile tenu en main, aligné sur le même plan de l'écran de cet appareil mobile (+ HMD RA video + librairie RA pour Unity)
+- Contributions
+- Plan du mémoire / objectifs
+
+\section{Introduction}
+Après quelques années de développement, nous pensons que le marché de la réalité virtuelle (RV) est amené à prendre de l'ampleur, dans l'année 2016, avec la sortie des versions publiques des visiocasques Oculus Rift et HTC Vive. En outre, Microsoft, l'une des plus grandes entreprises en technologies de l'information, s'est lancée dans la conception d'un casque de réalité augmentée (RA) : le HoloLens, dont elle livrera une première version destinée aux développeurs dans le courant de cette même année 2016. Microsoft remet ainsi sur scène la RA, dans la suite de l'expérimentation, en 2013, des lunettes de RA Google Glass. En outre, dans un rapport de janvier 2016, Goldman Sachs Research estime que les marchés de la RV et de la RA pèseront, ensemble, entre 23 milliards et 80 milliards de dollars de revenus par an d'ici 2025 \citep{BelliniChenSugiyamaEtAl2016}. De plus, malgré son retard technologique sur la RV, la RA semble promise à un avenir meilleur \citep{BelliniChenSugiyamaEtAl2016} : en effet, si la RV immerge totalement l'utilisateur dans un environnement virtuel, la RA introduit des éléments virtuels dans l'environnement réel. Ainsi, la RA peut émuler la RV, et, en permettant de construire des interfaces humain-machines (IHM) autour d'un utilisateur dans sa vie quotidienne, augmente les interactions possibles d'une personne avec son environnement.
+
+L'émergence de la RA nous permet de rêver à la réalisation d'IHM qui n'étaient encore présentent que dans les imaginaires. On peut citer par exemple les IHM vues dans les films Minority Report \reffigureETS{Spielberg2002-Hologram} ou ceux de la trilogie The Matrix \reffigureETS{WachowskiSilver2003-ZionUI}. Si ces exemples montrent des IHM fixées à des bureaux de travail, les lunettes de RA Google Glass ont montré que les interactions en RA avec un téléphone intelligent étaient prometteuses. Les téléphones intelligents et tablettes étant massivement répandus depuis ces dernières années, et la future révolution promise des lunettes de RA nous fait imaginer des interactions conjointes à explorer entre ces appareils mobiles et des lunettes de RA. Ainsi, nous souhaitons savoir dans quelle mesure la RA pourrait augmenter les interactions possibles avec un téléphone intelligent ? Et dans quelle mesure ces interactions pourraient être pertinentes dans un usage quotidien ?
+
+\figureETS{figures/Spielberg2002-Hologram.png}{IHM de l'hologramme du film \foreignlanguage{english}{Minority Report}.\\ Tiré de \citet{Spielberg2002}}{Spielberg2002-Hologram}
+
+\figureETS{figures/WachowskiSilver2003-ZionUI.jpg}{IHM d'une tour de contrôle du film \foreignlanguage{english}{The Matrix Reloaded}.\\ Tiré de \citet{WachowskiSilver2003}}{WachowskiSilver2003-ZionUI}
+
+La RA peut toucher tous les sens humains, cependant, elle est souvent désignée dans ce terme comme s'adressant au sens visuel. C'est sous cette signification qu'elle sera aussi employée dans cette revue de littérature. En outre, nous nous intéressons ici à la conception d'IHM pour la RA : les considérations techniques ne seront pas abordées directement, ni les problématiques d'acceptation sociale de la RA. Les problématiques de travail collaboratif ne seront pas non plus abordées.
+
+Cette revue de littérature s'organisera en plusieurs sections allant du plus général au plus spécifique, partant d'une définition du contexte du sujet et aboutissant aux questions de recherche que nous pensons nécessaire d'explorer pour répondre au problème énoncé plus haut dans cette introduction. La première partie donnera le contexte du sujet, en définissant la RA et en dressant son historique. La deuxième partie explora les recherches réalisées dans la conception d'IHM pour des RA mobiles et portable pour aboutir à un ensemble de question de recherches pour ce sujet. La troisième partie décrira les facteurs de conception les plus pertinents pour concevoir des solutions à ces question de recherche. Enfin, la quatrième partie explorera les différentes méthodes d'évaluation d'IHM et proposera quelques expérimentations permettant d'apporter une réponse aux questions de recherches énoncées plus tôt.
+
+\section{Définitions}
+\subsection{Définition de la réalité augmentée}
+La réalité augmentée (RA) est, selon l'Office québécois de la langue française, une «~technique d'imagerie numérique […] permettant, grâce à un dispositif d'affichage transparent, de superposer à une image réelle des informations provenant d'une source numérique~» \citep{OfficeQuebecoisLangueFrancaiseRA2015}. La RA consiste donc à combiner du contenu virtuel, généré par un système informatique, à l'environnement réel d'un utilisateur, et cela en temps réel. Ainsi la RA permet d'\emph{augmenter la perception} du réel par les sens humains et permet d'\emph{augmenter les interactions} possibles d'un utilisateur avec l'environnement. \citep{Azuma1997}
+
+
+\subsection{Les techniques de réalité augmentée}
+% TODO : est-ce à la bonne place ? Faire plus de contenu pour faire le point pas seulement en output, mais aussi en input ? Relire \cite{BimberRaskar2005}
+
+Il existe aujourd'hui plusieurs techniques de RA, classées en trois catégories \reffigureETS{BimberRaskar2005-Figure31}. La catégorie dominant actuellement le marché est celle des visiocasques (en anglais : \foreignlanguage{english}{Head-Mounted Display} ou foreignlanguage{english}{Head-Worn Display}) \citep{VanKrevelenPoelman2010} : on le voit par la présence médiatique des visiocasques grand public récents tels que l'Oculus Rift, le HTC Vive ou le Microsoft HoloLens. Les techniques de cette catégorie consistent à placer un casque devant les yeux de l'utilisateur pour y diffuser la RA. Un premier type de ces techniques, dites \foreignlanguage{english}{video see-through}, vont remplacer l'environnement visible par une image filmée et augmentée de cet environnement. Cela va se faire en utilisant des caméras à l'avant du casque, en modifiant les images filmées, pour les renvoyer à l'écran du casque. Un second type de ces techniques, dites \foreignlanguage{english}{optical see-through}, vont laisser voir à l'utilisateur directement l'environnement, et, par un jeu de miroirs et de lentilles, vont y superposer les images de RA.
+
+\figureETS{figures/BimberRaskar2005-Figure31.png}{Catégories des techniques d'affichages de RA.\\ Tiré de \citet[p. 72]{BimberRaskar2005}}{BimberRaskar2005-Figure31}
+
+Seule la catégorie des visiocasques sera explorée dans cette revue de littérature. Elle est en effet celle qui est la plus utilisée en recherche actuellement et est la plus prometteuse pour réaliser de la RA utilisable au quotidien. \cite{CarmignianiFurhtAnisettiEtAl2011} De plus, des visiocasques sous forme de lentilles de contacts sont en développement et pourraient devenir la future technique de RA dominant le marché par la discrétion et la légèreté qu'elles permettent. \citep{VanKrevelenPoelman2010}

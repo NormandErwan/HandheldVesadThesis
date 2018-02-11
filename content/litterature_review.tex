@@ -1,34 +1,3 @@
-\section{Introduction}
-Après quelques années de développement, nous pensons que le marché de la réalité virtuelle (RV) est amené à prendre de l'ampleur, dans l'année 2016, avec la sortie des versions publiques des visiocasques Oculus Rift et HTC Vive. En outre, Microsoft, l'une des plus grandes entreprises en technologies de l'information, s'est lancée dans la conception d'un casque de réalité augmentée (RA) : le HoloLens, dont elle livrera une première version destinée aux développeurs dans le courant de cette même année 2016. Microsoft remet ainsi sur scène la RA, dans la suite de l'expérimentation, en 2013, des lunettes de RA Google Glass. En outre, dans un rapport de janvier 2016, Goldman Sachs Research estime que les marchés de la RV et de la RA pèseront, ensemble, entre 23 milliards et 80 milliards de dollars de revenus par an d'ici 2025 \citep{BelliniChenSugiyamaEtAl2016}. De plus, malgré son retard technologique sur la RV, la RA semble promise à un avenir meilleur \citep{BelliniChenSugiyamaEtAl2016} : en effet, si la RV immerge totalement l'utilisateur dans un environnement virtuel, la RA introduit des éléments virtuels dans l'environnement réel. Ainsi, la RA peut émuler la RV, et, en permettant de construire des interfaces humain-machines (IHM) autour d'un utilisateur dans sa vie quotidienne, augmente les interactions possibles d'une personne avec son environnement.
-
-L'émergence de la RA nous permet de rêver à la réalisation d'IHM qui n'étaient encore présentent que dans les imaginaires. On peut citer par exemple les IHM vues dans les films Minority Report \reffigureETS{Spielberg2002-Hologram} ou ceux de la trilogie The Matrix \reffigureETS{WachowskiSilver2003-ZionUI}. Si ces exemples montrent des IHM fixées à des bureaux de travail, les lunettes de RA Google Glass ont montré que les interactions en RA avec un téléphone intelligent étaient prometteuses. Les téléphones intelligents et tablettes étant massivement répandus depuis ces dernières années, et la future révolution promise des lunettes de RA nous fait imaginer des interactions conjointes à explorer entre ces appareils mobiles et des lunettes de RA. Ainsi, nous souhaitons savoir dans quelle mesure la RA pourrait augmenter les interactions possibles avec un téléphone intelligent ? Et dans quelle mesure ces interactions pourraient être pertinentes dans un usage quotidien ?
-
-\figureETS{figures/Spielberg2002-Hologram.png}{IHM de l'hologramme du film \foreignlanguage{english}{Minority Report}.\\ Tiré de \citet{Spielberg2002}}{Spielberg2002-Hologram}
-
-\figureETS{figures/WachowskiSilver2003-ZionUI.jpg}{IHM d'une tour de contrôle du film \foreignlanguage{english}{The Matrix Reloaded}.\\ Tiré de \citet{WachowskiSilver2003}}{WachowskiSilver2003-ZionUI}
-
-La RA peut toucher tous les sens humains, cependant, elle est souvent désignée dans ce terme comme s'adressant au sens visuel. C'est sous cette signification qu'elle sera aussi employée dans cette revue de littérature. En outre, nous nous intéressons ici à la conception d'IHM pour la RA : les considérations techniques ne seront pas abordées directement, ni les problématiques d'acceptation sociale de la RA. Les problématiques de travail collaboratif ne seront pas non plus abordées.
-
-Cette revue de littérature s'organisera en plusieurs sections allant du plus général au plus spécifique, partant d'une définition du contexte du sujet et aboutissant aux questions de recherche que nous pensons nécessaire d'explorer pour répondre au problème énoncé plus haut dans cette introduction. La première partie donnera le contexte du sujet, en définissant la RA et en dressant son historique. La deuxième partie explora les recherches réalisées dans la conception d'IHM pour des RA mobiles et portable pour aboutir à un ensemble de question de recherches pour ce sujet. La troisième partie décrira les facteurs de conception les plus pertinents pour concevoir des solutions à ces question de recherche. Enfin, la quatrième partie explorera les différentes méthodes d'évaluation d'IHM et proposera quelques expérimentations permettant d'apporter une réponse aux questions de recherches énoncées plus tôt.
-
-
-
-\section{Définitions}
-\subsection{Définition de la réalité augmentée}
-La réalité augmentée (RA) est, selon l'Office québécois de la langue française, une «~technique d'imagerie numérique […] permettant, grâce à un dispositif d'affichage transparent, de superposer à une image réelle des informations provenant d'une source numérique~» \citep{OfficeQuebecoisLangueFrancaiseRA2015}. La RA consiste donc à combiner du contenu virtuel, généré par un système informatique, à l'environnement réel d'un utilisateur, et cela en temps réel. Ainsi la RA permet d'\emph{augmenter la perception} du réel par les sens humains et permet d'\emph{augmenter les interactions} possibles d'un utilisateur avec l'environnement. \citep{Azuma1997}
-
-
-\subsection{Les techniques de réalité augmentée}
-% TODO : est-ce à la bonne place ? Faire plus de contenu pour faire le point pas seulement en output, mais aussi en input ? Relire \cite{BimberRaskar2005}
-
-Il existe aujourd'hui plusieurs techniques de RA, classées en trois catégories \reffigureETS{BimberRaskar2005-Figure31}. La catégorie dominant actuellement le marché est celle des visiocasques (en anglais : \foreignlanguage{english}{Head-Mounted Display} ou foreignlanguage{english}{Head-Worn Display}) \citep{VanKrevelenPoelman2010} : on le voit par la présence médiatique des visiocasques grand public récents tels que l'Oculus Rift, le HTC Vive ou le Microsoft HoloLens. Les techniques de cette catégorie consistent à placer un casque devant les yeux de l'utilisateur pour y diffuser la RA. Un premier type de ces techniques, dites \foreignlanguage{english}{video see-through}, vont remplacer l'environnement visible par une image filmée et augmentée de cet environnement. Cela va se faire en utilisant des caméras à l'avant du casque, en modifiant les images filmées, pour les renvoyer à l'écran du casque. Un second type de ces techniques, dites \foreignlanguage{english}{optical see-through}, vont laisser voir à l'utilisateur directement l'environnement, et, par un jeu de miroirs et de lentilles, vont y superposer les images de RA.
-
-\figureETS{figures/BimberRaskar2005-Figure31.png}{Catégories des techniques d'affichages de RA.\\ Tiré de \citet[p. 72]{BimberRaskar2005}}{BimberRaskar2005-Figure31}
-
-Seule la catégorie des visiocasques sera explorée dans cette revue de littérature. Elle est en effet celle qui est la plus utilisée en recherche actuellement et est la plus prometteuse pour réaliser de la RA utilisable au quotidien. \cite{CarmignianiFurhtAnisettiEtAl2011} De plus, des visiocasques sous forme de lentilles de contacts sont en développement et pourraient devenir la future technique de RA dominant le marché par la discrétion et la légèreté qu'elles permettent. \citep{VanKrevelenPoelman2010}
-
-
-
 \section{Historique de la réalité augmentée}
 \subsection{Les débuts du domaine de recherche}
 % TODO : améliorer le contenu avec \cite{Chalon2004}
@@ -61,7 +30,7 @@ Pour réaliser de telles RA mobiles, il a alors été intéressant d'utiliser le
 \subsection{La recherche en interfaces humain-machine pour la réalité augmentée}
 Si la RA est techniquement réalisable sur des appareils mobiles, les IHM proposés pour son utilisation ne sont pas encore matures. \citet{ZhouDuhBillinghurst2008} et \citet{DeSaChurchill2013} indiquent que trop peu de travaux ont été consacrés aux IHM et à l'expérience utilisateur en RA. C'est un challenge pourtant important, et cela reste un problème ouvert, car \citet{VanKrevelenPoelman2010} rappellent qu'aucun paradigme d'IHM pertinent n'a encore été trouvé pour la RA. En effet, la métaphore du bureau WIMP (pour \foreignlanguage{english}{windows}, \foreignlanguage{english}{icons}, \foreignlanguage{english}{menus} et \foreignlanguage{english}{pointing device}) utilisé par les IHM des systèmes d'exploitations des ordinateurs ne fonctionne pas en RA, tout comme les dispositifs d'entrées en 2D tels que la souris : ils sont fait pour fonctionner sous la contrainte d'un plan 2D et restreignent alors l'expérience de la RA. \citep{VanKrevelenPoelman2010} A l'inverse, les dispositifs d'interactions dit naturels, sans aucune contraintes dans l'espace, c'est-à-dire avec six degrés de libertés (6 DoF), sont, en réalité, difficiles à manipuler avec dans un environnement virtuel. \citet{ChanKaoChenEtAl2010} ont en particulier montré que sans retour tactile il est difficile pour une personne d'estimer sans erreur la profondeur. Un paradigme d'IHM différent et approprié pour la RA, est donc à déterminer.
 
-Plusieurs types d'IHM pour la RA sont à explorer comme futures pistes de recherches. \citet{AzumaBaillotBehringerEtAl2001} en suggèrent deux~; premièrement, ils proposent d'utiliser conjointement plusieurs dispositifs d'entrée ou de sortie pour exploiter les avantages de chacun d'entre eux : ainsi il est possible pour l'utilisateur d'interagir, selon la tache, avec le ou les dispositif(s) présentant la meilleure interaction : ce sont des \emph{IHM hybrides}. \citep{ZhouDuhBillinghurst2008}  Cette idée rejoint celle des \emph{IHM multimodales}, développée par \citet{Oviatt2003}, qui propose de créer des systèmes réagissant à plusieurs modes d'entrées différents. Ainsi l'utilisateur peut agir sur le système par la voix, avec un ou des doigts, par des mouvements de main, avec les yeux, avec un stylet ou par des mouvements du corps. L'idée est que l'utilisateur peut choisir le mode d'entrée qu'il désire, ou en utiliser plusieurs à la fois. Chaque mode peut être ainsi utilisé en fonction de la tache, ou du contexte, et ce de manière totalement flexible. \citep{CarmignianiFurhtAnisettiEtAl2011} \\
+Plusieurs types d'IHM pour la RA sont à explorer comme futures pistes de recherches. \citet{AzumaBaillotBehringerEtAl2001} en suggèrent deux~; premièrement, ils proposent d'utiliser conjointement plusieurs dispositifs d'entrée ou de sortie pour exploiter les avantages de chacun d'entre eux : ainsi il est possible pour l'utilisateur d'interagir, selon la tache, avec le ou les dispositif(s) présentant la meilleure interaction : ce sont des \emph{IHM hybrides}. \citep{ZhouDuhBillinghurst2008}  Cette idée rejoint celle des \emph{IHM multimodales}, développée par \citet{Oviatt2003}, qui propose de créer des systèmes réagissant à plusieurs modes d'entrées différents. Ainsi l'utilisateur peut agir sur le système par la voix, avec un ou des doigts, par des mouvements de main, avec les yeux, avec un stylet ou par des mouvements du corps. L'idée est que l'utilisateur peut choisir le mode d'entrée qu'il désire, ou en utiliser plusieurs à la fois. Chaque mode peut être ainsi utilisé en fonction de la tache, ou du contexte, et ce de manière totalement flexible. \citep{CarmignianiFurhtAnisettiEtAl2011}\\
 Deuxièmement, \citet{AzumaBaillotBehringerEtAl2001} proposent d'utiliser les outils et objets de l'environnement réel pour interagir avec l'environnement virtuel, permettant ainsi de créer des \emph{IHM tangibles} (en anglais : \foreignlanguage{english}{Tangible User Interfaces (TUIs)}). Les objets physiques ont l'avantage d'êtres familiers, facile à utiliser et de présenter des contraintes physiques sur lesquelles l'IHM peut s'appuyer \citep{ZhouDuhBillinghurst2008}. La voie de recherche de la RA tangible a été initiée par \citet{FeinerMacIntyreHauptEtAl1993} qui ont proposé un prototype accrochant des fenêtres virtuelles aux objets~; \citeauthor{FeinerMacIntyreHauptEtAl1993} parlaient alors, à juste titre, de \emph{design spatial}. Cependant, \citeauthor{ZhouDuhBillinghurst2008} soulignent que l'utilisation de telle IHM pose le défi de faire comprendre à l'utilisateur les commandes possibles avec les objets physiques et les conséquences de ces actions.
 
 
@@ -138,13 +107,13 @@ Une approche est d'avoir recourt à des techniques de visualisation pour montrer
 \figureETS{figures/BurigatChittaro2011-Figure1.jpg}{Les trois techniques de visualisation pour les éléments hors écran : (a) \foreignlanguage{english}{scaled arrows} (b) Wedge (c) overview+detail\\Tiré de \citet[p. 158]{BurigatChittaro2011}}{BurigatChittaro2011-Figure1}
 
 \paragraph{}
-Cette problématique a également touché les ordinateurs personnels dans les années 2000 quand leurs affichages n'étaient pas très grands (les écrans 15 et 17 pouces étaient courants) ni de très grande résolution. \\
-les problématiques du mobile actuellement : petit écran face à grand contenu = incapacité à gérer de grandes infos \\
+Cette problématique a également touché les ordinateurs personnels dans les années 2000 quand leurs affichages n'étaient pas très grands (les écrans 15 et 17 pouces étaient courants) ni de très grande résolution.\\
+les problématiques du mobile actuellement : petit écran face à grand contenu = incapacité à gérer de grandes infos\\
 + overview+detail \cite{BergeSerranoPerelmanEtAl2014} et \cite{RashidNacentaQuigley2012}\\
 concevoir pour la périphérie (focus+context \cite{CockburnKarlsonBederson2009}
 
-+ illumiroom \cite{JonesBenkoOfekEtAl2013}) \\
-avec wedge/halo \cite{BaudischRosenholtz2003} \cite{GustafsonBaudischGutwinEtAl2008} \cite{BurigatChittaro2011} \\
++ illumiroom \cite{JonesBenkoOfekEtAl2013})\\
+avec wedge/halo \cite{BaudischRosenholtz2003} \cite{GustafsonBaudischGutwinEtAl2008} \cite{BurigatChittaro2011}\\
 
 \paragraph{}
 potentiel d'augmenter la taille l'affichage avec les travaux comparant le desktop aux murs \cite{LiuChapuisBeaudouin-LafonEtAl2014} \cite{ShuppBallYostEtAl2006} \cite{TanGergleScupelliEtAl2003}
@@ -157,8 +126,8 @@ explorer tout ce qui lié à \"SideSight: Multi-“touch” Interaction Around S
 
 
 \subsubsection{Multi-taches et changement de contexte}
-concernant le multi-tache, c'est une problématique des systèmes RA (\cite{SchmalstiegFuhrmannHesinaEtAl2002} et background de \cite{EnsFinneganIrani2014}) : donc c'est naturel de lier le portable à la RA (TODO trouver un article le disant), surtout si on suit le \"information spaces\" de \cite{EnsHincapie-RamosIrani2014} \\
-\cite{TanCzerwinski2003} \\
+concernant le multi-tache, c'est une problématique des systèmes RA (\cite{SchmalstiegFuhrmannHesinaEtAl2002} et background de \cite{EnsFinneganIrani2014}) : donc c'est naturel de lier le portable à la RA (TODO trouver un article le disant), surtout si on suit le \"information spaces\" de \cite{EnsHincapie-RamosIrani2014}\\
+\cite{TanCzerwinski2003}\\
 \cite{RashidNacentaQuigley2012a}
 
 
@@ -192,61 +161,69 @@ Nous pensons concevoir et réaliser un prototype comme solution pour explorer ce
 
 
 \section{Facteurs de conception}
-« However, to date, what is not well understood is which factors inhibit or support the interaction across multiple displays on and around the body i.e. “body proximate” displays. Within this paper we review four key design and technological challenges inherent in body proximate displayecosystems, i.e. combinations of wearable displays (e.g.,smartwatches and smartglasses) and handheld devices(e.g., tablets and smartphones). » \cite{GrubertKranzQuigley2015} \\
-TODO : réviser l'article comme point de départ de cette section + les design factors de Personal Cockpit \\
+« However, to date, what is not well understood is which factors inhibit or support the interaction across multiple displays on and around the body i.e. “body proximate” displays. Within this paper we review four key design and technological challenges inherent in body proximate displayecosystems, i.e. combinations of wearable displays (e.g.,smartwatches and smartglasses) and handheld devices(e.g., tablets and smartphones). » \cite{GrubertKranzQuigley2015}\\
+TODO : réviser l'article comme point de départ de cette section + les design factors de Personal Cockpit\\
 
 Une solution pour un tel système de RA demande au préalable une connaissance des facteurs de conceptions
 Conception (interfaces, interactions) importants et surtout les non-explorés encore = les sous-problèmes
 
 
 \subsection{Matériel}
-        FoV (Czerwinski, 2002) (Patterson, 2006) \cite{KishishitaKiyokawaOrloskyEtAl2014} \\
+        FoV (Czerwinski, 2002) (Patterson, 2006) \cite{KishishitaKiyokawaOrloskyEtAl2014}\\
 
-        Resolution \\
+        Resolution\\
+
+        Projets similaires\\
+        - https://pdfs.semanticscholar.org/a53a/3d25b8258b5331c23056d4696691dabd8eb9.pdf\\
+        - https://link.springer.com/content/pdf/10.1007/s11554-016-0640-9.pdf\\
+        - AR-Rift: https://vr.cs.ucl.ac.uk/portfolio-item/ar-rift/\\
+        - OculAR: https://arxiv.org/abs/1604.08848\\
+        - AR-Rift 2: http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7892261\\
+        - Impact of visual and experiential realism on distance perception in VR using a custom video see-through system: https://dl.acm.org/citation.cfm?id=3119892
 
 
 \subsection{Visualisation, interface design}
-        Reference frame for virtual content \\
-            World-fixed \cite{EnsFinneganIrani2014} \\
-            Body-fixed \cite{EnsFinneganIrani2014} \\
-                + Head centered vs dominant hand centered \\
-            Head-fixed \cite{EnsFinneganIrani2014} \\
-            Phone-fixed \\
-          Movability \cite{EnsHincapie-RamosIrani2014} \\
-            Spatial consistent interface \cite{LiDearmanTruong2009} \\
+        Reference frame for virtual content\\
+            World-fixed \cite{EnsFinneganIrani2014}\\
+            Body-fixed \cite{EnsFinneganIrani2014}\\
+                + Head centered vs dominant hand centered\\
+            Head-fixed \cite{EnsFinneganIrani2014}\\
+            Phone-fixed\\
+          Movability \cite{EnsHincapie-RamosIrani2014}\\
+            Spatial consistent interface \cite{LiDearmanTruong2009}\\
 
-        Context switching \\
+        Context switching\\
             Number of displays \cite{RashidNacentaQuigley2012} \cite{CauchardLoechtefeldFraserEtAl2012}
             Design of context vs design with large one app display \cite{BallNorth2008}
 
-        Content display \\
-            Size of virtual elements = angular width \cite{ShuppBallYostEtAl2006} \cite{BallNorth2008} \\
+        Content display\\
+            Size of virtual elements = angular width \cite{ShuppBallYostEtAl2006} \cite{BallNorth2008}\\
             Distance of virtual content (Hezel, 1994) (Ankrum, 1999) (Tan, 2003) \cite{ChanKaoChenEtAl2010} \cite{EnsFinneganIrani2014} 
-            Angular separation (Mayer, 1993) \cite{EnsFinneganIrani2014} \cite{KishishitaKiyokawaOrloskyEtAl2014} (Alger, 2015) \\ 
+            Angular separation (Mayer, 1993) \cite{EnsFinneganIrani2014} \cite{KishishitaKiyokawaOrloskyEtAl2014} (Alger, 2015)\\ 
             Curved layout vs flat layout \cite{ShuppBallYostEtAl2006} 
-            Direction of content (top, bottom, left, right) \cite{EnsFinneganIrani2014} \\
-            Display continuity \cite{TanCzerwinski2003} \cite{RashidNacentaQuigley2012} \\
-            Allocating space for new elements \cite{BellFeiner2000} \\
+            Direction of content (top, bottom, left, right) \cite{EnsFinneganIrani2014}\\
+            Display continuity \cite{TanCzerwinski2003} \cite{RashidNacentaQuigley2012}\\
+            Allocating space for new elements \cite{BellFeiner2000}\\
 
-            2D vs 3D virtual content \cite{JansenDragicevicFekete2013} \cite{SerranoHildebrandtSubramanianEtAl2014} \\
-            Same appareance for a same content accross outputs vs different appareance according to the output \cite{GrubertHeinischQuigleyEtAl2015} \\
+            2D vs 3D virtual content \cite{JansenDragicevicFekete2013} \cite{SerranoHildebrandtSubramanianEtAl2014}\\
+            Same appareance for a same content accross outputs vs different appareance according to the output \cite{GrubertHeinischQuigleyEtAl2015}\\
 
 
 \subsection{Interaction design}
-      « tasks that occur in 3D applications, which are independent of the input device » \cite{JankowskiHachet2013} \\
+      « tasks that occur in 3D applications, which are independent of the input device » \cite{JankowskiHachet2013}\\
       Reprendre \cite{Bernatchez2008} et \cite{JankowskiHachet2013}
-      Technique (interactions spatiales) \\
+      Technique (interactions spatiales)\\
             Mid-hair hand \cite{EnsFinneganIrani2014} \cite{ChanKaoChenEtAl2010} \cite{JonesSodhiForsythEtAl2012} + Blog de Leap Motion
-            Gaze + taffi (HoloLens) \\
-            Just touch on phone \\
-            Gaze + touch on phone \\
+            Gaze + taffi (HoloLens)\\
+            Just touch on phone\\
+            Gaze + touch on phone\\
             Baselines
               Phone without AR
               Phone without AR and without the HMD, but with the HMD-latency
               Phone without AR and without the HMD nor the HMD-latency
 
-        Indirect (\cite{TeatherStuerzlinger2011}) vs direct (revoir ethereal planes) \\
-        Tangibilité vs intangible, dans les techniques \\
+        Indirect (\cite{TeatherStuerzlinger2011}) vs direct (revoir ethereal planes)\\
+        Tangibilité vs intangible, dans les techniques\\
 
 
 
@@ -266,45 +243,80 @@ Collaboration : examine des interactions et communications utilisateurs entre pl
 Utilisabilité : idem au type `Performance` mais sans mesure, plutôt identifier les problèmes avec l'utilisabilité du système
 
 \subsubsection{Méthodes d'évaluations}
-Mesures objectives \\
+Mesures objectives\\
   Surtout temps de complétion et taux d'erreur, ou encore score, position, nombre d'actions, mouvements \cite{DuenserGrassetBillinghurst2008}
 
-Mesures subjectives \\
+Mesures subjectives\\
   Questionnaires, notes utilisateurs, retours utilisateurs \cite{DuenserGrassetBillinghurst2008}
 
-Analyses qualitatives \\
+Analyses qualitatives\\
   Observations, interviews formelles, classification des comportements utilisateurs \cite{DuenserGrassetBillinghurst2008}
 
-Techniques d'évaluation d'utilisabilité \\
+Techniques d'évaluation d'utilisabilité\\
   Évaluations experts, évaluations heuristiques, analyse de tache, description à haute voix, méthode magicien d'Oz \cite{DuenserGrassetBillinghurst2008}
 
-Évaluations informelles \\
+Évaluations informelles\\
   Observations utilisateurs, retours utilisateurs \cite{DuenserGrassetBillinghurst2008}
 
 
 \subsection{Propositions d'expérimentations utilisateurs}
 \subsubsection{Tâche de navigation}
-Conjunction Search : l'espace est partagé en deux, avec un objet cible à gauche et une grille d'objets à droite. Le participant doit compter dans la grille le nombre d'objets similaire à la cible. Les participants doivent être le plus rapide et le plus précis possible. Cela a permis de déterminer la meilleur distance et la meilleure taille pour le contenu virtuel dans l'espace. L'effort perçu (7 points) et le temps d'essais ont été pris en mesure. Il y a eu 10 essais pour chaque condition et 10 participants. \cite{EnsFinneganIrani2014} \\
-\cite{RashidNacentaQuigley2012} \\
+Conjunction Search : l'espace est partagé en deux, avec un objet cible à gauche et une grille d'objets à droite. Le participant doit compter dans la grille le nombre d'objets similaire à la cible. Les participants doivent être le plus rapide et le plus précis possible. Cela a permis de déterminer la meilleur distance et la meilleure taille pour le contenu virtuel dans l'espace. L'effort perçu (7 points) et le temps d'essais ont été pris en mesure. Il y a eu 10 essais pour chaque condition et 10 participants. \cite{EnsFinneganIrani2014}\\
+\cite{RashidNacentaQuigley2012}\\
 Recherche d'un objet avec certaines propriétés. Ici, les participants devaient déterminer l'item avec le plus bas prix, parmi cinq items. 10 essais par 5 interaction possible (Handled: écran mobile seul ; Smarwatch: écran smartwatch seul ; HMD: HMD seul + entrée indirecte sur la SW ; BodyRef: contenu body-ref + entrée sur l'écran SW ; SWRef: contenu SW-ref + entrée sur l'écran SW). 23 participants. Mesure du temps de complétion de la tâche (TCT), du taux d'erreurs, charge mentale (subjectif). Handled et BodyRef étaient les plus rapides, pas de différence dans les erreurs. Handled demandait moins de charge. \cite{GrubertHeinischQuigleyEtAl2015}
 
 \subsubsection{Tâche de sélection}
-Les participants doivent toucher une cible (ici avec leur doigt). La cible peut se trouver dans cinq emplacements : haut, bas, gauche, droite ou centre. Cela a permis de tester la distance du contenu, et le reference frame. Il y a eu 5 essais pour chaque condition et 12 participants. Ont été mesurés le temps de complétion, les erreurs de pointage, et la fatigue perçue (échelle de Borg à 12 points). \cite{EnsFinneganIrani2014} \\
-Deux fenêtres sont affichées, de direction (haut, bas, gauche, droite) et d'angle (le layout est courbe : 15°, 25°, 35°, 45°, 55°) variables. La première fenêtre contient un bouton de démarrage (placée à hauteur d'yeux du participant) et la deuxième une cible à déclencher après le démarrage. Chaque condition est répétée 10 fois, et il y a eu 8 participants. Ont été mesurés le temps de complétion, les erreurs de pointage, et la fatigue perçue (échelle de Borg à 12 points) pour le bras et pour la tête. \cite{EnsFinneganIrani2014} \\
+Les participants doivent toucher une cible (ici avec leur doigt). La cible peut se trouver dans cinq emplacements : haut, bas, gauche, droite ou centre. Cela a permis de tester la distance du contenu, et le reference frame. Il y a eu 5 essais pour chaque condition et 12 participants. Ont été mesurés le temps de complétion, les erreurs de pointage, et la fatigue perçue (échelle de Borg à 12 points). \cite{EnsFinneganIrani2014}\\
+Deux fenêtres sont affichées, de direction (haut, bas, gauche, droite) et d'angle (le layout est courbe : 15°, 25°, 35°, 45°, 55°) variables. La première fenêtre contient un bouton de démarrage (placée à hauteur d'yeux du participant) et la deuxième une cible à déclencher après le démarrage. Chaque condition est répétée 10 fois, et il y a eu 8 participants. Ont été mesurés le temps de complétion, les erreurs de pointage, et la fatigue perçue (échelle de Borg à 12 points) pour le bras et pour la tête. \cite{EnsFinneganIrani2014}\\
 Le long d'une bande à faire scroller, les participants doivent sélectionner une cible. 10 essais pour chacune des 5 interactions (Handled, Smartwatch, HMD, BodyRef, SWRef). BodyRef demandait à déplacer la sw vers la cible, pas scroller. Un bouton start était à toucher, puis la cible était à atteindre. 2 distances ont été testées (15 cm et 30 cm). 2 directions à tester. 23 participants. Mesure TCT, erreur, charge mentale et préférence utilisateur. BodyRef a été le plus rapide, mais génère beaucoup d'erreurs. SWRef génère peu d'erreurs. Handled le moins de charge. Frustration pour SW et SWRef.
 
 \subsubsection{Tâche de classification}
-Tri \cite{RobertsonCzerwinskiLarsonEtAl1998}, ou classification \cite{LiuChapuisBeaudouin-LafonEtAl2014} \\
+Tri \cite{RobertsonCzerwinskiLarsonEtAl1998}, ou classification \cite{LiuChapuisBeaudouin-LafonEtAl2014}\\
 
 \subsubsection{Tâche spatiale}
 \cite{BurigatChittaro2011}
 \cite{BergeSerranoPerelmanEtAl2014}
 
 \subsubsection{Tâche de commutation d'affichages}
-4 applications sur mobile : Question, My contacts, Calendar, Map. Étudie différentes façons de switcher entre des application. Pris des applications connues et habituelles. Il n'y a besoin d'aucune interaction dans les taches, mais simplement de switcher entre elles et de lire les indices qu'elles contiennent. Tache faite non pas en mouvement, mais faite quand utilisateur s'arrête pour chercher infos. Le but est que les utilisateurs répondent à la question posée. Designs factors : 6 questions et 4 types (=24 questions), et 3 conditions (ici 3 façons de switcher). Les mesures prisent ont été le temps de complétion (MT) et le taux d'erreurs (ER) + un questionnaire NASA TLX. 12 participants, qui ont pu essayer les tâches jusqu'à ce qu'ils se sentent prêts. \cite{CauchardLoechtefeldFraserEtAl2012} \\
-La même tache que Cauchard (2012) a été reprise. Les fenêtres sont à 50 cm de l'utilisateur, de taille 22 cm, sur un layout courbe, séparée de 27,5°, toujours orientée vers l'utilisateur et fixées au monde (pas à l'utilisateur). Les fenêtres des applications à utiliser ont été placées aléatoirement dans une grille de 9 ou 16 emplacements. Pour ajuster la difficulté il y a avait 4 ou 5 applications. Enfin, deux techniques étaient présente, une directe (avec une assistance visuelle de la distance du doigt à la fenêtre) et une indirecte sur une tablette permettant de switcher entre les applications (toujours affichées sur le HMD). \cite{EnsFinneganIrani2014} \\
+4 applications sur mobile : Question, My contacts, Calendar, Map. Étudie différentes façons de switcher entre des application. Pris des applications connues et habituelles. Il n'y a besoin d'aucune interaction dans les taches, mais simplement de switcher entre elles et de lire les indices qu'elles contiennent. Tache faite non pas en mouvement, mais faite quand utilisateur s'arrête pour chercher infos. Le but est que les utilisateurs répondent à la question posée. Designs factors : 6 questions et 4 types (=24 questions), et 3 conditions (ici 3 façons de switcher). Les mesures prisent ont été le temps de complétion (MT) et le taux d'erreurs (ER) + un questionnaire NASA TLX. 12 participants, qui ont pu essayer les tâches jusqu'à ce qu'ils se sentent prêts. \cite{CauchardLoechtefeldFraserEtAl2012}\\
+La même tache que Cauchard (2012) a été reprise. Les fenêtres sont à 50 cm de l'utilisateur, de taille 22 cm, sur un layout courbe, séparée de 27,5°, toujours orientée vers l'utilisateur et fixées au monde (pas à l'utilisateur). Les fenêtres des applications à utiliser ont été placées aléatoirement dans une grille de 9 ou 16 emplacements. Pour ajuster la difficulté il y a avait 4 ou 5 applications. Enfin, deux techniques étaient présente, une directe (avec une assistance visuelle de la distance du doigt à la fenêtre) et une indirecte sur une tablette permettant de switcher entre les applications (toujours affichées sur le HMD). \cite{EnsFinneganIrani2014}\\
 Les deux sont des tâches ecologiquement plus valides, car utilisant des applications familières et quotidiennes pour les utilisateurs. + discuter  des taches écologiques en réel avec toutes les problématiques que ça ouvre \cite{KoelleKranzMoeller2015} \cite{DenningDehlawiKohno2014}
 
 
 
-\section{Synthèse}
+\section{À traiter}
+Berard2009 - Did \"Minority Report\" Get It Wrong? Superiority of the Mouse over 3D Input Devices in a 3D Placement Task\\
+« Interaction is not defined by an input device alone, but by the combination of a device and an interaction technique. In the example of 3D object rotation, the mouse is typically used with the virtual sphere technique while a free-space device is used with a direct mapping (either absolute or relative) Thus, each device must be matched with its most suitable interaction technique in making performance comparisons, rather than choosing a single interaction technique for all devices. »
+
+Robertson1998 - Data mountain\\
+Ça fonctionne de s'appuyer sur la mémoire spatiale humaine : justifie notre concept d'organiser l'espace autour du cellulaire comme une idée pertinente. On pourrait organiser les applications dans le plan et en profondeur le long d'un plan qui part de la base du cellulaire avec une pente positive : cela permet de voir toutes les applications, comme sur des gradins d'un stade (c'est ce que Data Moutain suggère comme placement des app dans l'espace)
+
+Esteves2017 - SmoothMoves\\
+Justifie de faire de l'IHM pour la RA : « The latest products, such as Microsoft HoloLens include powerful computers, high resolution displays and sophisticated tracking. While these technical achievements are impressive, there is less clarity about the best ways for users to interact with AR contents and interfaces. »\\
+Liste des types de techniques d'interactions en IHM pour les HMD en RA : « There is an active community exploring viable modalities for head-mounted displays (HMDs) including on-headset touch mid-air hand input and the use of dedicated wearable peripherals such as gloves or belts Within this space, we argue that input from movements of the eyes and head are particularly practical and appealing: in such scenarios, hands remain free and all sensing can be integrated into the headset.\\
+Argument du prix sur head-tracking vs eye-tracking : « Using head motions accords considerable practical benefits, primarily that the Inertial Motion Units (IMUs) needed to accurately track head movements are small, cheap, low power and already integrated into the majority of AR glasses and other wearables.\\
+Principe et explication de pourquoi l'étudier (dans le HoloLens, le Cardboard) de la technique d'interaction du pointage avec le regard : « Ray-based pointing, in which users interact by projecting a ray from their head to intersect with a target of interest, is the most common and has been integrated into current head-mounted displays, such as the Google Cardboard and the Microsoft HoloLens. »\\
+Explication du pointage avec le regard : « Gaze is the inseparable product of head movements plus eye movements. The relationship between these activities is sophisticated. At the most fundamental level, the Vestibulo-Ocular Reflex (VOR) continuously stabilizes gaze by adjusting (basically inverting) eye position in response to changes in head position sensed by the vestibular system »\\
+Propriétés du du pointage avec le regard : « A number of properties make smooth pursuits movements useful as an input technique. First, they are innate. Users know how to visually track targets and can generate this kind of motion without training. Second, they are distinctive. Users are only able to generate smooth pursuits eye movements in the presence of visually moving targets. Third, they operate on movement not position. As such, they are relatively immune to changes in target size and robust to tracking errors – capturing changes in gaze is much simpler than accurately determining what a user is looking at. Fourth, they are operated hands-free. And fifth, they do not require users to memorize gestures. Several systems have been recently introduced to leverage these properties.\\
+Les auteurs ont montré que les techniques d'interactions (en tout cas le suivi de cible) basées sur le mouvement de la tête (par exemple un curseur projeté depuis le centre de la tête sur des cibles dans la RA) est aussi efficace en terme de performances, et peu même être préféré, que les techniques d'interactions basées sur les mouvements des yeux et a les mêmes propriétés.
+
+Berge2014 - Exploring smartphone-based interaction with overview+detail interfaces on 3D public displays\\
+Les utilisateurs ont préféré les interactions Mid-Air Phone et Mid-Air Hand (avec ou sans entraînement) versus les interactions touchscreen dans une interface Overview+Detail d'exploration de contenu 3D : un écran faisait overview et un téléphone mobile de detail.\\
+Nous on ne ce pose pas la question de l'entraînement : car on considère que c'est une IHM qui serait utilisée au quotidien ou professionnellement : donc c'est correct d'avoir un temps d'apprentissage.\\
+Il y a trois de types de solutions/approches pour visualizer/afficher de larges espaces d'information : Overview+Detail, Focus+Context et Zooming. Nous n'étudions que Zooming, car c'est le plus courant sur les appareils mobiles. Or on compare les techniques d'interactions de notre solution à un mobile seul. Il aurait été intéressant cependant, dans une deuxième expérimentation, de comparer ces techniques de visualization sur notre solution versus sur un appareil mobile seul.
+
+Toutes nos conditions de la VI technique sont des direct mapping (mappe directement la position de l'input au curseur).
+
+Large information space visualization on mobile phone - Burigat2011 - On the effectiveness of Overview+Detail visualization on mobile devices\\
+« Results of the experiment suggest that both direct manipulation of the overview and highlighting objects of interest in the overview have a positive effect on user performance in terms of the time to complete search tasks on mobile devices, but do not provide specific advantages in terms of recall of the spatial configuration of targets. »
+
+3D navigation with a mobile phone - Peephole\\
+Notre condition téléphone seul est en fait un static navigation peephole, et notre condition peephole est dynamic navigatino peephole.
+« Handheld displays leave little space for the visualization and navigation of spatial layouts representing rich information spaces. The most common navigation method for handheld displays is static peephole navigation : The peephole is static and we move the spatial layout behind it (scrolling). A more natural method is dynamic peephole navigation: here, the spatial layout is static and we move the peephole across it. » Mehra2006
+
+Huerst2010 - Dynamic versus static peephole navigation of VR panoramas on handheld devices\\
+« We present a formal evaluation and usability studies comparing two interaction concepts. In the first one, the device is seen as a static peephole and the data is moved behind it via touch screen-based scrolling. In the second one, a mobile phone’s sensors are used to create a dynamic peephole that can be moved over static content. In the results of our formal analysis sensor-based dynamic peephole navigation performed twice as good in an orientation task, 75\% better in an object size discrimination task, and was preferred by 80\% of the users. Despite these advantages, additional usability studies indicate that if they are sitting, a majority of users resort to touch screen-based static peephole navigation when interacting. »
+
+Mehra2006 - Navigating on handheld displays\\
+« Subjects viewed a spatial layout containing two lines on a static display screen. Only a part of the screen—the peephole—was visible. Subjects had to discriminate line length by either moving a dynamic peephole across a static layout of the lines or by moving a dynamic layout behind a static peephole. »\\
+« Discrimination thresholds for static peephole navigation were 50–75\% higher than for dynamic peephole navigation. Furthermore, static peephole navigation took 24\% more time than dynamic peephole navigation »
