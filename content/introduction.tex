@@ -1,1 +1,148 @@
-\lipsum[1]
+Technologie encore peu connue mais particulièrement prometeuse, la réalité augmentée (RA) va probablement révolutionner nos quotidiens personnels et professionnels dans les cinq à dix prochaines années (voir la \reffigureETS{GartnerHypeCurve}), comme ont pu le faire les téléphones intelligents au début des années 2010 \citet{Chaffey2018}. Elle est facilement associée avec la réalité virtuelle (RV), qui a connu son essor en 2016 avec la sortie des des versions publiques des visiocasques Oculus Rift et HTC Vive. La RA est cependant moins mature que la RV, le visiocasque standard dans l'industrie, le HoloLens de Microsoft, étant destiné aux développeurs et non au grand public.\\
+La RA est une «~technique d'imagerie numérique […] permettant, grâce à un dispositif d'affichage transparent, de superposer à une image réelle des informations provenant d'une source numérique~» \citep{OfficeQuebecoisLangueFrancaiseRA2015}. La RA consiste donc à générer du contenu virtuel et à le combiner en temps réel à l'environnement d'un utilisateur. Ainsi la RA permet d'\emph{augmenter la perception} du réel par les sens humains et permet d'\emph{augmenter les interactions} possibles d'un utilisateur avec l'environnement \citep{Azuma1997}. La RA peut toucher tous les sens humains cependant, elle s'adresse principalement au sens visuel.
+
+L'émergence de la RA permettrait de construire des interfaces humain-machines (IHM) naturelles, en 3D, autour d'un utilisateur dans sa vie quotidienne ou professionnelle, simplifiant ses interactions avec son environnement. Plus particulièrement, il serait intéressant de combiner les téléphones intelligents avec de la RA. En effet, ces deux technologies sont mobiles mais présentent des caractéristiques d'IHM différentes :
+\begin{enumerate}
+  \item Les écrans des téléphones intelligents ont atteint une limite de taille physique, qui pourraient être étendus par RA.
+  \item Les interactions ont été encore peu étudiées pour la RA \citep{Piumsomboon2013}, tandis qu'elles sont bien maitrisées sur les téléphones intelligents \citep{Wobbrock2009}. De plus, notre expérience avec le HoloLens indique que les nouveaux utilisateurs en RA souhaitent souvent toucher directement le contenu 3D avec leur doigts. Cependant, si cela semble être une manière naturelle d'interagir avec du contenu 3D, il n'est pas certains que cela soit performant ni facile \citep{ChanKaoChenEtAl2010}.
+\end{enumerate}
+Nous souhaitons donc concevoir un prototype de téléphone intelligent tenu en main dont l'écran est étendu par RA et évaluer expérimentalement ce système pour le comparer à un téléphone seul non étendu.
+
+\figureETS{figures/Gartner_HypeCycle2017.jpg}{Courbe de l'intérêt pour les nouvelles technologies, en juillet 2017. En abscisse se trouve le temps, découpé en plusieurs phases, et en ordonné se trouve l'intérêt. La RA est dans la troisième phase du gouffre des désilusions, et la RV dans la quatrième phase de la pente de l'illumination.\\ Adapté de \citet{GartnerHypeCurve2017}.}{GartnerHypeCurve}
+
+Après une revue de littérature au \autoref{ch:litterature}, où sera également définie la problématique et les objectifs de ce mémoire, la conception et le développement du prototype seront décrits au \autoref{ch:methodology}, puis l'évaluation expérimentale au \autoref{ch:experiment}. Les résultats de l'expérience seront ensuite discutés au \autoref{ch:discussion}. Enfin, la conclusion de ce mémoire sera faite au \autoref{ch:conclusion}.
+
+
+Ajouter :
+- https://blogs.unity3d.com/2017/09/05/looking-to-the-future-of-mixed-reality-part-i/s
+- Vision de la RA du CEO de WayRay : http://www.augmented-reality.fr/2017/09/le-futur-de-la-realite-augmentee-b2c-passera-t-il-obligatoirement-par-la-voiture/ : le mobile restera la plateforme la plus utilisée au début, justifie de coupler avec casque de RA
+
+
+More thoughts about the below experiment:
+Other conditions you could try: moving the phone through physical space to serve as a high-res window
+Moving the phone through space, then pressing down on a virtual button on the phone's screen to clutch, then moving the phone to drag the AR content
+Using fingers on the phone screen to scroll through the AR display. This might be better than pointing in mid air because the hands can be stabilized by the phone's weight.
+Criticism of the experiment: no one cares about limited FOV because by next year all headsets will have a wide FOV, and furthermore it's obvious that a large AR display with large FOV should be better than anything limited to the phone's screen.
+ 
+The PenLight paper by Song, Grossman, et al. has no experiment.
+The "Multi-User Interaction Using Handheld Projectors" paper by Cao et al. has no experiment.
+The "Focus plus context screens" paper by Baudisch et al. has no experiment.
+ 
+The below experiment could be done with a passthrough headset (like HTC Vive or VRVANA). Even though the video resolution will be limited, we can argue in our paper that the targets or icons for the task have a minimum size that can be selected with the user's fingers.
+ 
+[Nécessite un HoloLens:]
+Smartphone with virtual screens.
+Tasks could be pointed at offscreen targets, sorting photos or sorting icons (like in the Data Mountain work by George Robertson et al.), or supervising dynamic feeds.
+Example: use air tap or taffi gesture to bring a virtual screen onto the phone, then use touchscreen to select the small target.
+For pointing to off-screen targets, maybe you could display a wedge or arrow in the phone screen.
+Condition 1: smartphone plus HoloLens with 30 degree FOV, and with wedge/halo
+Condition 2: smartphone where user swipes between screens, at 1 swipe per screen (this will be slow), with wedge/halo
+Condition 3: smartphone where user does a single drag with high gain to scroll through all screens in a single drag (this will be fast but is unusual for smartphone UIs).
+Condition 3b: allow user to perform pinch-zoom to navigate to any spot in the virtual space through the phone's screen.
+Condition 4: a phone on a desk with an overhead projector to simulate a very large FOV.
+Condition 5: same as 4, but using a mouse as input device?
+Potential criticism: why not display notification icons on the phone screen, and let the user select a notification to jump to the appropriate screen? Defense: this does not scale to a large number of potential targets or feeds that must be supervised.
+The above conditions might work for a pointing task, but what about a photo sorting task?  Maybe we would want to compare with something like drag-and-zoom.
+But if the HoloLens already has a really good pixel density, why bother bringing an external virtual display onto the phone?
+ 
+ 
+ 
+[Nécessite un HoloLens:]
+Question de recherche: est-ce qu'un ecran physique plus des fenetres augmentees est mieux que juste un ecran physique?
+Comparer jusqu'a trois taches: (1) tache d'organisation et de rappel (comme dans DataMountain); (2) tache de classement de documents par mot cle; (3) tache de surveille.
+(Voir travaux de Mary Czerwinski sur les multiples ecrans. Voir travaux de Chris North sur les murs d'ecrans en tuiles.)
+(Une autre tache possible: pointage fitts ? Souris, yeux, mouvement de tete, scrolling sur un petit ecran ... Ou des combinaisons? Est-ce que le HoloLens a un eye tracker?)
+Possibilite 1: l'ecran physique est un ecran de bureau (HD 24 pouces, ou ecran de laptop de 12 pouces), et le pointage se fait par souris.  (Danger dans ce cas: un ecran HD mis pres de la tete va battre des fenetres augmentees)
+Possibilite 2: l'ecran physique est un smartphone, et le pointage en dehors du telephone se fait avec des "air tap" ou gestes de TAFFI ou encore pointage en 3D avec retour visuel en ombre pour dire a l'utilisateur quelle distance il faut mettre sa main. (Question dans ce cas: a quoi sert le telephone?  Pourquoi ne pas tout faire avec le visiocasque et des airtaps?)
+Possibilite 2 me semble plus prometteur.  Donc, a faire: voir comment localiser les smartphone par rapport au visiocasque. Soit avec Polhemus (dans ce cas, identifier et eliminer la source du bruit), ou bien avec un fiduciel et ARToolkit.
+ 
+\url{https://scholar.google.ca/scholar?q=baudisch+rosenholtz+halo+technique+visualizing+off-screen+objects}
+\url{https://scholar.google.ca/scholar?q=gustafson+baudisch+gutwin+irani+Wedge+clutter-free+visualization+off-screen+locations}
+\url{https://scholar.google.ca/scholar?q=burigat+chittaro+Visualizing+references+off-screen+content+mobile+devices+comparison+Arrows+Wedge}
+\url{https://scholar.google.ca/scholar?q=schinke+henze+boll+visualization+off-screen+objects+mobile+augmented+reality}
+ 
+ 
+[Peut se faire avec un Oculus:]
+Dispositifs de pointage qu'on pourrait comparer: souris normale, souris 3D (Rockin' Mouse), main dans les airs, main sur une surface horizontale multitactile, TAFFI, un ou des objets physiques (blocs?) qui sont localisés par caméra ou par Polhemus en 3D ou sur une surface 2D
+TAFFI: \url{https://www.youtube.com/watch?v=yQIRVAVor_k}
+Rockin Mouse: \url{http://www.dgp.utoronto.ca/~ravin/videos/chi99_rockmouse.mpg}
+ 
+[Peut se faire avec un Oculus:]
+Piles 3D augmentées: quelles sont les façons de créer / interagir avec de telles piles? Regarder BumpTop (et les travaux précédents) pour des idées.  On peut comparer la performance de différents dispositifs de pointage pour manipuler des piles, et comparer différentes techniques d'interaction pour créer / organiser / browser dans les piles.
+\url{http://www.michaelmcguffin.com/ets/diapos/ETS-mcguffin-centreeUtilisateur.ppt}
+\url{https://bumptop.github.io/}
+\url{http://www.dgp.toronto.edu/papers/aagarawala_CHI2006.pdf}
+\url{https://scholar.google.ca/scholar?hl=fr&q=The+character%2C++value%2C+and+management+of+personal+paper+archives}
+ 
+[Peut se faire avec un Oculus:]
+Quelle est la meilleure façon de sélectionner et de déplacer des documents/fenêtres?
+On peut comparer la performance de différents dispositifs de pointage et/ou de techniques d'interaction.
+\url{https://scholar.google.ca/scholar?q=balakrishnan+rockin+mouse}
+\url{https://scholar.google.ca/scholar?q=berard+cooperstock+minority+report}
+ 
+[Peut se faire avec un Oculus:]
+Serait-il intéressant de déplacer des piles / documents / fenêtres flotants automatiquement à mesure que l'utilisateur en déplace d'autres?
+\url{https://scholar.google.ca/scholar?hl=en&q=bell+feiner+dynamic+space+management+user+interfaces}
+\url{https://scholar.google.ca/scholar?q=bell+feiner+view+management+virtual+augmented+reality}
+\url{http://uist.acm.org/archive/videos/2001/p101-bell.mov}
+ 
+[Peut se faire avec un Oculus:]
+Est-ce que les gens peuvent se rappeler de où ils ont placé des documents?
+\url{https://scholar.google.ca/scholar?q=robertson+czerwinski+data+mountain+spatial+memory}
+\url{http://scholar.google.ca/scholar?q=cockburn+mckenzie+evaluating+effectiveness+spatial+memory+2d+3d+physical+virtual}
+\url{https://scholar.google.ca/scholar?q=%22Supporting+and+exploiting+spatial+memory+in+user+interfaces%22}
+ 
+[Nécessite une caméra externe au dessus d'un bureau, mais ne nécessite pas de visiocasque:]
+Si un utilisateur a une surface horizontale multitactile sur laquelle il place des documents papier / livres / objets physiques, serait-il intéressant de détecter ces objets physiques et d'adapter l'affichage des icônes / documents virtuels / fenêtres sur le bureau pour éviter d'être caché?
+\url{https://scholar.google.ca/scholar?hl=en&q=bell+feiner+dynamic+space+management+user+interfaces}
+ 
+[Nécessite un HoloLens:]
+Quelles sont des façons intéressantes de permettre aux utilisateurs de déplacer des documents entre une région "focus" (haute resolution, surface horizontale ou inclinée) et une région "contexte" (documents/fenêtres flotants affichés par visiocasque) ?
+\url{https://scholar.google.ca/scholar?q=ringel+when+one+enough+analysis+virtual+desktop+usage+strategies}
+ 
+Focus+context display:
+\url{http://www.patrickbaudisch.com/projects/focuspluscontextscreens/}
+ 
+ 
+ 
+ 
+Ens, Finnegan, Irani
+The Personal Cockpit
+CHI 2014
+\url{http://hci.cs.umanitoba.ca/publications/details/personal-cockpit}
+\url{http://www.youtube.com/watch?v=L0ZjmEP-c1E}
+ 
+Jinha Lee
+SpaceTop
+CHI 2013
+\url{https://www.youtube.com/watch?v=pgo9YygqEow&t=7s}
+\url{http://leejinha.com/SpaceTop}
+\url{http://vimeo.com/59231624}
+ 
+Magic Desk
+\url{https://www.youtube.com/watch?v=uJ7z2OefkRQ}
+Bi, Xiaojun, et al. "Magic desk: bringing multi-touch surfaces into desktop work." Proceedings of the SIGCHI conference on Human factors in computing systems. ACM, 2011.
+ 
+Kane et al., "Bonfire"
+ACM UIST 2009
+\url{http://www.youtube.com/watch?v=O3MZYRAZJNk}
+ 
+Augmenting Interactive Tables with Mice and Keyboards
+\url{https://www.youtube.com/watch?v=NUnitdZL0fM}
+ 
+Slap widgets
+\url{https://www.youtube.com/watch?v=I2rDHUUkd5Y}
+ 
+BendDesk: Multi-touch on a Curved Display
+\url{https://www.youtube.com/watch?v=5VNTPwVvLzE}
+ 
+Workstations that surround the user with monitors:
+\url{http://www.mwelab.com}
+ 
+ 
+ 
+More research questions for AR:
+How to leverage a handheld device / mobile phone with stylus and multitouch? How to leverage bimanual input?
+How to leverage a desk-like horizontal or inclined multitouch display?
+How to use recyclable tangible blocks that serve as anchor points for floating windows / floating 3D models / floating documents or piles, or as anchor points for things displayed on the horizontal display surface?
+How to allow the user to get up and walk around, with virtual floating windows / documents following along?

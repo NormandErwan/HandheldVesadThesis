@@ -1,17 +1,5 @@
-\section{Introduction}
-Après quelques années de développement, nous pensons que le marché de la réalité virtuelle (RV) est amené à prendre de l'ampleur, dans l'année 2016, avec la sortie des versions publiques des visiocasques Oculus Rift et HTC Vive. En outre, Microsoft, l'une des plus grandes entreprises en technologies de l'information, s'est lancée dans la conception d'un casque de réalité augmentée (RA) : le HoloLens, dont elle livrera une première version destinée aux développeurs dans le courant de cette même année 2016. Microsoft remet ainsi sur scène la RA, dans la suite de l'expérimentation, en 2013, des lunettes de RA Google Glass. En outre, dans un rapport de janvier 2016, Goldman Sachs Research estime que les marchés de la RV et de la RA pèseront, ensemble, entre 23 milliards et 80 milliards de dollars de revenus par an d'ici 2025 \citep{BelliniChenSugiyamaEtAl2016}. De plus, malgré son retard technologique sur la RV, la RA semble promise à un avenir meilleur \citep{BelliniChenSugiyamaEtAl2016} : en effet, si la RV immerge totalement l'utilisateur dans un environnement virtuel, la RA introduit des éléments virtuels dans l'environnement réel. Ainsi, la RA peut émuler la RV, et, en permettant de construire des interfaces humain-machines (IHM) autour d'un utilisateur dans sa vie quotidienne, augmente les interactions possibles d'une personne avec son environnement.
-
-L'émergence de la RA nous permet de rêver à la réalisation d'IHM qui n'étaient encore présentent que dans les imaginaires. On peut citer par exemple les IHM vues dans les films Minority Report \reffigureETS{Spielberg2002-Hologram} ou ceux de la trilogie The Matrix \reffigureETS{WachowskiSilver2003-ZionUI}. Si ces exemples montrent des IHM fixées à des bureaux de travail, les lunettes de RA Google Glass ont montré que les interactions en RA avec un téléphone intelligent étaient prometteuses. Les téléphones intelligents et tablettes étant massivement répandus depuis ces dernières années, et la future révolution promise des lunettes de RA nous fait imaginer des interactions conjointes à explorer entre ces appareils mobiles et des lunettes de RA. Ainsi, nous souhaitons savoir dans quelle mesure la RA pourrait augmenter les interactions possibles avec un téléphone intelligent ? Et dans quelle mesure ces interactions pourraient être pertinentes dans un usage quotidien ?
-
-\figureETS{figures/Spielberg2002-Hologram.png}{IHM de l'hologramme du film \foreignlanguage{english}{Minority Report}.\\ Tiré de \citet{Spielberg2002}}{Spielberg2002-Hologram}
-
-\figureETS{figures/WachowskiSilver2003-ZionUI.jpg}{IHM d'une tour de contrôle du film \foreignlanguage{english}{The Matrix Reloaded}.\\ Tiré de \citet{WachowskiSilver2003}}{WachowskiSilver2003-ZionUI}
-
-La RA peut toucher tous les sens humains, cependant, elle est souvent désignée dans ce terme comme s'adressant au sens visuel. C'est sous cette signification qu'elle sera aussi employée dans cette revue de littérature. En outre, nous nous intéressons ici à la conception d'IHM pour la RA : les considérations techniques ne seront pas abordées directement, ni les problématiques d'acceptation sociale de la RA. Les problématiques de travail collaboratif ne seront pas non plus abordées.
-
-Cette revue de littérature s'organisera en plusieurs sections allant du plus général au plus spécifique, partant d'une définition du contexte du sujet et aboutissant aux questions de recherche que nous pensons nécessaire d'explorer pour répondre au problème énoncé plus haut dans cette introduction. La première partie donnera le contexte du sujet, en définissant la RA et en dressant son historique. La deuxième partie explora les recherches réalisées dans la conception d'IHM pour des RA mobiles et portable pour aboutir à un ensemble de question de recherches pour ce sujet. La troisième partie décrira les facteurs de conception les plus pertinents pour concevoir des solutions à ces question de recherche. Enfin, la quatrième partie explorera les différentes méthodes d'évaluation d'IHM et proposera quelques expérimentations permettant d'apporter une réponse aux questions de recherches énoncées plus tôt.
-
-
+\chapter{Revue de littérature}
+\label{ch:litterature}
 
 \section{Définitions}
 \subsection{Définition de la réalité augmentée}
@@ -83,6 +71,66 @@ Certaines études \citep{EnsFinneganIrani2014} \citep{GrubertHeinischQuigleyEtAl
 Pour explorer les capacités des visiocasques, \citeauthor{EnsFinneganIrani2014} réalisent un prototype de RA affichant de multiples fenêtres dans les airs \reffigureETS{EnsFinneganIrani2014-Figure8}. Un utilisateur peut alors interagir directement avec les fenêtres par le toucher (c'est donc une \emph{interaction directe}). Ils explorent alors plusieurs facteurs de conception du prototype, au travers de quatre expériences : la taille d'affichage des fenêtres virtuelles, leur distance d'affichage, leur angle de placement par rapport à l'utilisateur, et enfin leur référentiel de placement des fenêtres virtuelle (fixées au corps ou fixées au monde). Les performances (temps et taux d'erreurs), la fatigue ainsi que les retours des utilisateurs étaient mesurés.\\ 
 Leurs résultats ont montrés, entre autres, qu'un affichage courbe est important pour que toutes les fenêtres soient affichées à la même distance de l'utilisateur~; ce qui confirme les résultats de \citet{ShuppBallYostEtAl2006} pour les affichages virtuels. En outre, leur conception a montré qu'elle permettait un travail 40\% plus rapide qu'avec une fenêtre simple sur une tache multi-applications : en effet, leur prototype permet d'afficher plusieurs fenêtres simultanément et ainsi réduit le changement de fenêtre, donc d'application pour du multi-tâches, à un simple mouvement de tête. Ce résultat montre également que l'interaction directe est compatible avec du contenu virtuel sous forme de fenêtres. Enfin, le référentiel sur le corps avait de plus grands taux d'erreurs que le référentiel sur le monde, car l'action de sélection entraînait des perturbations involontaires des fenêtres par rapport à l'utilisateur.\\ 
 Ce travail présente cependant quelques limites. Tout d'abord, leur IHM requiert des interactions directes, ce qui est à l'origine d'erreurs de sélection et de fatigue du bras des utilisateurs : il serait alors intéressant de savoir si un référentiel sur le corps permettrait d'être précis avec une interaction indirecte. En outre, le champ de vision était très limité : 30° à l'horizontal et 40° à la verticale, ce qui biaise les mesures de performances Enfin, le prototype a été réalisé dans un CAVE, c'est-à-dire des projections de l'image sur des écrans entourant l'utilisateur. Ainsi, il faudrait reproduire les expérimentations avec un visiocasque et différentes techniques d'interactions. On peut également se demander si l'utilisation de fenêtres est une représentation adaptée pour la RA, aucune contrainte d'écrans physiques n'étant présente, ou s'il existe une meilleure représentation de l'information virtuelle dans un espace de RA.
+
+[Probleme de recherche]
+Il y a une prolifération de HMD peu cher, qui permettent d'interagir avec du contenu en permanence, mais qui m'affiche que des interface en 2D à distance fixe de l'utilisateur. Il n'y a pas d'exploitation de la
+ périphérie de l'utilisateur et peut créer des problèmes d'occlusion avec le monde réel. De plus, on retrouve le même problème que les smartphone où le multitache demande de switcher entre des applications, ce
+qui coûte cher. Pourtant un HMD n'a pas de limites physiques et peut créer des IHM dans l'espace (en 3D et non plus sur un écran 2D), et composées de plusieurs fenêtres.
+
+[Solution]
+Explorer la conception d'interfaces spatiale mobiles, avec de multiples affichages flottants dans les airs à l'aide un prototype. Pour cela, déterminer quels sont les meilleurs facteurs de design pour concevoir
+ un tel prototype, et les valider avec expérimentations empiriques. Enfin, faire des recommendations pour al conception d'IHM dans l'espace.
+Les facteurs explorés sont :
+- le FOV : un humain a 200° en horizontal, 130° en vertical, fovea est 3°h8°v, un fov mini pour un hmd est 40°h (si pour fovea) ou 60°h (pour immersion)
+- le changement de contexte : nombre d'écran et multitache, les mvt de têtes doivent être minisé pour pas impacter perfs, et certaines taches valent le coup d'un écran étendu, consitance spatiale est bonne pour
+ les perfs
+- la séparation angulaire (angle de placement du contenu dans l'espace) : meilleur perfs si petits angles, jusqu'à 85° de rot h et 50° rot haut et 60-70° rot bas
+- la taille d'affichage (ou résoluton) : plus haute meilleur pour navigation, certaines taches (par ex: recherche mais pas tracé de route) profitent d'un plus grand affichage, mais souvent le fait de pouvoir se déplacer dans l'espace est plus important que d'avoir un grand affichage
+- la distance d'affichage des fenêtres : 0.25m minimum mais 1m recommandé pour écrans physiques, impacts sur perfs si affichages à distances différentes, en VR la prof est mal estimée
+- méthode d'entrée : directe est plus naturelle mais pose des problémes car vr intangible et problèmes d'estimation de distances
+- placement des affichages : sur le monde ou les objets, sur la tête, sur le corps, sur les mains
+
+[Méthodologie]
+Réaliser quatre expérimentation pour déterminer et valider ces paramètres :
+1 Tache de recherche visuelle d'objet
+VI : angle de placement (50,75,100,125,150\% du FoV) et distance placement (40,60,80,100 cm)
+VC : FoV (40°x30°)
+VD : temps d'essai, effort perçu
+
+2 Tache de sélection d'une cible
+VI : placement (world-, body-, view-fixed), distance placement (40, 50, 60 cm), location cible (centre, haut, bas, gauche, droite)
+VC : FoV (40°x30°), 70\% du FoV, input direct
+VD : temps d'essai, erreurs sélection, effort perçu
+
+3 Tache de recherche visuelle d'objet
+VI : angle de placement (50,75,100,125,150\% du FoV), distance placement (40,60,80,100 cm)
+VC : FoV (40°x30°), 70\% du FoV, input direct, world-fixed, 50 cm, curved windows
+VD : temps d'essai, erreurs sélection, effort perçu
+
+4
+
+[Résultats]
+1 75\% pour temps, et inconfort à 40 cm malgré pas de diff donc 60 cm min
+2 world-fixed le plus précis (pour les autres le manque de précision de l'outil de sélection contrebalançait la proprioception), mais pas de diff de temps + précision meilleure quand distance proche = plus le bras s'allonge, moins c'est précis
+3
+4
+
+Autres : Les fenêtres VR sont compatibles avec input direct même si FoV limité. Un layout courbe fonctionne bien et limite les erreurs.
+
+[Limites]
+Simplement testé l'input direct. Que de l'intangible. FoV très limité et fixe. Il faudrait tester sur plus de taches pour voir si les résultats sont généralisables.
+
+[Concepts-clés]
+Head-worn display; head-mounted display; task switching; spatial input; spatial user interface; virtual window management; multi-display environment
+
+[Futurs travaux]
+Répliquer sur un vrai HMD, pas un CAVE comme dans les expériences. Mieux supporter l'input direct et tester d'autres techniques d'input. Mieux comprendre les limitations de la proprioception et de la fatigue utilisateur, donc permettre une pus grand stabilisation quand en mode body-fixed ou changer de mode en fonction du contexte.
+
+[Références centrales]
+[12] Steven Feiner, Blair MacIntyre, Marcus Haupt, Eliot Solomon, Windows on the world: 2D windows for 3D augmented reality, Proceedings of the 6th annual ACM symposium on User interface software and technology, p.145-155, December 1993, Atlanta, Georgia, USA
+[13] George W. Fitzmaurice, Situated information spaces and spatially aware palmtop computers, Communications of the ACM, v.36 n.7, p.39-49, July 1993
+[22] Frank Chun Yat Li, David Dearman, Khai N. Truong, Virtual shelves: interactions with orientation aware devices, Proceedings of the 22nd annual ACM symposium on User interface software and technology, October 04-07, 2009, Victoria, BC, Canada
+[34] Lauren Shupp, Robert Ball, Beth Yost, John Booker, Chris North, Evaluation of viewport size and curvature of large, high-resolution displays, Proceedings of Graphics Interface 2006, June 07-09, 2006, Quebec, Canada
 
 \figureETS{figures/EnsFinneganIrani2014-Figure8.jpg}{Conception du \foreignlanguage{english}{Personal Cockpit}.\\ Tiré de \citet[p. 7]{EnsFinneganIrani2014}}{EnsFinneganIrani2014-Figure8}
 
@@ -174,20 +222,6 @@ problématique du multimodal : quelle interaction pour quelle tache ?
 
 \subsubsection{Synchronisation des environnements réels et virtuels}
 problématique de désynchronisation réel/virtuel peut être comblé avec cette RA mobile : \cite{Chalon2004} et Gluey qui fait des photos du réels pour les coller sur l'écran
-
-
-\subsection{Questions de recherche}
-Dès lors, à la lecture de la littérature, on peut poser un certains nombre de questions de recherche pour concevoir un tel système de RA combinant un visiocasque avec un téléphone intelligent dans le but augmenter l'écran physique du téléphone et chercher l'IHM la plus pertinente pour un tel système :
-\begin{enumerate}
-  \item Quelles IHM sont les plus intéressantes pour quelles tâches ?
-  \item Pour quelles taches un utilisateur profiterait-il d'un écran augmenté ? Pour quelles taches un utilisateur profiterait-il de multiples écran organisables dans l'espace du téléphone ?
-  \item Quels sont les paramètres de conception d'un tel système et pour quelles valeurs permettent-ils de le rendre le plus utilisable et le plus intéressant ? Est-ce qu'un tel système serait plus performant qu'un écran seul ?
-  \item Le téléphone intelligent devrait-il servir comme une fenêtre haute-résolution sur le contenu virtuel (peephole ou focus+context), ou serait-il mieux de concevoir l'environnement virtuel comme une extension de l'écran du téléphone. Dans chacun des deux modes, quelles taches et quelles interactions sont les plus intéressantes et les plus performantes ? Dans le second cas, est-ce que les objets virtuels doivent être conçus seulement pour la périphérie du regard ou pourraient-ils être des espaces de travail pour l'utilisateur (zones de focus potentiel de l'utilisateur) ?
-  \item Quels sont les impacts de la taille des champs de vision (en anglais : FoV) et de la résolution d'affichage du visiocasque sur la navigation et les interactions de l'utilisateur du système ? Peuvent-ils être négligés avec le matériel présent aujourd'hui, et qui s'améliorera dans le futur ? Il y a-t-il des valeurs minimum à respecter pour obtenir des résultats valides ? À mesure que le matériel va s'améliorer, est-il qu'un impact négatif existe passé un trop large champs de vision ou une trop haute résolution ?
-  \item Les objets virtuels devraient-ils être simplement des fenêtres 2D dans l'espace, ou peut-on leur donner une profondeur (3D) tout en gardant de bonnes performances d'utilisation ? De manière plus générale, quelle est la meilleur ergonomie d'affichage et d'utilisation d'informations virtuelles dans un tel système RA ?
-\end{enumerate}
-
-Nous pensons concevoir et réaliser un prototype comme solution pour explorer ces questions et ces paramètres de conception, et par une ou plusieurs études expérimentale évaluer auprès d'utilisateurs différentes IHM et différents paramètres de conception pour pouvoir réaliser un ensemble de recommandations pour de futurs travaux pour un tel système de RA.
 
 
 
@@ -307,4 +341,39 @@ Les deux sont des tâches ecologiquement plus valides, car utilisant des applica
 
 
 
-\section{Synthèse}
+Citer Alexandre Millette + ajout du meta 2 depuis pour la liste des casques existants
+- Justification tracking tête dans condition 'indirect input' : 
+    - Article SmoothMoves a "[...] confirms the idea that head motions can accurately track moving targets. In the head condition, the fidelity of the behavior [...] exceeded that of the eyes [...]. This suggests that head based input can act as a surrogate for eye-based input in many smooth pursuits input scenarios; it may even be preferred in terms of performance. However, data from the natural condition also clearly indicates that participant’s predilection was to track with the eyes; only when specifically instructed did they use clear, accurate and distinctive head movements."
+- A survey of augmented reality (Billlinghurst, 2015) : https://fr.slideshare.net/marknb00/a-survey-of-augmented-reality
+    - Caractéristiques RA (Azuma, 1997):
+        - Combine des images réelles et virtuelles (les deux sont vus en même temps)
+        - Interactif en temps réel
+        - Le contenu virtuel est inscrit en 3D dans l'espace réel
+    - [Rekimoto, 1995](https://www.sonycsl.co.jp/person/rekimoto/uist95/uist95.html)
+    - Technologies (pour répondre aux carac d'Azuma) :
+        - Affichage (Bimber & Raskar, 2003)
+            - Types :
+                - Attaché à la tête : HMD, CAVE (projecteur)
+                    - Video see-trough
+                    - Optical see-trough
+                - Attaché au corps : appareil tenu en main (ex: cellulaire)
+                - Dans l'espace : écran ou projecteur sur des surfaces
+        - Interaction
+        - Tracking
+            - Actif : GPS, Wifi/cell localisation
+            - Passif
+                - Capteurs internes : compas, accéléromètre, gyroscope
+                - Vision par ordinateurs : marqueurs optiques, vision naturelle (SLAM, texture tracking, edge based tracking)
+
+
+\section{Problématique}
+Cette revue de littérature a permit d'identifier des manques dans la recherche pour la conception d'IHM en RA. En particulier, nous souhaitons explorer la conception d'IHM pour un système combinant un téléphone intelligent avec un visiocasque de RA. La problématique de ce travail de recherche se définie ainsi : quelle est la meilleure technique d'interaction de sélection pour un téléphone intelligent à l'écran étendu par un visiocasque de RA ?
+
+Pour y répondre, nous divisons cette question en trois sous-problèmes :
+\begin{enumerate}
+  \item développer un visiocasque de RA à large champs de vision ;
+  \item développer un prototype d'un téléphone intelligent à l'écran étendu par ce visiocasque de RA ;
+  \item réaliser une expérimentation évaluant différentes techniques d'interactions de sélection et de navigation sur ce prototype.
+\end{enumerate}
+
+Les résultats à ces objectifs permettront de donner des recommandations pour de futures recherches d'IHM en RA.

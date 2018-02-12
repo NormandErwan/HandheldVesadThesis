@@ -1,2 +1,34 @@
 \chapter{Méthodologie}
-\lipsum[1]
+\label{ch:methodology}
+
+\section{Procédure}
+Comme décrit dans le \refsection{ch:litterature}, il n'existe aucun visiocasque de RA sur le marché avec un grand champs de vision. Le premier sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.\\
+La procédure suivie a été la suivante :
+\begin{enumerate}
+  \item Sélection d'une caméra stéréo fisheye, d'un visiocasque de RV et d'un moteur 3D
+  \item Réalisation de la librairie de réalité augmentée ArucoUnity
+\end{enumerate}
+Principe RA :
+Choisir un modèle approprié qui décrit correctement la caméra
+Calibrer la caméra pour savoir les paramètres de ce modèle
+L'utiliser pour faire correspondance 2d image d'un marker avec sa position-rotation 3d
+Placer la caméra virtuelle comme la caméra réelle + matcher le modèle de projection de la caméra virtuelle et de la caméra réelle : donne effet d'alignement du virtuel avec le réel
+
+\section{Choix techniques}
+\label{sec:technical_choices}
+\subsection{Choix matériels}
+
+\subsection{Choix logiciels}
+
+Unity3d utilisé pour gestion du oculus et 3d top. Plus simple à prendre en main que Unreal, mais plus rigide (framework boîte noire, difficile de sortir sentiers battus)
+
+Citer Mobile Marker-based Augmented Reality as
+an Intuitive Instruction Manual HANNAH REUTERDAHL
+Pour la liste des markers et frameworks : dire ce qui est compatible Unity ou c++ mais aucun ne permet de travailler avec caméra fisheye : d'où aruco unity
+
+
+\section{Réalisation de la librairie de réalité augmentée ArucoUnity}
+Camera Models and Fundamental Concepts Used in Geometric Computer Vision
+Camera model : équation pour expliquer comment la caméra projette le monde 3d en une image
+Pinhole p.41
+Calib p.103
