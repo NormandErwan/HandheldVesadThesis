@@ -65,4 +65,20 @@ Post-questionnaire :
   \item question 11 si usage pro : PHONE_IN_AR_OUT > PHONE_ONLY > LEAP_IN_AR_OUT (rapport à la performance et à la nouveauté)
 \end{itemize}
 
+
 \section{Résultats}
+
+
+\section{Discussion}
+\label{sec:discussion}
+
+\section{Leçons apprises}
+Le leap capture en continue vs le touch qui fonctionne sur le principe du bouton : est-ce que le leap n'est pas mieux faire pour les interactions naturelles avec des objets tels que notre vie de tous les jours ? Remarque : un téléphone fait partie de notre vie de tous les jours, on peut le simuler en 3d avec interactions. Donc il faut surtout améliorer la précision du tracking.
+La précision du tracking est mauvaise combinée avec la reprojection des fisheyes : il faudrait faire une bonne calibration. En fait l'effet observé est que la position calculée de l'index est trop proche du visage quand on rapproche la main du visage, et trop éloignée quand on éloigne la main. La position calculée varie moins vite que la position perçue de la main à travers la reprojection de l'ovrvision. Après la calibration était pas parfaite, et on voyait qu'il y avait un effet de déformation. En tout cas ça a influencé les résultats.
+Donc contrairement au tactile où il faut toucher l'écran pour agir dessus, il faut mettre des boites d'interaction autour des objets pour le leap, comme proposé par Grasp Shell. Parce que le tracking est pas fiable à 100\%, fonctionne mal avec la reprojection perspective de l'ovrvision et le doigt n'ayant pas de support physique sur lequel s'arrêter pour appuyer, il y a des mouvements involontraires pour tenir une position en l'air et un intervalle d'erreur quand le doigt veut toucher une cible 3D (même avec de la stéréoscopie et de la parallaxe).
+Quand on veut combiner le leap et le tactile, il faut penser à désactiver cette boite : sinon on actionne la boite avec le leap avant de toucher le téléphone.
+
+
+\section{Pistes de conception d'interfaces et d'interactions pour la réalité augmentée}
+Quelles interactions sont plus intéressantes et dans quels contextes ? Direct (leap), indirect (hololens), touch
+Quelles techniques d'interactions sont à utiliser ?
