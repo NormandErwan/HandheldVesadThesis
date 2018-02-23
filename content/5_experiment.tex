@@ -1,10 +1,13 @@
 \chapter{Étude expérimentale}
 \label{ch:experiment}
 
-\section{Description de la tâche expérimentale}
+\section{Expérience}
+\subsection{Tâche expérimentale}
 \label{sec:experiment_description}
 
 Voir la liste de tâches : \url{https://docs.google.com/document/d/1X5-XW-9GTCz254PXlskjNka-kS-X7MhGXB6Ixv8vAjk/edit#}
+Comme le téléphone et les écrans ont des basses résolutions, il nous faut des tâches les plus fondamentales possibles : pointage et compréhension. Il faut pouvoir zoomer et naviguer pour compléter une tâche plus rapidement que si on avait le téléphone seul.
+
 
 Leap in:
 User-Defined Gestures for Augmented Reality \url{https://hal.inria.fr/hal-01501749/document}
@@ -20,10 +23,30 @@ justification for why we won’t be doing experimental comparison with ray cast:
 
 La conception de l'expérience est décrite en détail dans l'annexe \ref{annex:experiment_code} \nameref{annex:experiment_code}.
 
+On pourrait faire une taxonomie des inputs (phone, leap) et outputs (phone, ar) mais certains sont absurdes donc combiner en une variable à trois modalités (voir plan expérimental).
 
-\section{Plan experimental}
-\subsection{Procédure}
-Le formulaire d'information et de consentement (voir \refsection{annex:consent})
+\subsection{Plan expérimental}
+Plan multifactoriel, quasi complet, avec trois facteurs :
+\begin{itemize}
+  \item \textsc{TECHNIQUE} : l'IHM de navigation ;
+  \begin{itemize}
+    \item \textit{PhoneOnly} : la grille s'affiche seulement sur le téléphone et les interactions sont sur le téléphone ;
+    \item \textit{PhoneInArOut} : la grille s'affiche simultanément sur le téléphone et en RA autour du téléphone et les interactions sont sur le téléphone ;
+    \item \textit{LeapInArOut} : la grille s'affiche simultanément sur le téléphone et en RA autour du téléphone et les interactions se font autour du téléphone
+  \end{itemize}
+  \item \textsc{TEXTSIZE} : la taille du texte des disques ;
+  \begin{itemize}
+    \item \textit{Large}
+    \item \textit{Small}
+  \end{itemize}
+  \item \textsc{DISTANCE} : la distance moyenne avec leurs cellule respectives des disques à classer ;
+  \begin{itemize}
+    \item \textit{Near} : entre 1,25 et 1,45 ;
+    \item \textit{Far} : entre 2,5 et 2,75.
+  \end{itemize}
+\end{itemize}
+
+Ainsi, chaque sujet rencontre toutes les conditions expérimentales mais dans un ordre différent. En effet cela peut-être fatigant de faire tous les essais + effet d'apprentissage entre chaque essai, donc balancé le facteur principal \textsc{TECHNIQUE}. Cependant les participants ont été divisés en trois groupes : un tiers d'entre eux ont commencé par la première technique, un deuxième tiers par la deuxième technique et le dernier tiers par la troisième technique. L'ordre de passage est cependant le même pour les trois groupes : \textit{PhoneInArOut} après \textit{PhoneOnly}, \textit{LeapInArOut} après \textit{PhoneInArOut}, \textit{PhoneOnly} après \textit{LeapInArOut}. On justifie d'avoir varié juste la technique de départ car on suppose que la découverte et l'apprentissage de la tâche se fait surtout sur cette première technique, ensuite moins ; versus avoir à recruter $3! x 4 = 24$ participants.
 
 \subsection{Matériel}
 Un ordinateur de bureau avec un processeur Intel Core i5 7400, 8 Go DDR4 de mémoire vive, et une carte graphique NVIDIA GeForce GTX 1060, sous Windows 10 a été utilisé pour faire tourner le visiocasque de RA. Une carte WiFi externe a été ajouté pour la communication avec le téléphone.\\
@@ -33,7 +56,8 @@ Le visiocasque de RA, l'outil de suivi des mains ainsi que les logiciels utilis�
 \subsection{Participants}
 Nous avons recruté 12 personnes volontaires pour participer à l'expérience, agés entre 18 et 49 ans : six hommes et six femmes. Tous avaient une vision normale ou portaient un dispositif de correction de vision.
 
-\subsection{Facteurs}
+\subsection{Procédure}
+Le formulaire d'information et de consentement (voir \refsection{annex:consent})
 
 \subsection{Collecte des données}
 \subsubsection{Pré-questionnaire}
@@ -45,22 +69,22 @@ Nous avons recruté 12 personnes volontaires pour participer à l'expérience, a
 \subsection{Hypothèses}
 Mesures :
 \begin{itemize}
-  \item Temps total : PHONE\_IN\_AR\_OUT > PHONE\_ONLY > LEAP\_IN\_AR\_OUT : imprécisions interactions sur LEAP\_IN\_AR\_OUT vs. grand espace et précision touch sur PHONE\_IN\_AR\_OUT
-  \item Erreurs, nombre de sélections, nombre de déselections : LEAP\_IN\_AR\_OUT > PHONE\_ONLY > PHONE\_IN\_AR\_OUT : imprécisions interactions sur LEAP\_IN\_AR\_OUT vs. grand espace et précision touch sur PHONE\_IN\_AR\_OUT
-  \item Pan count, time, distance : PHONE\_ONLY > (PHONE\_IN\_AR\_OUT = LEAP\_IN\_AR\_OUT) : si on voit un espace plus grand, moins de drags et plus efficaces
-  \item Zoom count, time, distance : PHONE\_ONLY > (PHONE\_IN\_AR\_OUT = LEAP\_IN\_AR\_OUT) : si on voit un espace plus grand, moins de zooms et plus efficaces
-  \item Head phone distane : (PHONE\_IN\_AR\_OUT = LEAP\_IN\_AR\_OUT) > PHONE\_ONLY : pour mieux voir les lettres qui sont loins du téléphone
+  \item Temps total : \textit{PhoneInArOut} > \textit{PhoneOnly} > \textit{LeapInArOut} : imprécisions interactions sur \textit{LeapInArOut} vs. grand espace et précision touch sur \textit{PhoneInArOut} (donc moins besoin de zoomer/dezoomer)
+  \item Erreurs, nombre de sélections, nombre de déselections : \textit{LeapInArOut} > \textit{PhoneOnly} > \textit{PhoneInArOut} : imprécisions interactions sur \textit{LeapInArOut} vs. grand espace et précision touch sur \textit{PhoneInArOut}
+  \item Pan count, time, distance : \textit{PhoneOnly} > (\textit{PhoneInArOut} = \textit{LeapInArOut}) : si on voit un espace plus grand, moins de drags et plus efficaces
+  \item Zoom count, time, distance : \textit{PhoneOnly} > (\textit{PhoneInArOut} = \textit{LeapInArOut}) : si on voit un espace plus grand, moins de zooms et plus efficaces
+  \item Head phone distane : (\textit{PhoneInArOut} = \textit{LeapInArOut}) > \textit{PhoneOnly} : pour mieux voir les lettres qui sont loins du téléphone
 \end{itemize}
 
 Post-questionnaire :
 \begin{itemize}
-  \item question 1 sur facilité de compréhension : LEAP\_IN\_AR\_OUT est plus difficile à comprendre et demande un temps d'essai
-  \item question 3 sur la charge mentale : notre tâche demande de la recherche, de l'observation, de la mémorisation et des décisions ; je pense que PHONE\_IN\_AR\_OUT demande moins de charge mentale
-  \item question 4 sur la fatigue : LEAP\_IN\_AR\_OUT est la plus fatiguante car bras en l'air et longtemps car lent, PHONE\_IN\_AR\_OUT la moins fatiguante car la plus rapide
-  \item question 6 sur interagir rapidement : LEAP\_IN\_AR\_OUT le moins car imprécision + touche de l'intangible (pb de placement du doigt, quand c'est touché ou non, quand arrêter le touché), PHONE\_IN\_AR\_OUT egal avec PHONE\_ONLY car interaction connue et maitrisé des participants
-  \item question 7 sur la performance : je trouve intéressant que les participants puissent noter leur performance ressentie, pour la comparer avec leur temps et nombre d'erreurs ; les gens vont se sentir un peu moins bon sur LEAP\_IN\_AR\_OUT, un peu plus sur PHONE\_IN\_AR\_OUT
-  \item question 9 sur la frustration : je trouve la technique LEAP\_IN\_AR\_OUT est très frustrante, la technique PHONE\_IN\_AR\_OUT est la moins frustrante
-  \item question 10 préférence : LEAP\_IN\_AR\_OUT > PHONE\_IN\_AR\_OUT > PHONE\_ONLY car effet de nouveauté
+  \item question 1 sur facilité de compréhension : \textit{LeapInArOut} est plus difficile à comprendre et demande un temps d'essai
+  \item question 3 sur la charge mentale : notre tâche demande de la recherche, de l'observation, de la mémorisation et des décisions ; je pense que \textit{PhoneInArOut} demande moins de charge mentale
+  \item question 4 sur la fatigue : \textit{LeapInArOut} est la plus fatiguante car bras en l'air et longtemps car lent, \textit{PhoneInArOut} la moins fatiguante car la plus rapide
+  \item question 6 sur interagir rapidement : \textit{LeapInArOut} le moins car imprécision + touche de l'intangible (pb de placement du doigt, quand c'est touché ou non, quand arrêter le touché), \textit{PhoneInArOut} egal avec \textit{PhoneOnly} car interaction connue et maitrisé des participants
+  \item question 7 sur la performance : je trouve intéressant que les participants puissent noter leur performance ressentie, pour la comparer avec leur temps et nombre d'erreurs ; les gens vont se sentir un peu moins bon sur \textit{LeapInArOut}, un peu plus sur \textit{PhoneInArOut}
+  \item question 9 sur la frustration : je trouve la technique \textit{LeapInArOut} est très frustrante, la technique \textit{PhoneInArOut} est la moins frustrante
+  \item question 10 préférence : \textit{LeapInArOut} > \textit{PhoneInArOut} > \textit{PhoneOnly} car effet de nouveauté
 \end{itemize}
 
 
