@@ -18,10 +18,10 @@ Référence industrie (Android) : \url{https://material.io/guidelines/patterns/g
 
 justification for why we won’t be doing experimental comparison with ray cast: because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
 
-Le détail du développement de l'expérience est décrit dans l'annexe \ref{annex:experiment} \nameref{annex:experiment}.
+La conception de l'expérience est décrite en détail dans l'annexe \ref{annex:experiment_code} \nameref{annex:experiment_code}.
 
 
-\section{Protocole experimental}
+\section{Plan experimental}
 \subsection{Procédure}
 Le formulaire d'information et de consentement (voir \refsection{annex:consent})
 
@@ -33,6 +33,8 @@ Le visiocasque de RA, l'outil de suivi des mains ainsi que les logiciels utilis�
 \subsection{Participants}
 Nous avons recruté 12 personnes volontaires pour participer à l'expérience, agés entre 18 et 49 ans : six hommes et six femmes. Tous avaient une vision normale ou portaient un dispositif de correction de vision.
 
+\subsection{Facteurs}
+
 \subsection{Collecte des données}
 \subsubsection{Pré-questionnaire}
 
@@ -43,26 +45,22 @@ Nous avons recruté 12 personnes volontaires pour participer à l'expérience, a
 \subsection{Hypothèses}
 Mesures :
 \begin{itemize}
-  \item Temps total : PHONE_IN_AR_OUT > PHONE_ONLY > LEAP_IN_AR_OUT : imprécisions interactions sur LEAP_IN_AR_OUT vs. grand espace et précision touch sur PHONE_IN_AR_OUT
-  \item Erreurs, nombre de sélections, nombre de déselections : LEAP_IN_AR_OUT > PHONE_ONLY > PHONE_IN_AR_OUT : imprécisions interactions sur LEAP_IN_AR_OUT vs. grand espace et précision touch sur PHONE_IN_AR_OUT
-  \item Pan count, time, distance : PHONE_ONLY > (PHONE_IN_AR_OUT = LEAP_IN_AR_OUT) : si on voit un espace plus grand, moins de drags et plus efficaces
-  \item Zoom count, time, distance : PHONE_ONLY > (PHONE_IN_AR_OUT = LEAP_IN_AR_OUT) : si on voit un espace plus grand, moins de zooms et plus efficaces
-  \item Head phone distane : (PHONE_IN_AR_OUT = LEAP_IN_AR_OUT) > PHONE_ONLY : pour mieux voir les lettres qui sont loins du téléphone
+  \item Temps total : PHONE\_IN\_AR\_OUT > PHONE\_ONLY > LEAP\_IN\_AR\_OUT : imprécisions interactions sur LEAP\_IN\_AR\_OUT vs. grand espace et précision touch sur PHONE\_IN\_AR\_OUT
+  \item Erreurs, nombre de sélections, nombre de déselections : LEAP\_IN\_AR\_OUT > PHONE\_ONLY > PHONE\_IN\_AR\_OUT : imprécisions interactions sur LEAP\_IN\_AR\_OUT vs. grand espace et précision touch sur PHONE\_IN\_AR\_OUT
+  \item Pan count, time, distance : PHONE\_ONLY > (PHONE\_IN\_AR\_OUT = LEAP\_IN\_AR\_OUT) : si on voit un espace plus grand, moins de drags et plus efficaces
+  \item Zoom count, time, distance : PHONE\_ONLY > (PHONE\_IN\_AR\_OUT = LEAP\_IN\_AR\_OUT) : si on voit un espace plus grand, moins de zooms et plus efficaces
+  \item Head phone distane : (PHONE\_IN\_AR\_OUT = LEAP\_IN\_AR\_OUT) > PHONE\_ONLY : pour mieux voir les lettres qui sont loins du téléphone
 \end{itemize}
 
 Post-questionnaire :
 \begin{itemize}
-  \item question 1 sur facilité de compréhension : LEAP_IN_AR_OUT est plus difficile à comprendre et demande un temps d'essai
-  \item question 2 sur facilité d'utilisation : LEAP_IN_AR_OUT est plus difficile à utiliser car touche de l'intangible (pb de placement du doigt, quand c'est touché ou non, quand arrêter le touché)
-  \item question 3 sur la charge mentale : notre tâche demande de la recherche, de l'observation, de la mémorisation et des décisions ; je pense que PHONE_IN_AR_OUT demande moins de charge mentale
-  \item question 4 sur la fatigue : LEAP_IN_AR_OUT est la plus fatiguante car bras en l'air et longtemps car lent, PHONE_IN_AR_OUT la moins fatiguante car la plus rapide
-  \item question 5 sur la pression temporelle : je l'ai sentie plus forte sur la technique PHONE_ONLY que sur les autres quand j'ai testé les conditions
-  \item question 6 sur interagir rapidement : LEAP_IN_AR_OUT le moins car imprécision, PHONE_IN_AR_OUT egal avec PHONE_ONLY car interaction connue et maitrisé des participants
-  \item question 7 sur la performance : je trouve intéressant que les participants puissent noter leur performance ressentie, pour la comparer avec leur temps et nombre d'erreurs ; les gens vont se sentir un peu moins bon sur LEAP_IN_AR_OUT, un peu plus sur PHONE_IN_AR_OUT
-  \item question 8 sur l'effort : je suis un peu plus sceptique sur celle ci, car elle se recoupe avec la question 3 sur la charge mentale et la \item question 4 sur la fatigue physique, mais elle est présente dans le NASA TLX ; je ne sais pas quelle hypothèse formuler sur celle ci
-  \item question 9 sur la frustration : je trouve la technique LEAP_IN_AR_OUT est très frustrante, la technique PHONE_IN_AR_OUT est la moins frustrante
-  \item question 10 préférence : LEAP_IN_AR_OUT > PHONE_IN_AR_OUT > PHONE_ONLY car effet de nouveauté
-  \item question 11 si usage pro : PHONE_IN_AR_OUT > PHONE_ONLY > LEAP_IN_AR_OUT (rapport à la performance et à la nouveauté)
+  \item question 1 sur facilité de compréhension : LEAP\_IN\_AR\_OUT est plus difficile à comprendre et demande un temps d'essai
+  \item question 3 sur la charge mentale : notre tâche demande de la recherche, de l'observation, de la mémorisation et des décisions ; je pense que PHONE\_IN\_AR\_OUT demande moins de charge mentale
+  \item question 4 sur la fatigue : LEAP\_IN\_AR\_OUT est la plus fatiguante car bras en l'air et longtemps car lent, PHONE\_IN\_AR\_OUT la moins fatiguante car la plus rapide
+  \item question 6 sur interagir rapidement : LEAP\_IN\_AR\_OUT le moins car imprécision + touche de l'intangible (pb de placement du doigt, quand c'est touché ou non, quand arrêter le touché), PHONE\_IN\_AR\_OUT egal avec PHONE\_ONLY car interaction connue et maitrisé des participants
+  \item question 7 sur la performance : je trouve intéressant que les participants puissent noter leur performance ressentie, pour la comparer avec leur temps et nombre d'erreurs ; les gens vont se sentir un peu moins bon sur LEAP\_IN\_AR\_OUT, un peu plus sur PHONE\_IN\_AR\_OUT
+  \item question 9 sur la frustration : je trouve la technique LEAP\_IN\_AR\_OUT est très frustrante, la technique PHONE\_IN\_AR\_OUT est la moins frustrante
+  \item question 10 préférence : LEAP\_IN\_AR\_OUT > PHONE\_IN\_AR\_OUT > PHONE\_ONLY car effet de nouveauté
 \end{itemize}
 
 
@@ -70,15 +68,13 @@ Post-questionnaire :
 
 
 \section{Discussion}
-\label{sec:discussion}
-
-\section{Leçons apprises}
+\subsection{Leçons apprises}
 Le leap capture en continue vs le touch qui fonctionne sur le principe du bouton : est-ce que le leap n'est pas mieux faire pour les interactions naturelles avec des objets tels que notre vie de tous les jours ? Remarque : un téléphone fait partie de notre vie de tous les jours, on peut le simuler en 3d avec interactions. Donc il faut surtout améliorer la précision du tracking.
 La précision du tracking est mauvaise combinée avec la reprojection des fisheyes : il faudrait faire une bonne calibration. En fait l'effet observé est que la position calculée de l'index est trop proche du visage quand on rapproche la main du visage, et trop éloignée quand on éloigne la main. La position calculée varie moins vite que la position perçue de la main à travers la reprojection de l'ovrvision. Après la calibration était pas parfaite, et on voyait qu'il y avait un effet de déformation. En tout cas ça a influencé les résultats.
 Donc contrairement au tactile où il faut toucher l'écran pour agir dessus, il faut mettre des boites d'interaction autour des objets pour le leap, comme proposé par Grasp Shell. Parce que le tracking est pas fiable à 100\%, fonctionne mal avec la reprojection perspective de l'ovrvision et le doigt n'ayant pas de support physique sur lequel s'arrêter pour appuyer, il y a des mouvements involontraires pour tenir une position en l'air et un intervalle d'erreur quand le doigt veut toucher une cible 3D (même avec de la stéréoscopie et de la parallaxe).
 Quand on veut combiner le leap et le tactile, il faut penser à désactiver cette boite : sinon on actionne la boite avec le leap avant de toucher le téléphone.
 
 
-\section{Pistes de conception d'interfaces et d'interactions pour la réalité augmentée}
+\subsection{Pistes de conception d'interfaces et d'interactions pour la réalité augmentée}
 Quelles interactions sont plus intéressantes et dans quels contextes ? Direct (leap), indirect (hololens), touch
 Quelles techniques d'interactions sont à utiliser ?
