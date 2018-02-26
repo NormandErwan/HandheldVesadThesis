@@ -1,0 +1,119 @@
+\chapter{Étude expérimentale}
+\label{ch:experiment}
+
+\section{Expérience}
+\subsection{Tâche expérimentale}
+\label{sec:experiment_description}
+
+Voir la liste de tâches : \url{https://docs.google.com/document/d/1X5-XW-9GTCz254PXlskjNka-kS-X7MhGXB6Ixv8vAjk/edit#}
+Comme le téléphone et les écrans ont des basses résolutions, il nous faut des tâches les plus fondamentales possibles : pointage et compréhension. Il faut pouvoir zoomer et naviguer pour compléter une tâche plus rapidement que si on avait le téléphone seul.
+
+
+Leap in:
+User-Defined Gestures for Augmented Reality \url{https://hal.inria.fr/hal-01501749/document}
+Pourquoi on teste l'interaction directe et pas mid-air interaction : c'est lent Vulture: a mid-air word-gesture keyboard \url{https://dl.acm.org/citation.cfm?id=2556964}
+Grasp-Shell vs Gesture-Speech: A comparison of direct and indirect natural interaction
+techniques in Augmented Reality \url{https://ir.canterbury.ac.nz/bitstream/handle/10092/11090/12652683_paper138-cr.pdf?sequence=1}
+
+Touch in:
+User-Defined Gestures for Surface Computing \url{https://www.microsoft.com/en-us/research/wp-content/uploads/2009/04/SurfaceGestures_CHI2009.pdf}
+Référence industrie (Android) : \url{https://material.io/guidelines/patterns/gestures.html}
+
+justification for why we won’t be doing experimental comparison with ray cast: because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
+
+La conception de l'expérience est décrite en détail dans l'annexe \ref{annex:experiment_code} \nameref{annex:experiment_code}.
+
+On pourrait faire une taxonomie des inputs (phone, leap) et outputs (phone, ar) mais certains sont absurdes donc combiner en une variable à trois modalités (voir plan expérimental).
+
+\subsection{Plan expérimental}
+Plan multifactoriel, quasi complet, avec trois variables indépendantes que nous faisons varier :
+\begin{itemize}
+  \item \textsc{TECHNIQUE} : l'IHM de navigation ;
+  \begin{itemize}
+    \item \textit{PhoneOnly} : la grille s'affiche seulement sur le téléphone et les interactions sont sur le téléphone ;
+    \item \textit{PhoneInArOut} : la grille s'affiche simultanément sur le téléphone et en RA autour du téléphone et les interactions sont sur le téléphone ;
+    \item \textit{LeapInArOut} : la grille s'affiche simultanément sur le téléphone et en RA autour du téléphone et les interactions se font autour du téléphone
+  \end{itemize}
+  \item \textsc{TEXTSIZE} : la taille du texte des disques ;
+  \begin{itemize}
+    \item \textit{Large}
+    \item \textit{Small}
+  \end{itemize}
+  \item \textsc{DISTANCE} : la distance moyenne avec leurs cellule respectives des disques à classer ;
+  \begin{itemize}
+    \item \textit{Near} : entre 1,25 et 1,45 ;
+    \item \textit{Far} : entre 2,5 et 2,75.
+  \end{itemize}
+\end{itemize}
+
+Ainsi, chaque sujet rencontre toutes les conditions expérimentales mais dans un ordre différent. En effet cela peut-être fatigant de faire tous les essais + effet d'apprentissage entre chaque essai, donc balancé le facteur principal \textsc{TECHNIQUE}. Cependant les participants ont été divisés en trois groupes : un tiers d'entre eux ont commencé par la première technique, un deuxième tiers par la deuxième technique et le dernier tiers par la troisième technique. L'ordre de passage est cependant le même pour les trois groupes : \textit{PhoneInArOut} après \textit{PhoneOnly}, \textit{LeapInArOut} après \textit{PhoneInArOut}, \textit{PhoneOnly} après \textit{LeapInArOut}. On justifie d'avoir varié juste la technique de départ car on suppose que la découverte et l'apprentissage de la tâche se fait surtout sur cette première technique, ensuite moins ; versus avoir à recruter $3! x 4 = 24$ participants.
+
+Décrire les variables indépendantes liées au participant.
+
+Il y a deux essais par condition (= une combinaisons des variables indépendantes manipulées).
+
+Variables parasites : 
+- Le casque peut parfois être mal mis rendant l'image plus floue donc les items plus difficiles à distinguer.
+- Le participant peut comprendre au cours de l'expérience qu'un item n'a qu'une seule bonne cellule et qu'une cellule n'a que cinq bon items. Ainsi il a juste besoin de permuter les items mal classés et n'a pas besoin de regarder les cellules avec cinq items biens classés. 
+
+\subsection{Matériel}
+Un ordinateur de bureau avec un processeur Intel Core i5 7400, 8 Go DDR4 de mémoire vive, et une carte graphique NVIDIA GeForce GTX 1060, sous Windows 10 a été utilisé pour faire tourner le visiocasque de RA. Une carte WiFi externe a été ajouté pour la communication avec le téléphone.\\
+Le téléphone utilisé était un Xiaomi Redmi Note 4. C'est un téléphone récent, sous une version récente d'Android (version 7), avec une bonne puissance de calcul et un grand écran HD de 5,5 pouces. Il est léger et tient confortablement dans une main.\\
+Le visiocasque de RA, l'outil de suivi des mains ainsi que les logiciels utilisés sont décrits dans la \refsection{sec:technical_choices}.
+
+\subsection{Participants}
+Nous avons recruté 12 personnes volontaires pour participer à l'expérience, agés entre 18 et 49 ans : six hommes et six femmes. Tous avaient une vision normale ou portaient un dispositif de correction de vision.
+
+\subsection{Procédure}
+Le formulaire d'information et de consentement (voir \refsection{annex:consent})
+
+\subsection{Collecte des données}
+\subsubsection{Pré-questionnaire}
+
+\subsubsection{Mesures lors de l'expérience}
+
+\subsubsection{Post-questionnaire}
+
+\subsection{Hypothèses}
+Mesures :
+\begin{itemize}
+  \item Temps total : \textit{PhoneInArOut} > \textit{PhoneOnly} > \textit{LeapInArOut} : imprécisions interactions sur \textit{LeapInArOut} vs. grand espace et précision touch sur \textit{PhoneInArOut} (donc moins besoin de zoomer/dezoomer)
+  \item Erreurs, nombre de sélections, nombre de déselections : \textit{LeapInArOut} > \textit{PhoneOnly} > \textit{PhoneInArOut} : imprécisions interactions sur \textit{LeapInArOut} vs. grand espace et précision touch sur \textit{PhoneInArOut}
+  \item Pan count, time, distance : \textit{PhoneOnly} > (\textit{PhoneInArOut} = \textit{LeapInArOut}) : si on voit un espace plus grand, moins de drags et plus efficaces
+  \item Zoom count, time, distance : \textit{PhoneOnly} > (\textit{PhoneInArOut} = \textit{LeapInArOut}) : si on voit un espace plus grand, moins de zooms et plus efficaces
+  \item Head phone distane : (\textit{PhoneInArOut} = \textit{LeapInArOut}) > \textit{PhoneOnly} : pour mieux voir les lettres qui sont loins du téléphone
+\end{itemize}
+
+Post-questionnaire :
+\begin{itemize}
+  \item question 1 sur facilité de compréhension : \textit{LeapInArOut} est plus difficile à comprendre et demande un temps d'essai
+  \item question 3 sur la charge mentale : notre tâche demande de la recherche, de l'observation, de la mémorisation et des décisions ; je pense que \textit{PhoneInArOut} demande moins de charge mentale
+  \item question 4 sur la fatigue : \textit{LeapInArOut} est la plus fatiguante car bras en l'air et longtemps car lent, \textit{PhoneInArOut} la moins fatiguante car la plus rapide
+  \item question 6 sur interagir rapidement : \textit{LeapInArOut} le moins car imprécision + touche de l'intangible (pb de placement du doigt, quand c'est touché ou non, quand arrêter le touché), \textit{PhoneInArOut} egal avec \textit{PhoneOnly} car interaction connue et maitrisé des participants
+  \item question 7 sur la performance : je trouve intéressant que les participants puissent noter leur performance ressentie, pour la comparer avec leur temps et nombre d'erreurs ; les gens vont se sentir un peu moins bon sur \textit{LeapInArOut}, un peu plus sur \textit{PhoneInArOut}
+  \item question 9 sur la frustration : je trouve la technique \textit{LeapInArOut} est très frustrante, la technique \textit{PhoneInArOut} est la moins frustrante
+  \item question 10 préférence : \textit{LeapInArOut} > \textit{PhoneInArOut} > \textit{PhoneOnly} car effet de nouveauté
+\end{itemize}
+
+
+\section{Résultats}
+
+On confirme de manière informelle un des résultats de Grasp Shell : si le contenu virtuel est transparent et permet aux participants de voir leur main, ça suffit : l'occlusion n'est pas nécessaire. Personne m'a fait une remarque là dessus et j'en discuté avec quelqu'uns qui m'ont dit que ça ne les avaient pas dérangés.
+
+
+\section{Discussion}
+\subsection{Leçons apprises}
+Le leap capture en continue vs le touch qui fonctionne sur le principe du bouton : est-ce que le leap n'est pas mieux faire pour les interactions naturelles avec des objets tels que notre vie de tous les jours ? Remarque : un téléphone fait partie de notre vie de tous les jours, on peut le simuler en 3d avec interactions. Donc il faut surtout améliorer la précision du tracking.
+La précision du tracking est mauvaise combinée avec la reprojection des fisheyes : il faudrait faire une bonne calibration. En fait l'effet observé est que la position calculée de l'index est trop proche du visage quand on rapproche la main du visage, et trop éloignée quand on éloigne la main. La position calculée varie moins vite que la position perçue de la main à travers la reprojection de l'ovrvision. Après la calibration était pas parfaite, et on voyait qu'il y avait un effet de déformation. En tout cas ça a influencé les résultats.
+Donc contrairement au tactile où il faut toucher l'écran pour agir dessus, il faut mettre des boites d'interaction autour des objets pour le leap, comme proposé par Grasp Shell. Parce que le tracking est pas fiable à 100\%, fonctionne mal avec la reprojection perspective de l'ovrvision et le doigt n'ayant pas de support physique sur lequel s'arrêter pour appuyer, il y a des mouvements involontraires pour tenir une position en l'air et un intervalle d'erreur quand le doigt veut toucher une cible 3D (même avec de la stéréoscopie et de la parallaxe).
+Quand on veut combiner le leap et le tactile, il faut penser à désactiver cette boite : sinon on actionne la boite avec le leap avant de toucher le téléphone.
+
+Pour LeapIn, on utilise un long press plutôt qu'un tap. La règle est simple à comprendre, mais pas toutes les conditions : ne sais pas vraiment combien de temps doit rester, ni quand le chrono démarre, ou s'arrête si une erreur (si on déplace trop le doigt). Il serait bon d'utiliser un simple cercle qui chargerai autour du doigt, comme les interactions gaze. C'est simple, facilement compréhensible et répond au problème.
+
+Pour le LeapIn, faire plus intelligent que bloquer toutes les interactions après une sélection ou un déplacement : on peut vouloir sélectionner, reste le long de la grille et s'arrêter là où on veut déplacer l'item. = pouvoir faire un vrai drag n drop
+
+Pour LeapIn le côté non dominant est horrible à interagir car croiser les mains, étendre le bras, mauvais tracking, l'autre main peut bloquer.
+
+\subsection{Pistes de conception d'interfaces et d'interactions pour la réalité augmentée}
+Quelles interactions sont plus intéressantes et dans quels contextes ? Direct (leap), indirect (hololens), touch
+Quelles techniques d'interactions sont à utiliser ?

@@ -1,6 +1,6 @@
 \documentclass[letterpaper, twoside, 12pt,%
   memoire, francais, creativecommons, hyperref, withAlgo2e%
-]{thETS} 
+]{thETS}
 
 \usepackage{textcomp}
 
@@ -44,7 +44,7 @@
   \begin{table}%
   \parbox{0.65\textwidth}{\caption{#1}\label{tab:#2}}%
   \centering%
-}{%	
+}{%
   \end{table}%
 }
 \newcommand{\reftableETS}[1]{Tableau \ref{tab:#1}}
@@ -57,61 +57,53 @@
 \maketitle
 \presentjury
 
-%\begin{avantpropos}
-%  \input{content/preface}
-%\end{avantpropos}
+\begin{avantpropos}
+  \input{content/0_1_preface}
+\end{avantpropos}
 
 \begin{remerciements}
-  \input{content/acknowledgements}
+  \input{content/0_2_acknowledgements}
 \end{remerciements}
 
-\begin{sommaire}{mot-clé1, mot-clé2}
-  \input{content/abstract_fr}
-\end{sommaire}
-
-\begin{abstract}{Titre en anglais}{keyword1, keyword2}
-  \input{content/abstract_en}
-\end{abstract}
+\input{content/0_3_abstracts}
 
 \tableofcontents
 \listoftables
 \listoffigures
 
 \begin{listofabbr}[3cm]
-  \input{content/abbreviations}
+  \input{content/0_4_abbreviations}
 \end{listofabbr}
-
-%\begin{listofsymbols}[3cm]
-%  \input{content/symbols}
-%\end{listofsymbols}
 
 \cleardoublepage
 \pagenumbering{arabic}
 \reversemarginpar
 
 \begin{introduction}
-  \input{content/introduction}
+  \input{content/1_introduction}
 \end{introduction}
 
-\input{content/litterature_review}
-\input{content/methodology}
-\input{content/experiment}
-\input{content/discussion}
+\input{content/2_litterature_review}
+\input{content/3_concept}
+\input{content/4_methodology}
+\input{content/5_experiment}
+\input{content/6_futur_work}
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{CONCLUSION}
-\input{content/conclusion}
+\input{content/7_conclusion}
 
 \appendix
-%\multiannexe
-\input{content/annex_experiment}
+\multiannexe
+\input{content/8_experiment_forms}
+\input{content/9_experiment_code}
 
 \newpage
 \begin{spacing}{1}
   \nocite{*}
   \bibliographystyle{bibETS}
   \addcontentsline{toc}{chapter}{BIBLIOGRAPHIE}
-  \bibliography{./bibliography/thesis}
+  \bibliography{bibliography/thesis}
 \end{spacing}
 
 \end{document}
