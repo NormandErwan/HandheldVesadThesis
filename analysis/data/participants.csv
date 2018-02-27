@@ -1,3 +1,15 @@
-participantId,sex,rightHanded
-0,M,true
-1,F,false
+participant_id,sex,glasses,contact_lenses,color_blind,age,dominant_hand,mouse_hand,activity,computer_hours_day,softwares_3d,hmd_used,hmd_interactions,ordering,easy_understand,mentally_easy_use,physically_easy_use,could_go_fast,subjective_performance,frustration,preference
+0,M,TRUE,FALSE,FALSE,21-25,right,right,Augmented Reality Master Student,9,"[video games, Unity 3D]","[HoloLens, Oculus DK2, HTC Vive, Oculus Rift, Google Cardboard]","[controllers, gaze, tap, leap]",0,"[5,5,4]","[3,5,4]","[4,5,3]","[3,5,3]","[4,5,3]","[3,5,2]","[2,1,3]"
+1,F,TRUE,FALSE,FALSE,46-50,right,right,Project Manager,6,[],[Oculus DK2],[gaze],0,"[5,5,5]","[2,4,4]","[3,3,2]","[2,4,3]","[2,3,2]","[1,3,3]","[3,2,1]"
+2,M,FALSE,FALSE,FALSE,21-25,left,right,Law Student,7,[],[],[],1,"[5,5,5]","[3,5,5]","[3,5,5]","[5,4,4]","[4,5,4]","[5,5,4]","[3,2,1]"
+3,M,FALSE,FALSE,FALSE,21-25,right,right,Interior Designer,6,"[video games, sketchup]",[Oculus DK2],[gaze],2,"[5,5,5]","[4,5,5]","[5,5,4]","[5,5,3]","[4,5,3]","[5,5,4]","[3,1,2]"
+4,F,FALSE,FALSE,FALSE,26-30,right,right,Veterinary,4,[],"[HTC Vive, Google Cardboard]","[controllers, gaze]",0,"[5,5,5]","[3,5,4]","[3,5,2]","[4,5,4]","[3,5,4]","[3,5,1]","[3,1,2]"
+5,M,TRUE,FALSE,FALSE,21-25,left,right,Salesman,5,[video games],[],[],1,"[5,5,5]","[5,5,5]","[5,5,3]","[5,5,4]","[5,5,4]","[5,5,2]","[1,2,3]"
+6,M,FALSE,FALSE,TRUE,21-25,right,right,Virtual Reality Engineer,6,"[video games, Unity 3D]","[Oculus DK2, HTC Vive, Oculus Rift, Google Cardboard, Gear VR, DAQRI, CAVE]","[controllers, gaze, leap]",2,"[5,5,4]","[3,5,5]","[4,5,2]","[5,5,1]","[4,5,1]","[3,3,1]","[2,1,3]"
+7,M,FALSE,FALSE,FALSE,21-25,right,right,Computer Science PhD Student,8,"[video games, Unity 3D, Unreal Engine, Blender]","[Oculus DK2, Oculus Rift, HTC Vive]","[controllers, gaze]",0,"[5,5,3]","[3,4,5]","[1,1,1]","[1,3,5]","[3,4,5]","[1,1,1]","[3,2,1]"
+8,M,FALSE,FALSE,FALSE,21-25,right,right,Business Master Student,5,[video games],[],[],2,"[5,5,5]","[4,5,2]","[3,5,5]","[5,5,2]","[4,5,2]","[4,5,3]","[2,1,3]"
+9,M,FALSE,FALSE,FALSE,21-25,right,right,Architecture Master Student,4,"[video games, sketchup]","[Oculus Rift, Google Cardboard]",[gaze],1,"[5,5,4]","[3,5,5]","[5,4,1]","[5,4,3]","[3,5,3]","[5,4,2]","[2,1,3]"
+10,M,FALSE,FALSE,FALSE,16-20,right,right,Political Science Student,4,[video games],[Oculus Rift],[controllers],0,"[5,5,4]","[3,4,5]","[5,5,2]","[4,4,3]","[4,5,3]","[3,4,2]","[2,1,3]"
+11,F,FALSE,FALSE,FALSE,16-20,right,right,Secondary School,5,[],[],[],1,"[5,4,3]","[4,3,4]","[5,4,3]","[5,4,3]","[4,4,3]","[5,4,3]","[3,1,2]"
+12,F,FALSE,FALSE,FALSE,16-20,right,right,Secondary School,3,[],[],[],2,"[5,5,5]","[4,5,5]","[2,3,4]","[2,5,3]","[4,5,4]","[4,5,5]","[3,1,2]"
+13,M,FALSE,FALSE,FALSE,16-20,right,right,Business Student,4,[video games],[Oculus DK2],[gaze],0,"[5,5,3]","[2,4,3]","[1,4,3]","[2,4,3]","[1,5,4]","[1,4,4]","[3,1,2]"
