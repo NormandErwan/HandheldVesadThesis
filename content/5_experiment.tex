@@ -5,12 +5,23 @@
 \subsection{Tâche expérimentale}
 \label{sec:experiment_description}
 
+\subsubsection{Motivations}
 Voir la liste de tâches : \url{https://docs.google.com/document/d/1X5-XW-9GTCz254PXlskjNka-kS-X7MhGXB6Ixv8vAjk/edit#}
 Comme le téléphone et les écrans ont des basses résolutions, il nous faut des tâches les plus fondamentales possibles : pointage et compréhension. Il faut pouvoir zoomer et naviguer pour compléter une tâche plus rapidement que si on avait le téléphone seul.
 
+\subsubsection{Description}
+Citer Liu et Chapuis
 
+Eux le text size esr vraiment lié à la tâche (les infos de l'item pour decider de le classer). `Plus capacité grille limité : tache d'allocation de ressource. Tâche de classification.
+Nous on veut juste une tâche simple de navigation et de pointage (target acquisition). Donc tâche de classification très bien. En plus celle la a montré que bonne pour comparer des tailles de display. + on est intéressés par l'utilisation des techniques de pan et zoom pour les deux display (phone only, phone+ar)
+On a pas gardé le difficulty : une lettre par cellule de la grille. mais gardé le principe de distance.
+
+On pourrait faire une taxonomie des INPUT (PhoneTouch, MidAirTouch) et OUTPUT (PhoneOnly, ExtendedPhone) mais certains sont absurdes donc combiner en une variable à trois modalités (TECHNIQUE). Après, cela reste utile pour les analyses : les deux inputs en versus et les deux outputs en versus.
+justification for why we won’t be doing experimental comparison with ray cast (INPUT: RayCast): because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
+
+\subsubsection{Techniques d'interactions}
 Leap in:
-User-Defined Gestures for Augmented Reality \url{https://hal.inria.fr/hal-01501749/document}
+User-Defined Gestures for Augmented Reality \url{https://hal.inria.fr/hal-01501749/document} : on garde quelque chose de simple, pointer avec son doigt.
 Pourquoi on teste l'interaction directe et pas mid-air interaction : c'est lent Vulture: a mid-air word-gesture keyboard \url{https://dl.acm.org/citation.cfm?id=2556964}
 Grasp-Shell vs Gesture-Speech: A comparison of direct and indirect natural interaction
 techniques in Augmented Reality \url{https://ir.canterbury.ac.nz/bitstream/handle/10092/11090/12652683_paper138-cr.pdf?sequence=1}
@@ -19,11 +30,7 @@ Touch in:
 User-Defined Gestures for Surface Computing \url{https://www.microsoft.com/en-us/research/wp-content/uploads/2009/04/SurfaceGestures_CHI2009.pdf}
 Référence industrie (Android) : \url{https://material.io/guidelines/patterns/gestures.html}
 
-justification for why we won’t be doing experimental comparison with ray cast: because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
-
 La conception de l'expérience est décrite en détail dans l'annexe \ref{annex:experiment_code} \nameref{annex:experiment_code}.
-
-On pourrait faire une taxonomie des inputs (phone, leap) et outputs (phone, ar) mais certains sont absurdes donc combiner en une variable à trois modalités (voir plan expérimental).
 
 \subsection{Plan expérimental}
 Plan multifactoriel, quasi complet, avec trois variables indépendantes que nous faisons varier :
@@ -46,11 +53,13 @@ Plan multifactoriel, quasi complet, avec trois variables indépendantes que nous
   \end{itemize}
 \end{itemize}
 
-Ainsi, chaque sujet rencontre toutes les conditions expérimentales mais dans un ordre différent. En effet cela peut-être fatigant de faire tous les essais + effet d'apprentissage entre chaque essai, donc balancé le facteur principal \textsc{TECHNIQUE}. Cependant les participants ont été divisés en trois groupes : un tiers d'entre eux ont commencé par la première technique, un deuxième tiers par la deuxième technique et le dernier tiers par la troisième technique. L'ordre de passage est cependant le même pour les trois groupes : \textit{PhoneInArOut} après \textit{PhoneOnly}, \textit{LeapInArOut} après \textit{PhoneInArOut}, \textit{PhoneOnly} après \textit{LeapInArOut}. On justifie d'avoir varié juste la technique de départ car on suppose que la découverte et l'apprentissage de la tâche se fait surtout sur cette première technique, ensuite moins ; versus avoir à recruter $3! x 4 = 24$ participants.
++ ORDERING : 3 groupes indépendants qui passent à travers toutes les modalités des trois autres VIs.
+
+Ainsi, chaque participants rencontre toutes les conditions expérimentales mais dans un ordre différent. En effet cela peut-être fatigant de faire tous les essais + effet d'apprentissage entre chaque essai, donc balancé le facteur principal \textsc{TECHNIQUE}. Cependant les participants ont été divisés en trois groupes : un tiers d'entre eux ont commencé par la première technique, un deuxième tiers par la deuxième technique et le dernier tiers par la troisième technique. L'ordre de passage est cependant le même pour les trois groupes : \textit{PhoneInArOut} après \textit{PhoneOnly}, \textit{LeapInArOut} après \textit{PhoneInArOut}, \textit{PhoneOnly} après \textit{LeapInArOut}. On justifie d'avoir varié juste la technique de départ car on suppose que la découverte et l'apprentissage de la tâche se fait surtout sur cette première technique, ensuite moins ; versus avoir à recruter $3! x 4 = 24$ participants.
 
 Décrire les variables indépendantes liées au participant.
 
-Il y a deux essais par condition (= une combinaisons des variables indépendantes manipulées).
+Il y a deux essais par condition.
 
 Variables parasites : 
 - Le casque peut parfois être mal mis rendant l'image plus floue donc les items plus difficiles à distinguer.
