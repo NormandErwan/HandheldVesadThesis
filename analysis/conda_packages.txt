@@ -1,2 +1,0 @@
-conda create -n master-thesis jupyter pandas matplotlib seaborn statsmodels ipywidgets
-activate master-thesis
