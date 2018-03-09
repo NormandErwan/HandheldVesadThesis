@@ -54,6 +54,11 @@ Plan multifactoriel, quasi complet, avec trois variables indépendantes que nous
 \end{itemize}
 
 + ORDERING : 3 groupes indépendants qui passent à travers toutes les modalités des trois autres VIs.
+\begin{itemize}
+  \item PhoneOnlyFirst
+  \item PhoneInArOutFirst
+  \item LeapInArOutFirst
+\end{itemize}
 
 Ainsi, chaque participants rencontre toutes les conditions expérimentales mais dans un ordre différent. En effet cela peut-être fatigant de faire tous les essais + effet d'apprentissage entre chaque essai, donc balancé le facteur principal \textsc{TECHNIQUE}. Cependant les participants ont été divisés en trois groupes : un tiers d'entre eux ont commencé par la première technique, un deuxième tiers par la deuxième technique et le dernier tiers par la troisième technique. L'ordre de passage est cependant le même pour les trois groupes : \textit{PhoneInArOut} après \textit{PhoneOnly}, \textit{LeapInArOut} après \textit{PhoneInArOut}, \textit{PhoneOnly} après \textit{LeapInArOut}. On justifie d'avoir varié juste la technique de départ car on suppose que la découverte et l'apprentissage de la tâche se fait surtout sur cette première technique, ensuite moins ; versus avoir à recruter $3! x 4 = 24$ participants.
 
@@ -108,6 +113,11 @@ Post-questionnaire :
 \section{Résultats}
 
 On confirme de manière informelle un des résultats de Grasp Shell : si le contenu virtuel est transparent et permet aux participants de voir leur main, ça suffit : l'occlusion n'est pas nécessaire. Personne m'a fait une remarque là dessus et j'en discuté avec quelqu'uns qui m'ont dit que ça ne les avaient pas dérangés.
+
+ANOVA :
+- les groupes sont indépendants : chaque essai est généré aléatoirement. Cependant effet d'apprentissage des participants ?
+- tester la normalité des groupes : on peut simplement analyser la normalité des résidus avec un test de shapiro wilk
+- on a pas besoin de tester l'homogénéité de la variance : la méthode est robuste si les groupes sont de même taille (ce qui est vrai) et qu'il y a 30 ou plus valeurs testeés par groupe
 
 
 \section{Discussion}
