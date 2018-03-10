@@ -5,7 +5,7 @@
 \usepackage{textcomp}
 \usepackage{csquotes}
 
-\title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée}
+\title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handled VESAD (Virtually Extended Screen-Aligned Display)}
 
 \author{Erwan NORMAND}
 \authorcopyright{Erwan Normand}
@@ -28,28 +28,32 @@
 \renewcommand{\foreignlanguage}[2]{\oldforeignlanguage{#1}{\emph{#2}}}
 
 % Figure selon les normes de l'ÉTS
-\newcommand{\figureETS}[3]{%
+\newcommand{\figureETS}[2]{%
   \begin{figure}%
     \centering%
     \fbox{%
       \includegraphics[width=0.75\textwidth]{Figures/#1}
-    }%
-     \\ \parbox{0.75\textwidth}{\caption{#2}\label{fig:#3}}%
+    }\\%
+    \parbox{0.75\textwidth}{\caption{#2}\label{fig:#1}}%
   \end{figure}
 }
-\newcommand{\reffigureETS}[1]{Figure \ref{fig:#1}}
 \captionsetup[figure]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=below}
+
+\newcommand{\reffigureETS}[1]{Figure \ref{fig:#1}}
+\newcommand{\reffigureETSp}[1]{(\textit{Voir} \reffigureETS{#1})}
 
 % Tableau selon les normes de l'ÉTS
 \newenvironment{tableETS}[2]{%
   \begin{table}%
-  \parbox{0.65\textwidth}{\caption{#1}\label{tab:#2}}%
+  \parbox{0.65\textwidth}{\caption{#2}\label{tab:#1}}%
   \centering%
 }{%
   \end{table}%
 }
-\newcommand{\reftableETS}[1]{Tableau \ref{tab:#1}}
 \captionsetup[table]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=above}
+
+\newcommand{\reftableETS}[1]{Tableau \ref{tab:#1}}
+\newcommand{\reftableETSp}[1]{(\textit{Voir} \reftableETS{#1})}
 
 \begin{document}
 

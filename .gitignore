@@ -1,6 +1,7 @@
 gabarit/
 analysis/.ipynb_checkpoints/
 .vscode
+.stignore
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
