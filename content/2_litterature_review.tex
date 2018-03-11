@@ -2,9 +2,23 @@
 \label{ch:litterature}
 
 \section{Historique et concepts de la RA}
-Shuterland1968 : premier casque\\
+C'est \cite{Sutherland1968} qui conçut le premier visiocasque de RA \reffigureETSp{Shuterland1968.png} : ce prototype permettait déjà de visualiser du contenu 3D affiché dans l'espace réel de l'utilisateur, donnant l'illusion que le contenu virtuel faisait réellement partis de la pièce. Plus connu pour Sketchpad, premier logiciel disposant d'une interface graphique, Sutherland rêvait d'un « dispositif d'affichage ultime » (traduction libre) qui serait invisible à l'utilisateur. 
 
-Après Sutherland : recherche militaire et gouvernement surtout (bilinghurst, 2015), le domaine acad s'est pas trop développé
+\figureETS{Sutherland1968.png}{
+  Visiocasque de RA de Sutherland.\\
+  Tiré de \cite{Sutherland1968}
+}
+
+Par la suite, la recherche académique en RA se développe lentement : des applications sont surotut développées dans les domaines militaires et gouvernementaux \citep{VanKrevelen2010}. Il faudra alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Cela se voit tout d'abord par la création de plusieurs conférences, réunies aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence désormais majeure pour la recherche et l'industrie \citep{Azuma2001}.
+
+\cite{Milgram1994} est le premier à proposer un cadre théorique au domaine, en proposant une échelle ordonnée nommée \foreignlanguage{english}{Reality-Virtuality Continuum} \reffigureETSp{Milgram1994.png}. Milgram oppose deux extrèmes : les environnements réels et les environnements de RV. Nos PC ou téléphones font partie de la première catégorie, tandis qu'un visiocasque de RV va totalement immerger son utilisateur dans un monde virtuel. Entre ces deux extrêmes, les environnements de Réalité Mixte (RM), dont fait partie la RA, vont mélanger éléments réels et éléments virtuels. La force de cette représentation est qu'il n'existe pas de catégories séparées entre réel, RA et RV mais que la RA peut se trouver d'un extrème à un autre.
+
+Le second enseignement de cette échelle, est que la RA et la RV sont techniquement très proches : les dispositifs de localisation, d'affichages et de génerations de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champs de vision et un très bon réalisme dans le contenu 3D affiché. La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
+
+\figureETS{Milgram1994.png}{
+  L'échelle du \foreignlanguage{english}{Reality-Virtuality Continuum} de Milgram.\\
+  Tiré de \citet[p. 3]{Milgram1994}
+}
 
 MilgramKishino1994\\
 Mixed Reality Continuum : continuum combiner réel et virtuel, où réel aucun élément virtuel vs réel. Ar est entre deux, où du virtuel augmente la vue du réel de l'utilisateur\\
@@ -19,66 +33,93 @@ BuxtonFitzMaurice1998, BimberRaskar2005, VanKrevelenPoelman2010 :\\
 - plateformes en RA (CAVE, mobile, HMD, lentilles) : CAVE fonctionne très bien, mais couteux et encombrant ; HMD fonctionnent maintenant aussi bien que CAVE, plus légers et permettent expérience partagée ; mobile est populaire mais limités en taille et en puissance ; lentilles semblent être avenir idéal (VanKrevelenPoelman2010)\\
 - catégories HMD : video see-through vs. optical see-through
 
-AzumaBaillotBehringerEtAl2001 : création de ISMAR et du domaine de recherche à part enière
+\figureETS{Bimber2005.png}{
+  Catégories des techniques d'affichages en RA.\\
+  Tiré de \citet[p. 72]{BimberRaskar2005}
+}
 
-Limitations techniques encore : tracking et affichage. Même si se réduit et bientôt va être suffisament bon pour être présent dans nos quotidiens pros et perso.\\
-AzumaBaillotBehringerEtAl2001 : les RA mobiles sont possibles\\
-VanKrevelenPoelman2010, CarmignianiFurhtAnisettiEtAl2011, HuangHuiPeyloEtAl2013, Billinghurst2015 : beaucoup de RA mobiles dans les produits commerciaux, peu avec des HMDs (HoloLens change un peu la donne et en même temps montre qu'il y a du besoin si Microsoft si risque c'est qu'il y voit un potentiel) et beaucoup de challenges techniques de tracking et display encore à résoudre\\
+Azuma2001 : création de ISMAR et du domaine de recherche à part entière\\
++ les RA mobiles sont possibles\\
++ major obstacles limiting the wider use of AR as falling into three themes: (1) technological limitations, (2) user interface limitations, and (3) social acceptance issues.\\
 Billinghurst2005 : There is a need to develop interface metaphors and interaction techniques specific to AR
 
-
-\section{Espaces de travail en RA}
-Serrano2015
-Serrano2015a
-Grubert2015
-EnsFinneganIrani2014
-Ens2014 - Ethereal Planes : cadre de conceptions pour des fenetres 2D dans un espace de travail en RA. Redonner application du Personal Cockpit.
+Limitations techniques encore aujourd'hui : tracking et affichage. Même si se réduit et bientôt va être suffisament bon pour être présent dans nos quotidiens pros et perso.\\
+VanKrevelenPoelman2010, CarmignianiFurhtAnisettiEtAl2011, HuangHuiPeyloEtAl2013, Billinghurst2015 p.190 : beaucoup de RA mobiles dans les produits commerciaux, peu avec des HMDs (HoloLens change un peu la donne et en même temps montre qu'il y a du besoin si Microsoft si risque c'est qu'il y voit un potentiel) et beaucoup de challenges techniques de tracking et display encore à résoudre
 
 
-\section{Conception et évaluation d'IHMs 3D}
+\section{Conception et évaluation d'IHMs en 3D}
+\subsection{IHMs en RA}
+VanDam1997 - Post Wimp user interfaces : changement IHM, difficulté conception novice vs expert, citer ihm-intention, consistent look n feel
+Billinghurst2015, p.178 : étapes construction d'IHMs pour la RA
+
+\subsection{Interfaces Utilisateurs Tangibles (IUT)}
+Billinghurst2015, p.169 : interface tangibles (Tangible User Interface (TUI))
+Kato et al. [2000] proposed the concept of Tangible AR (TAR). TAR uses Tangible UI as input interaction metaphor while using AR for visualizing virtual information overlaid on the physical object used for interaction. the interaction space and display space are seamlessly merged together
+The basic goal of designing a Tangible AR interface is to map physical objects (input) with virtual objects (output) using an appropriate interaction metaphor.
+Space multiplexed (ex la souris qui se déplace sur bureau) vs time multiplexed
+
+\subsection{Interactions en 3D}
+Argelaguet2013 : pb des interactions 3D, sélection tâche + métaphores main et gaze, subjectivité vs performance, design technique, taxonomie technique,  (voir cahier gris)\\
+Berard2009 : c'est quoi une technique d'interaction : « Interaction is not defined by an input device alone, but by the combination of a device and of an interaction technique. »\\
 Bowman2004 : summarizes various types of 3D interactions into three categories: (1) navigation, (2) selection, and (3)
 manipulation
 
-Piumsomboon2014 : a exploré manipulation d'objets 3D avec mid-air
-
-
-\section{Interfaces intangibles}
-Billinghurst2015, p.169 : interface tangibles (Tangible User Interface (TUI))
-Kato et al. [2000] proposed the concept of Tangible AR (TAR). TAR uses Tangible UI as input interaction metaphor while using AR for visualizing virtual information overlaid on the physical object used for interaction. the interaction space and display space are seamlessly merged together
-The basic goal of designing a Tangible AR interface is to map physical objects (input) with virtual objects (output) using an appropriate interaction metaphor. 
-Space multiplexed vs space multiplexed
-
-Tosas2004 : idée d'interfaces intangible flottant en l'air (écran ou clavier à toucher)
-
-Principal problème est qu'il n'y a aucun retour tactile
+Bowman2001 : Principal problème est qu'il n'y a aucun retour tactile « touching a menu item floating in space is much more difficult than selecting a menu item on the desktop, not only because the task has become 3-D, but also because the impor- tant constraint of the physical desk on which the mouse rest is missing. »\\
 Chan2010 - Touching the void : mid air touch in intangible displays. Naturle car simplifie la manip d'objet : le display et l'interactions sont combinés (de la même manière qu'on manipule des objets réels). Expérience d'acquisition d'objets : les personnes évaluent mal la profondeur de leur doigt (donc quand elles ont touché la cible), car pb double vision : vise le doigt et donc cible est floue. Conclusion : il faut utiliser des retours visuels pour guider l'utilisateur. Deux types de feedbacks : continu pour situer sa main, discret pour confirmer une action.
 
-Piumsomboon2013 : fait une taxonomie des gestes mid-air pour l'AR, sur le modèle de Wobbrock2009
+Berard2009 : input en 2D est plus performant
+
+Piumsomboon2013 : fait une taxonomie des gestes mid-air pour l'AR, sur le modèle de Wobbrock2009 -> à évaluer sur des interfaces
+
+Piumsomboon2014 - Grasp Shell : a exploré manipulation d'objets 3D avec mid-air + le virtuel transparent fonctionne aussi bien que l'occlusion (ref à Lee2013) -> reste donc navigation
+
+\subsection{Évaluation d'IHMs en RA}
+Duenser2008 (p.203) : evaluation en RA\\
+(1) Objective measurements : performance (temps, erreurs, efficacité)\\
+(2) Subjective measurements : engagament, retour utilisateur\\
+(3) Qualitative analysis : avis d'experts\\
+(4) Usability evaluation techniques\\
+(5) Informal evaluations
 
 
-\section{Extension d'un écran d'affichage}
-Baudisch2002
+\section{Espaces de travail en RA}
+Lee2013 - SpaceTop : combiner interfaces et interactions 3D et 2D de manière unifiée -> pb des écrans transparent inexistants et comment utiliser cela sur un appareil mobile et tenu en main ?
+
+EnsFinneganIrani2014 - Personal Cockpit : comment ancrer les fenetres ? (voir fin cahier gris)
+
+Ens2014 - Ethereal Planes : cadre de conceptions pour des fenetres 2D dans un espace de travail en RA. Redonner application au Personal Cockpit
+
+Serrano2015 - Gluey -> comment ça s'articule par rapport au Personal Cockpit
+
+Serrano2015a - Desktop Gluey -> comment on prend place par rapport à ça
 
 
-\section{Grands affichages}
-Liu2014
+\section{Affichages étendus}
+Baudisch2002 - Keeping things in context: a comparative evaluation of focus plus context screens, overviews, and zooming
+
+Bi2011 - MagicDesk : augmenter un clavier avec une table tactile\\
+Houben2014 - ActivitySpace : augmenter plusieurs appreils (pc, téléphones) posés sur une table tactile
+
+Grubert2015 - Multifi : augmenter une smartwatch avec un visiocasque (voir fin cahier gris)
+
+Liu2014 - Effects of display size and navigation type on a classification task : est-ce que les connaissances sur les écrans de taille d'un ordinateur s'appliquent à ces nouveaux écrans ? Ces nouveaux écrans ont la même haute densité que les écrans de bureau, mais leur résolution est généralement 10 fois élevée en nombre de pixels : un utilisateur doit donc s'approcher physiquement pour pouvoir voir le détail et reculer pour avoir une vue d'ensemble. (voir fin cahier gris)
 
 
 \section{Problématique}
-Cette revue de littérature a permit d'identifier un besoin de conception d'IHMs en RA s'appuyant sur des visiocasques. En particulier, nous souhaitons explorer la conception d'IHM pour un système combinant un téléphone intelligent avec un visiocasque de RA. Ainsi, la problématique de ce mémoire se définie ainsi :
+Cette revue de littérature a permit d'identifier un besoin de conception d'IHMs en RA s'appuyant sur des visiocasques. En particulier, nous souhaitons explorer la conception d'IHM pour un système combinant un téléphone intelligent avec un visiocasque de RA. Ainsi, on définit la problématique de ce mémoire ainsi :
 
 \begin{displayquote}
-  Est-il intéressant de proposer à un utilisateur d'étendre l'écran de son téléphone intelligent par un visiocasque de RA ? Quelles seraient les meileures techniques d'interactions à utiliser sur un tel système ?
+  Est-ce qu'un téléphone augmenté par un VESAD donne un avantage à un utilisateur par rapport à un téléphone seul ? Quelles seraient les meileures techniques d'interactions à utiliser sur un tel téléphone augmenté ?
 \end{displayquote}
 
-Les hypothèses de la problématique sont les suivantes :
+Nous formulons les hypothèses suivantes par rapport à cette problématique :
 \begin{enumerate}
-  \item Notre système	permettrait d'être plus performant sur des tâches de navigation, de classification ou demandant d'utiliser plusieurs applications que sur un téléphone seul, quelle que soit la technique d'interaction utilisée.
-  \item Les utilisateurs apprécieront pouvoir interagir directement avec l'écran étendu autour du téléphone sur notre système.
+  \item Notre système	permet d'être plus performant sur des tâches de navigation, de classification ou demandant d'utiliser plusieurs applications en parallèle que sur un téléphone seul, quelle que soit la technique d'interaction utilisée.
+  \item Les utilisateurs apprécieront d'avantage pouvoir interagir directement avec l'écran étendu autour du téléphone sur notre système.
   \item Les utilisateurs seront en revanche plus performants en interagissant seulement avec l'écran tactile du téléphone sur notre système.
 \end{enumerate}
 
-Pour y répondre, nous divisons cette question en quatre sous-problèmes :
+Enfin, pour y répondre, nous divisons cette problématique en quatre sous-problèmes :
 \begin{enumerate}
   \item concevoir une IHM d'un téléphone à l'écran aggrandi par RA ;
   \item développer un visiocasque de RA à large champs de vision (supérieur à 90° horizontalement) ;

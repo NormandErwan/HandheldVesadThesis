@@ -2,7 +2,8 @@
 \label{ch:methodology}
 
 \section{Procédure}
-Comme décrit dans le \refsection{ch:litterature}, il n'existe aucun visiocasque de RA sur le marché avec un grand champs de vision. Le premier sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.\\
+Pour exploiter notre concept détaillé au \autoref{ch:concept}, nous avions besoin d'un visiocasque à large champs de vision supérieur à 90° horizontalement. En effet, un plus petit champs de vision aurait limité l'intérêt d'étendre l'écran tactile du téléphone : l'écran étendu n'aurait pas été visible dans sa totalité. Cependant, il n'existe actuellement aucun visiocasque de RA sur le marché avec un aussi grand champs de vision \citep{Millette2016}. Le second sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.\\
+Nous avons donc décidé de reproduire l'AT-Rift, un visiocasque de RA développé par Steptoe
 La procédure suivie a été la suivante :
 \begin{enumerate}
   \item Sélection d'une caméra stéréo fisheye, d'un visiocasque de RV et d'un moteur 3D
@@ -38,6 +39,9 @@ Placer la caméra virtuelle comme la caméra réelle (Extrinsic camera parameter
   - Calibration
 - Unity networking
 - Leap Motion
+
+Quand choix plateforme, citer Billinghurst 2015 pour dire qu'il y a eu pas mal d'efforts avec ARToolKit, Studierstud, osgArt ou GoblinXNA : mais vieillots. On a besoin du support de la VR, et soit Unity soit Unreal. Choix de Unity car facile et déjà utilisé dans labo et très bon pour la VR.
+On pouvait utiliser le nouveau ARToolKit, ou Vuforia. Mais besoin d'avoir le support de caméra stéréo. Or ces libs sont faites pour des webcams de pc ou de téléphone.
 
 
 \section{Réalisation de la bibliothèque de réalité augmentée ArucoUnity}

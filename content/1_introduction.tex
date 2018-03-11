@@ -1,12 +1,20 @@
-La réalité augmentée (RA) est une « technique d'imagerie numérique […] permettant, grâce à un dispositif d'affichage transparent, de superposer à une image réelle des informations provenant d'une source numérique » \citep{OfficeQuebecoisLangueFrancaiseRA2015}. La RA consiste donc à générer des objets virtuel 3D combinés avec l'environnement réel d'un utilisateur, donnant l'illusion que le virtuel coexiste avec le réel. Ainsi la RA permet d'\emph{augmenter la perception} du réel et permet d'\emph{augmenter les interactions} possibles d'un utilisateur avec son environnement \citep{Azuma1997}. La RA peut toucher tous les sens humains, mais elle est principalement utilisée pour augmenter le sens visuel.
+La réalité augmentée (RA) est une « technique d'imagerie numérique […] permettant, grâce à un dispositif d'affichage transparent, de superposer à une image réelle des informations provenant d'une source numérique » \citep{OfficeQuebecoisLangueFrancaiseRA2015}. La RA consiste donc à générer des objets virtuel 3D combinés avec l'environnement réel d'un utilisateur, donnant l'illusion que le virtuel coexiste avec le réel. Ainsi la RA permet d'\emph{augmenter la perception} du réel et permet d'\emph{augmenter les interactions} possibles d'un utilisateur avec son environnement \citep{Azuma1997}. La RA peut toucher tous les sens humains, mais elle est principalement utilisée pour augmenter le sens visuel \reffigureETSp{1_introduction_AR.png}.
 
 Les deux précédents années, 2016 et 2017, ont été très importantes pour la RA. Microsoft a révolutionné les visiocasques de RA avec la sortie de son HoloLens\footnote{\url{https://www.microsoft.com/hololens}} en 2016, qui s'imposera probablement en standard dans l'industrie. Puis Google et Apple ont permis à n'importe quel développeur de concevoir des applications de RA sur les milliards de téléphones intelligents Android et iOS dans le monde avec leurs plateformes de développement ARCore\footnote{\url{https://developers.google.com/ar/}} et ARKit\footnote{\url{https://developer.apple.com/arkit/}}. Couplé aux annonces pour 2018 des visiocasques Magic Leap\footnote{\url{https://www.magicleap.com/}} et Meta\footnote{\url{https://www.metavision.com/}}, le marché de la RA est promis à devenir très important dans les années à venir.
+
+\figureETS{1_introduction_AR.png}{
+  Illustrations publicitaires de la RA.\\
+  À gauche, démonstration du HoloLens\footnote{text} ; à droite, démonstration de l'application de RA d'IKEA.
+}
+
+%\footnote{Tiré de Microsoft : \url{https://www.microsoft.com/fr-ca/hololens/why-hololens} (Consulté le 11 mars 2018)}
+% \footnote{Tiré de Wikipedia : \url{https://commons.wikimedia.org/wiki/File:Augmented-reality.jpg} (Consulté le 11 mars 2018)}
 
 La RA reste malgré tout une technologie encore peu connue, techniquement moins mature que la réalité virtuelle (RV) avec qui elle est facilement confondue. La RA reste tout de même particulièrement prometteuse et va probablement révolutionner nos quotidiens personnels et professionnels dans les cinq à dix prochaines années \reffigureETSp{GartnerHypeCycle2017.jpg}, comme ont pu le faire les téléphones intelligents à la fin des années 2000\footnote{\url{https://www.smartinsights.com/mobile-marketing/mobile-marketing-analytics/}}. En effet, l'émergence de la RA permettrait de construire des interfaces humain-machines (IHM) naturelles, en 3D, autour d'un utilisateur dans sa vie quotidienne ou professionnelle, simplifiant ses interactions avec son environnement. Cette vision est également partagée par des entreprises comme Unity3D : « We believe [augmented reality] should be human and object centric, and use the world as a device » \citep{UnityFutureMRPartIII2017}.
 
 \figureETS{GartnerHypeCycle2017.jpg}{
   Courbe d'intérêt pour les nouvelles technologies, juillet 2017. L'intérêt est présenté en fonction du temps, en cinq phases. La RA est dans la troisième phase du « gouffre des désillusions », la RV dans la quatrième phase de la « pente de l'illumination ».\\
-  Adaptée de \cite{GartnerHypeCurve2017}.
+  Adapté de \cite{GartnerHypeCurve2017}.
 }
 
 Nous pensons alors intéressant de combiner les téléphones intelligents avec des visiocasques de RA. En effet, ces deux technologies sont mobiles mais présentent des caractéristiques d'IHM différentes qui semblent complémentaires :
@@ -16,10 +24,6 @@ Nous pensons alors intéressant de combiner les téléphones intelligents avec d
   les techniques d'interactions sont encore peu étudiées en RA \citep{Piumsomboon2013}, tandis qu'elles sont bien maîtrisées pour les écrans tactiles \citep{Wobbrock2009}. De plus, interagir avec la main à travers des interfaces intangibles (« flottant en l'air ») est difficile \citep{Chan2010} et fatiguant \citep{Hincapie-Ramos2014}, comparé aux interactions avec un écran tactile.
 \end{enumerate}
 
-Nous proposons de concevoir un prototype de téléphone intelligent tenu en main dont l'écran est étendu par RA et de l'évaluer expérimentalement par rapport à un téléphone seul non étendu. Nous appelons cette IHM : un téléphone augmenté par un \foreignlanguage{english}{Virtuality Extended Screen-Aligned Display} (VESAD), comme le montre la \reffigureETS{VESAD1.png}.
+Nous proposons de concevoir un prototype de téléphone intelligent tenu en main dont l'écran est étendu par RA et de l'évaluer expérimentalement par rapport à un téléphone seul non étendu.
 
-\figureETS{VESAD1.png}{
-  Photomontage d'un téléphone tenu en main augmenté par un VESAD : un affichage en RA étendant l'écran et aligné avec le téléphone. L'écran étendu permet d'afficher de multiples fenêtres d'affichage autour de l'écran tactile.
-}
-
-Après une revue de littérature au \autoref{ch:litterature}, où sera également définie la problématique et les objectifs de ce mémoire, le concept du VESAD sera exploré au \autoref{ch:concept}, puis la conception et le développement du prototype seront décrits au \autoref{ch:methodology}. L'évaluation expérimentale et ses résultats seront ensuite exposés et discutés au \autoref{ch:experiment}. Enfin, le concept sera discuté au regard de l'expérience au \autoref{ch:futur_work}, suivi de la conclusion au \autoref{ch:conclusion}.
+Après une revue de littérature au \autoref{ch:litterature}, où sera également définie la problématique et les objectifs de ce mémoire, le concept du VESAD sera exploré au \autoref{ch:concept}, puis la conception et le développement du prototype seront décrits au \autoref{ch:methodology}. L'évaluation expérimentale et ses résultats seront ensuite exposés et discutés au \autoref{ch:experiment}. Enfin, le concept sera discuté au regard de l'expérience au \autoref{ch:futur_work}, suivi de la conclusion.
