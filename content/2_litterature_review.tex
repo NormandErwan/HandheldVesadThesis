@@ -2,27 +2,23 @@
 \label{ch:litterature}
 
 \section{Historique et concepts de la RA}
-C'est \cite{Sutherland1968} qui conçut le premier visiocasque de RA \reffigureETSp{Shuterland1968.png} : ce prototype permettait déjà de visualiser du contenu 3D affiché dans l'espace réel de l'utilisateur, donnant l'illusion que le contenu virtuel faisait réellement partis de la pièce. Plus connu pour Sketchpad, premier logiciel disposant d'une interface graphique, Sutherland rêvait d'un « dispositif d'affichage ultime » (traduction libre) qui serait invisible à l'utilisateur. 
+C'est \cite{Sutherland1968} qui conçut le premier visiocasque de RA \reffigureETSp{Sutherland1968.png} : ce prototype permettait déjà de visualiser du contenu 3D affiché dans l'espace réel de l'utilisateur, donnant l'illusion que le contenu virtuel faisait réellement partis de la pièce. Plus connu pour Sketchpad, premier logiciel disposant d'une interface graphique, Sutherland rêvait d'un « dispositif d'affichage ultime » (traduction libre) qui serait invisible à l'utilisateur, ce qui est un des objectifs de la RA : rendre l'interface avec un ordinateur naturelle et invisible \citep{Billinghurst2015}.
 
 \figureETS{Sutherland1968.png}{
   Visiocasque de RA de Sutherland.\\
   Tiré de \cite{Sutherland1968}
 }
 
-Par la suite, la recherche académique en RA se développe lentement : des applications sont surotut développées dans les domaines militaires et gouvernementaux \citep{VanKrevelen2010}. Il faudra alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Cela se voit tout d'abord par la création de plusieurs conférences, réunies aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence désormais majeure pour la recherche et l'industrie \citep{Azuma2001}.
+Par la suite, la recherche académique en RA se développe lentement : des applications sont surotut développées dans les domaines militaires et gouvernementaux \citep{VanKrevelen2010}. Il faudra alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Plusieurs conférences dédiées à la RA sont créées, fusionnées aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence désormais pour la recherche et l'industrie en RA \citep{Azuma2001}.
 
 \cite{Milgram1994} est le premier à proposer un cadre théorique au domaine, en proposant une échelle ordonnée nommée \foreignlanguage{english}{Reality-Virtuality Continuum} \reffigureETSp{Milgram1994.png}. Milgram oppose deux extrèmes : les environnements réels et les environnements de RV. Nos PC ou téléphones font partie de la première catégorie, tandis qu'un visiocasque de RV va totalement immerger son utilisateur dans un monde virtuel. Entre ces deux extrêmes, les environnements de Réalité Mixte (RM), dont fait partie la RA, vont mélanger éléments réels et éléments virtuels. La force de cette représentation est qu'il n'existe pas de catégories séparées entre réel, RA et RV mais que la RA peut se trouver d'un extrème à un autre.
 
-Le second enseignement de cette échelle, est que la RA et la RV sont techniquement très proches : les dispositifs de localisation, d'affichages et de génerations de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champs de vision et un très bon réalisme dans le contenu 3D affiché. La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
+Le second enseignement de l'échelle de \citeauthor{Milgram1994}, est que la RA et la RV sont techniquement très proches : les dispositifs de localisation, d'affichages et de génerations de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champs de vision et un très bon réalisme dans le contenu 3D affiché. La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
 
 \figureETS{Milgram1994.png}{
   L'échelle du \foreignlanguage{english}{Reality-Virtuality Continuum} de Milgram.\\
   Tiré de \citet[p. 3]{Milgram1994}
 }
-
-MilgramKishino1994\\
-Mixed Reality Continuum : continuum combiner réel et virtuel, où réel aucun élément virtuel vs réel. Ar est entre deux, où du virtuel augmente la vue du réel de l'utilisateur\\
-RA et RV très proches techniquement mais pas même attentes (bilinghurst, 2015) : VR c'est grand FOV et réalisme 3D, RA c'est tracking
 
 RekimotoNagao1995\\
 montre que les IHM RA doivent être guidée dans le but d'êtres invisibles et d'augmenter les interactions avec le réel. Avec les interfaces graphiques sur un écran, le réel et l'ordinateur sont séparés (ça fonctionne pour les téléphones). Décrit aussi que la RV ou ubiquitous computing sont aussi d'autres manières de rendre le pc invisible
@@ -60,6 +56,16 @@ Space multiplexed (ex la souris qui se déplace sur bureau) vs time multiplexed
 
 \subsection{Interactions en 3D}
 Argelaguet2013 : pb des interactions 3D, sélection tâche + métaphores main et gaze, subjectivité vs performance, design technique, taxonomie technique,  (voir cahier gris)\\
+Métaphore main virtuelle : cependant, cette technique amène un autre problème quand elle est utilisée en RA. En effet, en RA, le contenu virtuel est « imprimé par dessus » le contenu réel et peut donc masquer le contenu réel. Par exemple, je peux vouloir toucher un objet 3D en l'air avec ma main, mais cette dernière sera toujours masqué par l'objet même si ma main semble en avant de l'objet. Dès lors, il faut utiliser une technique d'occlusion, c'est-à-dire masquer l'objet 3D quand un objet réel, comme la main de l'utilisateur, se trouve devant \reffigureETSp{Piumsomboon2014.png}.
+
+\figureETS{Argelaguet2013.jpg}{
+  Différentes techniques de sélection. À gauche, une main virtuelle. À droite, un pointeur virtuel. Tiré de \cite{Argelaguet2013}.
+}
+
+\figureETS{Piumsomboon2014.png}{
+  Différentes techniques d'occlusion de la main. À gauche, la main cache le contenu 3D si elle est devant. À droite, le contenu 3D est transparent que la main soit derrière ou devant. Tiré de \cite{Piumsomboon2014}.
+}
+
 Berard2009 : c'est quoi une technique d'interaction : « Interaction is not defined by an input device alone, but by the combination of a device and of an interaction technique. »\\
 Bowman2004 : summarizes various types of 3D interactions into three categories: (1) navigation, (2) selection, and (3)
 manipulation
@@ -71,7 +77,13 @@ Berard2009 : input en 2D est plus performant
 
 Piumsomboon2013 : fait une taxonomie des gestes mid-air pour l'AR, sur le modèle de Wobbrock2009 -> à évaluer sur des interfaces
 
-Piumsomboon2014 - Grasp Shell : a exploré manipulation d'objets 3D avec mid-air + le virtuel transparent fonctionne aussi bien que l'occlusion (ref à Lee2013) -> reste donc navigation
+\cite{Piumsomboon2014} ont comparé différentes techniques de sélection et de manipulation d'objets 3D avec un visiocasque de RA : des interactions avec la main et des commandes vocales \reffigureETSp{Piumsomboon2014i.jpg}. Une des première leçon de leur travail est sur l'occlusion des mains avec le contenu virtuel : dans une étude pilote, \citeauthor{Piumsomboon2014} ont remarqué que les utilisateurs n'avaient pas de préférence entre l'occlusion de la main avec le contenu 3D ou ajouter de la transparence à ce contenu virtuel. L'occlusion de la main virtuelle étant un problème difficile à résoudre et lourd en calcul, la transparence sur le contenu virtuel en RA est une solution simple à mettre en oeuvre, comme a pu le faire \cite{Lee2013} avec SpaceTop.\\
+Dans une seconde étude, ils ont également trouvé que les participants préféraient utiliser et étaient plus performants avec les interactions manuelles plutôt que vocales sur les tâches de manipulation et de rotation d'objets. Les participants ont par contre préféré les commandes vocales pour modifier la taille des objets 3D, sans qu'il n'y ait de différence de performance avec les interactions manuelles. Les auteurs suggèrent donc de combiner les deux types d'interactions dans les IHMs de RA.\\
+Une limite de leur travail cependant est de n'avoir pas étudié de techniques de navigation. De plus, les interactions étaient conçues et étudiées pour manipuler des objets en 3D : une IHM de RA peut demander d'interagir avec des données plus abstraites, comme le sont nos interfaces graphiques sur ordinateur et téléphone actuellement. Les résultats de cette étude sont donc intéressant pour des métier manipulant de la 3D, mais il serait intéressant de savoir qu'elles IHMs seraient adaptée pour un usage personnel au quotidien de la RA.
+
+\figureETS{Piumsomboon2014i.jpg}{
+  Illustration de Grasp-Shell : (A) Configuration expérimentale, (B) Utilisateur saisissant un objet virtuel, (C) Vue de l'utilisateur. Tiré de \cite{Piumsomboon2014}.
+}
 
 \subsection{Évaluation d'IHMs en RA}
 Duenser2008 (p.203) : evaluation en RA\\
@@ -122,7 +134,7 @@ Nous formulons les hypothèses suivantes par rapport à cette problématique :
 Enfin, pour y répondre, nous divisons cette problématique en quatre sous-problèmes :
 \begin{enumerate}
   \item concevoir une IHM d'un téléphone à l'écran aggrandi par RA ;
-  \item développer un visiocasque de RA à large champs de vision (supérieur à 90° horizontalement) ;
+  \item développer un visiocasque de RA à large champs de vision (supérieur à \ang{90} horizontalement) ;
   \item développer un prototype de cette IHM à l'aide du visiocasque ;
   \item réaliser une expérimentation évaluant différentes interfaces et techniques d'interactions sur ce prototype sur une tâche de classification.
 \end{enumerate}
