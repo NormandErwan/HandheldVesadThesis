@@ -1,15 +1,30 @@
 \chapter{Conception d'un visiocasque de RA à large champs de vision}
 \label{ch:methodology}
 
-\section{Procédure}
-Pour exploiter notre concept détaillé au \autoref{ch:concept}, nous avions besoin d'un visiocasque à large champs de vision supérieur à 90° horizontalement. En effet, un plus petit champs de vision aurait limité l'intérêt d'étendre l'écran tactile du téléphone : l'écran étendu n'aurait pas été visible dans sa totalité. Cependant, il n'existe actuellement aucun visiocasque de RA sur le marché avec un aussi grand champs de vision \citep{Millette2016}. Le second sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.\\
-Nous avons donc décidé de reproduire l'AT-Rift, un visiocasque de RA développé par Steptoe
+\section{Motivations et procédure}
+Pour exploiter notre concept détaillé au \autoref{ch:concept}, nous avions besoin d'un visiocasque à large champs de vision supérieur à \ang{90} horizontalement \reffigureETSp{AngleOfView.png}. En effet, un plus petit champs de vision aurait limité l'intérêt d'étendre l'écran tactile du téléphone : l'écran étendu n'aurait pas été visible dans sa totalité. Cependant, il n'existe actuellement aucun visiocasque de RA sur le marché avec un aussi grand champs de vision \citep{Millette2016}. Le second sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.
+
+\figureETS{AngleOfView.png}{
+  Illustration du champs de vision d'une caméra, qui peut être mesuré en degrés horizontalement, verticalement ou en diagonale.\\
+  Tiré de \cite{DicklyonWikipedia2006}
+}
+
+Un visiocasque de RA vidéo étant plus simple à concevoir qu'un casque optique, nous avons donc décidé de reproduire l'AR-Rift \citep{Steptoe2013}. C'est un prototype de conception simple mais qui fonctionne bien, ayant déjà été reproduit par d'autre chercheurs, comme \cite{Piumsomboon2014}.
+Cependant, si dans sa série d'articles en ligne, \citeauthor{Steptoe2013} détaille correctement la procédure générale de conception de l'AR-Rift, la sélection des caméras, leur montage et le principe d'alignement de la caméra physique avec la caméra virtuelle, il ne détaille pas la procédure de calibration et rectification de la caméra physique, ni ne propose pas de solution accessible de détection des objets réels. Nous souhaitons ici détailler un peu plus ces étapes.
+
 La procédure suivie a été la suivante :
 \begin{enumerate}
-  \item Sélection d'une caméra stéréo fisheye, d'un visiocasque de RV et d'un moteur 3D
-  \item Réalisation de la librairie de réalité augmentée ArucoUnity
+  \item sélection d'une caméra stéréo, d'un visiocasque de RV et d'un moteur 3D ;
+  \item calibration et rectification de la caméra stéréo, et alignement des contenus réels et virtuels ;
+  \item réalisation de la librairie de réalité augmentée ArucoUnity
 \end{enumerate}
+La figure \reffigureETS{ARRift.jpg} montre le visiocasque conçu.
 
+\figureETS{ARRift.jpg}{
+  Notre prototype de visiocasque de RA, basé sur le concept de l'AR-Rift de \cite{Steptoe2013} : il est composé du visiocasque de RV Oculus DK2, de la caméra stéréoscopique Ovrvision et du capteur de reconnaissance des mains Leap Motion.
+}
+
+\section{Procédure}
 Principe RA :
 Goal: Align the 3D content filmed by the virtual camera with the images filmed by the physical camera.\\
 Choisir un modèle approprié qui décrit correctement la caméra
@@ -19,8 +34,6 @@ Placer la caméra virtuelle comme la caméra réelle (Extrinsic camera parameter
 
 
 \section{Choix techniques}
-\label{sec:technical_choices}
-
 \subsection{Choix matériels}
 - Principe : AR video see-through avec un casque VR diffusant des caméras stereo fisheye
   - Avantages/inconvénients par rapport à l'optical see through : « While optical see-through AR is an attractive ideal, in practice it is very difficult to achieve accurate registration with optical see-through AR systems. (Registration is the alignment of the virtual objects shown in the display and their real-world referent). Most of these limitations come from the properties of the display itself, not the calibration procedures. » : \url{https://www.artoolkit.org/documentation/doku.php?id=8_Advanced_Topics:config_optical_see-through}
@@ -29,6 +42,8 @@ Placer la caméra virtuelle comme la caméra réelle (Extrinsic camera parameter
   - Caméras : même fov (donc fisheye), même résolution + stéréo. Choix ovrvision
   - Leap Motion
   - Téléphone Android
+
+On pourrait choisir d'utiliser simplement une seule caméra et afficher son image pour chaque oeil. Cependant, comme le rappelle \citep{Bourke1999}, la plupart des personnes utilise la disparité binoculaire pour voir en profondeur. En effet, chaque oeil perçoit une image légèrement différente de l'autre, car ils sont séparés horizontalement par une distance appelé écart pupillaire. On a donc tout intérêt à utiliser une caméra stéréo.
 
 \subsection{Choix logiciels}
 - Unity : Unity3d utilisé pour gestion du oculus et 3d top. Plus simple à prendre en main que Unreal, mais plus rigide (framework boîte noire, difficile de sortir sentiers battus)
@@ -44,24 +59,7 @@ Quand choix plateforme, citer Billinghurst 2015 pour dire qu'il y a eu pas mal d
 On pouvait utiliser le nouveau ARToolKit, ou Vuforia. Mais besoin d'avoir le support de caméra stéréo. Or ces libs sont faites pour des webcams de pc ou de téléphone.
 
 
-\section{Réalisation de la bibliothèque de réalité augmentée ArucoUnity}
-Camera Models and Fundamental Concepts Used in Geometric Computer Vision
-Camera model : équation pour expliquer comment la caméra projette le monde 3d en une image
-Pinhole p.41
-Calib p.103
-
-- Voir 2016-01-25 pour l'archi :
-  - Parler du principe pour dialoguer avec un plugin C++ : couche en C, gestion des pointeurs en faisant une API C\# qui encapsule ces appels à la couche C : plugin C++ OpenCV <-> couche en C <-> couche C\# reproduisant la couche C++ 
-  - couche Unity avec des gameobjects et components au dessus de la couche C\#
-- Aussi parler de la mémoire partagée entre Unity et OpenCv sur les images :
-  - calcul de taille : 2 cameras * 950 px * 960 px * 3 bytes (RGB) = 5,47 MB
-  - lecture du buffer dans sens différents (voir note 2017-04-11)
-  - Threads et ordonnancement + copies des buffers images (c'était plus rapide de faire des copies que de faire attendre l'affichage avant le nouveau detect : voir note 2017-05-10) -> il n'y a pas d'attente/blocages entre les threads hormis sur les copies de buffer
-- La doc qui a été faite, la petite PR pour rendre compatible les modues aruco et ccalib, le package Unity, les forks et ajouts sur internet, le package pour ovrvision (preuve que c'est extensible (citer les termes du cours MGL843))
-- Utiliser des boards de 2 markers minimum pour la détection : beaucoup plus robuste qu'utiliser des markers seuls
-
-
-\section{Calibration des caméras}
+\section{Calibration, rectification et alignement des caméras}
 - Voir AdrianKaehler2017 - Learning OpenCV 3
   - Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + calibration
   - Chapitre 19 pour la calibration stereo + LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
@@ -97,7 +95,24 @@ fisheye projections : \url{https://wiki.panotools.org/Fisheye_Projection}\\
 various lens projections : \url{http://michel.thoby.free.fr/Fisheye_history_short/Projections/Various_lens_projection.html}\\
 ccalib article : \url{https://hal.archives-ouvertes.fr/file/index/docid/767674/filename/omni_calib.pdf}\\
 
-Stereo calibration\\
+Stereo calibration
+
+
+\section{Réalisation de la bibliothèque de réalité augmentée ArucoUnity}
+Camera Models and Fundamental Concepts Used in Geometric Computer Vision
+Camera model : équation pour expliquer comment la caméra projette le monde 3d en une image
+Pinhole p.41
+Calib p.103
+
+- Voir 2016-01-25 pour l'archi :
+  - Parler du principe pour dialoguer avec un plugin C++ : couche en C, gestion des pointeurs en faisant une API C\# qui encapsule ces appels à la couche C : plugin C++ OpenCV <-> couche en C <-> couche C\# reproduisant la couche C++ 
+  - couche Unity avec des gameobjects et components au dessus de la couche C\#
+- Aussi parler de la mémoire partagée entre Unity et OpenCv sur les images :
+  - calcul de taille : 2 cameras * 950 px * 960 px * 3 bytes (RGB) = 5,47 MB
+  - lecture du buffer dans sens différents (voir note 2017-04-11)
+  - Threads et ordonnancement + copies des buffers images (c'était plus rapide de faire des copies que de faire attendre l'affichage avant le nouveau detect : voir note 2017-05-10) -> il n'y a pas d'attente/blocages entre les threads hormis sur les copies de buffer
+- La doc qui a été faite, la petite PR pour rendre compatible les modues aruco et ccalib, le package Unity, les forks et ajouts sur internet, le package pour ovrvision (preuve que c'est extensible (citer les termes du cours MGL843))
+- Utiliser des boards de 2 markers minimum pour la détection : beaucoup plus robuste qu'utiliser des markers seuls
 
 
 \section{Communication réseau entre le téléphone et le visiocasque}

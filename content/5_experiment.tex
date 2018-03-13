@@ -20,6 +20,8 @@ On a pas gardé le difficulty : une lettre par cellule de la grille. mais gardé
 On pourrait faire une taxonomie des INPUT (PhoneTouch, MidAirTouch) et OUTPUT (PhoneOnly, ExtendedPhone) mais certains sont absurdes donc combiner en une variable à trois modalités (TECHNIQUE). Après, cela reste utile pour les analyses : les deux inputs en versus et les deux outputs en versus.
 justification for why we won’t be doing experimental comparison with ray cast (INPUT: RayCast): because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
 
+L'expérience a demandé un long effort de conception et de développement de quatre mois. Le code source du projet est donc disponible en ligne, pour pouvoir être reproduit ou réutilisé au besoin, sous la license libre MIT, à l'adresse suivante : \url{https://github.com/NormandErwan/master-thesis-experiment}.
+
 \subsubsection{Techniques d'interactions}
 Leap in:
 User-Defined Gestures for Augmented Reality \url{https://hal.inria.fr/hal-01501749/document} : on garde quelque chose de simple, pointer avec son doigt.
@@ -112,6 +114,55 @@ Post-questionnaire :
 
 
 \section{Résultats}
+\subsection{Temps de complétion}
+
+\figureETS{tct_anova.png}{
+}
+
+\figureETS{tct_means.png}{
+}
+
+\figureETS{tct_means_2.png}{
+}
+
+\subsection{Taux d'erreur}
+
+\figureETS{selections_errors_distributions.png}{
+}
+
+\figureETS{selections_count_means.png}{
+}
+
+\figureETS{errors_means.png}{
+}
+
+\figureETS{selections_count_ordering_means.png}{
+}
+
+\figureETS{errors_ordering_means.png}{
+}
+
+\subsection{Navigation}
+
+\figureETS{navigation_count.png}{
+}
+
+\figureETS{navigation_time.png}{
+}
+
+\figureETS{navigation_distance.png}{
+}
+
+\subsection{Évaluations des participants}
+
+\figureETS{ranks_distributions.png}{
+}
+
+\figureETS{ranks_means.png}{
+}
+
+\figureETS{preferences.png}{
+}
 
 On confirme de manière informelle un des résultats de Grasp Shell : si le contenu virtuel est transparent et permet aux participants de voir leur main, ça suffit : l'occlusion n'est pas nécessaire. Personne m'a fait une remarque là dessus et j'en discuté avec quelqu'uns qui m'ont dit que ça ne les avaient pas dérangés.
 
