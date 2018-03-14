@@ -9,7 +9,7 @@ Pour exploiter notre concept détaillé au \autoref{ch:concept}, nous avions bes
   Tiré de \cite{DicklyonWikipedia2006}
 }
 
-Un visiocasque de RA vidéo étant plus simple à concevoir qu'un casque optique, nous avons donc décidé de reproduire l'AR-Rift \citep{Steptoe2013}. C'est un prototype de conception simple mais qui fonctionne bien, ayant déjà été reproduit par d'autre chercheurs, comme \cite{Piumsomboon2014}.
+Un visiocasque de RA vidéo étant plus simple à concevoir qu'un casque optique, nous avons donc décidé de reproduire l'AR-Rift \citep{Steptoe2013}. C'est un prototype de conception simple qui a fait ses preuves notamment utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}.
 Cependant, si dans sa série d'articles en ligne, \citeauthor{Steptoe2013} détaille correctement la procédure générale de conception de l'AR-Rift, la sélection des caméras, leur montage et le principe d'alignement de la caméra physique avec la caméra virtuelle, il ne détaille pas la procédure de calibration et rectification de la caméra physique, ni ne propose pas de solution accessible de détection des objets réels. Nous souhaitons ici détailler un peu plus ces étapes.
 
 La procédure suivie a été la suivante :
@@ -23,14 +23,6 @@ La figure \reffigureETS{ARRift.jpg} montre le visiocasque conçu.
 \figureETS{ARRift.jpg}{
   Notre prototype de visiocasque de RA, basé sur le concept de l'AR-Rift de \cite{Steptoe2013} : il est composé du visiocasque de RV Oculus DK2, de la caméra stéréoscopique Ovrvision et du capteur de reconnaissance des mains Leap Motion.
 }
-
-\section{Procédure}
-Principe RA :
-Goal: Align the 3D content filmed by the virtual camera with the images filmed by the physical camera.\\
-Choisir un modèle approprié qui décrit correctement la caméra
-Calibrer la caméra pour savoir les paramètres de ce modèle
-L'utiliser pour faire correspondance 2d image d'un marker avec sa position-rotation 3d
-Placer la caméra virtuelle comme la caméra réelle (Extrinsic camera parameters: position and rotation in the 3D world) + matcher le modèle de projection de la caméra virtuelle et de la caméra réelle : donne effet d'alignement du virtuel avec le réel (Intrinsic camera parameters: camera matrix (how the 3D world is projected into a 2D image), distorsion coefficients (), image size)
 
 
 \section{Choix techniques}
@@ -60,6 +52,18 @@ On pouvait utiliser le nouveau ARToolKit, ou Vuforia. Mais besoin d'avoir le sup
 
 
 \section{Calibration, rectification et alignement des caméras}
+Un visiocasque de RA par vidéo fonctionne sur le principe suivant :
+\begin{enumerate}
+  \item une caméra filme l'environnement réel de l'utilisateur ;
+  \item un logiciel de rendu 3D va ajouter du contenu virtuel par dessus l'image de cette caméra ;
+  \item l'image
+\end{enumerate}
+
+Ainsi, pour que l
+
+Comme le rappelle \cite[p. ]{Billinghurst2015}
+
+
 - Voir AdrianKaehler2017 - Learning OpenCV 3
   - Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + calibration
   - Chapitre 19 pour la calibration stereo + LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
