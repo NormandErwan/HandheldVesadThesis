@@ -9,7 +9,7 @@ C'est \cite{Sutherland1968} qui conçut le premier visiocasque de RA \reffigureE
   Tiré de \cite{Sutherland1968}
 }
 
-Par la suite, la recherche académique en RA se développe lentement : des applications sont surotut développées dans les domaines militaires et gouvernementaux \citep{VanKrevelen2010}. Il faudra alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Plusieurs conférences dédiées à la RA sont créées, fusionnées aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence désormais pour la recherche et l'industrie en RA \citep{Azuma2001}.
+Par la suite, la recherche académique en RA se développa lentement : des applications ont surtout été développées dans les domaines militaires et gouvernementaux \citep{VanKrevelen2010}. Il fallu alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Plusieurs conférences dédiées à la RA sont notamment créées, fusionnées aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence d'importance pour la recherche et l'industrie en RA \citep{Azuma2001}.
 
 \cite{Milgram1994} est le premier à proposer un cadre théorique au domaine, en proposant une échelle ordonnée nommée \foreignlanguage{english}{Reality-Virtuality Continuum} \reffigureETSp{Milgram1994.png}. Milgram oppose deux extrèmes : les environnements réels et les environnements de RV. Nos PC ou téléphones font partie de la première catégorie, tandis qu'un visiocasque de RV va totalement immerger son utilisateur dans un monde virtuel. Entre ces deux extrêmes, les environnements de Réalité Mixte (RM), dont fait partie la RA, vont mélanger éléments réels et éléments virtuels. La force de cette représentation est qu'il n'existe pas de catégories séparées entre réel, RA et RV mais que la RA peut se trouver d'un extrème à un autre.
 
@@ -23,8 +23,17 @@ Le second enseignement de l'échelle de \citeauthor{Milgram1994}, est que la RA 
 RekimotoNagao1995\\
 montre que les IHM RA doivent être guidée dans le but d'êtres invisibles et d'augmenter les interactions avec le réel. Avec les interfaces graphiques sur un écran, le réel et l'ordinateur sont séparés (ça fonctionne pour les téléphones). Décrit aussi que la RV ou ubiquitous computing sont aussi d'autres manières de rendre le pc invisible
 
-Azuma1997 : définition formelle, propriétés RA (contenu 3D virtuel, aligné avec le contenu réel, en temps réel), premier état de l'art
+Une première définition formelle de la RA est finalement proposée par \cite{Azuma1997} dans le premier état de l'art du domaine :
+\begin{enumerate}
+  \item combiner des éléments réels et virtuels ;
+  \item être interactif en temps réel ;
+  \item les éléments virtuels doivent être alignés avec les éléments réels.
+\end{enumerate}.
+En effet, ce sont ces trois conditions qui vont donner le \emph{sentiment de la présence du virtuel dans l'environnement réel}. 
 
+Enfin, \cite{BuxtonFitzMaurice1998} repris par \cite{Bimber2005} catégorisent les dispositifs d'affichage en RA \reffigureETSp{Bimber2005.png}, en quatre plateformes possibles : le CAVE, les appareils mobiles, les visiocasques ou Head Mounted Display (HMD), les lentilles de contact.
+
+Dans leur état de l'art du domaine, \cite{VanKrevelenPoelman2010} pensent que les lentilles seront à l'avenir le dispotif de RA idéal.
 BuxtonFitzMaurice1998, Bimber2005, VanKrevelenPoelman2010 :\\
 - plateformes en RA (CAVE, mobile, HMD, lentilles) : CAVE fonctionne très bien, mais couteux et encombrant ; HMD fonctionnent maintenant aussi bien que CAVE, plus légers et permettent expérience partagée ; mobile est populaire mais limités en taille et en puissance ; lentilles semblent être avenir idéal (VanKrevelenPoelman2010)\\
 - catégories HMD : video see-through vs. optical see-through
@@ -34,9 +43,12 @@ BuxtonFitzMaurice1998, Bimber2005, VanKrevelenPoelman2010 :\\
   Tiré de \citet[p. 72]{Bimber2005}
 }
 
-Azuma2001 : création de ISMAR et du domaine de recherche à part entière\\
-+ les RA mobiles sont possibles\\
-+ major obstacles limiting the wider use of AR as falling into three themes: (1) technological limitations, (2) user interface limitations, and (3) social acceptance issues.
+Si des concepts et cadres théoriques pour la RA existent depuis plusieurs années, la recherche s'est malgré tout majoritairement consacrée sur les limites techniques de la RA. \cite{Azuma1997} notait que peu de prototypes de l'époques pouvaient atteindre les conditions qu'il avait proposé pour la RA : les capteurs n'étaient pas assez précis pour aligner les éléments réels et virtuels, et le temps réel était difficilement atteignable par le manque de puissance des face aux calculs nécessaires. Dans son second état de l'art \cite{Azuma2001} précise les trois obstables pour que la RA puisse être utilisable : (1) les limites techniques, (2) les limites des IHMs et (3) les problème d'acception sociale. Dans des états de l'art suivants, \cite{Zhou2008} et \cite{Billinghurst2015} indiquent que trop peu de travaux ont été consacrés aux IHM et à l'expérience utilisateur en RA : %\textquote[\cite{Billinghurst2015}]{there is a need to develop interface metaphors and interaction techniques specific to AR}.
+
+Enfin, 
+
+Les limites techniques sont encore présentes
+Ainsi, dans les années 2000, 
 
 Limitations techniques encore aujourd'hui : tracking et affichage. Même si se réduit et bientôt va être suffisament bon pour être présent dans nos quotidiens pros et perso.\\
 VanKrevelenPoelman2010, CarmignianiFurhtAnisettiEtAl2011, HuangHuiPeyloEtAl2013, Billinghurst2015 p.190 : beaucoup de RA mobiles dans les produits commerciaux, peu avec des HMDs (HoloLens change un peu la donne et en même temps montre qu'il y a du besoin si Microsoft si risque c'est qu'il y voit un potentiel) et beaucoup de challenges techniques de tracking et display encore à résoudre
@@ -44,7 +56,7 @@ VanKrevelenPoelman2010, CarmignianiFurhtAnisettiEtAl2011, HuangHuiPeyloEtAl2013,
 
 \section{Conception et évaluation d'IHMs en 3D}
 \subsection{IHMs en RA}
-Billinghurst2005 : There is a need to develop interface metaphors and interaction techniques specific to AR. \citet{ZhouDuhBillinghurst2008} et \citet{DeSaChurchill2013} indiquent que trop peu de travaux ont été consacrés aux IHM et à l'expérience utilisateur en RA.
+\cite{Billinghurst2005} a exploré le premier des principes de conception d'IHM en RA. indiquait : 
 
 \citet{VanKrevelenPoelman2010} rappellent qu'aucun paradigme d'IHM pertinent n'a encore été trouvé pour la RA. En effet, la métaphore du bureau WIMP (pour \foreignlanguage{english}{windows}, \foreignlanguage{english}{icons}, \foreignlanguage{english}{menus} et \foreignlanguage{english}{pointing device}) utilisé par les IHM des systèmes d'exploitations des ordinateurs ne fonctionne pas en RA, tout comme les dispositifs d'entrées en 2D tels que la souris : ils sont fait pour fonctionner sous la contrainte d'un plan 2D et restreignent alors l'expérience de la RA. \citep{VanKrevelenPoelman2010} A l'inverse, les dispositifs d'interactions dit naturels, sans aucune contraintes dans l'espace, c'est-à-dire avec six degrés de libertés (6 DoF), sont, en réalité, difficiles à manipuler avec dans un environnement virtuel. \citet{ChanKaoChenEtAl2010} ont en particulier montré que sans retour tactile il est difficile pour une personne d'estimer sans erreur la profondeur. Un paradigme d'IHM différent et approprié pour la RA, est donc à déterminer.
 
