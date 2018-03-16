@@ -4,7 +4,7 @@
 
 \usepackage{textcomp} % Bon affichage de certains caratères comme \degree
 \usepackage{csquotes} % Citations
-\usepackage{siunitx} % Bon affichage des unités de mesure
+\usepackage[binary-units=true]{siunitx} % Bon affichage des unités de mesure
 \usepackage{pdfpages} % Pour inclure des pdfs en annexe
 
 \title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handled VESAD (Virtually Extended Screen-Aligned Display)}
@@ -56,6 +56,13 @@
 
 \newcommand{\reftableETS}[1]{Tableau \ref{tab:#1}}
 \newcommand{\reftableETSp}[1]{(\textit{Voir} \reftableETS{#1})}
+
+% Unités
+\DeclareSIUnit\GB{\giga\byte}
+\DeclareSIUnit\fps{FPS}
+\DeclareSIUnit\inch{in}
+\DeclareSIUnit\pt{pt}
+\DeclareSIUnit\px{px}
 
 \begin{document}
 

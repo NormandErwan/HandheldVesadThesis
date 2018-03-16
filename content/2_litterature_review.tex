@@ -31,24 +31,39 @@ Une première définition formelle de la RA est finalement proposée par \cite{A
 \end{enumerate}
 En effet, ce sont ces trois conditions qui vont donner le \emph{sentiment de la présence du virtuel} dans l'environnement réel. 
 
-Enfin, \cite{BuxtonFitzMaurice1998} repris par \cite{Bimber2005} catégorisent les différents dispositifs d'affichage en RA \reffigureETSp{Bimber2005.png}. On retient essentiellement :
-\begin{itemize}
-  \item Le \foreignlanguage{english}{cave automatic virtual environment} (CAVE) :
-  \item Les appareils mobiles : 
-  \item Les \foreignlanguage{english}{head-mounted display} (HMD), ou visiocasque en français : \reffigureETSp{HoloLens.jpg}.
-  \item Les lentilles de contact : 
-\end{itemize}
-
-le CAVE, les appareils mobiles, les visiocasques ou Head Mounted Display (HMD), les lentilles de contact.
-- plateformes en RA (CAVE, mobile, HMD, lentilles) : CAVE fonctionne très bien, mais couteux et encombrant ; HMD fonctionnent maintenant aussi bien que CAVE, plus légers et permettent expérience partagée ; mobile est populaire mais limités en taille et en puissance
-- catégories HMD : video see-through vs. optical see-through
+Enfin, \cite{Buxton1998} repris par \cite{Bimber2005} catégorisent les différents dispositifs d'affichage en RA \reffigureETSp{Bimber2005.png}. On retient essentiellement (nous excluons volontairement les projecteurs) :
+\begin{description}
+  \item [Le \foreignlanguage{english}{cave automatic virtual environment} (CAVE)] c'est un environnment immersif sous forme de cube, chaque face comportant un écran. L'utilisateur porte des capteurs pour suivre son mouvement, et recalculer son champs de vision en temps réel \reffigureETSp{CAVE.jpg}. C'est un dispositif coûteux et encombrant, mais très utile pour prototyper des concepts.
+  \item [Les affichages fixes] la RA est affichée à travers l'écran \reffigureETSp{Lee2013.png}. Ils sont utiles pour des démonstrations pour plusieurs personnes à la fois.
+  \item [Les appareils mobiles] identique à un affichage fixe mais tenu en main, comme une \emph{fenêtre sur le contenu} en RA \reffigureETSp{MobileAR.jpg}. Populaires mais limités en taille et en puissance
+  \item [Les \foreignlanguage{english}{head-mounted display} (HMD)] ou visiocasques en français, ils sont portés sur la tête et projectent les images virtuelles en face des yeux de l'utilisateur. On distingue deux technologies :
+  \begin{description}
+    \item [Les visiocasques vidéo] des caméras placées devant le casque filme l'environment réel de l'utilisateur et sont combinées avec le contenu virtuel avant d'être affichées sur un écran \reffigureETSp{ARRift.jpg}.
+    \item [Les visiocasques optique] : le contenu virtuel est projeté sur un écran transparent par un système de mirroirs \reffigureETSp{HoloLens.jpg}.
+  \end{description}
+  \item [Les lentilles] identiques aux visiocasques mais posées directement sur les yeux. Encore au stade de prototype.
+\end{description}
 
 Tout ces dispositifs ont été explorés, mais ce sont essentiellement des prototypes sur appareils mobiles qui ont été développés : en effet, à partie de années 2000, les téléphones intelligents ont eu des caméras intégrées d'une qualité suffisante, tous les capteurs nécessaire et assez de puissance de calcul pour rendre la RA possible \cite{Huang2013}. Cependant, avec l'arrivée du HoloLens de Microsoft en 2016 et bientôt du Magic Leap et du Meta en 2018, les visiocasques vont pouvoir être à leur tour plus utilisés dans des recherches en RA. Dans leur état de l'art du domaine, \cite{VanKrevelen2010} estiment quant à eux que les lentilles seront à l'avenir le dispotif de RA idéal.
-
 
 \figureETS{Bimber2005.png}{
   Les différents dispositifs d'affichages en RA.\\
   Tiré de \citet[p. 72]{Bimber2005}
+}
+
+\figureETS{CAVE.jpg}{
+  Un CAVE : un cube immersif d'écrans à taille humaine réagissant aux déplacement de l'utilisateur.\\
+  Tiré de \citet{DWC2001}
+}
+
+\figureETS{Lee2013.png}{
+  Photos de SpaceTop : l'utilisateur peut interagir avec du contenu 3D à travers un écran transparent.\\
+  Tiré de \citet{Lee2013}
+}
+
+\figureETS{MobileAR.jpg}{
+  Une application sur tablette affichant un tableau de musée en RA.\\
+  Tiré de \citet{KWC2012}
 }
 
 Dans son second état de l'art \cite{Azuma2001} précisait les trois obstables à dépasser pour que la RA puisse être utilisable par le grand public : (1) les limites techniques, (2) les limites des IHM et (3) les problème d'acception sociale. Cependant, si des concepts et cadres théoriques pour la RA existent depuis plusieurs années, la recherche s'est malgré tout majoritairement consacrée aux limites techniques de la RA, comme le souligne \cite{Zhou2008}, \cite{VanKrevelen2010} et \cite{Billinghurst2015}, dans de nouveaux états de l'art. Ils indiquent également que trop peu de travaux ont été consacrés aux IHM et à l'expérience utilisateur en RA : \textquote[\cite{Billinghurst2015}]{there is a need to develop interface metaphors and interaction techniques specific to AR}.
@@ -144,7 +159,7 @@ Leurs résultats ont montrés, entre autres, qu'un affichage courbe est importan
 Ce travail présente cependant quelques limites. Tout d'abord, leur IHM requiert des interactions directes, ce qui est à l'origine d'erreurs de sélection et de fatigue du bras des utilisateurs : il serait alors intéressant de savoir si un référentiel sur le corps permettrait d'être précis avec une interaction indirecte. En outre, le champ de vision était très limité : 30° à l'horizontal et 40° à la verticale, ce qui biaise les mesures de performances Enfin, le prototype a été réalisé dans un CAVE, c'est-à-dire des projections de l'image sur des écrans entourant l'utilisateur. Ainsi, il faudrait reproduire les expérimentations avec un visiocasque et différentes techniques d'interactions. On peut également se demander si l'utilisation de fenêtres est une représentation adaptée pour la RA, aucune contrainte d'écrans physiques n'étant présente, ou s'il existe une meilleure représentation de l'information virtuelle dans un espace de RA.
 
 \figureETS{Ens2014.jpg}{
-  À gauche, photo du \foreignlanguage{english}{Personal Cockpit}. À droite, illustration du positionnement idéal de fenêtres virtuelles.\\
+  À gauche, photo du Personal Cockpit. À droite, illustration du positionnement idéal de fenêtres virtuelles.\\
   Tiré de \citet{Ens2014}.
 }
 
@@ -155,7 +170,7 @@ Leurs résultats expérimentaux montrent que l'augmentation des appareils en RA 
 Une limite importante de cet article sont de faibles résultats expérimentaux. En effet, le système testé était lourd, peu mobile, avait une grande latence (150 ms), un champ de vision limité : ainsi, les résultats ont seulement permis de montrer que coupler les affichages des appareils \emph{pourrait} permettre de meilleures performances que les appareils utilisés seuls. En outre, le système n'a été pensé que pour certaines tâches précises, et non pour un couplage global et constant dans le temps. Il serait donc intéressant de généraliser le concept, et de le répliquer avec un visiocasque plus léger et mobile pour obtenir des résultats avec de meilleures validités internes (en évitant les problèmes techniques des expérimentations de l'article) et externes (plus de taches testés, conception pensée pour un couplage global et constant dans le temps).
 
 \figureETS{Grubert2015.jpg}{
-  Illustrations du fonctionnement de \foreignlanguage{english}{Multifi}.\\
+  Illustrations du fonctionnement de Multifi.\\
   Tiré de \citet{Grubert2015}.
 }
 
@@ -176,7 +191,7 @@ Un utilisateur peut donc interagir sur un appareil, et voir ses actions s'exécu
 Une limite toutefois de l'article relève dans la faiblesse de son évaluation, informelle, qui a seulement pu montrer que le concept et la preuve de concept réalisée étaient enthousiasmantes et intéressantes aux yeux des participants. Une évaluation formelle devrait être reconduite avec un prototype léger et totalement mobile. Le visiocasque présentant en outre des limites de champs de vision et de résolution : si ces caractéristiques vont s'améliorer dans le futur, nous pensons que leur impact sur la navigation et les performances des interactions des utilisateurs n'est pas encore bien connue.
 
 \figureETS{Serrano2015.jpg}{
-  Illustration du concept de \foreignlanguage{english}{Gluey}.\\
+  Illustration du concept de Gluey.\\
   Tiré de \citet{Serrano2015}.
 }
 
@@ -185,7 +200,7 @@ Le concept recoupe celui de MultiFi \citep{Grubert2015}, et le généralise des 
 \citeauthor{Serrano2015a} ne présentent dans cet article que le concept mais n'en réalise aucun prototype, ni aucune évaluation. Nous pensons qu'il serait intéressant de montrer que ce concept fonctionne et d'implémenter ce système de bureau virtuel et mobile, afin d'explorer son espace de conception et d'en ajuster au mieux les paramètres.
 
 \figureETS{Serrano2015a.jpg}{
-  Illustrations du concept de \foreignlanguage{english}{Desktop-Gluey} : à gauche, en utilisation de fenêtres virtuelles pour étendre des écrans physiques ; à droite, en mode mobile.\\
+  Illustrations du concept de Desktop-Gluey : à gauche, en utilisation de fenêtres virtuelles pour étendre des écrans physiques ; à droite, en mode mobile.\\
   Tiré de \citet{Serrano2015a}
 }
 
