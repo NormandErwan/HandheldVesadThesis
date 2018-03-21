@@ -304,7 +304,7 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 
 \newcommand{\TypeDoc}{empty}
-\newcommand{\DocLang}{francais}
+\newcommand{\DocLang}{french}
 \newcommand{\WithAlgoTe}{false}
 \newcommand{\TypeLic}{reserved}
 \newcommand{\WithHyperref}{false}
@@ -348,9 +348,9 @@
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen} %% Permet de réaliser des tests sur des variables
 
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
-	\RequirePackage[frenchb]{babel} %% Francisation du document
+	\RequirePackage[french]{babel} %% Francisation du document
 }
 {
 	\RequirePackage[english]{babel}
@@ -401,7 +401,7 @@
 
 \ifthenelse{\equal{\WithAlgoTe}{true}}
 {
-	\ifthenelse{\equal{\DocLang}{francais}}
+	\ifthenelse{\equal{\DocLang}{french}}
 	{
 		\RequirePackage[french,boxed,algochapter,linesnumbered]{algorithm2e}
 	}
@@ -421,7 +421,7 @@
 \RequirePackage{multibib} % Permettre plusieurs listes de références
 
 %% Adaptation de l'affichage de la bibliographie à la langue, pour "et"/"and", l'accent dans "éd." et les guillemets non définis dans babel english. La style bst utilise ces commandes pour formatter la bibliographie.
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 	\newcommand{\bibed}{éd}
 	\newcommand{\bibEd}{Éd}
@@ -452,7 +452,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Définition de commandes pour la présentation du jury
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% En Francais
@@ -662,7 +662,7 @@
 \setlength{\tocLeftMarginSecondLineFigure}{6.5em} % Marge gauche quand on va à la ligne pour les figures
 \newlength{\tocLeftMarginSecondLineAlgo}
 \newlength{\tocLeftMarginSecondLineTable}
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 	\setlength{\tocLeftMarginSecondLineTable}{7em} % Marge gauche quand on va à la ligne pour les tableaux.
 	\setlength{\tocLeftMarginSecondLineAlgo}{8.6em} % Marge gauche quand on va à la ligne pour les algos
@@ -729,7 +729,7 @@
 %% Page titre
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
    	\ifthenelse{\equal{\TypeDoc}{memoire}}{\newcommand{\lediplome}{DE LA MAÎTRISE\\AVEC MEMOIRE EN GÉNIE\\M. Sc. A.}}{}
    	\ifthenelse{\equal{\TypeDoc}{memoireprojet}}{\newcommand{\lediplome}{DE LA MAÎTRISE\\AVEC PROJET EN GÉNIE\\M. Ing.}}{}
@@ -752,7 +752,7 @@
     \let\footnoterule\relax%
     \let \footnote \thanks%
    \begin{center}
-      \ifthenelse{\equal{\DocLang}{francais}}
+      \ifthenelse{\equal{\DocLang}{french}}
       {
       \vfill
       {\Large\@title}%
@@ -798,7 +798,7 @@
       {\normalsize
 
       \ifthenelse{\equal{\TypeLic}{reserved}}{
-      	\ifthenelse{\equal{\DocLang}{francais}}
+      	\ifthenelse{\equal{\DocLang}{french}}
       	{
         	\copyright~Tous droits réservés, \@authorcopyright, \number\year
         }
@@ -822,7 +822,7 @@
    \fbox{\parbox{6.125in}{ %% Anciennement 6.4
     %% Interligne de 1 et taille de 10pt pour le texte
    \renewcommand{\baselinestretch}{1}\footnotesize\footnotesize
-    \ifthenelse{\equal{\DocLang}{francais}}
+    \ifthenelse{\equal{\DocLang}{french}}
     {
    	\copyright~Tous droits réservés
     \newline
@@ -841,7 +841,7 @@
 
    \includegraphics[width=50bp]{Figures/logocc}
    \newline
-   \ifthenelse{\equal{\DocLang}{francais}}
+   \ifthenelse{\equal{\DocLang}{french}}
    {
    Cette licence Creative Commons signifie qu'il est permis de diffuser, d'imprimer ou de sauvegarder sur un autre support une partie ou la totalité de cette oeuvre à condition de mentionner l'auteur, que ces utilisations soient faites à des fins non commerciales et que le contenu de l'oeuvre n'ait pas été modifié.
    }
@@ -861,7 +861,7 @@
   \let\footnoterule\relax%
   \begin{center}%
     \renewcommand{\baselinestretch}{2}\small\normalsize
-   \ifthenelse{\equal{\DocLang}{francais}}
+   \ifthenelse{\equal{\DocLang}{french}}
    {
     \textbf{PRÉSENTATION DU JURY}\\
     \ifthenelse{\equal{\TypeDoc}{memoire}}{
@@ -942,7 +942,7 @@
   \begin{center}%
     \vspace{3em}%
     \renewcommand{\baselinestretch}{2}\small\normalsize%
-   \ifthenelse{\equal{\DocLang}{francais}}
+   \ifthenelse{\equal{\DocLang}{french}}
    {
     \ifthenelse{\equal{\TypeDoc}{memoire}}{IL}{ELLE}~A FAIT L'OBJET D'UNE SOUTENANCE DEVANT JURY ET PUBLIC\\
     LE \MakeUppercase{\@datesoutenance}\\
@@ -1161,7 +1161,7 @@
 }
 
 
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 	\newenvironment{sommaire}[1]{\abstractTemplate{\@title}{RÉSUMÉ}{#1}{\bf Mots-clés:}}{\endabstractTemplate}
 	\newenvironment{abstract}[2]{\abstractTemplate{#1}{ABSTRACT}{#2}{\bf Keywords:}}{\endabstractTemplate}
@@ -1176,7 +1176,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Avant-propos
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 	\newenvironment{avantpropos}{%
   	\chapter*{Avant-propos}
@@ -1204,7 +1204,7 @@
 %% Revue de littérature
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 	\newenvironment{revuedelitterature}{%
   		\cleardoublepage
@@ -1227,7 +1227,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{conclusion}{%
 \doublespacing
-  \ifthenelse{\equal{\DocLang}{francais}}
+  \ifthenelse{\equal{\DocLang}{french}}
 	{
   	\chapter*{Conclusion et recommandations}
   	\addcontentsline{toc}{chapter}{CONCLUSION ET RECOMMANDATIONS} 
@@ -1245,7 +1245,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Remerciement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 	\newenvironment{remerciements}{%
   	\chapter*{Remerciements}
@@ -1559,7 +1559,7 @@
 
 \newenvironment{listofabbr}[1][\descril]{%
  \cleardoublepage
- \ifthenelse{\equal{\DocLang}{francais}}
+ \ifthenelse{\equal{\DocLang}{french}}
  {
   	\chapter*{Liste des abréviations, sigles et acronymes}
  }
@@ -1576,7 +1576,7 @@
 
 \newenvironment{listofsymbols}[1][\descril]{%
   \cleardoublepage
- \ifthenelse{\equal{\DocLang}{francais}}
+ \ifthenelse{\equal{\DocLang}{french}}
   {
   \chapter*{Liste des symboles et unités de mesure}
   }
@@ -1638,7 +1638,7 @@
 
 \newsubfloat{figureap} %% Definition des subfigures en annexe
 
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 \DeclareCaptionType{tableap}[Tableau-A]
 }
@@ -1659,7 +1659,7 @@
 %% Mise en forme des listes enumerate et itemize
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 	\ifdef{\ifFBStandardItemizeEnv}{\frenchbsetup{StandardItemizeEnv=true,StandardEnumerateEnv=true}}{}
 }{}
@@ -1792,7 +1792,7 @@
 %
 % Intitulés francais des figures, tableaux, etc.
 %
-\ifthenelse{\equal{\DocLang}{francais}}
+\ifthenelse{\equal{\DocLang}{french}}
 {
 \addto\captionsfrench{\def\figurename{{Figure}}}
 \addto\captionsfrench{\def\tablename{{Tableau}}}
