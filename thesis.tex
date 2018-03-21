@@ -1,13 +1,56 @@
+\PassOptionsToPackage{english, main=french}{babel}
 \documentclass[letterpaper, twoside, 12pt,%
-  memoire, francais, creativecommons, hyperref, withAlgo2e%
+  memoire,  french, creativecommons, hyperref, withAlgo2e%
 ]{thETS}
 
-\usepackage{textcomp} % Bon affichage de certains caratères comme \degree
-\usepackage{csquotes} % Citations
-\usepackage[binary-units=true]{siunitx} % Bon affichage des unités de mesure
-\usepackage{pdfpages} % Pour inclure des pdfs en annexe
+\usepackage{textcomp} % Correct display of characters such as \degree
+\usepackage{csquotes} % Quotations
+\usepackage[binary-units=true]{siunitx} % Correct display of units
+\usepackage{pdfpages} % Include PDFs
 
-\title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handled VESAD (Virtually Extended Screen-Aligned Display)}
+% Formattage des passages en langue étrangère
+\let\oldforeignlanguage\foreignlanguage
+\renewcommand{\foreignlanguage}[2]{\oldforeignlanguage{#1}{\emph{#2}}}
+
+\babeltags{en = english}
+
+% Figure with ÉTS style
+\newcommand{\figureETS}[3][0.75]{%
+  \begin{figure}%
+    \centering%
+    \fbox{%
+      \includegraphics[width=#1\textwidth]{Figures/#2}
+    }\\%
+    \parbox{0.75\textwidth}{\caption{#3}\label{fig:#2}}%
+  \end{figure}
+}
+\captionsetup[figure]{labelfont=normalfont, font=singlespacing, justification=centering, labelsep=quad, position=below}
+
+\newcommand{\reffigureETS}[1]{Figure \ref{fig:#1}}
+\newcommand{\reffigureETSp}[1]{(\textit{Voir} \reffigureETS{#1})}
+
+% Table with ÉTS style
+\newenvironment{tableETS}[2]{%
+  \begin{table}%
+  \parbox{0.65\textwidth}{\caption{#2}\label{tab:#1}}%
+  \centering%
+}{%
+  \end{table}%
+}
+\captionsetup[table]{labelfont=normalfont, font=singlespacing, justification=centering, labelsep=quad, position=above}
+
+\newcommand{\reftableETS}[1]{Tableau \ref{tab:#1}}
+\newcommand{\reftableETSp}[1]{(\textit{Voir} \reftableETS{#1})}
+
+% Units
+\DeclareSIUnit\GB{\giga\byte}
+\DeclareSIUnit\fps{FPS}
+\DeclareSIUnit\inch{in}
+\DeclareSIUnit\pt{pt}
+\DeclareSIUnit\px{px}
+
+% Thesis configuration
+\title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handheld VESAD (Virtually Extended Screen-Aligned Display)}
 
 \author{Erwan NORMAND}
 \authorcopyright{Erwan Normand}
@@ -20,54 +63,10 @@
 \president{M.}{Prénom Nom}{département et institution}
 \examinexterne{M.}{Prénom Nom}{département et institution}{}
 
-\listfiles
-
-% Citations de sections
-\newcommand{\refsection}[1]{\autoref{#1} \nameref{#1}}
-
-% Formattage des passages en langue étrangère
-\let\oldforeignlanguage\foreignlanguage
-\renewcommand{\foreignlanguage}[2]{\oldforeignlanguage{#1}{\emph{#2}}}
-
-% Figure selon les normes de l'ÉTS
-\newcommand{\figureETS}[2]{%
-  \begin{figure}%
-    \centering%
-    \fbox{%
-      \includegraphics[width=0.75\textwidth]{Figures/#1}
-    }\\%
-    \parbox{0.75\textwidth}{\caption{#2}\label{fig:#1}}%
-  \end{figure}
-}
-\captionsetup[figure]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=below}
-
-\newcommand{\reffigureETS}[1]{Figure \ref{fig:#1}}
-\newcommand{\reffigureETSp}[1]{(\textit{Voir} \reffigureETS{#1})}
-
-% Tableau selon les normes de l'ÉTS
-\newenvironment{tableETS}[2]{%
-  \begin{table}%
-  \parbox{0.65\textwidth}{\caption{#2}\label{tab:#1}}%
-  \centering%
-}{%
-  \end{table}%
-}
-\captionsetup[table]{labelfont=normalfont,font=singlespacing,justification=centering,labelsep=quad,position=above}
-
-\newcommand{\reftableETS}[1]{Tableau \ref{tab:#1}}
-\newcommand{\reftableETSp}[1]{(\textit{Voir} \reftableETS{#1})}
-
-% Unités
-\DeclareSIUnit\GB{\giga\byte}
-\DeclareSIUnit\fps{FPS}
-\DeclareSIUnit\inch{in}
-\DeclareSIUnit\pt{pt}
-\DeclareSIUnit\px{px}
-
+% Document
 \begin{document}
 
 \pagenumbering{Roman}
-
 \maketitle
 \presentjury
 
@@ -90,6 +89,7 @@
 \end{listofabbr}
 
 \cleardoublepage
+
 \pagenumbering{arabic}
 \reversemarginpar
 \setcounter{footnote}{0}
