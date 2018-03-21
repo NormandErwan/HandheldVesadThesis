@@ -2,49 +2,51 @@
 \label{ch:litterature}
 
 \section{Historique et concepts de la RA}
-C'est \cite{Sutherland1968} qui conçut le premier visiocasque de RA \reffigureETSp{Sutherland1968.png} : ce prototype permettait déjà de visualiser du contenu 3D affiché dans l'espace réel de l'utilisateur, donnant l'illusion que le contenu virtuel faisait réellement partis de la pièce. Plus connu pour Sketchpad, premier logiciel disposant d'une interface graphique, Sutherland rêvait d'un « dispositif d'affichage ultime » (traduction libre) qui serait invisible à l'utilisateur, ce qui est un des objectifs de la RA : rendre l'interface avec un ordinateur naturelle et invisible \citep{Billinghurst2015}.
+C'est \cite{Sutherland1968} qui conçoit le premier visiocasque de RA \reffigureETSp{Sutherland1968.png} : ce prototype permet déjà de visualiser du contenu 3D affiché dans l'espace réel de l'utilisateur, donnant l'illusion que le contenu virtuel fait réellement partie de la pièce. Par la suite, la recherche académique en RA se développe lentement : les applications développées sont surtout à visées militaires et gouvernementales \citep{VanKrevelen2010}. Il faut alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Plusieurs conférences dédiées à la RA sont notamment créées, fusionnées aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence d'importance pour la recherche et l'industrie en RA \citep{Azuma2001}.
 
 \figureETS{Sutherland1968.png}{
   Visiocasque de RA de Sutherland.\\
   Tiré de \cite{Sutherland1968}
 }
 
-Par la suite, la recherche académique en RA se développa lentement : des applications ont surtout été développées dans les domaines militaires et gouvernementaux \citep{VanKrevelen2010}. Il fallu alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Plusieurs conférences dédiées à la RA sont notamment créées, fusionnées aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence d'importance pour la recherche et l'industrie en RA \citep{Azuma2001}.
+\cite{Milgram1994} donne un premier cadre théorique au domaine, en proposant une échelle ordonnée nommée \texten{Reality-Virtuality Continuum} \reffigureETSp{Milgram1994.png}. \citeauthor{Milgram1994} y oppose deux extrèmes : les environnements réels et les environnements virtuels. Les IHMs habituelles sur ordinateurs et téléphones, ou encore \texten{graphical user interface} (GUI), font partie de la première catégorie, tandis qu'un visiocasque de RV, qui immerge totalement son utilisateur dans un monde virtuel, de la seconde. Entre ces deux extrêmes, les environnements de Réalité Mixte (RM), comme la RA, vont mélanger éléments réels et virtuels. La force de cette représentation est qu'il n'existe pas de catégories séparées entre réel, RA et RV mais que la RA peut se trouver d'un extrème à un autre le long de cette échelle.
 
-\cite{Milgram1994} est le premier à proposer un cadre théorique au domaine, en proposant une échelle ordonnée nommée \foreignlanguage{english}{Reality-Virtuality Continuum} \reffigureETSp{Milgram1994.png}. Milgram oppose deux extrèmes : les environnements réels et les environnements de RV. Nos PC ou téléphones font partie de la première catégorie, tandis qu'un visiocasque de RV va totalement immerger son utilisateur dans un monde virtuel. Entre ces deux extrêmes, les environnements de Réalité Mixte (RM), dont fait partie la RA, vont mélanger éléments réels et éléments virtuels. La force de cette représentation est qu'il n'existe pas de catégories séparées entre réel, RA et RV mais que la RA peut se trouver d'un extrème à un autre.
-
-Le second enseignement de l'échelle de \citeauthor{Milgram1994}, est que la RA et la RV sont techniquement très proches : les dispositifs de localisation, d'affichage et de géneration de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champs de vision et un très bon réalisme dans le contenu 3D affiché. La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
+Le second enseignement de l'échelle de \citeauthor{Milgram1994} est que RA et RV sont techniquement très proches : les dispositifs de localisation, d'affichage et de géneration de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champs de vision et un très bon réalisme dans le contenu 3D affiché. La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
 
 \figureETS{Milgram1994.png}{
-  L'échelle du \foreignlanguage{english}{Reality-Virtuality Continuum} de Milgram.\\
+  L'échelle du \texten{Reality-Virtuality Continuum} de Milgram.\\
   Tiré de \citet[p. 3]{Milgram1994}
 }
 
-RekimotoNagao1995\\
-montre que les IHM RA doivent être guidée dans le but d'êtres invisibles et d'augmenter les interactions avec le réel. Avec les interfaces graphiques sur un écran, le réel et l'ordinateur sont séparés (ça fonctionne pour les téléphones). Décrit aussi que la RV ou ubiquitous computing sont aussi d'autres manières de rendre le pc invisible
+\cite{Rekimoto1995} vont apporter un second cadre théorique à la RA \reffigureETSp{Rekimoto1995.png}. Ils montrent que les GUI sont coupées des interactions avec l'environment réel, tandis que la RV isole l'utilisateur dans des IHMs totalement virtuelles. Deux approches à ces extrèmes sont la RA et l'informatique ubiquitaire (en anglais: \texten{ubiquitous computing}) : cette dernière permet à l'utilisateur d'interagir avec des ordinateur intégrés dans l'environnement réel, par exemple avec téléphones intelligents et des objets connectés, tandis que la RA fusionne réel et virtuel en un seul environnement pour l'utilisateur. Ainsi, avec une IHM bien faite, la RA s'intègre naturellement à l'environment réel et devient invisible à l'utilisation.
 
-Une première définition formelle de la RA est finalement proposée par \cite{Azuma1997} dans le premier état de l'art du domaine. Ainsi, la RA :
+\figureETS{Rekimoto1995.png}{
+  Comparaison de quatre styles d'IHMs : (a) les GUI, coupées de l'environment réel, (b) les IHMs en VR, isolant l'utilisateur dans un environment virtuel, (c) l'informatique ubiquitaire, faite d'ordinateurs faisant partie intégrante de l'environment réel et (d) les IHMs en RA faisant interface entre l'utilisateur et l'environment réel.\\
+  Tiré de \citet{Rekimoto1995}
+}
+
+Une première définition formelle de la RA est par la suite proposée par \cite{Azuma1997} dans le premier état de l'art du domaine. Ainsi, la RA :
 \begin{enumerate}
   \item combine des éléments réels et virtuels ;
   \item est interactive en temps réel ;
   \item aligne les éléments virtuels avec les éléments réels.
 \end{enumerate}
-En effet, ce sont ces trois conditions qui vont donner le \emph{sentiment de la présence du virtuel} dans l'environnement réel. 
+Ce sont les trois conditions techniques à respecter en RA et qui vont permettre le \emph{sentiment de la présence du virtuel} dans l'environnement réel, c'est-à-dire à notre cerveau de voir virtuel et réel comme un seul et même environment. Cette définition a le mérite d'être assez générale pour s'appliquer tout autant à la RA visuelle, qu'au RA auditives ou haptiques.
 
 Enfin, \cite{Buxton1998} repris par \cite{Bimber2005} catégorisent les différents dispositifs d'affichage en RA \reffigureETSp{Bimber2005.png}. On retient essentiellement (nous excluons volontairement les projecteurs) :
-\begin{description}
-  \item [Le \foreignlanguage{english}{cave automatic virtual environment} (CAVE)] c'est un environnment immersif sous forme de cube, chaque face comportant un écran. L'utilisateur porte des capteurs pour suivre son mouvement, et recalculer son champs de vision en temps réel \reffigureETSp{CAVE.jpg}. C'est un dispositif coûteux et encombrant, mais très utile pour prototyper des concepts.
-  \item [Les affichages fixes] la RA est affichée à travers l'écran \reffigureETSp{Lee2013.png}. Ils sont utiles pour des démonstrations pour plusieurs personnes à la fois.
-  \item [Les appareils mobiles] identique à un affichage fixe mais tenu en main, comme une \emph{fenêtre sur le contenu} en RA \reffigureETSp{MobileAR.jpg}. Populaires mais limités en taille et en puissance
-  \item [Les \foreignlanguage{english}{head-mounted display} (HMD)] ou visiocasques en français, ils sont portés sur la tête et projectent les images virtuelles en face des yeux de l'utilisateur. On distingue deux technologies :
-  \begin{description}
-    \item [Les visiocasques vidéo] des caméras placées devant le casque filme l'environment réel de l'utilisateur et sont combinées avec le contenu virtuel avant d'être affichées sur un écran \reffigureETSp{ARRift.jpg}.
-    \item [Les visiocasques optique] : le contenu virtuel est projeté sur un écran transparent par un système de mirroirs \reffigureETSp{HoloLens.jpg}.
-  \end{description}
-  \item [Les lentilles] identiques aux visiocasques mais posées directement sur les yeux. Encore au stade de prototype.
-\end{description}
+\begin{itemize}
+  \item Le \texten{cave automatic virtual environment} (CAVE) : c'est un environnment immersif sous forme de cube, chaque face comportant un écran \reffigureETSp{CAVE.jpg}. Les capteurs portés par l'utilisateur permettent au CAVE de suivre son mouvement, et ainsi recalculer son champs de vision en temps réel. C'est un dispositif coûteux et encombrant, mais très utile pour prototyper des concepts.
+  \item Les affichages fixes : la RA est affichée à travers un écran fixé dans l'environment \reffigureETSp{Lee2013.png}. Ils sont utiles pour des démonstrations pour plusieurs personnes à la fois.
+  \item Les appareils mobiles : identique à un affichage fixe mais l'écran est tenu en main, comme une \emph{fenêtre sur le contenu} en RA \reffigureETSp{MobileAR.jpg}. Ils sont populaires mais limités en taille et en puissance \citep{Huang2013}.
+  \item Les \texten{head-mounted display} (HMD) ou visiocasques en français : ils sont portés sur la tête et projetent les images virtuelles directement aux yeux de l'utilisateur. On distingue deux technologies :
+  \begin{itemize}
+    \item Les visiocasques vidéo : des caméras placées devant le casque filment l'environment de l'utilisateur, les images capturées sont ensuite combinées avec le contenu virtuel puis affichées sur un écran \reffigureETSp{ARRift.jpg}.
+    \item Les visiocasques optique : le contenu virtuel est projeté sur un écran transparent par un système de mirroirs \reffigureETSp{HoloLens.jpg}.
+  \end{itemize}
+  \item Les lentilles : elles sont identiques aux visiocasques mais posées directement sur les yeux. Peu utilisées, elles sont encore au stade de prototype.
+\end{itemize}
 
-Tout ces dispositifs ont été explorés, mais ce sont essentiellement des prototypes sur appareils mobiles qui ont été développés : en effet, à partie de années 2000, les téléphones intelligents ont eu des caméras intégrées d'une qualité suffisante, tous les capteurs nécessaire et assez de puissance de calcul pour rendre la RA possible \cite{Huang2013}. Cependant, avec l'arrivée du HoloLens de Microsoft en 2016 et bientôt du Magic Leap et du Meta en 2018, les visiocasques vont pouvoir être à leur tour plus utilisés dans des recherches en RA. Dans leur état de l'art du domaine, \cite{VanKrevelen2010} estiment quant à eux que les lentilles seront à l'avenir le dispotif de RA idéal.
+Tout ces dispositifs ont été explorés dans la recherche, mais ce sont essentiellement des prototypes sur appareils mobiles qui ont été développés : en effet, à partir des années 2000, les téléphones intelligents ont eu des caméras intégrées d'une qualité suffisante, tous les capteurs nécessaire et assez de puissance de calcul pour rendre la RA possible \citep{Huang2013}. Cependant, avec l'arrivée du HoloLens de Microsoft en 2016 et bientôt du Magic Leap et du Meta en 2018, les visiocasques vont pouvoir être à leur tour plus utilisés dans des recherches en RA. Dans leur état de l'art du domaine, \cite{VanKrevelen2010} estiment quant à eux que les lentilles seront à l'avenir le dispotif de RA idéal.
 
 \figureETS{Bimber2005.png}{
   Les différents dispositifs d'affichages en RA.\\
@@ -66,14 +68,14 @@ Tout ces dispositifs ont été explorés, mais ce sont essentiellement des proto
   Tiré de \citet{KWC2012}
 }
 
-Dans son second état de l'art \cite{Azuma2001} précisait les trois obstables à dépasser pour que la RA puisse être utilisable par le grand public : (1) les limites techniques, (2) les limites des IHM et (3) les problème d'acception sociale. Cependant, si des concepts et cadres théoriques pour la RA existent depuis plusieurs années, la recherche s'est malgré tout majoritairement consacrée aux limites techniques de la RA, comme le souligne \cite{Zhou2008}, \cite{VanKrevelen2010} et \cite{Billinghurst2015}, dans de nouveaux états de l'art. Ils indiquent également que trop peu de travaux ont été consacrés aux IHM et à l'expérience utilisateur en RA : \textquote[\cite{Billinghurst2015}]{there is a need to develop interface metaphors and interaction techniques specific to AR}.
+Dans leur état de l'art \cite{Azuma2001} identifient les trois obstables à dépasser pour que la RA puisse être utilisable par le grand public : (1) les limites techniques, (2) les limites des IHM et (3) les problème d'acception sociale. Cependant, si des concepts et cadres théoriques pour la RA existent depuis plusieurs années, la recherche s'est malgré tout majoritairement consacrée aux limites techniques de la RA, comme le souligne \cite{Zhou2008}, \cite{VanKrevelen2010} et \cite{Billinghurst2015}, dans leurs états de l'art respectifs. Ils indiquent également que trop peu de travaux ont été consacrés aux IHM et à l'expérience utilisateur en RA : \textquote{there is a need to develop interface metaphors and interaction techniques specific to [augmented reality]} \citep{Billinghurst2015}.
 
 
-\section{Conception et évaluation d'IHM en 3D}
-\subsection{IHM en RA}
+\section{Conception et évaluation d'IHMs de RA}
+\subsection{IHMs en RA}
 \cite{Billinghurst2005} a exploré le premier des principes de conception d'IHM en RA. indiquait : 
 
-\citet{VanKrevelen2010} rappellent qu'aucun paradigme d'IHM pertinent n'a encore été trouvé pour la RA. En effet, la métaphore du bureau WIMP (pour \foreignlanguage{english}{windows}, \foreignlanguage{english}{icons}, \foreignlanguage{english}{menus} et \foreignlanguage{english}{pointing device}) utilisé par les IHM des systèmes d'exploitations des ordinateurs ne fonctionne pas en RA, tout comme les dispositifs d'entrées en 2D tels que la souris : ils sont fait pour fonctionner sous la contrainte d'un plan 2D et restreignent alors l'expérience de la RA. \citep{VanKrevelen2010} A l'inverse, les dispositifs d'interactions dit naturels, sans aucune contraintes dans l'espace, c'est-à-dire avec six degrés de libertés (6 DoF), sont, en réalité, difficiles à manipuler avec dans un environnement virtuel. \citet{ChanKaoChenEtAl2010} ont en particulier montré que sans retour tactile il est difficile pour une personne d'estimer sans erreur la profondeur. Un paradigme d'IHM différent et approprié pour la RA, est donc à déterminer.
+\citet{VanKrevelen2010} rappellent qu'aucun paradigme d'IHM pertinent n'a encore été trouvé pour la RA. En effet, la métaphore du bureau WIMP (pour \texten{windows}, \texten{icons}, \texten{menus} et \texten{pointing device}) utilisé par les IHM des systèmes d'exploitations des ordinateurs ne fonctionne pas en RA, tout comme les dispositifs d'entrées en 2D tels que la souris : ils sont fait pour fonctionner sous la contrainte d'un plan 2D et restreignent alors l'expérience de la RA. \citep{VanKrevelen2010} A l'inverse, les dispositifs d'interactions dit naturels, sans aucune contraintes dans l'espace, c'est-à-dire avec six degrés de libertés (6 DoF), sont, en réalité, difficiles à manipuler avec dans un environnement virtuel. \citet{ChanKaoChenEtAl2010} ont en particulier montré que sans retour tactile il est difficile pour une personne d'estimer sans erreur la profondeur. Un paradigme d'IHM différent et approprié pour la RA, est donc à déterminer.
 
 Discuter des IHM sur mobile pendant les années 2000 et 2010 (information Browsers dans la classification de Billinghurst2015)
 
@@ -99,17 +101,21 @@ MacIntyre points out that AR design is driven by the need to define and fuse the
 there are three components that must be designed in an AR application (see Figure 8.1): (1) the real physical objects, (2) the virtual elements to be displayed, and (3) the interaction metaphor that links the real and virtual elements together.\\
 1 et 2 : affordances visuelles pour faire comprendre comment peuvent être manipulés. La technique d'interaction lie 1 et 2
 
-\subsection{Interfaces Utilisateurs Tangibles (IUT)}
-Billinghurst2015, p.169 : interface tangibles (Tangible User Interface (TUI))
-Kato et al. [2000] proposed the concept of Tangible AR (TAR). TAR uses Tangible UI as input interaction metaphor while using AR for visualizing virtual information overlaid on the physical object used for interaction. the interaction space and display space are seamlessly merged together
-The basic goal of designing a Tangible AR interface is to map physical objects (input) with virtual objects (output) using an appropriate interaction metaphor.
+\subsection{Interfaces Utilisateur Intangibles (IUT)}
+Billinghurst2015, p.169 : interface tangibles (Tangible User Interface (TUI))\\
+Kato et al. [2000] proposed the concept of Tangible AR (TAR). TAR uses Tangible UI as input interaction metaphor while using AR for visualizing virtual information overlaid on the physical object used for interaction. the interaction space and display space are seamlessly merged together\\
+The basic goal of designing a Tangible AR interface is to map physical objects (input) with virtual objects (output) using an appropriate interaction metaphor.\\
 Space multiplexed (ex la souris qui se déplace sur bureau) vs time multiplexed
 
-Lee2011 : Graphical Menus Using a Mobile Phone for Wearable AR Systems
-
+Lee2011 : Graphical Menus Using a Mobile Phone for Wearable AR Systems\\
 White2009 : shake menus
 
 \subsection{Interactions en 3D}
+Berard2009 : c'est quoi une technique d'interaction : « Interaction is not defined by an input device alone, but by the combination of a device and of an interaction technique. »
+
+Bowman2004 : summarizes various types of 3D interactions into three categories: (1) navigation, (2) selection, and (3)
+manipulation
+
 Argelaguet2013 : pb des interactions 3D, sélection tâche + métaphores main et gaze, subjectivité vs performance, design technique, taxonomie technique,  (voir cahier gris)\\
 Métaphore main virtuelle : cependant, cette technique amène un autre problème quand elle est utilisée en RA. En effet, en RA, le contenu virtuel est « imprimé par dessus » le contenu réel et peut donc masquer le contenu réel. Par exemple, je peux vouloir toucher un objet 3D en l'air avec ma main, mais cette dernière sera toujours masqué par l'objet même si ma main semble en avant de l'objet. Dès lors, il faut utiliser une technique d'occlusion, c'est-à-dire masquer l'objet 3D quand un objet réel, comme la main de l'utilisateur, se trouve devant \reffigureETSp{Piumsomboon2014_1.png}.
 
@@ -120,10 +126,6 @@ Métaphore main virtuelle : cependant, cette technique amène un autre problème
 \figureETS{Piumsomboon2014_1.png}{
   Différentes techniques d'occlusion de la main. À gauche, la main cache le contenu 3D si elle est devant. À droite, le contenu 3D est transparent que la main soit derrière ou devant. Tiré de \cite{Piumsomboon2014}.
 }
-
-Berard2009 : c'est quoi une technique d'interaction : « Interaction is not defined by an input device alone, but by the combination of a device and of an interaction technique. »\\
-Bowman2004 : summarizes various types of 3D interactions into three categories: (1) navigation, (2) selection, and (3)
-manipulation
 
 Bowman2001 : Principal problème est qu'il n'y a aucun retour tactile « touching a menu item floating in space is much more difficult than selecting a menu item on the desktop, not only because the task has become 3-D, but also because the impor- tant constraint of the physical desk on which the mouse rest is missing. »\\
 Chan2010 - Touching the void : mid air touch in intangible displays. Naturle car simplifie la manip d'objet : le display et l'interactions sont combinés (de la même manière qu'on manipule des objets réels). Expérience d'acquisition d'objets : les personnes évaluent mal la profondeur de leur doigt (donc quand elles ont touché la cible), car pb double vision : vise le doigt et donc cible est floue. Conclusion : il faut utiliser des retours visuels pour guider l'utilisateur. Deux types de feedbacks : continu pour situer sa main, discret pour confirmer une action.
@@ -151,7 +153,12 @@ Duenser2008 (p.203) : evaluation en RA\\
 
 
 \section{Espaces de travail en RA}
-Lee2013 - SpaceTop : combiner interfaces et interactions 3D et 2D de manière unifiée -> pb des écrans transparent inexistants et comment utiliser cela sur un appareil mobile et tenu en main ?
+Comme le souligne très justement \cite{Billinghurst2015}, la séparation entre les styles d'IHMs présentées \cite{Rekimoto1995} \reffigureETSp{Rekimoto1995.png} est artificielle : l'échelle de \cite{Milgram1994} nous montre que la RA devrait s'intégrer avec l'informatique ubiquitaire, les GUI et la RV. Par exemple, \cite{Heun2016} propose l'application RA mobile \texten{Reality Editor} pour interagir de façon naturelle avec les objets intelligents autour de soi \reffigureETSp{Heun2016.jpg}, tandis que le prototype \texten{SpaceTop} de \cite{Lee2013} permet de combiner un GUI sur ordinateur avec des interactions 3D de manière unifiée \reffigureETSp{Lee2013.png}.
+
+\figureETS{Heun2016.jpg}{
+  Photo de \texten{Reality Editor} de \cite{Heun2016}, un navigateur RA pour interagir avec les objets ubiquitaires autour de soi. Ici l'utilisateur paye un stationnement via le navigateur en pointant son téléphone vers le parc-mètre. La communication entre le téléphone et l'objet intelligent passant par internet est rendue visible grâce à la RA.\\
+  Tiré de \cite{Heun2016}.
+}
 
 \citet{Ens2014} partent de ce même constat sur les IHM des visiocasques actuels : un visiocasque peut afficher du contenu en 3D dans l'environnement, et pourrait permettre d'exploiter l'espace de la vision périphérique de l'utilisateur. Ainsi, plusieurs fenêtres pourraient être affichées en même temps à des endroits différents dans l'espace de la vision d'un utilisateur.\\
 Pour explorer les capacités des visiocasques, \citeauthor{Ens2014} réalisent un prototype de RA affichant de multiples fenêtres dans les airs \reffigureETSp{Ens2014.jpg}. Un utilisateur peut alors interagir directement avec les fenêtres par le toucher (c'est donc une \emph{interaction directe}). Ils explorent alors plusieurs facteurs de conception du prototype, au travers de quatre expériences : la taille d'affichage des fenêtres virtuelles, leur distance d'affichage, leur angle de placement par rapport à l'utilisateur, et enfin leur référentiel de placement des fenêtres virtuelle (fixées au corps ou fixées au monde). Les performances (temps et taux d'erreurs), la fatigue ainsi que les retours des utilisateurs étaient mesurés.\\ 
