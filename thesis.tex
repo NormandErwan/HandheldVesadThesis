@@ -5,7 +5,7 @@
 
 \usepackage{textcomp} % Correct display of characters such as \degree
 \usepackage{csquotes} % Quotations
-\usepackage[binary-units=true]{siunitx} % Correct display of units
+\usepackage[binary-units=true, locale=FR]{siunitx} % Correct display of units
 \usepackage{pdfpages} % Include PDFs
 
 % Formattage des passages en langue étrangère
@@ -19,9 +19,9 @@
   \begin{figure}%
     \centering%
     \fbox{%
-      \includegraphics[width=#1\textwidth]{Figures/#2}
+      \includegraphics[width=#1\textwidth]{Figures/#2}%
     }\\%
-    \parbox{0.75\textwidth}{\caption{#3}\label{fig:#2}}%
+    \parbox{0.9\textwidth}{\caption{#3}\label{fig:#2}}%
   \end{figure}
 }
 \captionsetup[figure]{labelfont=normalfont, font=singlespacing, justification=centering, labelsep=quad, position=below}
@@ -32,7 +32,7 @@
 % Table with ÉTS style
 \newenvironment{tableETS}[2]{%
   \begin{table}%
-  \parbox{0.65\textwidth}{\caption{#2}\label{tab:#1}}%
+  \parbox{0.9\textwidth}{\caption{#2}\label{tab:#1}}%
   \centering%
 }{%
   \end{table}%
@@ -43,9 +43,9 @@
 \newcommand{\reftableETSp}[1]{(\textit{Voir} \reftableETS{#1})}
 
 % Units
-\DeclareSIUnit\GB{\giga\byte}
 \DeclareSIUnit\fps{FPS}
 \DeclareSIUnit\inch{in}
+\DeclareSIUnit[per-mode=symbol]{\ppd}{\px\per\degree}
 \DeclareSIUnit\pt{pt}
 \DeclareSIUnit\px{px}
 
