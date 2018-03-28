@@ -1,4 +1,5 @@
 \PassOptionsToPackage{english, main=french}{babel}
+\PassOptionsToPackage{farskip=0pt}{subfig}
 \documentclass[letterpaper, twoside, 12pt,%
   memoire,  french, creativecommons, hyperref, withAlgo2e%
 ]{thETS}
@@ -15,39 +16,54 @@
 \babeltags{en = english}
 
 % Figure with ÉTS style
-\newcommand{\figureETS}[3][0.75]{%
+\newcommand{\figureLayoutETS}[3]{%
   \begin{figure}%
     \centering%
-    \fbox{%
-      \includegraphics[width=#1\textwidth]{Figures/#2}%
-    }\\%
-    \parbox{0.9\textwidth}{\caption{#3}\label{fig:#2}}%
-  \end{figure}
+    \fbox{#2}\\%
+    \parbox{0.9\textwidth}{%
+      \caption{#3}%
+      \label{fig:#1}%
+    }%
+  \end{figure}%
 }
-\captionsetup[figure]{labelfont=normalfont, font=singlespacing, justification=centering, labelsep=quad, position=below}
+\newcommand{\figureETS}[3][0.75]{%
+  \figureLayoutETS{#2}{%
+    \includegraphics[width=#1\textwidth]{Figures/#2}%
+  }{#3}%
+}
+\newcommand{\subfigureETS}[3][0.25]{%
+  \subfloat[#3]{%
+    \includegraphics[height=#1\textheight]{Figures/#2}%
+    \label{fig:#2}%
+  }%
+}
+\newcommand{\figurehspace}{\hspace{0.007\textwidth}}
 
-\newcommand{\reffigureETS}[1]{Figure \ref{fig:#1}}
+\setcounter{lofdepth}{2} % Display subfigures in list of figures
+
+\newcommand{\reffigureETS}[1]{\autoref{fig:#1}}
 \newcommand{\reffigureETSp}[1]{(\textit{Voir} \reffigureETS{#1})}
 
 % Table with ÉTS style
 \newenvironment{tableETS}[2]{%
   \begin{table}%
-  \parbox{0.9\textwidth}{\caption{#2}\label{tab:#1}}%
+  \parbox{0.9\textwidth}{%
+    \caption{#2}%
+    \label{tab:#1}%
+  }%
   \centering%
 }{%
   \end{table}%
 }
-\captionsetup[table]{labelfont=normalfont, font=singlespacing, justification=centering, labelsep=quad, position=above}
 
-\newcommand{\reftableETS}[1]{Tableau \ref{tab:#1}}
+\newcommand{\reftableETS}[1]{\autoref{tab:#1}}
 \newcommand{\reftableETSp}[1]{(\textit{Voir} \reftableETS{#1})}
 
 % Units
 \DeclareSIUnit\fps{FPS}
-\DeclareSIUnit\inch{in}
-\DeclareSIUnit[per-mode=symbol]{\ppd}{\px\per\degree}
-\DeclareSIUnit\pt{pt}
+\DeclareSIUnit\inch{pouces}
 \DeclareSIUnit\px{px}
+\DeclareSIUnit[per-mode=symbol]{\ppd}{\px\per\degree}
 
 % Thesis configuration
 \title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handheld VESAD (Virtually Extended Screen-Aligned Display)}

@@ -2,23 +2,36 @@
 \label{ch:methodology}
 
 \section{Motivations et procédure}
-Pour exploiter notre concept détaillé au \autoref{ch:concept}, nous avions besoin d'un visiocasque à large champs de vision supérieur à \ang{90} horizontalement \reffigureETSp{AngleOfView.png}. En effet, un plus petit champs de vision aurait limité l'intérêt d'étendre l'écran tactile du téléphone : l'écran étendu n'aurait pas été visible dans sa totalité. Cependant, il n'existe actuellement aucun visiocasque de RA sur le marché avec un aussi grand champs de vision \citep{Millette2016}. Le second sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.
+Pour concevoir un VESAD, nous avons besoin d'un visiocasque avec champs de vision suffisament large pour visualiser complètement l'écran étendu, le cas contraire limite l'intérêt de notre concept. Le second sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.
 
-\figureETS{AngleOfView.png}{
-  Illustration du champs de vision d'une caméra, qui peut être mesuré en degrés horizontalement, verticalement ou en diagonale.\\
-  Tiré de \cite{DWC2006}
+Un téléphone est tenu en moyenne à \SI{34}{\cm} \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de \SI{53x30}{\cm}\footnote{\url{https://en.wikipedia.org/wiki/Display_size}.}, on peut calculer le champs de vision nécessaire pour le visualiser complètement \reffigureETSp{FOV.png}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
+\begin{equation}
+  \label{eq:fov}
+  \left \{
+  \begin{array}{r c c c c c l}
+    FOV_x & = & 2 \arctan (\frac{Largeur}{2 \times Distance}) & = & 2 \arctan (\frac{53}{2 \times 34}) & = & \ang{76}\\
+    FOV_y & = & 2 \arctan (\frac{Hauteur}{2 \times Distance}) & = & 2 \arctan (\frac{30}{2 \times 34}) & = & \ang{48}
+  \end{array}
+  \right .
+\end{equation}
+
+\figureETS{FOV.png}{
+  Illustration du champs de vision (en anglais : \texten{Field of View}), qui peut être mesuré en degrés horizontalement ($FOV_x$), verticalement ($FOV_y$) ou en diagonale.
 }
 
-Un visiocasque de RA vidéo étant plus simple à concevoir qu'un casque optique, nous avons donc décidé de reproduire l'AR-Rift \citep{Steptoe2013}. C'est un prototype de conception simple qui a fait ses preuves notamment utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}.
-Cependant, si dans sa série d'articles en ligne, \citeauthor{Steptoe2013} détaille correctement la procédure générale de conception de l'AR-Rift, la sélection des caméras, leur montage et le principe d'alignement de la caméra physique avec la caméra virtuelle, il ne détaille pas la procédure de calibration et rectification de la caméra physique, ni ne propose pas de solution accessible de détection des objets réels. Nous souhaitons ici détailler un peu plus ces étapes.
+Nous avons d'abord voulu utiliser le HoloLens, un visiocasque optique de RA avec une très courte latence, une excellente résolution et une très bonne documentation et un support natif par le moteur de jeu Unity. Cependant, son champs de vision de \SI{30x17.5}{\degree} pour chaque oeil \citep{Kreylos2015} est trop restreint, ne permettant de visualiser seulement l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{7}{\inch}. Il n'existe en fait actuellement aucun visiocasque de RA sur le marché  avec un grand champs de vision \citep{Millette2016}.
 
-La procédure suivie a été la suivante :
+Un visiocasque de RA vidéo étant plus simple à concevoir qu'un visiocasque de RA optique, nous avons donc décidé de reproduire l'AR-Rift \citep{Steptoe2013}. C'est un prototype de conception simple qui a fait ses preuves, notamment utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}. La figure \reffigureETS{ARRift.jpg} montre le visiocasque que nous avons conçu. La procédure suivie, basée sur celle de \cite{Steptoe2013}, a donc été la suivante :
 \begin{enumerate}
-  \item sélection d'une caméra stéréo, d'un visiocasque de RV et d'un moteur 3D ;
-  \item calibration et rectification de la caméra stéréo, et alignement des contenus réels et virtuels ;
-  \item réalisation de la librairie de réalité augmentée ArucoUnity
+  \item Sélection d'une caméra stéréo, d'un visiocasque de RV et d'un moteur 3D.
+  \item Réalisation de la librairie de réalité augmentée ArUco Unity pour la localisation du téléphone.
+  \item Calibration et rectification de la caméra stéréo, et alignement avec la caméra virtuelle.
+  \item Intégration du Leap Motion pour le suivi de la main.
+  \item Conception de techniques d'interactions sur l'écran tactile et avec une main virtuelle.
+  \item Synchronisation entre le visiocasque et le téléphone.
 \end{enumerate}
-La figure \reffigureETS{ARRift.jpg} montre le visiocasque conçu.
+
+Cependant, si \cite{Steptoe2013} détaille correctement la première étape de la procédure ci-dessus et le principe de la troisième étape, il ne donne pas de solution accessible pour la localisation d'objets dans l'espace réel, ni ne détaille la calibration de la caméra physique et l'alignement avec la caméra virtuelle. Nous souhaitons ici détailler un peu plus ces étapes.
 
 \figureETS{ARRift.jpg}{
   Notre prototype de visiocasque de RA, basé sur le concept de l'AR-Rift de \cite{Steptoe2013} : il est composé du visiocasque de RV Oculus DK2, de la caméra stéréoscopique Ovrvision et du capteur de reconnaissance des mains Leap Motion.

@@ -4,23 +4,23 @@
 \section{Historique et concepts de la RA}
 C'est \cite{Sutherland1968} qui conçoit le premier visiocasque de RA \reffigureETSp{Sutherland1968.jpg} : ce prototype permet déjà de visualiser du contenu 3D affiché dans l'espace réel de l'utilisateur, donnant l'illusion que le contenu virtuel fait réellement partie de la pièce. Par la suite, la recherche académique en RA se développe lentement : les applications développées sont surtout à visées militaires et gouvernementales \citep{VanKrevelen2010}. Il faut alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Plusieurs conférences dédiées à la RA sont notamment créées, fusionnées aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence d'importance pour la recherche et l'industrie en RA \citep{Azuma2001}.
 
-\figureETS[0.5]{Sutherland1968.jpg}{
-  Visiocasque de RA de Sutherland.\\
+\figureETS[0.6]{Sutherland1968.jpg}{
+  Photos du visiocasque de RA de Sutherland.\\
   Tiré de \cite{Sutherland1968}
 }
 
 \cite{Milgram1994} donne un premier cadre théorique au domaine, en proposant une échelle ordonnée nommée \texten{Reality-Virtuality Continuum} \reffigureETSp{Milgram1994.png}. \citeauthor{Milgram1994} y oppose deux extrèmes : les environnements réels et les environnements virtuels. Les IHMs habituelles sur ordinateurs et téléphones, ou encore \texten{graphical user interface} (GUI), font partie de la première catégorie, tandis qu'un visiocasque de RV, qui immerge totalement son utilisateur dans un monde virtuel, de la seconde. Entre ces deux extrêmes, les environnements de Réalité Mixte (RM), comme la RA, vont mélanger éléments réels et virtuels. La force de cette représentation est qu'il n'existe pas de catégories séparées entre réel, RA et RV mais que la RA peut se trouver d'un extrème à un autre le long de cette échelle.
 
-Le second enseignement de l'échelle de \citeauthor{Milgram1994} est que RA et RV sont techniquement très proches : les dispositifs de localisation, d'affichage et de géneration de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champs de vision et un très bon réalisme dans le contenu 3D affiché. La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
+Le second enseignement de l'échelle de \citeauthor{Milgram1994} est que RA et RV sont techniquement très proches : les dispositifs de localisation, d'affichage et de géneration de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champs de vision ; par exemple, le champs de vision du visiocasque de RV HTC Vive est de \SI{100x113}{\degree} (horizontalement $\times$ verticalement) pour les deux yeux \citep{Kreylos2016}, ce qui est proche du champs de vision humain qui est de \SI{200x135}{\degree} pour les deux yeux\footnote{\url{https://biology.stackexchange.com/a/28140}}. La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
 
 \figureETS{Milgram1994.png}{
   L'échelle du \texten{Reality-Virtuality Continuum} de Milgram.\\
-  Tiré de \cite[p. 3]{Milgram1994}
+  Tiré de \citet[p. 3]{Milgram1994}
 }
 
-\cite{Rekimoto1995} vont apporter un second cadre théorique à la RA \reffigureETSp{Rekimoto1995.png}. Ils montrent que les GUI sont coupées des interactions avec l'environment réel, tandis que la RV isole l'utilisateur dans des IHMs totalement virtuelles. Deux approches à ces extrèmes sont la RA et l'informatique ubiquitaire (en anglais: \texten{ubiquitous computing}) : cette dernière permet à l'utilisateur d'interagir avec des ordinateur intégrés dans l'environnement réel, par exemple avec téléphones intelligents et des objets connectés, tandis que la RA fusionne réel et virtuel en un seul environnement pour l'utilisateur. Ainsi, avec une IHM bien faite, la RA s'intègre naturellement à l'environment réel et devient invisible à l'utilisation.
+\cite{Rekimoto1995} apportent un second cadre théorique à la RA \reffigureETSp{Rekimoto1995.png}. Ils montrent que les GUI sont coupées des interactions avec l'environment réel, tandis que la RV isole l'utilisateur dans des IHMs totalement virtuelles. Deux approches à ces extrèmes sont la RA et l'informatique ubiquitaire (en anglais: \texten{ubiquitous computing}) : cette dernière permet à l'utilisateur d'interagir avec des ordinateur intégrés dans l'environnement réel, par exemple avec téléphones intelligents et des objets connectés, tandis que la RA fusionne réel et virtuel en un seul environnement pour l'utilisateur. Ainsi, avec une IHM bien faite, la RA s'intègre naturellement à l'environment réel et devient invisible à l'utilisation.
 
-\figureETS[0.65]{Rekimoto1995.png}{
+\figureETS{Rekimoto1995.png}{
   Comparaison de quatre styles d'IHMs : (a) les GUI, coupées de l'environment réel, (b) les IHMs en VR, isolant l'utilisateur dans un environment virtuel, (c) l'informatique ubiquitaire, faite d'ordinateurs faisant partie intégrante de l'environment réel et (d) les IHMs en RA faisant interface entre l'utilisateur et l'environment réel.\\
   Tiré de \cite{Rekimoto1995}
 }
@@ -35,7 +35,7 @@ Ce sont les trois conditions techniques à respecter en RA et qui vont permettre
 
 Enfin, \cite{Buxton1998} repris par \cite{Bimber2005} catégorisent les différents dispositifs d'affichage en RA \reffigureETSp{Bimber2005.jpg}. On retient essentiellement (nous excluons volontairement les projecteurs) :
 \begin{itemize}
-  \item Le \texten{cave automatic virtual environment} (CAVE) : c'est un environnment immersif sous forme de cube de \SI{3}{\m^{3}}, chaque face comportant un écran \reffigureETSp{CAVE.jpg}. Les capteurs portés par l'utilisateur permettent au CAVE de suivre son mouvement, et ainsi recalculer son champs de vision en temps réel. C'est un dispositif coûteux et encombrant, mais très utile pour prototyper des concepts.
+  \item Le \texten{cave automatic virtual environment} (CAVE) : c'est un environnment immersif sous forme de cube de \SI{3}{\m^{3}}, chaque face comportant un écran \reffigureETSp{CAVE.jpg}. Les capteurs portés par l'utilisateur permettent au CAVE de suivre son mouvement et ainsi recalculer son champs de vision en temps réel. C'est un dispositif coûteux et encombrant, mais très utile pour prototyper des concepts.
   \item Les affichages fixes : la RA est affichée à travers un écran fixé dans l'environment \reffigureETSp{Lee2013.jpg}. Ils sont utiles pour des démonstrations pour plusieurs personnes à la fois.
   \item Les appareils mobiles : identique à un affichage fixe mais l'écran est tenu en main, comme une \emph{fenêtre sur le contenu} en RA \reffigureETSp{MobileAR.jpg}. Ils sont populaires mais limités en taille et en puissance \citep{Huang2013}.
   \item Les \texten{head-mounted display} (HMD) ou visiocasques en français : ils sont portés sur la tête et projetent les images virtuelles directement aux yeux de l'utilisateur. Ils ont l'avantage de laisser les mains libres. On distingue deux technologies :
@@ -50,12 +50,12 @@ Tout ces dispositifs ont été explorés dans la recherche, mais ce sont essenti
 
 \figureETS{Bimber2005.jpg}{
   Les différents dispositifs d'affichages en RA.\\
-  Tiré de \cite[p. 72]{Bimber2005}
+  Tiré de \citet[p. 72]{Bimber2005}
 }
 
-\figureETS[0.5]{CAVE.jpg}{
-  Un CAVE : un cube immersif d'écrans à taille humaine réagissant aux déplacement de l'utilisateur.\\
-  Tiré de \cite{DWC2001}
+\figureETS[0.7]{CAVE.jpg}{
+  Un CAVE : un cube immersif d'écrans à taille humaine réagissant aux déplacement de l'utilisateur. Ici, l'utilisateur tape la main de son propre hologramme.\\
+  Tiré de \cite{Kreylos2012}
 }
 
 \figureETS{Lee2013.jpg}{
@@ -121,15 +121,15 @@ Bowman2004 : summarizes various types of 3D interactions into three categories: 
 manipulation
 
 Argelaguet2013 : pb des interactions 3D, sélection tâche + métaphores main et gaze, subjectivité vs performance, design technique, taxonomie technique,  (voir cahier gris)\\
-Métaphore main virtuelle : cependant, cette technique amène un autre problème quand elle est utilisée en RA. En effet, en RA, le contenu virtuel est « imprimé par dessus » le contenu réel et peut donc masquer le contenu réel. Par exemple, je peux vouloir toucher un objet 3D en l'air avec ma main, mais cette dernière sera toujours masqué par l'objet même si ma main semble en avant de l'objet. Dès lors, il faut utiliser une technique d'occlusion, c'est-à-dire masquer l'objet 3D quand un objet réel, comme la main de l'utilisateur, se trouve devant \reffigureETSp{Piumsomboon2014_1.jpg}.
+Métaphore main virtuelle : cependant, cette technique amène un autre problème quand elle est utilisée en RA. En effet, en RA, le contenu virtuel est « imprimé par dessus » le contenu réel et peut donc masquer le contenu réel. Par exemple, je peux vouloir toucher un objet 3D en l'air avec ma main, mais cette dernière sera toujours masqué par l'objet même si ma main semble en avant de l'objet. Dès lors, il faut utiliser une technique d'occlusion, c'est-à-dire masquer l'objet 3D quand un objet réel, comme la main de l'utilisateur, se trouve devant \reffigureETSp{Piumsomboon2014_1}.
 
-\figureETS{Argelaguet2013.jpg}{
-  Différentes techniques de sélection : à gauche, une main virtuelle et à droite, un pointeur virtuel.\\
-  Tiré de \cite{Argelaguet2013}.
-}
-
-\figureETS[0.5]{Piumsomboon2014_1.jpg}{
-  Différentes techniques d'occlusion de la main. À gauche, la main cache le contenu 3D si elle est devant. À droite, le contenu 3D est transparent que la main soit derrière ou devant. Tiré de \cite{Piumsomboon2014}.
+\figureLayoutETS{Argelaguet2013}{%
+  \subfigureETS[0.2]{Argelaguet2013_1.jpg}{Main virtuelle}%
+  \figurehspace%
+  \subfigureETS[0.2]{Argelaguet2013_2.jpg}{Pointeur virtuel}%
+}{
+  Différentes techniques de sélection.\\
+  Adapté de \cite{Argelaguet2013}.
 }
 
 Bowman2001 : Principal problème est qu'il n'y a aucun retour tactile « touching a menu item floating in space is much more difficult than selecting a menu item on the desktop, not only because the task has become 3-D, but also because the impor- tant constraint of the physical desk on which the mouse rest is missing. »\\
@@ -139,13 +139,28 @@ Berard2009 : input en 2D est plus performant
 
 Piumsomboon2013 : fait une taxonomie des gestes mid-air pour l'AR, sur le modèle de Wobbrock2009 -> à évaluer sur des interfaces
 
-\cite{Piumsomboon2014} ont comparé différentes techniques de sélection et de manipulation d'objets 3D avec un visiocasque de RA : des interactions avec la main et des commandes vocales \reffigureETSp{Piumsomboon2014_2.jpg}. Une des première leçon de leur travail est sur l'occlusion des mains avec le contenu virtuel : dans une étude pilote, ils ont remarqué que les utilisateurs n'avaient pas de préférence entre l'occlusion de la main avec le contenu 3D ou ajouter de la transparence à ce contenu virtuel. L'occlusion de la main virtuelle étant un problème difficile à résoudre et lourd en calcul, la transparence sur le contenu virtuel en RA est une solution simple à mettre en oeuvre, comme a pu le faire \cite{Lee2013} avec SpaceTop.
+\cite{Piumsomboon2014} ont comparé différentes techniques de sélection et de manipulation d'objets 3D avec un visiocasque de RA : des interactions avec la main et des commandes vocales \reffigureETSp{Piumsomboon2014_2}. Une des première leçon de leur travail est sur l'occlusion des mains avec le contenu virtuel : dans une étude pilote, ils ont remarqué que les utilisateurs n'avaient pas de préférence entre l'occlusion de la main avec le contenu 3D ou ajouter de la transparence à ce contenu virtuel \reffigureETSp{Piumsomboon2014_1}. L'occlusion de la main virtuelle étant un problème difficile à résoudre et lourd en calcul, la transparence sur le contenu virtuel en RA est une solution simple à mettre en oeuvre, comme a pu le faire \cite{Lee2013} avec SpaceTop.
+
+\figureLayoutETS{Piumsomboon2014_1}{%
+  \subfigureETS[0.15]{Piumsomboon2014_1.jpg}{Main virtuelle faisant occlusion avec le contenu 3D.}%
+  \figurehspace%
+  \subfigureETS[0.15]{Piumsomboon2014_2.jpg}{Contenu 3D transparent laissant la main virtuelle visible.}%
+}{
+  Différentes techniques d'occlusion de la main.\\
+  Tiré de \cite{Piumsomboon2014}.
+}
 
 Dans une seconde expérience, \citeauthor{Piumsomboon2014} ont également trouvé que les participants préféraient utiliser et étaient plus performants avec les interactions manuelles plutôt que vocales sur les tâches de manipulation et de rotation d'objets. Les participants ont par contre préféré les commandes vocales pour modifier la taille des objets 3D, sans qu'il n'y ait de différence de performance avec les interactions manuelles. Les auteurs suggèrent donc de combiner les deux types d'interactions dans les IHMs de RA. Une limite du travail de \citeauthor{Piumsomboon2014} cependant est de n'avoir pas étudié de techniques de navigation. De plus, les interactions étaient conçues et étudiées pour manipuler des objets en 3D : une IHM de RA peut demander d'interagir avec des données plus abstraites, comme le sont nos interfaces graphiques sur ordinateur et téléphone actuellement. Les résultats de cette étude sont donc intéressant pour des métier manipulant de la 3D, mais il serait intéressant de savoir qu'elles IHM seraient adaptée pour un usage personnel au quotidien de la RA.
 
-\figureETS[0.6]{Piumsomboon2014_2.jpg}{
-  Illustration de Grasp-Shell : (A) configuration expérimentale, (B) utilisateur saisissant un objet virtuel (technique de la main virtuelle), (C) vue de l'utilisateur saisissant l'objet virtuel.\\
-  Tiré de \cite{Piumsomboon2014}.
+\figureLayoutETS{Piumsomboon2014_2}{%
+  \subfigureETS{Piumsomboon2014_3.jpg}{Configuration expérimentale.}%
+  \figurehspace%
+  \subfigureETS{Piumsomboon2014_4.jpg}{Utilisateur saisissant un objet virtuel (technique de main virtuelle).}%
+  \figurehspace%
+  \subfigureETS{Piumsomboon2014_5.jpg}{Vue de l'utilisateur saisissant l'objet virtuel.}%
+}{
+  Photos de Grasp-Shell.\\
+  Adapté de \cite{Piumsomboon2014}.
 }
 
 \subsection{Évaluation d'IHM en RA}
@@ -174,8 +189,6 @@ Une limite du Google Glass est que son IHM est affichée seulement sur un plan v
 Pour explorer les capacités des visiocasques, \citeauthor{Ens2014} réalisent un prototype de RA affichant de multiples fenêtres dans les airs \reffigureETSp{Ens2014.jpg}. Un utilisateur peut alors interagir directement avec les fenêtres par le toucher (c'est donc une \emph{interaction directe}). Ils explorent alors plusieurs facteurs de conception du prototype, au travers de quatre expériences : la taille d'affichage des fenêtres virtuelles, leur distance d'affichage, leur angle de placement par rapport à l'utilisateur, et enfin leur référentiel de placement des fenêtres virtuelle (fixées au corps ou fixées au monde). Les performances (temps et taux d'erreurs), la fatigue ainsi que les retours des utilisateurs étaient mesurés.\\ 
 Leurs résultats ont montrés, entre autres, qu'un affichage courbe est important pour que toutes les fenêtres soient affichées à la même distance de l'utilisateur~; ce qui confirme les résultats de \cite{ShuppBallYostEtAl2006} pour les affichages virtuels. En outre, leur conception a montré qu'elle permettait un travail 40\% plus rapide qu'avec une fenêtre simple sur une tache multi-applications : en effet, leur prototype permet d'afficher plusieurs fenêtres simultanément et ainsi réduit le changement de fenêtre, donc d'application pour du multi-tâches, à un simple mouvement de tête. Ce résultat montre également que l'interaction directe est compatible avec du contenu virtuel sous forme de fenêtres. Enfin, le référentiel sur le corps avait de plus grands taux d'erreurs que le référentiel sur le monde, car l'action de sélection entraînait des perturbations involontaires des fenêtres par rapport à l'utilisateur.\\ 
 Ce travail présente cependant quelques limites. Tout d'abord, leur IHM requiert des interactions directes, ce qui est à l'origine d'erreurs de sélection et de fatigue du bras des utilisateurs : il serait alors intéressant de savoir si un référentiel sur le corps permettrait d'être précis avec une interaction indirecte. En outre, le champ de vision était très limité : 30° à l'horizontal et 40° à la verticale, ce qui biaise les mesures de performances Enfin, le prototype a été réalisé dans un CAVE, c'est-à-dire des projections de l'image sur des écrans entourant l'utilisateur. Ainsi, il faudrait reproduire les expérimentations avec un visiocasque et différentes techniques d'interactions. On peut également se demander si l'utilisation de fenêtres est une représentation adaptée pour la RA, aucune contrainte d'écrans physiques n'étant présente, ou s'il existe une meilleure représentation de l'information virtuelle dans un espace de RA.
-
-Le champs de vision humain est de \ang{180} horizontalement pour les deux yeux et \ang{130} verticalement.
 
 \figureETS{Ens2014.jpg}{
   À gauche, photo du Personal Cockpit. À droite, illustration du positionnement idéal de fenêtres virtuelles.\\
@@ -219,22 +232,34 @@ Ens2014a - Ethereal Planes : cadre de conceptions pour des fenetres 2D dans un e
 
 
 \section{Visualisation et navigation de larges documents}
-Dépasser les limites physiques d'un écran est un thème courant dans la littérature. En effet, un petit écran comme ceux des téléphones intelligents, ou des PCs dans les années 2000 \citep{Baudisch2002}, ne permet pas de visualiser et de naviguer correctement de grands documents : il n'est pas possible de visualiser en même temps les détails et une vue d'ensemble du document \reffigureETSp{Guiard2004_1.png}.
+Dépasser les limites physiques d'un écran est un thème courant dans la littérature. En effet, un petit écran comme ceux des téléphones intelligents, ou des PCs dans les années 2000 \citep{Baudisch2002}, ne permet pas de visualiser et de naviguer correctement de grands documents : il n'est pas possible de visualiser en même temps les détails et une vue d'ensemble du document \reffigureETSp{Guiard2004_1}.
 
-\figureETS{Guiard2004_1.png}{
-  Représentations de la visualisation d'un large document sur un écran plus petit. À gauche : la vue de l'écran sur le document représentée par un rectangle noir. Au milieu : le document représenté à différents niveaux d'échelle, le long de l'axe S (\texten{scale}), la vue restant de taille constante. À droite : vues du document à différentes échelles.\\
-  Tiré de \cite{Guiard2004}.
+\figureLayoutETS{Guiard2004_1}{%
+  \subfigureETS[0.4]{Guiard2004_1.png}{La vue de l'écran sur le document représentée par un rectangle noir.}%
+  \figurehspace%
+  \subfigureETS[0.4]{Guiard2004_2.png}{Le document représenté à différents niveaux d'échelle, le long de l'axe S (\texten{scale}), la vue restant de taille constante.}%
+  \figurehspace%
+  \subfigureETS[0.4]{Guiard2004_3.png}{Vues du document à différentes échelles.}%
+}{
+  Visualisation d'un large document sur un écran plus petit.\\
+  Adapté de \cite{Guiard2004}.
 }
 
 Une approche est d'utiliser des IHMs multi-échelles (\texten{multiscale interfaces}) : elles permettent à l'utilisateur de visualiser des informations plus larges que l'écran utilisé. Le principe est d'afficher à l'écran une ou plusieurs vues du document à différentes échelles et positions. Trois techniques sont décrites par \cite{Guiard2004} :
 \begin{itemize}
-  \item \texten{Pan+Zoom} : une vue peut-être déplacée sur le document par défilement (\texten{pan}), tandis que le zoom permet de changer l'échelle du document (\reffigureETS{Guiard2004_2.png}, gauche).
-  \item \texten{Overview+Detail} : une vue zoomée (\texten{detail}) et une vue sur le document en entier (\texten{overview}) sont affichées simultanément (\reffigureETS{Guiard2004_2.png}, milieu). Elles sont placées côte-à-côte ou superposées et peuvent être déplacées indépendamment. Cependant, la navigation peut-être difficile si la différence d'échelle est trop grande entre les deux vues.
-  \item \texten{Focus+Context} : une seule vue permet d'afficher le document en entier et le document zoomé, grâce à une distortion optique (\reffigureETS{Guiard2004_2.png}, droite). Aucune partie du document n'est cachée, mais il peut être difficile d'interpréter le contenu de la vue à cause de la distortion.
+  \item \texten{Pan+Zoom} : une vue peut-être déplacée sur le document par défilement (\texten{pan}), tandis que le zoom permet de changer l'échelle du document \reffigureETSp{Guiard2004_4.png}.
+  \item \texten{Overview+Detail} : une vue zoomée (\texten{detail}) et une vue sur le document en entier (\texten{overview}) sont affichées simultanément \reffigureETSp{Guiard2004_5.png}. Elles sont placées côte-à-côte ou superposées et peuvent être déplacées indépendamment. Cependant, la navigation peut-être difficile si la différence d'échelle est trop grande entre les deux vues.
+  \item \texten{Focus+Context} : une seule vue permet d'afficher le document en entier et le document zoomé, grâce à une distortion optique \reffigureETSp{Guiard2004_6.png}. Aucune partie du document n'est cachée, mais il peut être difficile d'interpréter le contenu de la vue à cause de la distortion.
 \end{itemize}
 
-\figureETS{Guiard2004_2.png}{
-  Représentations de techniques de visualisation et de navigation d'un large document sur un écran plus petit. À gauche : la technique \texten{Pan+Zoom} permet de défiler et zoomer à travers une seule vue dans le document. Au milieu : la technique \texten{Overview+Detail} affiche simultanément une vue zoomée et une vue du document en entier. À droite : la technique \texten{Focus+Context} affiche vue du document en entier et un zoom par une distortion optique (sphérique à gauche et linéaire à droite).\\
+\figureLayoutETS{Guiard2004_1}{%
+  \subfigureETS[0.2]{Guiard2004_4.png}{\texten{Pan+Zoom} : permet de défiler et zoomer à travers une seule vue dans le document.}%
+  \figurehspace%
+  \subfigureETS[0.2]{Guiard2004_5.png}{\texten{Overview+Detail} : affiche simultanément une vue zoomée et une vue du document en entier.}%
+  \figurehspace%
+  \subfigureETS[0.2]{Guiard2004_6.png}{\texten{Focus+Context} : affiche vue du document en entier et un zoom par une distortion optique (sphérique à gauche et linéaire à droite).}%
+}{
+  Techniques de visualisation et de navigation d'un large document sur un écran plus petit.\\
   Adapté de \cite{Guiard2004}.
 }
 
