@@ -4,15 +4,16 @@
 \section{Motivations et procédure}
 Pour concevoir un VESAD, nous avons besoin d'un visiocasque avec champs de vision suffisament large pour visualiser complètement l'écran étendu, le cas contraire limite l'intérêt de notre concept. Le second sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.
 
-Un téléphone est tenu en moyenne à \SI{34}{\cm} \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de \SI{53x30}{\cm}\footnote{\url{https://en.wikipedia.org/wiki/Display_size}}, on peut calculer le champs de vision nécessaire pour le visualiser complètement \reffigureETSp{FOV.png}, avec l'\refequationETS{fov} : il doit être d'au moins \SI{76x48}{\degree}.
-\begin{equationETS}{fov}
+Un téléphone est tenu en moyenne à \SI{34}{\cm} \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de \SI{53x30}{\cm}\footnote{\url{https://en.wikipedia.org/wiki/Display_size}}, on peut calculer le champs de vision nécessaire pour le visualiser complètement \reffigureETSp{FOV.png}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
+\begin{equation}
+  \label{eq:fov}
   \left \{
   \begin{array}{r c c c c c l}
     FOV_x & = & 2 \arctan (\frac{Largeur}{2 \times Distance}) & = & 2 \arctan (\frac{53}{2 \times 34}) & = & \ang{76}\\
     FOV_y & = & 2 \arctan (\frac{Hauteur}{2 \times Distance}) & = & 2 \arctan (\frac{30}{2 \times 34}) & = & \ang{48}
   \end{array}
   \right .
-\end{equationETS}
+\end{equation}
 
 \figureETS{FOV.png}{
   Représentation simplifiée du champs de vision (en anglais : \texten{Field of View}), qui peut être mesuré en degrés horizontalement ($FOV_x$), verticalement ($FOV_y$) ou en diagonale. Comme le décrit l'\autoref{eq:fov}, pour qu'un plan soit visible dans un champs de vision donné, il doit être placé à une certaine distance de la caméra ou de l'\oe il.
@@ -22,8 +23,8 @@ Nous avons d'abord voulu utiliser le Microsoft HoloLens, un visiocasque optique 
 
 Nous avons donc réalisé notre propre prototype de visiocasque similaire à l'AR-Rift \citep{Steptoe2013}, un visiocasque de RA vidéo de conception simple qui a fait ses preuves, notamment utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}. La \reffigureETS{ARRift.jpg} montre le visiocasque que nous avons conçu. La procédure suivie, basée sur celle de \cite{Steptoe2013}, a donc été la suivante :
 \begin{enumerate}
-  \item Sélection d'une caméra stéréo, d'un visiocasque de RV et d'un moteur 3D.
-  \item Étalonnage et rectification de la caméra stéréo, et alignement avec la caméra virtuelle.
+  \item Sélection d'une caméra stéréoscopique, d'un visiocasque de RV et d'un moteur 3D.
+  \item Étalonnage et rectification de la caméra stéréoscopique, et alignement avec la caméra virtuelle.
   \item Réalisation de la librairie de réalité augmentée ArUco Unity pour localiser du téléphone.
   \item Intégration du Leap Motion pour le suivi de la main.
   \item Conception de techniques d'interactions sur l'écran tactile et avec une main virtuelle.
@@ -41,46 +42,40 @@ Cependant, si \cite{Steptoe2013} détaille correctement la première étape de l
 \label{sec:technical_choices}
 
 \subsection{Choix matériels}
-Nous avons choisis l'Ovrvision Pro comme caméra stéréo (\url{http://ovrvision.com/}). Son constructeur l'annonce comme solution clé en main pour réaliser un visiocasque de RA. Cette caméra est prévue pour fonctionner avec le visiocasque de VR Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Elle est de plus utilisable intégrée avec les moteurs de jeu standards dans l'industrie, Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \reffigureETS{ARRift.jpg}, et en le connectant par USB 3.0 au PC.
+Nous avons choisis l'Ovrvision Pro comme caméra stéréoscopique (\url{http://ovrvision.com/}). Son constructeur l'annonce comme solution clé en main pour réaliser un visiocasque de RA. Cette caméra est prévue pour fonctionner avec le visiocasque de VR Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Elle est de plus utilisable intégrée avec les moteurs de jeu standards dans l'industrie, Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \reffigureETS{ARRift.jpg}, et en le connectant par USB 3.0 au PC.
 
-L'utilisation d'une caméra stéréo est important. En effet, comme le souligne \cite{Bourke1999}, la vision stéréoscopique est l'un des principal indice utilisé par le cerveau pour percevoir la profondeur : les yeux étant séparés horizontalement par une distance appelée écart pupillaire, chaque \oe il perçoit une image légèrement différente permettant au cerveau de percevoir en 3D. La \reffigureETS{ovrvision_calibration} montre le phénomène à travers les images de l'Ovrvision Pro.
+L'utilisation d'une caméra stéréoscopique est important. En effet, comme le souligne \cite{Bourke1999}, la vision stéréoscopique est l'un des principal indice utilisé par le cerveau pour percevoir la profondeur : les yeux étant séparés horizontalement par une distance appelée écart pupillaire, chaque \oe il perçoit une image légèrement différente permettant au cerveau de percevoir en 3D. La \reffigureETS{ovrvision_calibration} montre le phénomène à travers les images de l'Ovrvision Pro.
 
-Pour la localisation des mains, nous avons choisis le Leap Motion. Conçus pour les visiocasques de RV et intégré avec les moteurs de jeu Unity et Unreal Egine, il se fixe également sur la face avant du visiocasque et se connecte simplement au PC par USB 3.0 \reffigureETSp[, sous la caméra stéréo]{ARRift.jpg}.
+Pour la localisation des mains, nous avons choisis le Leap Motion. Conçus pour les visiocasques de RV et intégré avec les moteurs de jeu Unity et Unreal Egine, il se fixe également sur la face avant du visiocasque et se connecte simplement au PC par USB 3.0 \reffigureETSp[, sous la caméra]{ARRift.jpg}.
 
 Enfin, un ordinateur de bureau tournant sous Windows 10, avec un processeur Intel Core i5 7400 (\SI[product-units = single]{4x3.0}{\GHz}), \SI{8}{\giga\byte} DDR4 de mémoire vive, une carte graphique NVIDIA GeForce GTX 1060 de \SI{6}{\giga\byte} a été utilisé pour faire tourner le visiocasque de RA. Pour le téléphone, nous avons utilisé un Xiaomi Redmi Note 4 : tournant sous Android 7, il est récent et léger, à faible prix et possède une bonne puissance de calcul ainsi qu'écran \SI{1920x1080}{\px} de \SI{5.5}{\inch}.
 
-Malgré tout, si un visiocasque de RA vidéo est relativement simple à concevoir, le principal inconvénient est la faible densité visuelle de l'image, que l'on calcule ainsi : $Densite = Definition_x / FoV_x$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, elle est limitée à environ 10 pixels par degré \reftableETSp{visual_densities} ; en comparaison, le Microsoft HoloLens a une densité visuelle d'environ 42 pixels par degré et la fovéa d'un \oe il humain de 60 à 80 pixels par degré en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Pour atteindre la densité visuelle de la fovéa, une définition de 8K (\SI{7680x4320}{\px}) par \oe il serait alors nécessaire sur ces visiocasques et notre caméra stéréo.
+Malgré tout, si un visiocasque de RA vidéo est relativement simple à concevoir, le principal inconvénient est la faible densité visuelle de l'image calculé ainsi : $Densite = Largeur / FoV_x$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, elle est limitée à environ 10 pixels par degré \autorefp{tab:visual_densities} ; en comparaison, le Microsoft HoloLens a une densité visuelle d'environ 42 pixels par degré et la fovéa d'un \oe il humain de 60 à 80 pixels par degré en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Pour atteindre la densité visuelle de la fovéa, une définition de 8K (\SI{7680x4320}{\px}) par \oe il serait alors nécessaire sur ces visiocasques et notre caméra.
 
-\begin{tableETS}{visual_densities}{Caractéristiques d'affichage de l'Ovrvision Pro et de visiocasques (pour chaque \oe il)}
-  \begin{tabular}{| c | c | c | c |}
+\begin{tableETS}{tab:visual_densities}{Caractéristiques d'affichage de l'Ovrvision Pro et de visiocasques}
+  \begin{tabular}{| C{3.5cm} | C{3.25cm} | C{3.25cm} | C{3cm} |}
     \hline
-    \textbf{Nom} & \textbf{Définition} & \textbf{Champs de vision} & \textbf{Densité visuelle}\\
+    \textbf{Nom} & \textbf{Définition\newline(pour chaque \oe il)} & \textbf{Champs de vision\newline(pour chaque \oe il)} & \textbf{Densité visuelle}\\
     \hline
-    Ovrvision Pro & \SI{960x950}{\px} & \SI{100x98}{\degree} & \num{9.6} pixels par degré\\
+    Ovrvision Pro & \SI{960x950}{\px} & \SI{100x98}{\degree} & \num{9.6} pixels/degré\\
     \hline
-    Oculus DK2 & \SI{960x1080}{\px} & \SI{94x105}{\degree} & \num{10.2} pixels par degré\\
+    Oculus DK2 & \SI{960x1080}{\px} & \SI{94x105}{\degree} & \num{10.2} pixels/degré\\
     \hline
-    Oculus Rift & \SI{1080x1200}{\px} & \SI{94x93}{\degree} & \num{11.5} pixels par degré\\
+    Oculus Rift & \SI{1080x1200}{\px} & \SI{94x93}{\degree} & \num{11.5} pixels/degré\\
     \hline
-    HTC Vive & \SI{1080x1200}{\px} & \SI{110x113}{\degree} & \num{9.8} pixels par degré\\
+    HTC Vive & \SI{1080x1200}{\px} & \SI{110x113}{\degree} & \num{9.8} pixels/degré\\
     \hline
-    Microsoft HoloLens & \SI{1268x720}{\px} & \SI{30x17.5}{\degree} & \num{42.3} pixels par degré\\
+    Microsoft HoloLens & \SI{1268x720}{\px} & \SI{30x17.5}{\degree} & \num{42.3} pixels/degré\\
     \hline
   \end{tabular}
 \end{tableETS}
 
 \subsection{Choix logiciels}
-- Unity : Unity3d utilisé pour gestion du oculus et 3d top. Plus simple à prendre en main que Unreal, mais plus rigide (framework boîte noire, difficile de sortir sentiers battus)
-- OpenCV
-  - ArUco
-    - Citer Mobile Marker-based Augmented Reality as an Intuitive Instruction Manual HANNAH REUTERDAHL
-    - Pour la liste des markers et frameworks : dire ce qui est compatible Unity ou c++ mais aucun ne permet de travailler avec caméra - fisheye : d'où aruco unity
-  - Étalonnage
-- Unity networking
-- Leap Motion
+Nous souhaitions prototyper le plus rapidement possible sur notre visiocasque. Nous avons choisis tout d'abord le moteur de jeu Unity : gratuit (mais au code source propriétaire), il est le standard dans l'industrie du jeu-vidéo pour prototyper et supporte notre caméra et le Leap Motion. Il est de fait très avantageux d'investir un peu de temps dans l'apprentissage d'un moteur de jeu, car il prends complètement en charge le rendu 3D, la simulation de la physique, les entrées sur clavier, souris ou écran tactile, l'affichage dans les visiocasques de RV, un support réseau et propose de nombreuses fonctions mathématiques. Unity est simple plus simple à prendre en main que son concurrent l'Unreal Engine, par son GUI intuitif et l'utilisation du C\#, un langage très haut niveau, pour programmer son jeu. Enfin, nous avions une expertise dans le laboratoire avec un projet de quatre mois sur le Microsoft HoloLens et la maîtrise de \cite{Millette2016}.
 
-Quand choix plateforme, citer Billinghurst 2015 pour dire qu'il y a eu pas mal d'efforts avec ARToolKit, Studierstud, osgArt ou GoblinXNA : mais vieillots. On a besoin du support de la VR, et soit Unity soit Unreal. Choix de Unity car facile et déjà utilisé dans labo et très bon pour la VR.
-On pouvait utiliser le nouveau ARToolKit, ou Vuforia. Mais besoin d'avoir le support de caméra stéréo. Or ces libs sont faites pour des webcams de pc ou de téléphone.
+Après plusieurs essais de configuration et une lecture du code source de l'Ovrvision Pro (\url{https://github.com/Wizapply/OvrvisionPro/}), nous avons constaté que le logiciel fourni était non fonctionnel : (1) un décalage était présent entre le contenu virtuel et l'environment réel et (2) les images affichées pour chaque \oe il dans le casque étaient décalées, rendant le visiocasque particulièrement inconfortable à utiliser. Nous avions donc besoin d'une bibliothèque de RA et de ré-étalonner la caméra stéréoscopique.
+
+De nombreuses bibliothèque de RA sont disponibles sur Unity, telles que Vuforia (\url{https://unity3d.com/fr/partners/vuforia}), ARToolKit (\url{https://github.com/artoolkit/arunity5}) ou OpenCV for Unity (\url{https://enoxsoftware.com/opencvforunity/}). Malgré tout, aucune ne nous a convenu : les deux premières sont conçues pour être utilisées avec des webcams mono donc ne supportait pas notre caméra, tandis que la troisième risquait de nous donner peu de flexibilité avec son code source propriétaire. Nous avons donc réalisé la bibliothèque ArUco Unity (\url{https://github.com/NormandErwan/aruco-unity}), sous licence libre BSD-3-Clause : basée sur OpenCV, elle supporte l'étalonnage et la RA sur les webcams, monoscopiques ou stéréoscopiques, et l'Ovrvision Pro. Son développement est présenté à la \autoref{sec:aruco_unity}.
 
 
 \section{Étalonnage, rectification et alignement des caméras}
@@ -88,7 +83,7 @@ On pouvait utiliser le nouveau ARToolKit, ou Vuforia. Mais besoin d'avoir le sup
 Un visiocasque de RA vidéo fonctionne sur le principe suivant :
 \begin{enumerate}
   \item Une caméra physique filme l'environnement réel de l'utilisateur.
-  \item Un logiciel de rendu 3D va ajouter du contenu virtuel par dessus l'image de cette caméra, par exemple en utilisant des marqueurs \reffigureETSp{ArucoUnity_1}.
+  \item Un logiciel de rendu 3D va ajouter du contenu virtuel par dessus l'image de cette caméra.
   \item L'image est affichée dans le visiocasque.
 \end{enumerate}
 
@@ -110,8 +105,10 @@ Cependant, l'image produite par une caméra \texten{fisheye} présente des disto
   \figurehspace%
   \subfigureETS{ovrvision_calibration_2.jpg}{Vue de la caméra droite.}%
 }{
-  Vues d'une planche de calibration à travers l'Ovrvision. L'importante distortion des images se remarque aux lignes du plafond qui sont parallèles dans l'environment réel. La rectification des images va les reprojeter dans une projection en perspective, proche de la vision humaine.
+  Vues d'une planche de calibration à travers l'Ovrvision Pro. L'importante distortion des images se remarque aux lignes parallèles de la planche qui sont courbées. L'étalonnage de la caméra mesure entre autres cette distorsion.
 }
+
+% La rectification des images va les reprojeter dans une projection en perspective, proche de la vision humaine.
 
 Pinhole camera model (physical camera)\\
 \url{https://www.scratchapixel.com/lessons/3d-basic-rendering/3d-viewing-pinhole-camera/how-pinhole-camera-works-part-1}\\
@@ -154,6 +151,8 @@ ccalib article : \url{https://hal.archives-ouvertes.fr/file/index/docid/767674/f
 
 
 \section{Réalisation de la bibliothèque de réalité augmentée Aruco Unity}
+\label{sec:aruco_unity}
+
 Camera Models and Fundamental Concepts Used in Geometric Computer Vision
 Camera model : équation pour expliquer comment la caméra projette le monde 3d en une image
 Pinhole p.41
