@@ -42,7 +42,7 @@
 \setcounter{lofdepth}{2} % Display subfigures in list of figures
 
 \newcommand{\reffigureETS}[1]{\autoref{fig:#1}}
-\newcommand{\reffigureETSp}[1]{(\textit{Voir} \reffigureETS{#1})}
+\newcommand{\reffigureETSp}[2][]{(\textit{Voir} \reffigureETS{#2}#1)}
 
 % Table with ÉTS style
 \newenvironment{tableETS}[2]{%
@@ -57,13 +57,22 @@
 }
 
 \newcommand{\reftableETS}[1]{\autoref{tab:#1}}
-\newcommand{\reftableETSp}[1]{(\textit{Voir} \reftableETS{#1})}
+\newcommand{\reftableETSp}[2][]{(\textit{Voir} \reftableETS{#2}#1)}
+
+\newenvironment{equationETS}[1]{%
+  \begin{equation}%
+    \label{eq:#1}%
+}{%
+  \end{equation}%
+}
+
+\newcommand{\refequationETS}[1]{\autoref{eq:#1}}
+\newcommand{\refequationETSp}[2][]{(\textit{Voir} \refequationETS{#2}#1)}
 
 % Units
 \DeclareSIUnit\fps{FPS}
 \DeclareSIUnit\inch{pouces}
 \DeclareSIUnit\px{px}
-\DeclareSIUnit[per-mode=symbol]{\ppd}{\px\per\degree}
 
 % Thesis configuration
 \title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handheld VESAD (Virtually Extended Screen-Aligned Display)}

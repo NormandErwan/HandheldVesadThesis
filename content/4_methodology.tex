@@ -4,51 +4,70 @@
 \section{Motivations et procédure}
 Pour concevoir un VESAD, nous avons besoin d'un visiocasque avec champs de vision suffisament large pour visualiser complètement l'écran étendu, le cas contraire limite l'intérêt de notre concept. Le second sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.
 
-Un téléphone est tenu en moyenne à \SI{34}{\cm} \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de \SI{53x30}{\cm}\footnote{\url{https://en.wikipedia.org/wiki/Display_size}.}, on peut calculer le champs de vision nécessaire pour le visualiser complètement \reffigureETSp{FOV.png}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
-\begin{equation}
-  \label{eq:fov}
+Un téléphone est tenu en moyenne à \SI{34}{\cm} \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de \SI{53x30}{\cm}\footnote{\url{https://en.wikipedia.org/wiki/Display_size}}, on peut calculer le champs de vision nécessaire pour le visualiser complètement \reffigureETSp{FOV.png}, avec l'\refequationETS{fov} : il doit être d'au moins \SI{76x48}{\degree}.
+\begin{equationETS}{fov}
   \left \{
   \begin{array}{r c c c c c l}
     FOV_x & = & 2 \arctan (\frac{Largeur}{2 \times Distance}) & = & 2 \arctan (\frac{53}{2 \times 34}) & = & \ang{76}\\
     FOV_y & = & 2 \arctan (\frac{Hauteur}{2 \times Distance}) & = & 2 \arctan (\frac{30}{2 \times 34}) & = & \ang{48}
   \end{array}
   \right .
-\end{equation}
+\end{equationETS}
 
 \figureETS{FOV.png}{
-  Illustration du champs de vision (en anglais : \texten{Field of View}), qui peut être mesuré en degrés horizontalement ($FOV_x$), verticalement ($FOV_y$) ou en diagonale.
+  Représentation simplifiée du champs de vision (en anglais : \texten{Field of View}), qui peut être mesuré en degrés horizontalement ($FOV_x$), verticalement ($FOV_y$) ou en diagonale. Comme le décrit l'\autoref{eq:fov}, pour qu'un plan soit visible dans un champs de vision donné, il doit être placé à une certaine distance de la caméra ou de l'\oe il.
 }
 
-Nous avons d'abord voulu utiliser le HoloLens, un visiocasque optique de RA avec une très courte latence, une excellente résolution et une très bonne documentation et un support natif par le moteur de jeu Unity. Cependant, son champs de vision de \SI{30x17.5}{\degree} pour chaque oeil \citep{Kreylos2015} est trop restreint, ne permettant de visualiser seulement l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{7}{\inch}. Il n'existe en fait actuellement aucun visiocasque de RA sur le marché  avec un grand champs de vision \citep{Millette2016}.
+Nous avons d'abord voulu utiliser le Microsoft HoloLens, un visiocasque optique de RA avec une très courte latence, une excellente résolution et une très bonne documentation et un support natif par le moteur de jeu Unity. Cependant, son champs de vision de \SI{30x17.5}{\degree} pour chaque oeil \citep{Kreylos2015} est trop restreint, ne permettant de visualiser seulement l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{7}{\inch}. Il n'existe en fait actuellement aucun visiocasque de RA sur le marché  avec un grand champs de vision \citep{Millette2016}.
 
-Un visiocasque de RA vidéo étant plus simple à concevoir qu'un visiocasque de RA optique, nous avons donc décidé de reproduire l'AR-Rift \citep{Steptoe2013}. C'est un prototype de conception simple qui a fait ses preuves, notamment utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}. La figure \reffigureETS{ARRift.jpg} montre le visiocasque que nous avons conçu. La procédure suivie, basée sur celle de \cite{Steptoe2013}, a donc été la suivante :
+Nous avons donc réalisé notre propre prototype de visiocasque similaire à l'AR-Rift \citep{Steptoe2013}, un visiocasque de RA vidéo de conception simple qui a fait ses preuves, notamment utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}. La \reffigureETS{ARRift.jpg} montre le visiocasque que nous avons conçu. La procédure suivie, basée sur celle de \cite{Steptoe2013}, a donc été la suivante :
 \begin{enumerate}
   \item Sélection d'une caméra stéréo, d'un visiocasque de RV et d'un moteur 3D.
-  \item Réalisation de la librairie de réalité augmentée ArUco Unity pour la localisation du téléphone.
-  \item Calibration et rectification de la caméra stéréo, et alignement avec la caméra virtuelle.
+  \item Étalonnage et rectification de la caméra stéréo, et alignement avec la caméra virtuelle.
+  \item Réalisation de la librairie de réalité augmentée ArUco Unity pour localiser du téléphone.
   \item Intégration du Leap Motion pour le suivi de la main.
   \item Conception de techniques d'interactions sur l'écran tactile et avec une main virtuelle.
   \item Synchronisation entre le visiocasque et le téléphone.
 \end{enumerate}
 
-Cependant, si \cite{Steptoe2013} détaille correctement la première étape de la procédure ci-dessus et le principe de la troisième étape, il ne donne pas de solution accessible pour la localisation d'objets dans l'espace réel, ni ne détaille la calibration de la caméra physique et l'alignement avec la caméra virtuelle. Nous souhaitons ici détailler un peu plus ces étapes.
+Cependant, si \cite{Steptoe2013} détaille correctement la première étape de la procédure ci-dessus et le principe de la troisième étape, il ne donne pas de solution accessible pour la localisation d'objets dans l'espace réel, ni ne détaille l'étalonnage de la caméra physique et l'alignement avec la caméra virtuelle. Nous souhaitons ici détailler un peu plus ces étapes.
 
-\figureETS{ARRift.jpg}{
+\figureETS[0.6]{ARRift.jpg}{
   Notre prototype de visiocasque de RA, basé sur le concept de l'AR-Rift de \cite{Steptoe2013} : il est composé du visiocasque de RV Oculus DK2, de la caméra stéréoscopique Ovrvision et du capteur de reconnaissance des mains Leap Motion.
 }
 
 
 \section{Choix techniques}
-\subsection{Choix matériels}
-- Principe : AR video see-through avec un casque VR diffusant des caméras stereo fisheye
-  - Avantages/inconvénients par rapport à l'optical see through : « While optical see-through AR is an attractive ideal, in practice it is very difficult to achieve accurate registration with optical see-through AR systems. (Registration is the alignment of the virtual objects shown in the display and their real-world referent). Most of these limitations come from the properties of the display itself, not the calibration procedures. » : \url{https://www.artoolkit.org/documentation/doku.php?id=8_Advanced_Topics:config_optical_see-through}
-- Choix techniques
-  - Casque de VR (permet tracking)
-  - Caméras : même fov (donc fisheye), même résolution + stéréo. Choix ovrvision
-  - Leap Motion
-  - Téléphone Android
+\label{sec:technical_choices}
 
-On pourrait choisir d'utiliser simplement une seule caméra et afficher son image pour chaque oeil. Cependant, comme le rappelle \citep{Bourke1999}, la plupart des personnes utilise la disparité binoculaire pour voir en profondeur. En effet, chaque oeil perçoit une image légèrement différente de l'autre, car ils sont séparés horizontalement par une distance appelé écart pupillaire. On a donc tout intérêt à utiliser une caméra stéréo.
+\subsection{Choix matériels}
+Nous avons choisis l'Ovrvision Pro comme caméra stéréo (\url{http://ovrvision.com/}). Son constructeur l'annonce comme solution clé en main pour réaliser un visiocasque de RA. Cette caméra est prévue pour fonctionner avec le visiocasque de VR Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Elle est de plus utilisable intégrée avec les moteurs de jeu standards dans l'industrie, Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \reffigureETS{ARRift.jpg}, et en le connectant par USB 3.0 au PC.
+
+L'utilisation d'une caméra stéréo est important. En effet, comme le souligne \cite{Bourke1999}, la vision stéréoscopique est l'un des principal indice utilisé par le cerveau pour percevoir la profondeur : les yeux étant séparés horizontalement par une distance appelée écart pupillaire, chaque \oe il perçoit une image légèrement différente permettant au cerveau de percevoir en 3D. La \reffigureETS{ovrvision_calibration} montre le phénomène à travers les images de l'Ovrvision Pro.
+
+Pour la localisation des mains, nous avons choisis le Leap Motion. Conçus pour les visiocasques de RV et intégré avec les moteurs de jeu Unity et Unreal Egine, il se fixe également sur la face avant du visiocasque et se connecte simplement au PC par USB 3.0 \reffigureETSp[, sous la caméra stéréo]{ARRift.jpg}.
+
+Enfin, un ordinateur de bureau tournant sous Windows 10, avec un processeur Intel Core i5 7400 (\SI[product-units = single]{4x3.0}{\GHz}), \SI{8}{\giga\byte} DDR4 de mémoire vive, une carte graphique NVIDIA GeForce GTX 1060 de \SI{6}{\giga\byte} a été utilisé pour faire tourner le visiocasque de RA. Pour le téléphone, nous avons utilisé un Xiaomi Redmi Note 4 : tournant sous Android 7, il est récent et léger, à faible prix et possède une bonne puissance de calcul ainsi qu'écran \SI{1920x1080}{\px} de \SI{5.5}{\inch}.
+
+Malgré tout, si un visiocasque de RA vidéo est relativement simple à concevoir, le principal inconvénient est la faible densité visuelle de l'image, que l'on calcule ainsi : $Densite = Definition_x / FoV_x$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, elle est limitée à environ 10 pixels par degré \reftableETSp{visual_densities} ; en comparaison, le Microsoft HoloLens a une densité visuelle d'environ 42 pixels par degré et la fovéa d'un \oe il humain de 60 à 80 pixels par degré en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Pour atteindre la densité visuelle de la fovéa, une définition de 8K (\SI{7680x4320}{\px}) par \oe il serait alors nécessaire sur ces visiocasques et notre caméra stéréo.
+
+\begin{tableETS}{visual_densities}{Caractéristiques d'affichage de l'Ovrvision Pro et de visiocasques (pour chaque \oe il)}
+  \begin{tabular}{| c | c | c | c |}
+    \hline
+    \textbf{Nom} & \textbf{Définition} & \textbf{Champs de vision} & \textbf{Densité visuelle}\\
+    \hline
+    Ovrvision Pro & \SI{960x950}{\px} & \SI{100x98}{\degree} & \num{9.6} pixels par degré\\
+    \hline
+    Oculus DK2 & \SI{960x1080}{\px} & \SI{94x105}{\degree} & \num{10.2} pixels par degré\\
+    \hline
+    Oculus Rift & \SI{1080x1200}{\px} & \SI{94x93}{\degree} & \num{11.5} pixels par degré\\
+    \hline
+    HTC Vive & \SI{1080x1200}{\px} & \SI{110x113}{\degree} & \num{9.8} pixels par degré\\
+    \hline
+    Microsoft HoloLens & \SI{1268x720}{\px} & \SI{30x17.5}{\degree} & \num{42.3} pixels par degré\\
+    \hline
+  \end{tabular}
+\end{tableETS}
 
 \subsection{Choix logiciels}
 - Unity : Unity3d utilisé pour gestion du oculus et 3d top. Plus simple à prendre en main que Unreal, mais plus rigide (framework boîte noire, difficile de sortir sentiers battus)
@@ -56,7 +75,7 @@ On pourrait choisir d'utiliser simplement une seule caméra et afficher son imag
   - ArUco
     - Citer Mobile Marker-based Augmented Reality as an Intuitive Instruction Manual HANNAH REUTERDAHL
     - Pour la liste des markers et frameworks : dire ce qui est compatible Unity ou c++ mais aucun ne permet de travailler avec caméra - fisheye : d'où aruco unity
-  - Calibration
+  - Étalonnage
 - Unity networking
 - Leap Motion
 
@@ -64,33 +83,35 @@ Quand choix plateforme, citer Billinghurst 2015 pour dire qu'il y a eu pas mal d
 On pouvait utiliser le nouveau ARToolKit, ou Vuforia. Mais besoin d'avoir le support de caméra stéréo. Or ces libs sont faites pour des webcams de pc ou de téléphone.
 
 
-\section{Calibration, rectification et alignement des caméras}
-Un visiocasque de RA par vidéo fonctionne sur le principe suivant :
+\section{Étalonnage, rectification et alignement des caméras}
+\subsection{Fonctionnement d'un visiocasque de RA}
+Un visiocasque de RA vidéo fonctionne sur le principe suivant :
 \begin{enumerate}
-  \item une caméra filme l'environnement réel de l'utilisateur ;
-  \item un logiciel de rendu 3D va ajouter du contenu virtuel par dessus l'image de cette caméra ;
-  \item l'image
+  \item Une caméra physique filme l'environnement réel de l'utilisateur.
+  \item Un logiciel de rendu 3D va ajouter du contenu virtuel par dessus l'image de cette caméra, par exemple en utilisant des marqueurs \reffigureETSp{ArucoUnity_1}.
+  \item L'image est affichée dans le visiocasque.
 \end{enumerate}
 
-Ainsi, pour que l
+%TODO : ArucoUnity_1 : une photo d'un marker, puis deux photos d'un cube virtuel suivant le marker.
 
-Comme le rappelle \cite[p. ]{Billinghurst2015}
+Dans notre cas, les première et troisièmes étape sont respectivement assurées par l'Ovrvision Pro et par Unity. Cependant, après plusieurs essais de configuration et une lecture du code source de l'Ovrvision Pro (\url{https://github.com/Wizapply/OvrvisionPro/}), nous avons constaté que le logiciel échouait dans la seconde étape ci-dessus : d'une part, un décalage était présent entre le contenu virtuel et l'environment réel et d'autre part, les images affichées pour chaque \oe il dans le casque étaient décalées, rendant le visiocasque particulièrement inconfortable à utiliser.
 
+Nous avons donc ré-écrit une bibliothèque libre pour Unity permettant 
+Nous n'avons trouvé aucune solution utilisable avec Unity répondant à .
 
-- Voir AdrianKaehler2017 - Learning OpenCV 3
-  - Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + calibration
-  - Chapitre 19 pour la calibration stereo + LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
-  - OpenCV3.3.0-CcalibModule (car module fisheye buggé et citer le papier qui dit que le modèle de caméra omnidir s'appliquer aussi aux caméras fisheye) pour la calibration fisheye
-- Voir BuJo p.150 + AR-Rift PArt 5 pour les équations de configuration de la caméra virtuelle et du placement du background pour qu'il soit aligné avec le contenu 3D filmé par la caméra virtuelle
-- Conseils/notes calibrations :
-  - Utiliser une board la plus plate possible (attention à l'humidité de l'air qui est absorbée par le papier)
-  - Utiliser une bonne lumière pour que la board soit bien détectée et sans reflets
-  - Désactiver l'autofocus de la caméra : une calibration se fait pour une focale fixe (les distorsions restent les même mais pas la camera matrix)
-  - La caméra ou la board doit rester fixe pendant la calibration
-  - Prendre des dizaines de captures remplissant uniformément l'espace de capture de la caméra en variant les angles de capture
-  - L'objectif est d'avoir une erreur de reprojection inférieure à 1 pixel
-  - OpenCV est système main droite dans son système de coordonnées (\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT9/img4.gif}) alors qu'Unity est système main gauche : il suffit d'inverser l'axe des Y (\url{https://answers.unity.com/storage/temp/8053-spaces.jpg}) : faire un petit graphe comme la 2e image
-  - OpenCV encode sa rotation dans un vecteur dont les coordonnées normalisées donnent l'axe et sa norme l'angle autour de cet axe, alors qu'Unity utilise des quaternions. Adapté ce calcul (\url{http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/}) pour passer du premier au second : \url{https://github.com/enormand/aruco-unity/blob/master/src/aruco_unity_package/Assets/ArucoUnity/Scripts/Plugin/Cv/Vec3d.cs}. Voir BuJo 2017-11-07.
+Principe sténopé
+
+Rapport entre espace écran et espace caméra
+
+Cependant, l'image produite par une caméra \texten{fisheye} présente des distorsions trop importantes pour pouvoir appliquer le modèle du sténopé \reffigureETSp{ovrvision_calibration}. Nous avons décidé d'utiliser le modèle de projection 
+
+\figureLayoutETS{ovrvision_calibration}{%
+  \subfigureETS{ovrvision_calibration_1.jpg}{Vue de la caméra gauche.}%
+  \figurehspace%
+  \subfigureETS{ovrvision_calibration_2.jpg}{Vue de la caméra droite.}%
+}{
+  Vues d'une planche de calibration à travers l'Ovrvision. L'importante distortion des images se remarque aux lignes du plafond qui sont parallèles dans l'environment réel. La rectification des images va les reprojeter dans une projection en perspective, proche de la vision humaine.
+}
 
 Pinhole camera model (physical camera)\\
 \url{https://www.scratchapixel.com/lessons/3d-basic-rendering/3d-viewing-pinhole-camera/how-pinhole-camera-works-part-1}\\
@@ -99,25 +120,40 @@ Pinhole camera model (physical camera)\\
 Perspective projection (virtual camera)\\
 Perspective projection matrix (virtual camera frustum) = projection transform (camera matrix) + Normalized Device Coordinates (NDC) matrix (orthogonal projection) : \url{http://ksimek.github.io/2013/06/03/calibrated_cameras_in_opengl/}\\
 Perspective projection matrix = simpler pinhole camera model : \url{http://ksimek.github.io/2013/08/13/intrinsic/}\\
-« They all require a precise understanding of how the pixels in a 2D image relate to the 3D world they represent. In other words, they all hinge on a strong camera model. »\\
+« They all require a precise understanding of how the pixels in a 2D image relate to the 3D world they represent. In other words, they all hinge on a strong camera model. »
 
-Undistortion and rectification of pinhole camera model\\
-Voir BuJo
-
-Perspective projection rectification from fisheye image in the unified projection model used in omnidirectional camera calibration (ccalib OpenCV's module)\\
+Perspective projection rectification from fisheye image in the unified projection model used in omnidirectional camera étalonnage (ccalib OpenCV's module)\\
 Omnidir camera model : \url{http://rpg.ifi.uzh.ch/docs/omnidirectional_camera.pdf}\\
 determine Knew \url{https://medium.com/@kennethjiang/calibrate-fisheye-lens-using-opencv-part-2-13990f1b157f}\\
 explications : \url{http://www.bobatkins.com/photography/technical/field_of_view.html}\\
 fisheye projections : \url{https://wiki.panotools.org/Fisheye_Projection}\\
 various lens projections : \url{http://michel.thoby.free.fr/Fisheye_history_short/Projections/Various_lens_projection.html}\\
-ccalib article : \url{https://hal.archives-ouvertes.fr/file/index/docid/767674/filename/omni_calib.pdf}\\
-
-Stereo calibration
+ccalib article : \url{https://hal.archives-ouvertes.fr/file/index/docid/767674/filename/omni_calib.pdf}
 
 
-pb de la faible résolution de : $960 / 94 \approx$\SI{10.2}{\ppd} sur le dk2 et $960 / 100 \approx$\SI{9.6}{\ppd} sur l'ovrvision\footnote{Par comparaison, le HoloLens a une résolution de $\approx$\SI{44}{\ppd} et la fovera d'\oe il humain \SI{60}{\ppd}.}
+\subsection{Étalonnage de la caméra stéréo}
 
-\section{Réalisation de la bibliothèque de réalité augmentée ArucoUnity}
+- AdrianKaehler2017 - Learning OpenCV 3 Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + étalonnage
+-AdrianKaehler2017 -  Chapitre 19 pour l'étalonnage stereo + LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
+- OpenCV3.3.0-CcalibModule (car module fisheye buggé et citer le papier qui dit que le modèle de caméra omnidir s'appliquer aussi aux caméras fisheye) pour l'étalonnage fisheye
+
+- Conseils/notes étalonnages :
+  - Utiliser une board la plus plate possible (attention à l'humidité de l'air qui est absorbée par le papier)
+  - Utiliser une bonne lumière pour que la board soit bien détectée et sans reflets
+  - Désactiver l'autofocus de la caméra : une étalonnage se fait pour une focale fixe (les distorsions restent les même mais pas la camera matrix)
+  - La caméra ou la board doit rester fixe pendant l'étalonnage
+  - Prendre des dizaines de captures remplissant uniformément l'espace de capture de la caméra en variant les angles de capture
+  - L'objectif est d'avoir une erreur de reprojection inférieure à 1 pixel
+  - OpenCV est système main droite dans son système de coordonnées (\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT9/img4.gif}) alors qu'Unity est système main gauche : il suffit d'inverser l'axe des Y (\url{https://answers.unity.com/storage/temp/8053-spaces.jpg}) : faire un petit graphe comme la 2e image
+  - OpenCV encode sa rotation dans un vecteur dont les coordonnées normalisées donnent l'axe et sa norme l'angle autour de cet axe, alors qu'Unity utilise des quaternions. Adapté ce calcul (\url{http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/}) pour passer du premier au second : \url{https://github.com/enormand/aruco-unity/blob/master/src/aruco_unity_package/Assets/ArucoUnity/Scripts/Plugin/Cv/Vec3d.cs}. Voir BuJo 2017-11-07.
+
+\subsection{Rectification de la caméra stéréo}
+
+\subsection{Alignement de la caméra virtuelle avec la caméra stéréo}
+- Voir BuJo p.150 + AR-Rift PArt 5 pour les équations de configuration de la caméra virtuelle et du placement du background pour qu'il soit aligné avec le contenu 3D filmé par la caméra virtuelle
+
+
+\section{Réalisation de la bibliothèque de réalité augmentée Aruco Unity}
 Camera Models and Fundamental Concepts Used in Geometric Computer Vision
 Camera model : équation pour expliquer comment la caméra projette le monde 3d en une image
 Pinhole p.41
@@ -134,5 +170,29 @@ Calib p.103
 - Utiliser des boards de 2 markers minimum pour la détection : beaucoup plus robuste qu'utiliser des markers seuls
 
 
-\section{Communication réseau entre le téléphone et le visiocasque}
+\section{Intégration du Leap Motion pour le suivi de la main}
+
+
+\section{Conception de techniques d'interactions pour le VESAD}
+L'affichage du VESAD étant fonctionnel, nous avons 
+
+Aussi justification for why we won’t be doing experimental comparison with ray cast (INPUT: RayCast): because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
+
+\subsection{Techniques d'interactions utilisant l'écran tactile}
+User-Defined Gestures for Surface Computing \url{https://www.microsoft.com/en-us/research/wp-content/uploads/2009/04/SurfaceGestures_CHI2009.pdf}
+Référence industrie (Android) : \url{https://material.io/guidelines/patterns/gestures.html}
+
+\subsection{Techniques d'interactions utilisant une main virtuelle}
+Leap in:
+User-Defined Gestures for Augmented Reality \url{https://hal.inria.fr/hal-01501749/document} : on garde quelque chose de simple, pointer avec son doigt. on a pas fait de pinch, mais touch avec un doigt : pour rester proche touch sur écran tactile, car taxonomie RA, car rester simple
+Pourquoi on teste l'interaction directe et pas mid-air interaction : c'est lent Vulture: a mid-air word-gesture keyboard \url{https://dl.acm.org/citation.cfm?id=2556964}
+Grasp-Shell vs Gesture-Speech: A comparison of direct and indirect natural interaction
+techniques in Augmented Reality \url{https://ir.canterbury.ac.nz/bitstream/handle/10092/11090/12652683_paper138-cr.pdf?sequence=1}
+Lee2013 : Augmented Reality systems exploit the cognitive benefits of co-locating 3D visualizations with direct input in a real environment, using optical combiners [8, 6, 5]. This makes it possible to enable unencumbered 3D input to directly interact with situated 3D graphics in mid-air [5, 9]. -> 5 ref HoloDesk : defense au mid-air pour dire que naturel colocate display et input, interagir directement avec des affichages 3D en l'air (comme sur un écran tactile)
+
+zoom centré sur le téléphone et non sur la grille : The focus point is generally coincident with the center of the view, more rarely with the cursor position. \cite{Guiard2004}
+
+
+\section{Synchronisation entre le visiocasque et le téléphone}
+
 - Réalisation de la bibliothèque DevicesSyncUnity basée sur Unity Unet

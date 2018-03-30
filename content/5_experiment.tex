@@ -3,8 +3,6 @@
 
 \section{Expérience}
 \subsection{Tâche expérimentale}
-\label{sec:experiment_description}
-
 \subsubsection{Motivations}
 Voir la liste de tâches : \url{https://docs.google.com/document/d/1X5-XW-9GTCz254PXlskjNka-kS-X7MhGXB6Ixv8vAjk/edit#}
 
@@ -18,23 +16,8 @@ Nous on veut juste une tâche simple de navigation et de pointage (target acquis
 On a pas gardé le difficulty : une lettre par cellule de la grille. mais gardé le principe de distance.
 
 On pourrait faire une taxonomie des INPUT (PhoneTouch, MidAirTouch) et OUTPUT (PhoneOnly, ExtendedPhone) mais certains sont absurdes donc combiner en une variable à trois modalités (TECHNIQUE). Après, cela reste utile pour les analyses : les deux inputs en versus et les deux outputs en versus.
-justification for why we won’t be doing experimental comparison with ray cast (INPUT: RayCast): because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
 
 L'expérience a demandé un long effort de conception et de développement de quatre mois. Le code source du projet est donc disponible en ligne, pour pouvoir être reproduit ou réutilisé au besoin, sous la license libre MIT, à l'adresse suivante : \url{https://github.com/NormandErwan/master-thesis-experiment}.
-
-\subsubsection{Techniques d'interactions}
-Leap in:
-User-Defined Gestures for Augmented Reality \url{https://hal.inria.fr/hal-01501749/document} : on garde quelque chose de simple, pointer avec son doigt. on a pas fait de pinch, mais touch avec un doigt : pour rester proche touch sur écran tactile, car taxonomie RA, car rester simple
-Pourquoi on teste l'interaction directe et pas mid-air interaction : c'est lent Vulture: a mid-air word-gesture keyboard \url{https://dl.acm.org/citation.cfm?id=2556964}
-Grasp-Shell vs Gesture-Speech: A comparison of direct and indirect natural interaction
-techniques in Augmented Reality \url{https://ir.canterbury.ac.nz/bitstream/handle/10092/11090/12652683_paper138-cr.pdf?sequence=1}
-Lee2013 : Augmented Reality systems exploit the cognitive benefits of co-locating 3D visualizations with direct input in a real environment, using optical combiners [8, 6, 5]. This makes it possible to enable unencumbered 3D input to directly interact with situated 3D graphics in mid-air [5, 9]. -> 5 ref HoloDesk : defense au mid-air pour dire que naturel colocate display et input, interagir directement avec des affichages 3D en l'air (comme sur un écran tactile)
-
-Touch in:
-User-Defined Gestures for Surface Computing \url{https://www.microsoft.com/en-us/research/wp-content/uploads/2009/04/SurfaceGestures_CHI2009.pdf}
-Référence industrie (Android) : \url{https://material.io/guidelines/patterns/gestures.html}
-
-zoom centré sur le téléphone et non sur la grille : The focus point is generally coincident with the center of the view, more rarely with the cursor position. \cite{Guiard2004}
 
 \subsection{Plan expérimental}
 Plan multifactoriel, quasi complet, avec trois variables indépendantes que nous faisons varier :
@@ -72,14 +55,7 @@ Il y a deux essais par condition.
 
 Variables parasites : 
 - Le casque peut parfois être mal mis rendant l'image plus floue donc les items plus difficiles à distinguer.
-- Le participant peut comprendre au cours de l'expérience qu'un item n'a qu'une seule bonne cellule et qu'une cellule n'a que cinq bon items. Ainsi il a juste besoin de permuter les items mal classés et n'a pas besoin de regarder les cellules avec cinq items biens classés. 
-
-\subsection{Matériel}
-Un ordinateur de bureau avec un processeur Intel Core i5 7400, 8 Go DDR4 de mémoire vive, et une carte graphique NVIDIA GeForce GTX 1060, sous Windows 10 a été utilisé pour faire tourner le visiocasque de RA. Une carte WiFi externe a été ajouté pour la communication avec le téléphone.\\
-Le téléphone utilisé était un Xiaomi Redmi Note 4. C'est un téléphone récent, sous une version récente d'Android (version 7), avec une bonne puissance de calcul et un grand écran HD de 5,5 pouces. Il est léger et tient confortablement dans une main.\\
-Le visiocasque de RA, l'outil de suivi des mains ainsi que les logiciels utilisés sont décrits dans la \autoref{sec:technical_choices}.
-
-The headset was connected to a desktop PC with an Intel Core i5 7400 CPU (\SI[product-units = single]{4x3.0}{\GHz}), \SI{8}{\giga\byte} RAM, NVIDIA GeForce GTX 1060 GPU with \SI{6}{\giga\byte} memory, running Microsoft Windows 10.
+- Le participant peut comprendre au cours de l'expérience qu'un item n'a qu'une seule bonne cellule et qu'une cellule n'a que cinq bon items. Ainsi il a juste besoin de permuter les items mal classés et n'a pas besoin de regarder les cellules avec cinq items biens classés.
 
 \subsection{Participants}
 Nous avons recruté 12 personnes volontaires pour participer à l'expérience, agés entre 18 et 49 ans : six hommes et six femmes. Tous avaient une vision normale ou portaient un dispositif de correction de vision.
@@ -119,53 +95,53 @@ Post-questionnaire :
 \section{Résultats}
 \subsection{Temps de complétion}
 
-\figureETS{tct_anova.png}{
-}
+%\figureETS{tct_anova.png}{
+%}
 
-\figureETS{tct.png}{
-}
+%\figureETS{tct.png}{
+%}
 
-\figureETS{tct_2.png}{
-}
+%\figureETS{tct_2.png}{
+%}
 
 \subsection{Taux d'erreur}
 
-\figureETS{selections_errors_distributions.png}{
-}
+%\figureETS{selections_errors_distributions.png}{
+%}
 
-\figureETS{selections.png}{
-}
+%\figureETS{selections.png}{
+%}
 
-\figureETS{errors.png}{
-}
+%\figureETS{errors.png}{
+%}
 
-\figureETS{selections_ordering.png}{
-}
+%\figureETS{selections_ordering.png}{
+%}
 
-\figureETS{errors_ordering.png}{
-}
+%\figureETS{errors_ordering.png}{
+%}
 
 \subsection{Navigation}
 
-\figureETS{navigation_count.png}{
-}
+%\figureETS{navigation_count.png}{
+%}
 
-\figureETS{navigation_time.png}{
-}
+%\figureETS{navigation_time.png}{
+%}
 
-\figureETS{navigation_distance.png}{
-}
+%\figureETS{navigation_distance.png}{
+%}
 
 \subsection{Évaluations des participants}
 
-\figureETS{ranks_distributions.png}{
-}
+%\figureETS{ranks_distributions.png}{
+%}
 
-\figureETS{ranks.png}{
-}
+%\figureETS{ranks.png}{
+%}
 
-\figureETS{preferences.png}{
-}
+%\figureETS{preferences.png}{
+%}
 
 On confirme de manière informelle un des résultats de Grasp Shell : si le contenu virtuel est transparent et permet aux participants de voir leur main, ça suffit : l'occlusion n'est pas nécessaire. Personne m'a fait une remarque là dessus et j'en discuté avec quelqu'uns qui m'ont dit que ça ne les avaient pas dérangés.
 
@@ -173,6 +149,7 @@ ANOVA :
 - les groupes sont indépendants : chaque essai est généré aléatoirement. Cependant effet d'apprentissage des participants ?
 - tester la normalité des groupes : on peut simplement analyser la normalité des résidus avec un test de shapiro wilk
 - on a pas besoin de tester l'homogénéité de la variance : la méthode est robuste si les groupes sont de même taille (ce qui est vrai) et qu'il y a 30 ou plus valeurs testeés par groupe
+
 
 \section{Discussion}
 \subsection{Leçons apprises}
