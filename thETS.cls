@@ -368,7 +368,7 @@
 \RequirePackage{listings} %% Code listings (extraits de code)
 \RequirePackage[paper=letterpaper,top=1.5in,left=1.5in,right=0.75in,bottom=0.75in, headsep=0.75in]{geometry}
 \RequirePackage[labelfont={bf},margin=10pt,justification=centering]{caption}
-\RequirePackage[caption=false]{subfig}
+\RequirePackage[caption=false, farskip=0pt]{subfig}
 \RequirePackage{tabto}
 \RequirePackage{hyphenat}
 \RequirePackage{enumitem} % Mise en forme des environements enumerate et itemize
@@ -1795,6 +1795,7 @@
 \ifthenelse{\equal{\DocLang}{french}}
 {
 \addto\captionsfrench{\def\figurename{{Figure}}}
+\addto\captionsfrench{\def\subfigurename{{Figure}}}
 \addto\captionsfrench{\def\tablename{{Tableau}}}
 \addto\captionsfrench{\def\lstlistingname{{Extrait}}}
 \addto\captionsfrench{\def\lstlistlistingname{{Liste des extraits de code}}}

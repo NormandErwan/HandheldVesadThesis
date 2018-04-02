@@ -1,7 +1,6 @@
 \PassOptionsToPackage{english, main=french}{babel}
-\PassOptionsToPackage{farskip=0pt}{subfig}
 \documentclass[letterpaper, twoside, 12pt,%
-  memoire,  french, creativecommons, hyperref, withAlgo2e%
+ memoire, french, creativecommons, hyperref, withAlgo2e%
 ]{thETS}
 
 \usepackage{textcomp} % Correct display of characters such as \degree
@@ -68,6 +67,7 @@
 \DeclareSIUnit\fps{FPS}
 \DeclareSIUnit\inch{pouces}
 \DeclareSIUnit\px{px}
+\DeclareSIUnit[per-mode=symbol]\ppd{\px\per\degree}
 
 % Thesis configuration
 \title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handheld VESAD (Virtually Extended Screen-Aligned Display)}
