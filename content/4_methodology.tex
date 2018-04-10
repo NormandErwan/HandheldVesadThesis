@@ -4,7 +4,7 @@
 \section{Motivation}
 Pour concevoir un VESAD, nous avons besoin d'un visiocasque avec champs de vision suffisament large pour visualiser complètement l'écran étendu, le cas contraire limite l'intérêt de notre concept. Le second sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.
 
-Un téléphone est tenu en moyenne à \SI{34}{\cm} \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de \SI{53x30}{\cm}, on peut calculer le champs de vision nécessaire pour chaque \oe il pour le visualiser complètement \reffigureETSp{FOV.png}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
+Un téléphone est tenu en moyenne à \SI{34}{\cm} \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de \SI{53x30}{\cm}, on peut calculer le champs de vision nécessaire pour chaque \oe il pour le visualiser complètement \reffigureETSp{Fov.png}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
 \begin{equation}
   \label{eq:fov}
   \left \{
@@ -19,7 +19,7 @@ Un téléphone est tenu en moyenne à \SI{34}{\cm} \citep{Bababekova2011} de la 
   Représentation simplifiée du champs de vision (en anglais : \texten{Field of View}), qui peut être mesuré en degrés horizontalement ($FoV_x$), verticalement ($FoV_y$) ou en diagonale. Comme le décrit l'\autoref{eq:fov}, pour qu'un plan soit visible dans un champs de vision donné, il doit être placé à une certaine distance de la caméra ou de l'\oe il.
 }
 
-Nous avons d'abord voulu utiliser le Microsoft HoloLens, un visiocasque optique de RA avec une très courte latence, une excellente résolution et une très bonne documentation et un support natif sur le moteur de jeu Unity. Cependant, son champs de vision de \SI{30x17.5}{\degree} pour chaque \oe il \citep{Kreylos2015} est trop restreint, ne permettant de visualiser seulement l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{7}{\inch}. Il n'existe en fait actuellement aucun visiocasque de RA sur le marché avec un grand champs de vision \citep{Millette2016}.
+Nous avons d'abord voulu utiliser le Microsoft HoloLens, un visiocasque optique de RA avec une très courte latence, une excellente résolution et une très bonne documentation et un support natif sur le moteur de jeu Unity. Cependant, son champs de vision de \SI{30x17.5}{\degree} pour chaque \oe il \citep{Kreylos2015} est trop restreint, ne permettant de visualiser seulement l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{7}{\inch}. Il n'existe en fait actuellement aucun visiocasque de RA sur le marché avec un grand champs de vision \citep[p. 25]{Millette2016}.
 
 
 \section{Solution retenue}
@@ -39,47 +39,65 @@ Nous avons donc réalisé notre propre prototype de visiocasque \reffigureETSp{A
 
 La condition pour que l'illusion que le contenu virtuel soit aligné avec l'environnement réel, la caméra virtuelle du moteur 3D doit être similaire à et alignée avec la caméra physique utilisée. Autrement dit, la caméra virtuelles et et la caméra physique doivent avoir le même champs de vision (\emph{paramètres intrinsèques}) et la même position et rotation dans l'espace (\emph{paramètres extrinsèques}). Aussi, nous devons rectifier les distorsions des images de la caméra physique, c'est-à-dire une corriger cette déformation de l'image visible en particulier sur les lignes droites qui sont courbées.
 
-Concrètement, la caméra virtuelle filme le contenu 3D et en arrière-plan l'image capturée par la caméra physique. Comme les deux caméras virtuelles et physiques ont les mêmes paramètres intrinsèques et extrinsèques, les environnement réels et virtuels sont filmés du même point de vue et apparaissent donc comme une seule scène dans le visiocasque. La \reffigureETS{ArRiftMarker} montre ce processus pour une caméra monoscopique ; pour une caméra stéréoscopique il suffit d'appliquer le même procédé pour les deux images. La \autoref{sec:calibration} détaille les processus d'étalonnage et de rectification de la caméra physique et la \autoref{sec:aruco_unity} l'alignement de la caméra virtuelle avec la caméra physique.
+Concrètement, la caméra virtuelle filme le contenu 3D et en arrière-plan l'image capturée par la caméra physique. Comme les deux caméras virtuelles et physiques ont les mêmes paramètres intrinsèques et extrinsèques, les environnement réels et virtuels sont filmés du même point de vue et apparaissent donc comme une seule scène dans le visiocasque. La \reffigureETS{ArRiftMarker} montre ce processus pour une caméra monoscopique. Pour une caméra stéréoscopique, il suffit de créer deux caméras virtuelles et de les aligner chacune avec un des objectif de la caméra physique : les deux caméras virtuelles vont filmer le même contenu 3D mais chacune l'image capturée d'un seul des deux objectifs en arrière-plan.
 
 \figureLayoutETS{ArRiftMarker}{%
-  \parbox{0.8875\textwidth}{%
+  \parbox{0.72\textwidth}{%
     \centering%
-    \subfigureETS[0.25]{ArRiftMarker_1.jpg}{Image non rectifiée : l'image présente des distorsions importantes (les lignes droites sont courbées).}%
+    \subfigureETS{ArRiftMarker_1.jpg}{Image non rectifiée : l'image présente des distorsions importantes (les lignes droites sont courbées).}%
     \figurehspace%
-    \subfigureETS[0.25]{ArRiftMarker_2.jpg}{Image rectifiée : les lignes droites le sont à nouveau.}%
+    \subfigureETS{ArRiftMarker_2.jpg}{Image rectifiée : les lignes droites le sont à nouveau.}%
     \\%
-    \subfigureETS[0.25]{ArRiftMarker_3.jpg}{Image rectifiée à travers Unity : l'image est affichée en arrière-plan du contenu 3D filmé par la caméra virtuelle (champs de vision en lignes blanches) pour l'\oe il gauche. La caméra physique et la caméra virtuelle sont alignées pour faire coïncider contenus virtuels et réels.}%
+    \subfigureETS{ArRiftMarker_3.jpg}{Image rectifiée à travers Unity : l'image est affichée en arrière-plan du contenu 3D filmé par la caméra virtuelle (champs de vision en lignes blanches) pour l'\oe il gauche. La caméra physique et la caméra virtuelle sont alignées pour faire coïncider contenus virtuels et réels.}%
     \figurehspace%
-    \subfigureETS[0.25]{ArRiftMarker_4.jpg}{Image rectifiée et augmentée : un objet virtuel se trouve par dessus chacun des trois marqueurs.}%
+    \subfigureETS{ArRiftMarker_4.jpg}{Image rectifiée et augmentée : un objet virtuel se trouve par dessus chacun des trois marqueurs.}%
   }%
 }{
   Vue de l'image capturée par l'objectif gauche de l'Ovrvision Pro, puis rectifiée et augmentée pour être affichée dans le visiocasque.
 }
 
+
+\subsection{Choix techniques}
+\label{subsec:technical_choices}
+Nous avons tout d'abord choisis l'Ovrvision Pro comme caméra physique stéréoscopique (\url{http://ovrvision.com/}). Annoncée par son comme solution clé en main pour réaliser un visiocasque de RA, elle prévue pour fonctionner avec le visiocasque de VR Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Composée de deux objectifs \texten{fisheye} (en \oe il de poisson) d'une définition de \SI{960x950}{\px} et un champs de vision de \SI{100x98}{\degree}, ses caractéristiques correspondent  bien à ceux de l'Oculus DK2 \autorefp{tab:visual_densities}. Elle est de plus intégrée avec les moteurs de jeu standards dans l'industrie : Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \reffigureETS{ArRift_1.jpg}, et en le connectant par USB 3.0 au PC.
+
+Pour la localisation des mains, nous avons utilisé un Leap Motion : c'est un dispositif peu dispendieux, conçus pour concevoir des IHMs avec une main virtuelle pour les visiocasques de RV et intégré avec les moteurs de jeu Unity et Unreal Egine. Il se fixe également sur la face avant du visiocasque et se connecte simplement au PC par USB 3.0 \reffigureETSp[, sous la caméra]{ArRift_1.jpg}.
+
+Pour faire tourner notre visiocasque de RA, nous avons utilisé un ordinateur de bureau roulant sous Windows 10, avec un processeur Intel Core i5 7400 (\SI[product-units = single]{4x3.0}{\GHz}), \SI{8}{\giga\byte} DDR4 de mémoire vive, une carte graphique NVIDIA GeForce GTX 1060 de \SI{6}{\giga\byte}. Pour le téléphone, nous avons utilisé un Xiaomi Redmi Note 4 : roulant sous Android 7, il est récent et léger, à faible prix et possède une bonne puissance de calcul ainsi qu'écran \SI{1920x1080}{\px} de \SI{5.5}{\inch}.
+
+Nous souhaitions ensuite prototyper le plus rapidement possible sur notre visiocasque. Nous avons alors choisis le moteur de jeu Unity : gratuit (mais au code source propriétaire), il est le standard dans l'industrie du jeu-vidéo pour prototyper et supporte notre caméra et le Leap Motion. Il est de fait très avantageux d'investir un peu de temps dans l'apprentissage d'un moteur de jeu, car il prends complètement en charge le rendu 3D, la simulation de la physique, les entrées sur clavier, souris ou écran tactile, l'affichage dans les visiocasques de RV, un support réseau et propose de nombreuses fonctions mathématiques. Unity est simple plus simple à prendre en main que son concurrent l'Unreal Engine, par son GUI intuitif et l'utilisation du C\#, un langage très haut niveau, pour programmer son jeu. Enfin, nous avions une expertise dans le laboratoire avec un projet de quatre mois sur le Microsoft HoloLens et la maîtrise de \cite{Millette2016}.
+
+Après plusieurs essais de configuration et une lecture du code source de l'Ovrvision Pro (\url{https://github.com/Wizapply/OvrvisionPro/}), nous avons constaté que la bibliothèque fournie était non fonctionnelle : (1) les images affichées pour chaque \oe il dans le casque étaient décalées, rendant le visiocasque particulièrement inconfortable à utiliser et (2) un décalage était présent entre le contenu virtuel et l'environment réel. Nous avions donc besoin de ré-étalonner cette caméra \autorefp{sec:calibration} et d'une bibliothèque de RA \autorefp{sec:aruco_unity}.
+
+Quelques bibliothèque de RA sont disponibles sur Unity, telles que Vuforia (\url{https://unity3d.com/fr/partners/vuforia}), ARToolKit (\url{https://github.com/artoolkit/arunity5}) ou OpenCV for Unity (\url{https://enoxsoftware.com/opencvforunity/}). Malgré tout, aucune ne nous a convenu : les deux premières sont conçues pour être utilisées avec des webcams monoscopiques donc ne supportaient pas notre caméra, tandis que la troisième risquait de nous donner peu de flexibilité avec son code source propriétaire. C'est pourquoi nous avons donc réalisé la bibliothèque ArUco Unity (\url{https://github.com/NormandErwan/aruco-unity}) : basée sur la bibliothèque libre de vision par ordinateur OpenCV (\url{https://opencv.org/}), elle est la seule bibliothèque libre, sous licence BSD-3-Clause, supportant l'étalonnage et la RA sur les webcams, monoscopiques ou stéréoscopiques, et l'Ovrvision Pro sous Unity.
+
+
 \subsection{Procédure}
 Pour realiser notre visiocasque, nous avons suivis la procédure suivante, basée sur celle de \cite{Steptoe2013} :
 \begin{enumerate}
-  \item Étalonnage et rectification de la caméra stéréoscopique.
-  \item Réalisation de la librairie de réalité augmentée ArUco Unity pour aligner la caméra virtuelle avec la caméra stére.
-  \item Intégration du Leap Motion pour le suivi de la main.
-  \item Conception de techniques d'interactions sur l'écran tactile et avec une main virtuelle.
-  \item Synchronisation entre le visiocasque et le téléphone.
+  \item Sélection d'une caméra physique stéréoscopique, d'un visiocasque de RV et d'un moteur 3D \autorefp{subsec:technical_choices}.
+  \item Étalonnage et rectification de la caméra physique \autorefp{sec:calibration}.
+  \item Réalisation de la librairie de réalité augmentée ArUco Unity pour aligner la caméra virtuelle avec la caméra physique \autorefp{sec:aruco_unity}.
+  \item Intégration du Leap Motion pour le suivi de la main \autorefp{sec:hand_tracking}.
+  \item Conception de techniques d'interactions sur l'écran tactile et avec une main virtuelle \autorefp{sec:interaction_techniques}.
+  \item Synchronisation entre le visiocasque et le téléphone \autorefp{sec:synchronization}.
 \end{enumerate}
 
-Si \cite{Steptoe2013} détaille correctement la première étape de la procédure ci-dessus, il n'expose que le principe de la troisième étape sans solution accessible pour la localisation d'objets dans l'espace réel et n'explique pas correctement la seconde étape. Nous souhaitons donc ici détailler un peu plus ces étapes.
+Si \cite{Steptoe2013} détaille correctement la première étape de la procédure ci-dessus, il n'expose que le principe de la troisième étape sans solution accessible pour la localisation d'objets dans l'espace réel et n'explique pas correctement la seconde étape. Nous souhaitons donc détailler ici un peu plus ces étapes deux et trois. Les étapes suivantes sont spécifique à notre projet de VESAD.
+
 
 \subsection{Discussion et limites}
 Nous pourrions simplifier le visiocasque en utilisant une caméra \emph{monoscopique} (avec un seul objectif capturant une seule image à la fois), et afficher l'image capturée aux deux yeux. Cependant, comme le souligne \cite{Bourke1999}, la vision stéréoscopique est l'un des principal indice utilisé par le cerveau pour percevoir la profondeur : les yeux étant séparés horizontalement par une distance appelée écart pupillaire, chaque \oe il perçoit une image légèrement différente \reffigureETSp{Ovrvision} permettant au cerveau de percevoir en 3D. C'est pourquoi nous choisissons d'utiliser une caméra stéréoscopique.
 
 \figureLayoutETS{Ovrvision}{%
-  \subfigureETS{Ovrvision_1.jpg}{Vue de l'objectif gauche.}%
+  \subfigureETS[0.2]{Ovrvision_1.jpg}{Vue de l'objectif gauche.}%
   \figurehspace%
-  \subfigureETS{Ovrvision_2.jpg}{Vue de l'objectif droit.}%
+  \subfigureETS[0.2]{Ovrvision_2.jpg}{Vue de l'objectif droit.}%
 }{
   Images capturées par l'Ovrvision Pro et rectifiées : les deux objectifs sont décalés horizontalement d'environ \SI{60}{\mm} pour simuler un écart pupillaire humain.
 }
 
-Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image. Elle permet de mesurer la finesse de l'image affichée et se calcule ainsi : $Densite = Largeur / FoV_x$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ 10 pixels par degré \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ 42 pixels par degré et la fovéa d'un \oe il humain de 60 à 80 pixels par degré en moyenne \citep{Kistner2014}.
+Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image. Elle permet de mesurer la finesse de l'image affichée et se calcule ainsi : $Densite = \frac{Largeur}{FoV_x}$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} et la fovéa d'un \oe il humain de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}.
 
 Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Une définition de 8K (\SI{7680x4320}{\px}) par \oe il serait alors nécessaire sur ces visiocasques et notre caméra pour atteindre la densité visuelle de la fovéa, à champs de vision égal : $Densite_{8K} = 7680 / 110 = \SI{69.8}{\ppd}$.
 
@@ -108,51 +126,61 @@ Une seconde limite évidente est la portabilité de notre visiocasque \reffigure
 }
 
 
-\section{Choix techniques}
-\subsection{Choix matériels}
-Nous avons choisis l'Ovrvision Pro comme caméra stéréoscopique physique (\url{http://ovrvision.com/}). Son constructeur l'annonce comme solution clé en main pour réaliser un visiocasque de RA. Cette caméra est prévue pour fonctionner avec le visiocasque de VR Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Elle est de plus intégrée avec les moteurs de jeu standards dans l'industrie : Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \reffigureETS{ArRift_1.jpg}, et en le connectant par USB 3.0 au PC. Le \autoref{tab:visual_densities} présente sa définition et son champs de vision, qui correspondent bien à ceux de l'Oculus DK2.
-
-Pour la localisation des mains, nous avons choisis le Leap Motion. C'est un dispositif peu dispendieux, conçus pour concevoir des IHMs avec une main virtuelle pour les visiocasques de RV et intégré avec les moteurs de jeu Unity et Unreal Egine. Il se fixe également sur la face avant du visiocasque et se connecte simplement au PC par USB 3.0 \reffigureETSp[, sous la caméra]{ArRift_1.jpg}.
-
-Enfin, un ordinateur de bureau tournant sous Windows 10, avec un processeur Intel Core i5 7400 (\SI[product-units = single]{4x3.0}{\GHz}), \SI{8}{\giga\byte} DDR4 de mémoire vive, une carte graphique NVIDIA GeForce GTX 1060 de \SI{6}{\giga\byte} a été utilisé pour faire tourner le visiocasque de RA. Pour le téléphone, nous avons utilisé un Xiaomi Redmi Note 4 : tournant sous Android 7, il est récent et léger, à faible prix et possède une bonne puissance de calcul ainsi qu'écran \SI{1920x1080}{\px} de \SI{5.5}{\inch}.
-
-\subsection{Choix logiciels}
-\label{subsec:software_choices}
-Nous souhaitions prototyper le plus rapidement possible sur notre visiocasque. Nous avons choisis tout d'abord le moteur de jeu Unity : gratuit (mais au code source propriétaire), il est le standard dans l'industrie du jeu-vidéo pour prototyper et supporte notre caméra et le Leap Motion. Il est de fait très avantageux d'investir un peu de temps dans l'apprentissage d'un moteur de jeu, car il prends complètement en charge le rendu 3D, la simulation de la physique, les entrées sur clavier, souris ou écran tactile, l'affichage dans les visiocasques de RV, un support réseau et propose de nombreuses fonctions mathématiques. Unity est simple plus simple à prendre en main que son concurrent l'Unreal Engine, par son GUI intuitif et l'utilisation du C\#, un langage très haut niveau, pour programmer son jeu. Enfin, nous avions une expertise dans le laboratoire avec un projet de quatre mois sur le Microsoft HoloLens et la maîtrise de \cite{Millette2016}.
-
-Après plusieurs essais de configuration et une lecture du code source de l'Ovrvision Pro (\url{https://github.com/Wizapply/OvrvisionPro/}), nous avons constaté que la bibliothèque fournie était non fonctionnelle : (1) les images affichées pour chaque \oe il dans le casque étaient décalées, rendant le visiocasque particulièrement inconfortable à utiliser et (2) un décalage était présent entre le contenu virtuel et l'environment réel. Nous avons donc besoin de ré-étalonner la caméra stéréoscopique \autorefp{sec:calibration} et d'une bibliothèque de RA \autorefp{sec:aruco_unity}.
-
-Plusieurs bibliothèque de RA sont disponibles sur Unity, telles que Vuforia (\url{https://unity3d.com/fr/partners/vuforia}), ARToolKit (\url{https://github.com/artoolkit/arunity5}) ou OpenCV for Unity (\url{https://enoxsoftware.com/opencvforunity/}). Malgré tout, aucune ne nous a convenu : les deux premières sont conçues pour être utilisées avec des webcams mono donc ne supportait pas notre caméra, tandis que la troisième risquait de nous donner peu de flexibilité avec son code source propriétaire. C'est pourquoi nous avons donc réalisé la bibliothèque ArUco Unity (\url{https://github.com/NormandErwan/aruco-unity}) : basée sur la bibliothèque libre de vision par ordinateur OpenCV (\url{https://opencv.org/}) et sous licence libre BSD-3-Clause, elle supporte l'étalonnage et la RA sur les webcams, monoscopiques ou stéréoscopiques, et l'Ovrvision Pro. Elle est présentée aux \autoref{sec:calibration} et \autoref{sec:aruco_unity}.
-
-
 \section{Étalonnage et rectification de la caméra stéréoscopique}
 \label{sec:calibration}
-
-Dans le fonctionnement de notre visiocasque, présenté \autoref{subsec:prototype}, il faut tout d'abord rectifier les images capturées par notre caméra physique qui présentent d'importantes distorsions \reffigureETSp{ArRiftMarker_1.jpg}.
+Pour aligner la caméra virtuelle avec la caméra physique, nous devons tout d'abord rendre identiques leur paramètres intrinsèques. Pour cela nous devons comprendre le principe d'une caméra pour ensuite pouvoir étalonner notre caméra stéréoscopique, c'est-à-dire mesurer ses paramètres intrinsèques telles que le champs de vision ou les distorsions des deux objectifs. Nous pourrons ainsi les appliquer à la caméra virtuelle stéréoscopique. Nous survolons ici seulement la théorie pour résoudre notre problème de rectification et d'alignement ; le lecteur peut se référer à \cite[chapitres 18 et 19]{Kaehler2017} pour dérouler la procédure complète.
 
 \subsection{Fonctionnement d'une caméra}
-Pour cela, nous avons besoin de comprendre le principe d'une caméra. C'est un processus qui consiste à capturer une image, c'est-à-dire projeter un environnement en 3D en une vue en 2D (deux dimensions). Cette projection est dite \emph{perspective}, de la même manière que l'\oe il humain voit : les objets proches paraissent plus gros que les objets lointains. Le plus simple des dispositifs de projection en perspective est le sténopé : c'est une boite percée d'une petite ouverture (le \emph{centre de projection}) sur une de ses face, et d'un écran (\emph{le plan image}) sensible à la lumière sur la face opposée. L'environment extérieur n'est donc visible que par un unique point de vue avec un certain champs de vision. Ainsi, la lumière voyageant en ligne droite, chaque point visible de l'environment 3D ne va former qu'un seul point sur le plan image, formant une image nette \reffigureETSp{Pinhole.png}.
+\subsubsection{Sténopé et caméra virtuelle}
+Une caméra est un dispositif qui capture une vue en 2D (deux dimensions) d'une scène en 3D. Cette vue est une projection en \emph{perspective}, similaire à ce que l'\oe il humain voit. Le plus simple des dispositifs de projection en perspective est le sténopé : c'est une simple boite percée d'une petite ouverture, le \emph{centre de projection}, sur une de ses face, et d'un écran, \emph{le plan image}, sensible à la lumière sur la face opposée. La scène n'est donc visible que par un unique point de vue : ainsi, chaque point sur le plan image ne provenant que d'un seul rayon de lumière à travers le centre de projection, une image nette et inversée de la scène va se former \reffigureETSp{Pinhole.png}.
 
-\figureETS[0.4]{Pinhole.png}{
-  Un sténopé : une petite ouverture sur une face de la boite laisser entrer la lumière, projettant l'environment extérieur en une image inversée sur la face opposée à l'ouverture.
+\figureETS{Pinhole.png}{
+  Un sténopé : une petite ouverture sur une face de la boite laisse entrer la lumière, projettant une scène 3D (par exemple les points $P_1$ et $P_2$) en une image inversée sur la face opposée à l'ouverture (les projections respectives sont les points $p_1$ et $p_2$).
 }
 
-Nous pouvons modéliser simplement la projection perspective d'un sténopé avec l'\autoref{eq:projection}, où a matrice intrinsèque $K$ de la caméra permet la projection. La \emph{longueur focale} $f_x$ et $f_y$ est 
+L'image formée sur le plan image étant toujours nette, on peut modifier le champs de vision du sténopé en déplaçant le plan image le long de l'axe optique : il s'agit de la droite perpendiculaire au plan image et passant par le centre de projection. On calcule le champs de vision avec l'\autoref{eq:fov}, la distance étant la \emph{longueur focale} $f$, c'est-à-dire la distance entre le plan image et le centre de projection. Ainsi, à taille équivalent du plan image, une longueur focale plus courte donne lieu à un plus grand champs de vision.
+
+Pour simplifier les équations, on peut modifier le modèle du sténopé. Il suffit de créer un nouveau plan image symétrique au véritable plan image par rapport au centre de projection, placé donc à la même distance $f$ du centre optique. La vue générée sur ce plan image virtuel reste la même mais est non inversée : les rayons de la scène sont toujours projeté vers le centre de projection mais interceptés par ce nouveau plan image \reffigureETSp{PerspectiveProjection.png}. Une caméra virtuelle monoscopique fonctionne ainsi, de manière simplifée, en suivant l'\autoref{eq:perspective_projection} pour projeter la scène.
+
+\begin{equation}
+  \label{eq:perspective_projection}
+  x = f \frac{X}{Z},\qquad y = f \frac{Y}{Z},\qquad z = f
+\end{equation}
+
+\figureETS[0.9]{PerspectiveProjection.png}{
+  Une projection en perspective : un point $P=(X,Y,Z)$ va être projeté sur le plan image situé à une distance $z=f$ du centre de projection en un point $p=(x,y,f)$. Une caméra virtuelle est basée sur ce principe et on peut également simplifier le sténopé à ce modèle.
+}
+
+\subsubsection{Caméra physique}
+Le sténopé est un modèle de caméra également suffisant pour décrire une caméra physique monoscopique. Mais elle recquiert un capteur si l'on veut enregistrer l'image capturée. Placé sur le plan image, là où l'image est nette, le centre du capteur ne coïncide pas totalement avec l'axe optique : cela requerrait une précision trop importante et non nécessaire lors du montage du capteur. Nous pouvons simplement mesurer le décalage sur le plan image de l'intersection de l'axe optique avec le plan image, appelé \emph{centre optique} avec les paramètres $c_x$ et $c_y$.
+
+\figureLayoutETS{Distorsion}{%
+  \subfigureETS[0.15]{Distorsion_1.png}{Aucune distorsion.}%
+  \figurehspace[10]%
+  \subfigureETS[0.15]{Distorsion_2.png}{Distorsion en barillet, la grille est vue bombée vers l'extérieur.}%
+  \figurehspace[10]%
+  \subfigureETS[0.15]{Distorsion_3.png}{Distorsion en coussinet, la grille est vue écrasée vers l'intérieur.}%
+}{
+  Illustrations d'une grille vue à travers un système optique avec différents types de distorsion.
+}
+
+En conséquence, notre nouveau modèle est décrit 
+Nous pouvons maintenant modéliser la projection perspective d'un sténopé avec l'\autoref{eq:projection}, où la matrice intrinsèque $K$ de la caméra permet la projection d'un point $P$ en un point $p$ sur le plan image.
 
 \begin{equation}
   \label{eq:projection}
   \begin{pmatrix}
     x\\
     y\\
-    z
+    w
   \end{pmatrix}
   =
   \underbrace{
-  \begin{pmatrix}
-    f_x & 0 & c_x\\
-    0 & f_y & c_y\\
-    0 & 0 & 1
-  \end{pmatrix}
+    \begin{pmatrix}
+      f_x & 0 & c_x\\
+      0 & f_y & c_y\\
+      0 & 0 & 1
+    \end{pmatrix}
   }_K
   \begin{pmatrix}
     X\\
@@ -161,11 +189,28 @@ Nous pouvons modéliser simplement la projection perspective d'un sténopé avec
   \end{pmatrix}
 \end{equation}
 
-Le problème de ce dispositif est qu'il faut des heures pour qu'une image visible se forme, l'ouverture ne laissant passer que très peu de lumière. La solution est de faire une ouverture plus grande pour laisser passer plus de lumière et de placer un objectif photographique pour continuer à concentre la lumière sur le plan image en une seule image nette.
+Enfin, une caméra physique monoscopique recquiert également un objectif photographique. En effet, le problème du sténopé est qu'il faut des heures pour qu'une image visible se forme, l'ouverture ne laissant passer que très peu de lumière. La solution est de faire une ouverture plus grande pour laisser passer plus de lumière et de placer donc un objectif photographique pour continuer à concentrer la lumière sur le plan image en une seule image nette. L'inconvénient est que ce système optique introduit des distortions en barillet dans l'image \reffigureETSp{Distorsion}. De plus, le capteur et l'objectif ne sont pas forcément bien montés parallèles, entraînant une distortion tangente supplémentaire.
+
+Ces paramètres de distortion sont ainsi également mesurés lors de l'étalonnage, en plus de la matrice intrinsèque.
+
 
 \subsection{Étalonnage d'une caméra}
+\subsubsection{Caméra monoscopique}
+%- AdrianKaehler2017 - Learning OpenCV 3 Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + étalonnage
+
+% Conseils/notes étalonnages :
+
+%- Utiliser une board la plus plate possible (attention à l'humidité de l'air qui est absorbée par le papier)
+%- Utiliser une bonne lumière pour que la board soit bien détectée et sans reflets
+%- Désactiver l'autofocus de la caméra : une étalonnage se fait pour une focale fixe (les distorsions restent les même mais pas la camera matrix)
+%- La caméra ou la board doit rester fixe pendant l'étalonnage
+%- Prendre des dizaines de captures remplissant uniformément l'espace de capture de la caméra en variant les angles de capture
+%- L'objectif est d'avoir une erreur de reprojection inférieure à 1 pixel
+%- OpenCV est système main droite dans son système de coordonnées (\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT9/img4.gif}) alors qu'Unity est système main gauche : il suffit d'inverser l'axe des Y (\url{https://answers.unity.com/storage/temp/8053-spaces.jpg}) : faire un petit graphe comme la 2e image
+%- OpenCV encode sa rotation dans un vecteur dont les coordonnées normalisées donnent l'axe et sa norme l'angle autour de cet axe, alors qu'Unity utilise des quaternions. Adapté ce calcul (\url{http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/}) pour passer du premier au second : \url{https://github.com/enormand/aruco-unity/blob/master/src/aruco_unity_package/Assets/ArucoUnity/Scripts/Plugin/Cv/Vec3d.cs}. Voir BuJo 2017-11-07.
 
 
+\subsubsection{Caméra stéréoscopique}
 Cependant, l'image produite par une caméra \texten{fisheye} présente des distorsions trop importantes pour pouvoir appliquer le modèle du sténopé \reffigureETSp{OvrvisionCalibration}. Nous avons décidé d'utiliser le modèle de projection
 
 \figureLayoutETS{OvrvisionCalibration}{%
@@ -173,49 +218,28 @@ Cependant, l'image produite par une caméra \texten{fisheye} présente des disto
   \figurehspace%
   \subfigureETS{OvrvisionCalibration_2.jpg}{Vue de l'objectif droit.}%
 }{
-  Vues non rectifiées d'une planche de calibration à travers l'Ovrvision Pro. L'importante distortion des images se remarque aux lignes parallèles de la planche qui sont courbées. L'étalonnage de la caméra mesure entre autres cette distorsion.
+  Vues non rectifiées d'une planche de calibration à travers l'Ovrvision Pro. L'importante distorsion des images se remarque aux lignes parallèles de la planche qui sont courbées. L'étalonnage de la caméra mesure entre autres cette distorsion.
 }
 
-% La rectification des images va les reprojeter dans une projection en perspective, proche de la vision humaine.
+%Perspective projection rectification from fisheye image in the unified projection model used in omnidirectional camera étalonnage (ccalib OpenCV's module)
 
-Pinhole camera model (physical camera)\\
-\url{https://www.scratchapixel.com/lessons/3d-basic-rendering/3d-viewing-pinhole-camera/how-pinhole-camera-works-part-1}\\
-\url{https://www.scratchapixel.com/lessons/3d-basic-rendering/3d-viewing-pinhole-camera/how-pinhole-camera-works-part-2}
-
-Perspective projection (virtual camera)\\
-Perspective projection matrix (virtual camera frustum) = projection transform (camera matrix) + Normalized Device Coordinates (NDC) matrix (orthogonal projection) : \url{http://ksimek.github.io/2013/06/03/calibrated_cameras_in_opengl/}\\
-Perspective projection matrix = simpler pinhole camera model : \url{http://ksimek.github.io/2013/08/13/intrinsic/}\\
-« They all require a precise understanding of how the pixels in a 2D image relate to the 3D world they represent. In other words, they all hinge on a strong camera model. »
-
-Perspective projection rectification from fisheye image in the unified projection model used in omnidirectional camera étalonnage (ccalib OpenCV's module)\\
-Omnidir camera model : \url{http://rpg.ifi.uzh.ch/docs/omnidirectional_camera.pdf}\\
-determine Knew \url{https://medium.com/@kennethjiang/calibrate-fisheye-lens-using-opencv-part-2-13990f1b157f}\\
-explications : \url{http://www.bobatkins.com/photography/technical/field_of_view.html}\\
-fisheye projections : \url{https://wiki.panotools.org/Fisheye_Projection}\\
-various lens projections : \url{http://michel.thoby.free.fr/Fisheye_history_short/Projections/Various_lens_projection.html}\\
-ccalib article : \url{https://hal.archives-ouvertes.fr/file/index/docid/767674/filename/omni_calib.pdf}
+%- OpenCV3.3.0-CcalibModule (car module fisheye buggé et citer le papier qui dit que le modèle de caméra omnidir s'appliquer aussi aux caméras fisheye) pour l'étalonnage fisheye
+%- Omnidir camera model : http://rpg.ifi.uzh.ch/docs/omnidirectional_camera.pdf
+%- determine Knew https://medium.com/@kennethjiang/calibrate-fisheye-lens-using-opencv-part-2-13990f1b157f
+%- explications : http://www.bobatkins.com/photography/technical/field_of_view.html
+%- fisheye projections : https://wiki.panotools.org/Fisheye_Projection
+%- various lens projections : http://michel.thoby.free.fr/Fisheye_history_short/Projections/Various_lens_projection.html
+%- ccalib article : https://hal.archives-ouvertes.fr/file/index/docid/767674/filename/omni_calib.pdf
 
 
-\subsection{Étalonnage de la caméra stéréo}
+\subsection{Rectification de la caméra stéréoscopique}
+% La rectification des images va les reprojeter dans une projection en perspective.
 
-- AdrianKaehler2017 - Learning OpenCV 3 Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + étalonnage
--AdrianKaehler2017 -  Chapitre 19 pour l'étalonnage stereo + LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
-- OpenCV3.3.0-CcalibModule (car module fisheye buggé et citer le papier qui dit que le modèle de caméra omnidir s'appliquer aussi aux caméras fisheye) pour l'étalonnage fisheye
+% - AdrianKaehler2017 -  Chapitre 19 pour l'étalonnage stereo + LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
 
-- Conseils/notes étalonnages :
-  - Utiliser une board la plus plate possible (attention à l'humidité de l'air qui est absorbée par le papier)
-  - Utiliser une bonne lumière pour que la board soit bien détectée et sans reflets
-  - Désactiver l'autofocus de la caméra : une étalonnage se fait pour une focale fixe (les distorsions restent les même mais pas la camera matrix)
-  - La caméra ou la board doit rester fixe pendant l'étalonnage
-  - Prendre des dizaines de captures remplissant uniformément l'espace de capture de la caméra en variant les angles de capture
-  - L'objectif est d'avoir une erreur de reprojection inférieure à 1 pixel
-  - OpenCV est système main droite dans son système de coordonnées (\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT9/img4.gif}) alors qu'Unity est système main gauche : il suffit d'inverser l'axe des Y (\url{https://answers.unity.com/storage/temp/8053-spaces.jpg}) : faire un petit graphe comme la 2e image
-  - OpenCV encode sa rotation dans un vecteur dont les coordonnées normalisées donnent l'axe et sa norme l'angle autour de cet axe, alors qu'Unity utilise des quaternions. Adapté ce calcul (\url{http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/}) pour passer du premier au second : \url{https://github.com/enormand/aruco-unity/blob/master/src/aruco_unity_package/Assets/ArucoUnity/Scripts/Plugin/Cv/Vec3d.cs}. Voir BuJo 2017-11-07.
 
-\subsection{Rectification de la caméra stéréo}
-
-\subsection{Alignement de la caméra virtuelle avec la caméra stéréo}
-- Voir BuJo p.150 + AR-Rift PArt 5 pour les équations de configuration de la caméra virtuelle et du placement du background pour qu'il soit aligné avec le contenu 3D filmé par la caméra virtuelle
+\subsection{Alignement de la caméra virtuelle}
+%- Voir BuJo p.150 + AR-Rift PArt 5 pour les équations de configuration de la caméra virtuelle et du placement du background pour qu'il soit aligné avec le contenu 3D filmé par la caméra virtuelle
 
 
 \section{Réalisation de la bibliothèque de réalité augmentée Aruco Unity}
@@ -240,9 +264,11 @@ Calib p.103
 
 
 \section{Intégration du Leap Motion pour le suivi de la main}
+\label{sec:hand_tracking}
 
 
 \section{Conception de techniques d'interactions pour le VESAD}
+\label{sec:interaction_techniques}
 L'affichage du VESAD étant fonctionnel, nous avons 
 
 Aussi justification for why we won’t be doing experimental comparison with ray cast (INPUT: RayCast): because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
@@ -263,5 +289,5 @@ zoom centré sur le téléphone et non sur la grille : The focus point is genera
 
 
 \section{Synchronisation entre le visiocasque et le téléphone}
-
+\label{sec:synchronization}
 - Réalisation de la bibliothèque DevicesSyncUnity basée sur Unity Unet
