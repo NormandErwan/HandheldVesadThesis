@@ -4,13 +4,14 @@
 \section{Motivation}
 Pour concevoir un VESAD, nous avons besoin d'un visiocasque avec champs de vision suffisament large pour visualiser complètement l'écran étendu, le cas contraire limite l'intérêt de notre concept. Le second sous-problème de ce travail de recherche a donc été de développer un visiocasque de RA à large champs de vision.
 
-Un téléphone est tenu en moyenne à \SI{34}{\cm} \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de \SI{53x30}{\cm}, on peut calculer le champs de vision nécessaire pour chaque \oe il pour le visualiser complètement \reffigureETSp{Fov.png}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
+Un téléphone est tenu en moyenne à une distance $D=\SI{34}{\cm}$ \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de $(L,H)=\SI{53x30}{\cm}$, on peut calculer le champs de vision $(FoV_x,FoV_y)$ nécessaire pour chaque \oe il pour le visualiser complètement \reffigureETSp{Fov.png}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
+
 \begin{equation}
   \label{eq:fov}
   \left \{
   \begin{array}{r c c c c c l}
-    FoV_x & = & 2 \arctan (\frac{Largeur}{2 \times Distance}) & = & 2 \arctan (\frac{53}{2 \times 34}) & = & \ang{76}\\
-    FoV_y & = & 2 \arctan (\frac{Hauteur}{2 \times Distance}) & = & 2 \arctan (\frac{30}{2 \times 34}) & = & \ang{48}
+    FoV_x & = & 2 \arctan (\frac{L}{2 \times D}) & = & 2 \arctan (\frac{53}{2 \times 34}) & = & \ang{76}\\
+    FoV_y & = & 2 \arctan (\frac{H}{2 \times D}) & = & 2 \arctan (\frac{30}{2 \times 34}) & = & \ang{48}
   \end{array}
   \right .
 \end{equation}
@@ -97,7 +98,7 @@ Nous pourrions simplifier le visiocasque en utilisant une caméra \emph{monoscop
   Images capturées par l'Ovrvision Pro et rectifiées : les deux objectifs sont décalés horizontalement d'environ \SI{60}{\mm} pour simuler un écart pupillaire humain.
 }
 
-Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image. Elle permet de mesurer la finesse de l'image affichée et se calcule ainsi : $Densite = \frac{Largeur}{FoV_x}$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} et la fovéa d'un \oe il humain de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}.
+Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image. Elle permet de mesurer la finesse de l'image affichée à partir de la définition horizontale $l$ et le champs de vision et se calcule ainsi : $Densite = \frac{l}{FoV_x}$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} et la fovéa d'un \oe il humain de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}.
 
 Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Une définition de 8K (\SI{7680x4320}{\px}) par \oe il serait alors nécessaire sur ces visiocasques et notre caméra pour atteindre la densité visuelle de la fovéa, à champs de vision égal : $Densite_{8K} = 7680 / 110 = \SI{69.8}{\ppd}$.
 
@@ -128,7 +129,7 @@ Une seconde limite évidente est la portabilité de notre visiocasque \reffigure
 
 \section{Étalonnage et rectification de la caméra stéréoscopique}
 \label{sec:calibration}
-Pour aligner la caméra virtuelle avec la caméra physique, nous devons tout d'abord rendre identiques leur paramètres intrinsèques. Pour cela nous devons comprendre le principe d'une caméra pour ensuite pouvoir étalonner notre caméra stéréoscopique, c'est-à-dire mesurer ses paramètres intrinsèques telles que le champs de vision ou les distorsions des deux objectifs. Nous pourrons ainsi les appliquer à la caméra virtuelle stéréoscopique. Nous survolons ici seulement la théorie pour résoudre notre problème de rectification et d'alignement ; le lecteur peut se référer à \cite[chapitres 18 et 19]{Kaehler2017} pour dérouler la procédure complète.
+Pour aligner la caméra virtuelle avec la caméra physique, nous devons tout d'abord rendre identiques leur paramètres intrinsèques. Pour cela nous devons comprendre le principe d'une caméra pour ensuite pouvoir étalonner notre caméra stéréoscopique, c'est-à-dire mesurer ses paramètres intrinsèques et ses distortions. Nous pourrons ainsi corriger les distortions et appliquer les paramètres intrinsèques à la caméra virtuelle stéréoscopique. Nous survolons ici seulement la théorie pour résoudre notre problème de rectification et d'alignement ; le lecteur peut se référer à \cite[chapitres 18 et 19]{Kaehler2017} pour dérouler la procédure complète.
 
 \subsection{Fonctionnement d'une caméra}
 \subsubsection{Sténopé et caméra virtuelle}
@@ -138,21 +139,65 @@ Une caméra est un dispositif qui capture une vue en 2D (deux dimensions) d'une 
   Un sténopé : une petite ouverture sur une face de la boite laisse entrer la lumière, projettant une scène 3D (par exemple les points $P_1$ et $P_2$) en une image inversée sur la face opposée à l'ouverture (les projections respectives sont les points $p_1$ et $p_2$).
 }
 
-L'image formée sur le plan image étant toujours nette, on peut modifier le champs de vision du sténopé en déplaçant le plan image le long de l'axe optique : il s'agit de la droite perpendiculaire au plan image et passant par le centre de projection. On calcule le champs de vision avec l'\autoref{eq:fov}, la distance étant la \emph{longueur focale} $f$, c'est-à-dire la distance entre le plan image et le centre de projection. Ainsi, à taille équivalent du plan image, une longueur focale plus courte donne lieu à un plus grand champs de vision.
+L'image formée sur le plan image étant toujours nette, on peut modifier le champs de vision du sténopé en déplaçant le plan image le long de l'axe optique : il s'agit de la droite perpendiculaire au plan image et passant par le centre de projection. On calcule le champs de vision avec l'\autoref{eq:fov}, la distance étant la \emph{longueur focale} $f$, c'est-à-dire la distance entre le plan image et le centre de projection. Elle est habituellement mesurée en millimètres. Ainsi, à taille équivalent du plan image, une longueur focale plus courte donne lieu à un plus grand champs de vision.
 
-Pour simplifier les équations, on peut modifier le modèle du sténopé. Il suffit de créer un nouveau plan image symétrique au véritable plan image par rapport au centre de projection, placé donc à la même distance $f$ du centre optique. La vue générée sur ce plan image virtuel reste la même mais est non inversée : les rayons de la scène sont toujours projeté vers le centre de projection mais interceptés par ce nouveau plan image \reffigureETSp{PerspectiveProjection.png}. Une caméra virtuelle monoscopique fonctionne ainsi, de manière simplifée, en suivant l'\autoref{eq:perspective_projection} pour projeter la scène.
-
-\begin{equation}
-  \label{eq:perspective_projection}
-  x = f \frac{X}{Z},\qquad y = f \frac{Y}{Z},\qquad z = f
-\end{equation}
+Pour simplifier les équations, on peut modifier le modèle du sténopé. Il suffit de créer un nouveau plan image symétrique au véritable plan image par rapport au centre de projection, placé donc à la même distance $f$ du centre optique. La vue générée sur ce plan image virtuel reste la même mais est non inversée : les rayons de la scène sont toujours projeté vers le centre de projection mais interceptés par ce nouveau plan image \reffigureETSp{PerspectiveProjection.png}.
 
 \figureETS[0.9]{PerspectiveProjection.png}{
   Une projection en perspective : un point $P=(X,Y,Z)$ va être projeté sur le plan image situé à une distance $z=f$ du centre de projection en un point $p=(x,y,f)$. Une caméra virtuelle est basée sur ce principe et on peut également simplifier le sténopé à ce modèle.
 }
 
+De manière simplifiée, c'est également le fonctionnement d'une caméra virtuelle monoscopique. En suivant l'\autoref{eq:virtual_camera_projection}, on projete chaque point $P=(X,Y,Z)$ de la scène en un point $p=(x,y,f)$ sur le plan image. Les unités sont arbitraires ; Unity utilise par exemple des mètres.
+
+\begin{equation}
+  \label{eq:virtual_camera_projection}
+  x = f \frac{X}{Z},\qquad y = f \frac{Y}{Z},\qquad z = f
+\end{equation}
+
 \subsubsection{Caméra physique}
-Le sténopé est un modèle de caméra également suffisant pour décrire une caméra physique monoscopique. Mais elle recquiert un capteur si l'on veut enregistrer l'image capturée. Placé sur le plan image, là où l'image est nette, le centre du capteur ne coïncide pas totalement avec l'axe optique : cela requerrait une précision trop importante et non nécessaire lors du montage du capteur. Nous pouvons simplement mesurer le décalage sur le plan image de l'intersection de l'axe optique avec le plan image, appelé \emph{centre optique} avec les paramètres $c_x$ et $c_y$.
+Le sténopé est un modèle de caméra également suffisant pour décrire une caméra physique monoscopique. Mais elle recquiert un capteur si l'on veut enregistrer l'image capturée. Il est placé sur le plan image, là où l'image est nette.
+
+Cependant, le centre du capteur ne coïncide pas totalement avec l'axe optique : cela requerrait une précision trop importante et non nécessaire lors du montage du capteur. Nous pouvons simplement mesurer le décalage sur le plan image de l'intersection de l'axe optique avec le plan image, appelé \emph{centre optique} avec les paramètres $c_x$ et $c_y$. On les mesure en pixels.
+
+En outre, la longueur focale mesurée peut être différente sur les deux axes du plan image, avec les paramètres $f_x$ et $f_y$, aussi mesurés en pixels. Cela est dû a certains capteurs, de mauvais qualité, produisant des pixels rectangulaires et non carrés. On peut donc les calculer en connaissant la taille physique $(L,H)$ et la définition $(l,h)$ du capteur avec l'\autoref{eq:focal_lengths}.
+
+\begin{equation}
+  \label{eq:focal_lengths}
+  f_x = f \frac{L}{l},\qquad f_y = f \frac{H}{h}
+\end{equation}
+
+Ces nouveaux paramètres font partie de la ce qu'on appelle la \emph{matrice intrinsèque} de la caméra, notée $K$. Elle permet de transformer un point $P$ de la scène est transformé en un point $p'$ dans l'espace caméra \autorefp{eq:projection}. Il suffit ensuite de le projeter sur le plan image en divisant ses coordonnées par $Z$ comme dans l'\autoref{eq:virtual_camera_projection}.
+
+\begin{equation}
+  \label{eq:projection}
+  \begin{pmatrix}
+    x'\\
+    y'\\
+    z'
+  \end{pmatrix}
+  =
+  \underbrace{
+    \begin{pmatrix}
+      f_x & 0 & c_x\\
+      0 & f_y & c_y\\
+      0 & 0 & 1
+    \end{pmatrix}
+  }_\text{K}
+  \begin{pmatrix}
+    X\\
+    Y\\
+    Z
+  \end{pmatrix}
+\end{equation}
+
+On résume la projection d'un point $P=(X,Y,Z)$ de la scène par une caméra physique monoscopique en un point $p=(x,y,f)$ sur le plan image en suivant l'\autoref{eq:physical_camera_projection}.
+
+\begin{equation}
+  \label{eq:physical_camera_projection}
+  x = f_x \frac{X}{Z} + c_x,\qquad y = f_y \frac{Y}{Z} + c_x,\qquad z = f
+\end{equation}
+
+Enfin, une caméra physique monoscopique recquiert également un objectif photographique. En effet, le problème du sténopé est qu'il faut des heures pour qu'une image visible se forme, l'ouverture ne laissant passer que très peu de lumière. La solution est de faire une ouverture plus grande pour laisser passer plus de lumière et de placer donc un objectif photographique pour continuer à concentrer la lumière sur le plan image en une seule image nette. L'inconvénient est que ce système optique introduit des distorsions en barillet dans l'image \reffigureETSp{Distorsion}. De plus, le capteur et l'objectif ne sont pas forcément bien montés parallèles, entraînant une distorsion tangente supplémentaire, le plan image ne coïncidant pas totalement avec le capteur. D'autres distorsions existent mais sont minimes et souvent non mesurées \citep[p.377]{Bradski2008}.
 
 \figureLayoutETS{Distorsion}{%
   \subfigureETS[0.15]{Distorsion_1.png}{Aucune distorsion.}%
@@ -164,40 +209,40 @@ Le sténopé est un modèle de caméra également suffisant pour décrire une ca
   Illustrations d'une grille vue à travers un système optique avec différents types de distorsion.
 }
 
-En conséquence, notre nouveau modèle est décrit 
-Nous pouvons maintenant modéliser la projection perspective d'un sténopé avec l'\autoref{eq:projection}, où la matrice intrinsèque $K$ de la caméra permet la projection d'un point $P$ en un point $p$ sur le plan image.
-
-\begin{equation}
-  \label{eq:projection}
-  \begin{pmatrix}
-    x\\
-    y\\
-    w
-  \end{pmatrix}
-  =
-  \underbrace{
-    \begin{pmatrix}
-      f_x & 0 & c_x\\
-      0 & f_y & c_y\\
-      0 & 0 & 1
-    \end{pmatrix}
-  }_K
-  \begin{pmatrix}
-    X\\
-    Y\\
-    Z
-  \end{pmatrix}
-\end{equation}
-
-Enfin, une caméra physique monoscopique recquiert également un objectif photographique. En effet, le problème du sténopé est qu'il faut des heures pour qu'une image visible se forme, l'ouverture ne laissant passer que très peu de lumière. La solution est de faire une ouverture plus grande pour laisser passer plus de lumière et de placer donc un objectif photographique pour continuer à concentrer la lumière sur le plan image en une seule image nette. L'inconvénient est que ce système optique introduit des distortions en barillet dans l'image \reffigureETSp{Distorsion}. De plus, le capteur et l'objectif ne sont pas forcément bien montés parallèles, entraînant une distortion tangente supplémentaire.
-
-Ces paramètres de distortion sont ainsi également mesurés lors de l'étalonnage, en plus de la matrice intrinsèque.
-
+Ces distorsions éloignent le fonctionnement de la caméra du modèle du sténopé que nous venons de décrire. C'est pourquoi il est important de les corriger en rectifiant l'image produite par la caméra pour conserver un bon alignement avec la caméra virtuelle.
 
 \subsection{Étalonnage d'une caméra}
 \subsubsection{Caméra monoscopique}
+Étalonner une caméra physique monoscopique consiste donc à déterminer sa matrice intrinsèque $K$ et ses paramètres de distorsion. Ce procédé fonctionne sur un principe simple. ArUco Unity permet d'étalonner ce type de caméra très facilement ; les algorithmes utilisés proviennent des modules de fonctions aruco (\url{https://docs.opencv.org/master/d9/d6a/group__aruco.html}) et calib3d (\url{https://docs.opencv.org/master/d9/d0c/group__calib3d.html}) de la bibliothèque OpenCV.
+
+Nous avons décrit les équations qui permettent de projeter un point $P$ de la scène en un point $p$ sur le plan image. Connaissant les coordonnées de ces deux points, nous pouvons donc écrire les vecteurs de translation $T = (t_x, t_y, t_z)$ et rotation $R = (\theta_x, \theta_y, \theta_z)$ permettant de transformer $P$ en $p$. En connaissant assez de couple de points $(P_i, p_i)$, on peut alors poser un ensemble d'équations pour résoudre la matrice intrinsèque $K$ de la caméra. Les déviations des points $p_i$ du sténopé ainsi calculé permettent de déterminer les paramètres de distorsion de la caméra.
+
+Concrètement, on utilise une image d'un échiquier qu'on capture avec la caméra dans plusieurs positions et angles de vues \reffigureETSp{Bradski2008_1.jpg}, les points étant les intersections entre les carrés noirs et blancs. On connait par avance les coordonnées relatives des points $P_i$ entre eux (il suffit de le mesurer sur l'échiquier) et ces intersections sont très facile à détecter sur l'image capturée par la caméra. La première étape de l'étalonnage consiste donc à capturer quelques images d'un échiquier vu par la caméra.
+
+\figureETS{Bradski2008_1.jpg}{
+  Une caméra physique monoscopique est étalonné avec OpenCV en capturant plusieurs images d'un échiquier imprimé sur une planche rigide capturé dans différentes positions et angles de vues.\\
+  Tiré de \cite[p.382]{Bradski2008}.
+}
+
+ArUco Unity permet de créer un de ces échiquiers d'étalonnage en une image prête à être imprimée. Dans un projet Unity configuré avec ArUco Unity (voir la \autoref{sec:aruco_unity}), il suffit de créer un nouvel objet \reffigureETSp{CharucoBoard_1.jpg} et d'y ajouter le script `ArucoObjectCreator.cs` \reffigureETSp{CharucoBoard_2.jpg} que l'on va configurer pour créer l'échiquier \reffigureETSp{CharucoBoard_3.jpg}. On démarre ensuite la scène Unity : le script crée automatiquement un plan dans la scène avec l'image de l'échiquier et enregistre cette image \reffigureETSp{CharucoBoard_4.jpg}. On peut alors l'imprimer et la coller sur une surface rigide.
+
+%\figureLayoutETS{CharucoBoard}{%
+%  \subfigureETS[0.15]{CharucoBoard_1.jpg}{Création d'un nouvel objet vide dans Unity.}%
+%  \figurehspace%
+%  \subfigureETS[0.15]{CharucoBoard_2.jpg}{Ajout des script `ArucoObjectCreator.cs` et `ArucoCharucoBoard.cs` à l'objet.}%
+%  \figurehspace%
+%  \subfigureETS[0.15]{CharucoBoard_3.jpg}{Configuration des scripts pour créer l'échiquier.}%
+%  \figurehspace%
+%  \subfigureETS[0.15]{CharucoBoard_4.jpg}{Création et enregistrement de l'échiquier quand la scène est démarrée.}%
+%}{
+%  Création d'un échiquier d'étalonnage avec ArUco Unity.
+%}
+
+On ouvre ensuite la scène Unity `Assets/ArucoUnity/Scenes/Calibration.unity` déjà préparée pour l'étalonnage. En cliquant sur l'objet 
+
 %- AdrianKaehler2017 - Learning OpenCV 3 Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + étalonnage
 
+Quelques conseils pratiques 
 % Conseils/notes étalonnages :
 
 %- Utiliser une board la plus plate possible (attention à l'humidité de l'air qui est absorbée par le papier)
@@ -209,6 +254,29 @@ Ces paramètres de distortion sont ainsi également mesurés lors de l'étalonna
 %- OpenCV est système main droite dans son système de coordonnées (\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT9/img4.gif}) alors qu'Unity est système main gauche : il suffit d'inverser l'axe des Y (\url{https://answers.unity.com/storage/temp/8053-spaces.jpg}) : faire un petit graphe comme la 2e image
 %- OpenCV encode sa rotation dans un vecteur dont les coordonnées normalisées donnent l'axe et sa norme l'angle autour de cet axe, alors qu'Unity utilise des quaternions. Adapté ce calcul (\url{http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/}) pour passer du premier au second : \url{https://github.com/enormand/aruco-unity/blob/master/src/aruco_unity_package/Assets/ArucoUnity/Scripts/Plugin/Cv/Vec3d.cs}. Voir BuJo 2017-11-07.
 
+\subsubsection{Caméra \texten{fisheye}}
+Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle du sténopé ne s'y applique pas. En effet, contrairement aux objectifs classiques, dit \emph{rectilinéaires}, ces objectifs utilisent volontairement une distorsion en barillet importante pour capter un très grand champs de vision jusqu'à \ang{180}.
+
+Nous devons donc utiliser un modèle de caméra plus adapté pour décrire les objectifs de notre caméra. Le module \texten{calib3d} d'OpenCV propose un ensemble de fonctions pour étalonner une caméra monoscopique \texten{fisheye} (\url{https://docs.opencv.org/master/db/d58/group__calib3d__fisheye.html}) mais nous n'avons pas pu le faire fonctionner correctement. Nous avons alors décidé d'utiliser un second module de fonctions d'étalonnage d'OpenCV, \texten{ccalib} (\url{https://docs.opencv.org/master/d3/ddc/group__ccalib.html}), implémentant le modèle et son étalonnage décrit par \cite{Mei2007}.
+
+Ce modèle décrit en réalité une autre catégorie d'objectifs : les objectifs catadioptriques. Ils utilisent un miroir pour capter la scène avec un très grand champs de vision jusqu'à \ang{360}, ce miroir étant ensuite filmé par la caméra \reffigureETSp{Mei2007_1.jpg}. C'est donc une portion de sphère qui est projetté sur le plan image, entraînant également une très grande distorsion de la scène \reffigureETSp{Mei2007_2.jpg}. \citeauthor{Mei2007} démontrent que ce modèle s'applique également aux caméras \texten{fisheye}.
+
+\figureLayoutETS{Mei2007}{%
+  \subfigureETS[0.2]{Mei2007_1.jpg}{La scène est captée à l'aide d'un miroir qui est filmé.}%
+  \figurehspace%
+  \subfigureETS[0.2]{Mei2007_2.jpg}{Modèle de la projection d'un point $X$ de la scène en un point $p$ sur le plan image. $\xi=1$ pour un objectif \texten{fisheye}.}%
+}{
+  Illustration du fonctionnement d'un objectif catadioptriques et du modèle de \citeauthor{Mei2007} les décrivant.\\
+  Tiré de \cite{Mei2007}
+}
+
+\figureLayoutETS{JPRoche2004}{%
+  \subfigureETS[0.2]{JPRoche2004_1.jpg}{Photographie par un objectif \texten{fisheye}.}%
+  \figurehspace%
+  \subfigureETS[0.2]{JPRoche2004_2.jpg}{Rectification de l1a photographie en une reprojection en perspective rectilinéaire.}%
+}{
+  Photographie et rectification par un objectif \texten{fisheye}.
+}
 
 \subsubsection{Caméra stéréoscopique}
 Cependant, l'image produite par une caméra \texten{fisheye} présente des distorsions trop importantes pour pouvoir appliquer le modèle du sténopé \reffigureETSp{OvrvisionCalibration}. Nous avons décidé d'utiliser le modèle de projection
@@ -230,7 +298,6 @@ Cependant, l'image produite par une caméra \texten{fisheye} présente des disto
 %- fisheye projections : https://wiki.panotools.org/Fisheye_Projection
 %- various lens projections : http://michel.thoby.free.fr/Fisheye_history_short/Projections/Various_lens_projection.html
 %- ccalib article : https://hal.archives-ouvertes.fr/file/index/docid/767674/filename/omni_calib.pdf
-
 
 \subsection{Rectification de la caméra stéréoscopique}
 % La rectification des images va les reprojeter dans une projection en perspective.
