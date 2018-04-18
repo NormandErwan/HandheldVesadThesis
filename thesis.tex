@@ -85,7 +85,7 @@
   showstringspaces=false,
   breakatwhitespace=true,
   escapeinside={(*@}{@*)},
-  basicstyle=\ttfamily
+  basicstyle=\ttfamily\small,
   commentstyle=\color{green},
   keywordstyle=\color{blue},
   stringstyle=\color{red},
@@ -106,10 +106,15 @@
 }
 
 \lstnewenvironment{listingETS}[3]{%
-  \lstset{language=#1, float, label=#2, caption=#3}%
+  \lstset{language={#1}, float, label=#2, caption={#3}}%
 }{}
 
-\newcommand{\code}[1]{\lstinline|#1|}
+\lstdefinestyle{inline}{
+  basicstyle=\ttfamily\small%
+  \lst@ifdisplaystyle\scriptsize\fi% Scale font size, from https://tex.stackexchange.com/a/161551
+}
+
+\newcommand{\code}[2][{[Sharp]C}]{\lstinline[language={#1}, style=inline]|#2|}
 
 % Thesis configuration
 \title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handheld VESAD (Virtually Extended Screen-Aligned Display)}

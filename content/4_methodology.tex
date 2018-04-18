@@ -70,7 +70,7 @@ Nous souhaitions ensuite prototyper le plus rapidement possible sur notre visioc
 
 Après plusieurs essais de configuration et une lecture du code source de l'Ovrvision Pro (\url{https://github.com/Wizapply/OvrvisionPro/}), nous avons constaté que la bibliothèque fournie était non fonctionnelle : (1) les images affichées pour chaque \oe il dans le casque étaient décalées, rendant le visiocasque particulièrement inconfortable à utiliser et (2) un décalage était présent entre le contenu virtuel et l'environment réel. Nous avions donc besoin de ré-étalonner cette caméra \autorefp{sec:calibration} et d'une bibliothèque de RA \autorefp{sec:aruco_unity}.
 
-Quelques bibliothèque de RA sont disponibles sur Unity, telles que Vuforia (\url{https://unity3d.com/fr/partners/vuforia}), ARToolKit (\url{https://github.com/artoolkit/arunity5}) ou OpenCV for Unity (\url{https://enoxsoftware.com/opencvforunity/}). Malgré tout, aucune ne nous a convenu : les deux premières sont conçues pour être utilisées avec des webcams monoscopiques donc ne supportaient pas notre caméra, tandis que la troisième risquait de nous donner peu de flexibilité avec son code source propriétaire. C'est pourquoi nous avons donc réalisé la bibliothèque ArUco Unity (\url{https://github.com/NormandErwan/aruco-unity}) : basée sur la bibliothèque libre de vision par ordinateur OpenCV (\url{https://opencv.org/}), elle est la seule bibliothèque libre, sous licence BSD-3-Clause, supportant l'étalonnage et la RA sur les webcams, monoscopiques ou stéréoscopiques, et l'Ovrvision Pro sous Unity.
+Quelques bibliothèque de RA sont disponibles sur Unity, telles que Vuforia (\url{https://unity3d.com/fr/partners/vuforia}), ARToolKit (\url{https://github.com/artoolkit/arunity5}) ou OpenCV for Unity (\url{https://enoxsoftware.com/opencvforunity/}). Malgré tout, aucune ne nous a convenu : les deux premières sont conçues pour être utilisées avec des webcams monoscopiques donc ne supportaient pas notre caméra, tandis que la troisième risquait de nous donner peu de flexibilité avec son code source propriétaire. C'est pourquoi nous avons donc réalisé la bibliothèque Aruco Unity (\url{https://github.com/NormandErwan/aruco-unity}) : basée sur la bibliothèque libre de vision par ordinateur OpenCV (\url{https://opencv.org/}), elle est la seule bibliothèque libre, sous licence BSD-3-Clause, supportant l'étalonnage et la RA sur les webcams, monoscopiques ou stéréoscopiques, et l'Ovrvision Pro sous Unity.
 
 
 \subsection{Procédure}
@@ -78,7 +78,7 @@ Pour realiser notre visiocasque, nous avons suivis la procédure suivante, basé
 \begin{enumerate}
   \item Sélection d'une caméra physique stéréoscopique, d'un visiocasque de RV et d'un moteur 3D \autorefp{subsec:technical_choices}.
   \item Étalonnage et rectification de la caméra physique \autorefp{sec:calibration}.
-  \item Réalisation de la librairie de réalité augmentée ArUco Unity pour aligner la caméra virtuelle avec la caméra physique \autorefp{sec:aruco_unity}.
+  \item Réalisation de la librairie de réalité augmentée Aruco Unity pour aligner la caméra virtuelle avec la caméra physique \autorefp{sec:aruco_unity}.
   \item Intégration du Leap Motion pour le suivi de la main \autorefp{sec:hand_tracking}.
   \item Conception de techniques d'interactions sur l'écran tactile et avec une main virtuelle \autorefp{sec:interaction_techniques}.
   \item Synchronisation entre le visiocasque et le téléphone \autorefp{sec:synchronization}.
@@ -133,9 +133,9 @@ Pour aligner la caméra virtuelle avec la caméra physique, nous devons tout d'a
 
 \subsection{Fonctionnement d'une caméra}
 \subsubsection{Sténopé et caméra virtuelle}
-Une caméra est un dispositif qui capture une vue en 2D (deux dimensions) d'une scène en 3D. Cette vue est une projection en \emph{perspective}, similaire à ce que l'\oe il humain voit. Le plus simple des dispositifs de projection en perspective est le sténopé : c'est une simple boite percée d'une petite ouverture, le \emph{centre de projection}, sur une de ses face, et d'un écran, \emph{le plan image}, sensible à la lumière sur la face opposée. La scène n'est donc visible que par un unique point de vue : ainsi, chaque point sur le plan image ne provenant que d'un seul rayon de lumière à travers le centre de projection, une image nette et inversée de la scène va se former \reffigureETSp{Pinhole.png}.
+Une caméra est un dispositif qui capture une vue en 2D (deux dimensions) d'une scène en 3D. Cette vue est une projection en \emph{perspective}, similaire à la vision humaine. Le plus simple des dispositifs de projection en perspective est le \emph{sténopé} (\texten{pinhole} en anglais) : c'est une simple boite percée d'une petite ouverture, le \emph{centre de projection}, sur une de ses face, et d'un écran, \emph{le plan image}, sensible à la lumière sur la face opposée. La scène n'est donc visible que par un unique point de vue : ainsi, chaque point sur le plan image ne provenant que d'un seul rayon de lumière à travers le centre de projection, une image nette et inversée de la scène va se former \reffigureETSp{Pinhole.png}.
 
-\figureETS{Pinhole.png}{
+\figureETS[0.9]{Pinhole.png}{
   Un sténopé : une petite ouverture sur une face de la boite laisse entrer la lumière, projettant une scène 3D (par exemple les points $P_1$ et $P_2$) en une image inversée sur la face opposée à l'ouverture (les projections respectives sont les points $p_1$ et $p_2$).
 }
 
@@ -147,7 +147,7 @@ Pour simplifier les équations, on peut modifier le modèle du sténopé. Il suf
   Une projection en perspective : un point $P=(X,Y,Z)$ va être projeté sur le plan image situé à une distance $z=f$ du centre de projection en un point $p=(x,y,f)$. Une caméra virtuelle est basée sur ce principe et on peut également simplifier le sténopé à ce modèle.
 }
 
-De manière simplifiée, c'est également le fonctionnement d'une caméra virtuelle monoscopique. En suivant l'\autoref{eq:virtual_camera_projection}, on projete chaque point $P=(X,Y,Z)$ de la scène en un point $p=(x,y,f)$ sur le plan image. Les unités sont arbitraires ; Unity utilise par exemple des mètres.
+De manière simplifiée, c'est également le fonctionnement d'une caméra virtuelle monoscopique. En suivant l'\autoref{eq:virtual_camera_projection}, on projete chaque point $P=(X,Y,Z)$ de la scène en un point $p=(x,y,z)$ sur le plan image. Les unités sont arbitraires ; Unity utilise par exemple des mètres.
 
 \begin{equation}
   \label{eq:virtual_camera_projection}
@@ -190,7 +190,7 @@ Ces nouveaux paramètres font partie de la ce qu'on appelle la \emph{matrice int
   \end{pmatrix}
 \end{equation}
 
-On résume la projection d'un point $P=(X,Y,Z)$ de la scène par une caméra physique monoscopique en un point $p=(x,y,f)$ sur le plan image en suivant l'\autoref{eq:physical_camera_projection}.
+On résume la projection d'un point $P=(X,Y,Z)$ de la scène par une caméra physique monoscopique en un point $p=(x,y,z)$ sur le plan image en suivant l'\autoref{eq:physical_camera_projection}.
 
 \begin{equation}
   \label{eq:physical_camera_projection}
@@ -211,72 +211,108 @@ Enfin, une caméra physique monoscopique recquiert également un objectif photog
 
 Ces distorsions éloignent le fonctionnement de la caméra du modèle du sténopé que nous venons de décrire. C'est pourquoi il est important de les corriger en rectifiant l'image produite par la caméra pour conserver un bon alignement avec la caméra virtuelle.
 
+\subsubsection{Caméra physique avec un objectif \texten{fisheye}}
+Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle du sténopé ne s'y applique pas. En effet, contrairement à la perspective de l'\oe il humain et des objectifs classiques, dit \emph{rectilinéaires}, ces objectifs utilisent un autre type de projection perspective avec une distorsion en barillet volontairement importante pour capter un très grand champs de vision jusqu'à \ang{180} \reffigureETSp{JPRoche2004_1.jpg}. Nous avons besoin donc de rectifier ces distortions en reprojetant les images de notre caméra en perspective rectilinéaire, c'est-à-dire comme si elles avaient été capturées par un sténopé, pour pouvoir aligner la caméra virtuelle \reffigureETSp{JPRoche2004_2.jpg}.
+
+\figureLayoutETS{JPRoche2004}{%
+  \subfigureETS[0.2]{JPRoche2004_1.jpg}{Photographie par un objectif \texten{fisheye} : les distorsions sont très importantes dans l'image, les lignes droites sont vues courbes.}%
+  \figurehspace%
+  \subfigureETS[0.2]{JPRoche2004_2.jpg}{Rectification de la photographie en une reprojection en perspective rectilinéaire : les lignes droites le sont à nouveau.}%
+}{
+  Photographie par un objectif \texten{fisheye} et rectification de la photographie.\\
+  Adapté de \cite{JPRoche2004}.
+}
+
+\cite{Mei2007} proposent un modèle utilisable pour les objectifs \texten{fisheye}. La caméra est modélisée sur le principe suivant : la scène est d'abord projetée sur une sphère, puis une projection perspective rectilinéaire de la sphère est faite sur le plan image \reffigureETSp{Mei2007.jpg}. On peut alors reprojeter cette image lors de sa rectification en faisant l'opération inverse de la projection et ainsi simuler que l'image ait été capturée par un objectif rectilinéaire \reffigureETSp{PerspectiveProjection.png}.
+
+\figureETS[0.5]{Mei2007.jpg}{%
+  Illustration du modèle de \cite{Mei2007} : un point $X$ de la scène est d'abord projeté en un point $X_s$ sur une sphère puis projeté à nouveau en perspective rectilinéaire en un point $p$ sur le plan image.\\
+  Tiré de \cite{Mei2007}%
+}
+
 \subsection{Étalonnage d'une caméra}
-\subsubsection{Caméra monoscopique}
-Étalonner une caméra physique monoscopique consiste donc à déterminer sa matrice intrinsèque $K$ et ses paramètres de distorsion. Ce procédé fonctionne sur un principe simple. ArUco Unity permet d'étalonner ce type de caméra très facilement ; les algorithmes utilisés proviennent des modules de fonctions aruco (\url{https://docs.opencv.org/master/d9/d6a/group__aruco.html}) et calib3d (\url{https://docs.opencv.org/master/d9/d0c/group__calib3d.html}) de la bibliothèque OpenCV.
+Nous étudions d'abord l'étalonnage d'une caméra physique monoscopique avec un objectif rectilinéaire, c'est-à-dire suivant le modèle du sténopé, car c'est le cas le plus simple. Nous itérons ensuite sur ce procédé en utilisant une caméra stéréoscopique, puis avec des objectifs \texten{fisheye}.
 
-Nous avons décrit les équations qui permettent de projeter un point $P$ de la scène en un point $p$ sur le plan image. Connaissant les coordonnées de ces deux points, nous pouvons donc écrire les vecteurs de translation $T = (t_x, t_y, t_z)$ et rotation $R = (\theta_x, \theta_y, \theta_z)$ permettant de transformer $P$ en $p$. En connaissant assez de couple de points $(P_i, p_i)$, on peut alors poser un ensemble d'équations pour résoudre la matrice intrinsèque $K$ de la caméra. Les déviations des points $p_i$ du sténopé ainsi calculé permettent de déterminer les paramètres de distorsion de la caméra.
+Aruco Unity permet d'étalonner facilement ces différents types de caméra. Nous décrivons dans cette sous-section les actions à faire pour cela dans Unity ; en arrière-plan, Aruco Unity exécute des fonctions de modules de la bibliothèque OpenCV : (1) aruco (\url{https://docs.opencv.org/master/d9/d6a/group__aruco.html}), implémentant \cite{Garrido-Jurado2014}, (2) calib3d pour les objectifs rectilinéaires (\url{https://docs.opencv.org/maste0r/d9/d0c/group__calib3d.html}) et (3) ccalib pour les objectifs \texten{fisheye} (\url{https://docs.opencv.org/master/d3/ddc/group__ccalib.html}), basé sur le modèle de \cite{Mei2007} et son implémentation par \cite{Li2013}. Nous avions d'abord essayé les fonctions d'étalonnage pour les objectifs \texten{fisheye} du module calib3d, mais nous n'avons pas pu les faire fonctionner : c'est pourquoi nous nous sommes tournés vers le module ccalib et le modèle de \cite{Mei2007}.
 
-Concrètement, on utilise une image d'un échiquier qu'on capture avec la caméra dans plusieurs positions et angles de vues \reffigureETSp{Bradski2008_1.jpg}, les points étant les intersections entre les carrés noirs et blancs. On connait par avance les coordonnées relatives des points $P_i$ entre eux (il suffit de le mesurer sur l'échiquier) et ces intersections sont très facile à détecter sur l'image capturée par la caméra. La première étape de l'étalonnage consiste donc à capturer quelques images d'un échiquier vu par la caméra.
+Cette sous-section a son équivalent en anglais dans la documentation en ligne (\url{https://github.com/NormandErwan/ArucoUnity/wiki/2.-Camera-Calibration}). La version en ligne est plus pratique pour permettre à nouvel utilisateur de rapidement étalonner sa caméra sans s'attarder sur la théorie sous-jacente.
+
+\subsubsection{Caméra monoscopique avec un objectif rectilinéaire}
+Étalonner une caméra monoscopique rectilinéaire consiste donc à déterminer sa matrice intrinsèque $K$ et ses paramètres de distorsion. Ce procédé fonctionne sur un principe simple. Nous avons décrit les équations qui permettent de projeter un point $P$ de la scène en un point $p$ sur le plan image. Connaissant les coordonnées de ces deux points, nous pouvons donc écrire les vecteurs de translation $T = (t_x, t_y, t_z)$ et rotation $R = (\theta_x, \theta_y, \theta_z)$ permettant de transformer un point $P$ de la scène en un point $p$ sur le plan image. En connaissant assez de couple de points $(P_i, p_i)$, on peut alors poser un ensemble d'équations pour résoudre la matrice intrinsèque $K$ de la caméra. Les déviations des points $p_i$ du modèle de sténopé ainsi calculé permettent de déterminer les paramètres de distorsion de la caméra.
+
+Concrètement, on utilise une image d'un échiquier qu'on capture avec la caméra dans plusieurs positions et angles de vues \reffigureETSp{Bradski2008_1.jpg}, les points utilisés étant les intersections entre les carrés noirs et blancs. On connait par avance les coordonnées relatives des points $P_i$ entre eux (il suffit de le mesurer sur l'échiquier) et ces intersections sont très facile à détecter sur l'image capturée par la caméra. La première étape de l'étalonnage consiste donc à capturer avec la caméra quelques images d'un échiquier dont on connait la configuration.
 
 \figureETS{Bradski2008_1.jpg}{
   Une caméra physique monoscopique est étalonné avec OpenCV en capturant plusieurs images d'un échiquier imprimé sur une planche rigide capturé dans différentes positions et angles de vues.\\
   Tiré de \cite[p.382]{Bradski2008}.
 }
 
-ArUco Unity permet de créer un de ces échiquiers d'étalonnage en une image prête à être imprimée. Dans un projet Unity configuré avec ArUco Unity (voir la \autoref{sec:aruco_unity}), il suffit de créer un nouvel objet \reffigureETSp{CharucoBoard_1.jpg} et d'y ajouter le script `ArucoObjectCreator.cs` \reffigureETSp{CharucoBoard_2.jpg} que l'on va configurer pour créer l'échiquier \reffigureETSp{CharucoBoard_3.jpg}. On démarre ensuite la scène Unity : le script crée automatiquement un plan dans la scène avec l'image de l'échiquier et enregistre cette image \reffigureETSp{CharucoBoard_4.jpg}. On peut alors l'imprimer et la coller sur une surface rigide.
+On crée alors notre échiquier d'étalonnage \reffigureETSp{CharucoBoardCreation.jpg} :
+\begin{itemize}
+  \item on crée un projet Unity configuré avec Aruco Unity \autorefp{sec:aruco_unity} ;
+  \item dans ce projet, on ajoute un nouvel objet vide ;
+  \item on ajoute à l'objet le script \code{ArucoCharucoBoard.cs}, qui représente l'échiquier, et on le configure :
+  \begin{itemize}
+    \item la taille des carrés en pixels avec le champs \code{SquareSideLength} ;
+    \item le nombre de carrés avec \code{SquaresNumberX} et \code{SquaresNumberY} ;
+    \item la taille des marqueurs avec \code{MarkerSideLength} ;
+    \item la marge entre les marqueurs et les carrés blancs qui les contiennent avec \code{MarginLength} ;
+  \end{itemize}
+  \item on ajoute à l'objet le script \code{ArucoObjectCreator.cs}, qui permet de créer l'image de l'échiquier, et on fait pointer \code{ArucoObject} vers \code{ArucoCharucoBoard.cs} ;
+  \item on démarre la scène Unity : l'image de l'échiquier s'affiche et est enregistrée sur le disque dur dans le dossier du projet (le chemin est indiqué par \code{OutputFolder}) ;
+  \item on imprime l'image et on la colle fermement sur une surface rigide pour qu'elle reste le plus plate possible.
+\end{itemize}  
 
-%\figureLayoutETS{CharucoBoard}{%
-%  \subfigureETS[0.15]{CharucoBoard_1.jpg}{Création d'un nouvel objet vide dans Unity.}%
-%  \figurehspace%
-%  \subfigureETS[0.15]{CharucoBoard_2.jpg}{Ajout des script `ArucoObjectCreator.cs` et `ArucoCharucoBoard.cs` à l'objet.}%
-%  \figurehspace%
-%  \subfigureETS[0.15]{CharucoBoard_3.jpg}{Configuration des scripts pour créer l'échiquier.}%
-%  \figurehspace%
-%  \subfigureETS[0.15]{CharucoBoard_4.jpg}{Création et enregistrement de l'échiquier quand la scène est démarrée.}%
-%}{
-%  Création d'un échiquier d'étalonnage avec ArUco Unity.
+\figureETS[0.9]{CharucoBoardCreation.jpg}{
+  Création d'un échiquier d'étalonnage avec Aruco Unity : à gauche les scripts de configuration, à droite l'échiquier vu dans la scène Unity. Les marqueurs, décrits dans la \autoref{sec:aruco_unity}, dans les carrés blancs permettent l'amélioration de la détection de l'échiquier.
+}
+
+On prépare ensuite la scène de calibration \reffigureETSp{PinholeCameraCalibration}:
+\begin{enumerate}
+  \item on ouvre la scène Unity \code{Assets/ArucoUnity/Scenes/Calibrate.unity} déjà préparée pour l'étalonnage d'une caméra monoscopique rectilinéaire ;
+  \item sur le script \code{WebcamArucoCamera.cs}, dans l'objet du même nom, on choisit la caméra à étalonner en renseignant son identifiant numérique dans le champs \code{WebcamId} ;
+  \item on crée à nouveau un objet représentant notre échiquier imprimé, en y configurant cette fois la taille des carrés en mètres, permettant à Aruco Unity de construire automatiquement les positions relatives à l'échiquer des points $P_i$ ;
+  \item sur le script \code{PinholeCameraCalibration.cs}, dans l'objet du même nom, on fait pointer le champs \code{CalibrationBoard} vers notre objet d'échiquier ;
+  \item on peut ajuster les paramètres de calibration (\texten{calibration flags} en anglais) du module calib3d avec \code{PinholeCameraCalibrationFlags.cs} et les paramètres de détection du module aruco avec \code{DectectorParametersController.cs}, ces deux scripts ayant par défaut les valeurs recommandées par les documentations de leurs modules respectifs.
+\end{enumerate}
+
+\figureLayoutETS{PinholeCameraCalibration}{%
+  \subfigureETS[0.4]{PinholeCameraCalibration_1.jpg}{Sélection de la première caméra disponible (identifiant \code{0} dans le champs \code{WebcamId}).}%
+  \figurehspace%
+  \subfigureETS[0.4]{PinholeCameraCalibration_2.jpg}{Lien vers l'échiquier utilisé (champs \code{CalibrationBoard}).}%
+}{
+  Configuration de la scène Unity \code{Calibrate} pour étalonner une caméra monoscopique rectilinéaire.
+}
+
+On peut maintenant débuter l'étalonnage en jouant la scène \reffigureETSp{PinholeCameraCalibration_3.jpg}. Le flux vidéo de la caméra est affiché alors dans Unity ainsi qu'une IHM : le bouton \code{Add Image} permet de capturer l'image courante dans une liste, le bouton \code{Reset} permet de vider cette liste et le bouton \code{Calibrate} permet d'étalonner la caméra en utilisant cette liste d'images. Il est important de garder la caméra dans une position fixe durant l'étalonnage et de varier seulement la position et l'orientation de l'échiquier entre les images. On désactive aussi la mise au point automatique de la caméra, ce paramètre impactant en effet la matrice intrinsèque	$K$ de la caméra et les distorsions de l'objectif. Enfin, les contours de l'échiquier sont surlignés en rouge dans le flux vidéo pour aider à le positioner.
+
+%\figureETS[0.75]{PinholeCameraCalibration_3.jpg}{
 %}
 
-On ouvre ensuite la scène Unity `Assets/ArucoUnity/Scenes/Calibration.unity` déjà préparée pour l'étalonnage. En cliquant sur l'objet 
+Une fois l'étalonnage effectué, un score mesurant sa qualité est alors affiché. Il correspond à la somme de l'erreur de reprojection pour chaque image : c'est la distance en pixels entre les points $p_i$ observés et la projection simulée des points $P_i$ sur le plan image avec le modèle de sténopé mesuré par l'étalonnage. Ce score doit être le plus proche possible de zéro si l'on souhaite un bon alignement des deux caméras : un décalage trop important entre l'image de la caméra physique et le contenu virtuel briserait l'illusion de la RA.
 
-%- AdrianKaehler2017 - Learning OpenCV 3 Chapitre 11 + OpenCV3.3.0-Calib3dModule + notes 2016-11-28 pour le modèle pinhole de caméra + étalonnage
+Le code C++ d'étalonnage \ref{lst:pinhole_calibration} exécuté en arrière-plan est assez simple : on crée l'échiquier décrit, on le détecte dans chaque image de la liste, enfin on calcule la matrice intrinsèque $K$ et les paramètres de distorsion. Ce code tourne dans un fil d'exécution (\texten{thread} en anglais) séparé de celui d'Unity : pouvant en effet demander de lourds calculs, cela nous permet de garder l'IHM d'Unity fluide.
 
-Quelques conseils pratiques 
-% Conseils/notes étalonnages :
+\begin{listingETS}{C++}{lst:pinhole_calibration}{Code simplifié d'étalonnage d'Aruco Unity pour une caméra monoscopique avec un objectif rectilinéaire.}
+  cv::Ptr<aruco::CharucoBoard> board = ... // create charuco board
+  cv::Size imgSize = ... // camera image size
+  std::vector<std::vector<cv::Point2f>> allCharucoCorners;
+  std::vector<std::vector<int>> allCharucoIds;
+  // Detect charuco board from several viewpoints and fill allCharucoCorners and allCharucoIds
+  ...
+  ...
+  // After capturing in several viewpoints, start calibration
+  cv::Mat cameraMatrix, distCoeffs;
+  std::vector<cv::Mat> rvecs, tvecs;
+  int calibrationFlags = ... // Set calibration flags (same than in calibrateCamera() function)
+  double repError = cv::aruco::calibrateCameraCharuco(allCharucoCorners, allCharucoIds, board, imgSize, cameraMatrix, distCoeffs, rvecs, tvecs, calibrationFlags);
+\end{listingETS}
 
-%- Utiliser une board la plus plate possible (attention à l'humidité de l'air qui est absorbée par le papier)
-%- Utiliser une bonne lumière pour que la board soit bien détectée et sans reflets
-%- Désactiver l'autofocus de la caméra : une étalonnage se fait pour une focale fixe (les distorsions restent les même mais pas la camera matrix)
-%- La caméra ou la board doit rester fixe pendant l'étalonnage
-%- Prendre des dizaines de captures remplissant uniformément l'espace de capture de la caméra en variant les angles de capture
-%- L'objectif est d'avoir une erreur de reprojection inférieure à 1 pixel
-%- OpenCV est système main droite dans son système de coordonnées (\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT9/img4.gif}) alors qu'Unity est système main gauche : il suffit d'inverser l'axe des Y (\url{https://answers.unity.com/storage/temp/8053-spaces.jpg}) : faire un petit graphe comme la 2e image
-%- OpenCV encode sa rotation dans un vecteur dont les coordonnées normalisées donnent l'axe et sa norme l'angle autour de cet axe, alors qu'Unity utilise des quaternions. Adapté ce calcul (\url{http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/}) pour passer du premier au second : \url{https://github.com/enormand/aruco-unity/blob/master/src/aruco_unity_package/Assets/ArucoUnity/Scripts/Plugin/Cv/Vec3d.cs}. Voir BuJo 2017-11-07.
 
-\subsubsection{Caméra \texten{fisheye}}
-Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle du sténopé ne s'y applique pas. En effet, contrairement aux objectifs classiques, dit \emph{rectilinéaires}, ces objectifs utilisent volontairement une distorsion en barillet importante pour capter un très grand champs de vision jusqu'à \ang{180}.
-
+\subsubsection{Caméra avec un objectif \texten{fisheye}}
 Nous devons donc utiliser un modèle de caméra plus adapté pour décrire les objectifs de notre caméra. Le module \texten{calib3d} d'OpenCV propose un ensemble de fonctions pour étalonner une caméra monoscopique \texten{fisheye} (\url{https://docs.opencv.org/master/db/d58/group__calib3d__fisheye.html}) mais nous n'avons pas pu le faire fonctionner correctement. Nous avons alors décidé d'utiliser un second module de fonctions d'étalonnage d'OpenCV, \texten{ccalib} (\url{https://docs.opencv.org/master/d3/ddc/group__ccalib.html}), implémentant le modèle et son étalonnage décrit par \cite{Mei2007}.
 
 Ce modèle décrit en réalité une autre catégorie d'objectifs : les objectifs catadioptriques. Ils utilisent un miroir pour capter la scène avec un très grand champs de vision jusqu'à \ang{360}, ce miroir étant ensuite filmé par la caméra \reffigureETSp{Mei2007_1.jpg}. C'est donc une portion de sphère qui est projetté sur le plan image, entraînant également une très grande distorsion de la scène \reffigureETSp{Mei2007_2.jpg}. \citeauthor{Mei2007} démontrent que ce modèle s'applique également aux caméras \texten{fisheye}.
-
-\figureLayoutETS{Mei2007}{%
-  \subfigureETS[0.2]{Mei2007_1.jpg}{La scène est captée à l'aide d'un miroir qui est filmé.}%
-  \figurehspace%
-  \subfigureETS[0.2]{Mei2007_2.jpg}{Modèle de la projection d'un point $X$ de la scène en un point $p$ sur le plan image. $\xi=1$ pour un objectif \texten{fisheye}.}%
-}{
-  Illustration du fonctionnement d'un objectif catadioptriques et du modèle de \citeauthor{Mei2007} les décrivant.\\
-  Tiré de \cite{Mei2007}
-}
-
-\figureLayoutETS{JPRoche2004}{%
-  \subfigureETS[0.2]{JPRoche2004_1.jpg}{Photographie par un objectif \texten{fisheye}.}%
-  \figurehspace%
-  \subfigureETS[0.2]{JPRoche2004_2.jpg}{Rectification de l1a photographie en une reprojection en perspective rectilinéaire.}%
-}{
-  Photographie et rectification par un objectif \texten{fisheye}.
-}
 
 \subsubsection{Caméra stéréoscopique}
 Cependant, l'image produite par une caméra \texten{fisheye} présente des distorsions trop importantes pour pouvoir appliquer le modèle du sténopé \reffigureETSp{OvrvisionCalibration}. Nous avons décidé d'utiliser le modèle de projection
@@ -289,15 +325,8 @@ Cependant, l'image produite par une caméra \texten{fisheye} présente des disto
   Vues non rectifiées d'une planche de calibration à travers l'Ovrvision Pro. L'importante distorsion des images se remarque aux lignes parallèles de la planche qui sont courbées. L'étalonnage de la caméra mesure entre autres cette distorsion.
 }
 
-%Perspective projection rectification from fisheye image in the unified projection model used in omnidirectional camera étalonnage (ccalib OpenCV's module)
 
-%- OpenCV3.3.0-CcalibModule (car module fisheye buggé et citer le papier qui dit que le modèle de caméra omnidir s'appliquer aussi aux caméras fisheye) pour l'étalonnage fisheye
-%- Omnidir camera model : http://rpg.ifi.uzh.ch/docs/omnidirectional_camera.pdf
 %- determine Knew https://medium.com/@kennethjiang/calibrate-fisheye-lens-using-opencv-part-2-13990f1b157f
-%- explications : http://www.bobatkins.com/photography/technical/field_of_view.html
-%- fisheye projections : https://wiki.panotools.org/Fisheye_Projection
-%- various lens projections : http://michel.thoby.free.fr/Fisheye_history_short/Projections/Various_lens_projection.html
-%- ccalib article : https://hal.archives-ouvertes.fr/file/index/docid/767674/filename/omni_calib.pdf
 
 \subsection{Rectification de la caméra stéréoscopique}
 % La rectification des images va les reprojeter dans une projection en perspective.
@@ -329,6 +358,8 @@ Calib p.103
 - La doc qui a été faite, la petite PR pour rendre compatible les modues aruco et ccalib, le package Unity, les forks et ajouts sur internet, le package pour ovrvision (preuve que c'est extensible (citer les termes du cours MGL843))
 - Utiliser des boards de 2 markers minimum pour la détection : beaucoup plus robuste qu'utiliser des markers seuls
 
+%- OpenCV encode sa rotation dans un vecteur dont les coordonnées normalisées donnent l'axe et sa norme l'angle autour de cet axe, alors qu'Unity utilise des quaternions. Adapté ce calcul (\url{http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/}) pour passer du premier au second : \url{https://github.com/enormand/aruco-unity/blob/master/src/aruco_unity_package/Assets/ArucoUnity/Scripts/Plugin/Cv/Vec3d.cs}. Voir BuJo 2017-11-07.
+%- OpenCV est système main droite dans son système de coordonnées (\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT9/img4.gif}) alors qu'Unity est système main gauche : il suffit d'inverser l'axe des Y (\url{https://answers.unity.com/storage/temp/8053-spaces.jpg}) : faire un petit graphe comme la 2e image
 
 \section{Intégration du Leap Motion pour le suivi de la main}
 \label{sec:hand_tracking}
