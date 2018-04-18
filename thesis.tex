@@ -7,6 +7,8 @@
 \usepackage{csquotes} % Quotations
 \usepackage[binary-units=true, locale=FR]{siunitx} % Correct display of units
 \usepackage{pdfpages} % Include PDFs
+\usepackage{color}
+\usepackage{inconsolata} % Better typewriter font
 
 % Quotations configuration
 \let\oldforeignlanguage\foreignlanguage
@@ -58,7 +60,7 @@
   \end{table}%
 }
 
-% Vertically centered columns, based on: https://tex.stackexchange.com/a/12712
+% Vertically centered columns, based on https://tex.stackexchange.com/a/12712
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -68,6 +70,46 @@
 \DeclareSIUnit\inch{pouces}
 \DeclareSIUnit\px{px}
 \DeclareSIUnit[per-mode=symbol]\ppd{\px\per\degree}
+
+% Listings
+\lstloadlanguages{C++, [Sharp]C, XML}
+
+\definecolor{blue}{rgb}{0.13,0.13,1}
+\definecolor{green}{rgb}{0,0.5,0}
+\definecolor{red}{rgb}{0.9,0,0}
+\definecolor{maroon}{rgb}{0.6,0,0}
+\definecolor{black}{rgb}{0,0,0}
+
+\lstdefinestyle{VisualStudio}{ % Style based on https://tex.stackexchange.com/a/45714
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  escapeinside={(*@}{@*)},
+  basicstyle=\ttfamily
+  commentstyle=\color{green},
+  keywordstyle=\color{blue},
+  stringstyle=\color{red},
+}
+\lstset{language=C++, style=VisualStudio}
+\lstset{language=[Sharp]C, style=VisualStudio}
+
+\lstdefinelanguage{XML}{
+  tabsize=2,
+  basicstyle=\ttfamily\footnotesize,
+  identifierstyle=\color{maroon},
+  morestring=[b][\color{blue}]",
+  moredelim=[s][\color{red}]{\ }{=},
+  moredelim=[s][\color{black}]{>}{<},
+  commentstyle=\color{green},
+  morecomment=[s]{<?}{?>},
+  morecomment=[s]{<!--}{-->},
+}
+
+\lstnewenvironment{listingETS}[3]{%
+  \lstset{language=#1, float, label=#2, caption=#3}%
+}{}
+
+\newcommand{\code}[1]{\lstinline|#1|}
 
 % Thesis configuration
 \title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handheld VESAD (Virtually Extended Screen-Aligned Display)}
@@ -103,6 +145,8 @@
 \tableofcontents
 \listoftables
 \listoffigures
+%\listofalgorithms
+%\lstlistoflistings
 
 \begin{listofabbr}[3cm]
   \input{content/0_4_abbreviations}
@@ -131,8 +175,9 @@
 
 \appendix
 \multiannexe
-\input{content/8_experiment_forms}
-\input{content/9_experiment_analysis}
+\input{content/8_ovrvision_camera_parameters}
+\input{content/9_experiment_forms}
+\input{content/10_experiment_analysis}
 
 \newpage
 \begin{spacing}{1}
