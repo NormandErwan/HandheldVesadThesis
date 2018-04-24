@@ -7,7 +7,7 @@
 \usepackage{csquotes} % Quotations
 \usepackage[binary-units=true, locale=FR]{siunitx} % Correct display of units
 \usepackage{pdfpages} % Include PDFs
-\usepackage{color}
+\usepackage{color} % Declare colors
 \usepackage{inconsolata} % Better typewriter font
 
 % Quotations configuration
@@ -74,24 +74,32 @@
 % Listings
 \lstloadlanguages{C++, [Sharp]C, XML}
 
-\definecolor{blue}{rgb}{0.13,0.13,1}
-\definecolor{green}{rgb}{0,0.5,0}
-\definecolor{red}{rgb}{0.9,0,0}
-\definecolor{maroon}{rgb}{0.6,0,0}
 \definecolor{black}{rgb}{0,0,0}
+\definecolor{blue}{rgb}{0.13,0.13,1}
+\definecolor{cyan}{rgb}{0.17,0.57,0.69}
+\definecolor{green}{rgb}{0,0.5,0}
+\definecolor{maroon}{rgb}{0.6,0,0}
+\definecolor{red}{rgb}{0.9,0,0}
 
 \lstdefinestyle{VisualStudio}{ % Style based on https://tex.stackexchange.com/a/45714
   breaklines=true,
-  showstringspaces=false,
   breakatwhitespace=true,
-  escapeinside={(*@}{@*)},
-  basicstyle=\ttfamily\small,
+  basicstyle=\ttfamily\footnotesize,
   commentstyle=\color{green},
   keywordstyle=\color{blue},
-  stringstyle=\color{red},
+  keywordstyle=[2]{\color{cyan}},
+  stringstyle=\color{red}
 }
-\lstset{language=C++, style=VisualStudio}
-\lstset{language=[Sharp]C, style=VisualStudio}
+\lstdefinelanguage{cpp}{
+  language=C++,
+  style=VisualStudio,
+  morekeywords=[2]{Mat, Point2f, Point3f, vector}
+}
+\lstdefinelanguage{cs}{
+  language=[Sharp]C,
+  style=VisualStudio
+  morekeywords=[2]{Cv, InterpolationFlags}
+}
 
 \lstdefinelanguage{XML}{
   tabsize=2,
@@ -102,7 +110,7 @@
   moredelim=[s][\color{black}]{>}{<},
   commentstyle=\color{green},
   morecomment=[s]{<?}{?>},
-  morecomment=[s]{<!--}{-->},
+  morecomment=[s]{<!--}{-->}
 }
 
 \lstnewenvironment{listingETS}[3]{%
