@@ -79,7 +79,7 @@ Si \citeauthor{Steptoe2013} détaille correctement la première étape de la pro
 
 \subsection{Choix techniques}
 \label{subsec:technical_choices}
-Nous avons tout d'abord choisis l'Ovrvision Pro comme caméra physique stéréoscopique (\url{http://ovrvision.com/}). Annoncée par son comme solution clé en main pour réaliser un visiocasque de RA, elle prévue pour fonctionner avec le visiocasque de VR Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Composée de deux objectifs \texten{fisheye} (en \oe il de poisson) d'une définition de \SI{960x950}{\px} et un champs de vision de \SI{100x98}{\degree}, ses caractéristiques correspondent  bien à ceux de l'Oculus DK2 \autorefp{tab:visual_densities}. Elle est de plus intégrée avec les moteurs de jeu standards dans l'industrie : Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \reffigureETS{ArRift_1.jpg}, et en le connectant par USB 3.0 au PC.
+Nous avons tout d'abord choisis l'Ovrvision Pro comme caméra physique stéréoscopique (\url{http://ovrvision.com/}). Annoncée par son comme solution clé en main pour réaliser un visiocasque de RA, elle prévue pour fonctionner avec le visiocasque de VR Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Composée de deux objectifs \texten{fisheye} (en \oe il de poisson) d'une définition de \SI{960x950}{\px} et un champs de vision de \SI{100x98}{\degree}, ses caractéristiques correspondent bien à ceux de l'Oculus DK2 \autorefp{tab:visual_densities}. Elle est de plus intégrée avec les moteurs de jeu standards dans l'industrie : Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \reffigureETS{ArRift_1.jpg}, et en le connectant par USB 3.0 au PC.
 
 \figureETS[0.6]{ArRift_1.jpg}{
   Notre prototype de visiocasque de RA, basé sur le concept de l'AR-Rift de \cite{Steptoe2013} : il est composé du visiocasque de RV Oculus DK2, de la caméra stéréoscopique Ovrvision Pro et du capteur de reconnaissance des mains Leap Motion (sous la caméra).
@@ -268,7 +268,7 @@ Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle 
 \subsubsection{Caméra physique stéréoscopique}
 Dans le cas d'une caméra stéréoscopique, comme l'Ovrvision Pro, deux paramètres intrinsèques supplémentaires sont à mesurer durant l'étalonnage : la position et l'orientation entre les plans images des deux objectifs. Le type d'objectif utilisé n'a pas d'impact sur ces paramètres.
 
-TODO
+En plus de la correction des distorsions de la caméra, nous devons la \emp{rectifier}.
 
 \subsection{Étalonnage d'une caméra}
 \label{subsec:pinhole_camera_calibration}
