@@ -9,6 +9,7 @@
 \usepackage{pdfpages} % Include PDFs
 \usepackage{color} % Declare colors
 \usepackage{inconsolata} % Better typewriter font
+\usepackage{tikz-uml} % UML diagrams
 
 % Quotations configuration
 \let\oldforeignlanguage\foreignlanguage
@@ -97,8 +98,8 @@
 }
 \lstdefinelanguage{cs}{
   language=[Sharp]C,
-  style=VisualStudio
-  morekeywords=[2]{Cv, InterpolationFlags}
+  style=VisualStudio,
+  morekeywords=[2]{DllImport, IntPtr, InterpolationFlags, System}
 }
 
 \lstdefinelanguage{XML}{
@@ -123,6 +124,15 @@
 }
 
 \newcommand{\code}[2][{[Sharp]C}]{\lstinline[language={#1}, style=inline]|#2|}
+
+% UML configuration
+\tikzumlset{
+  fill class = white,
+  fill component = white,
+  fill note = white,
+  fill package = white,
+  fill template = white
+}
 
 % Thesis configuration
 \title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handheld VESAD (Virtually Extended Screen-Aligned Display)}
