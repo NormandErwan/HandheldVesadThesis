@@ -203,12 +203,10 @@ Aruco Unity est composé de trois couches, s'appuyant sur OpenCV \reffigureETSp{
 
 Dans le projet, nous avons ensuite écrit les scripts de liaison (\url{https://github.com/NormandErwan/ArucoUnity/tree/master/src/ArucoUnity/Assets/ArucoUnity/Scripts/Plugin/}) : ils reproduisent l'interface orienté objet d'OpenCV et appelent en arrière-plan notre greffon. On peut alors utiliser en C\# toutes les fonctionnalités d'OpenCV de manière similaire qu'en C++.
 
-Enfin, nous avons écrit les scripts C\# pour Unity que nous avons utilisés dans la \autoref{sec:cameras_alignment}. Le travail avec Unity se fait en effet préférentiellement avec l'interface graphique de l'éditeur : les scripts pour Unity sont automatiquement configurables graphiquements. Cela permet aux développeur de programmer les fonctionnalités et aux artistes de les configurer à volonter sans toucher au code source. Nous avions aussi besoin de passer par cette étape et pas seulement programmer de simples scripts utilisant OpenCV pour des questions de performances \autorefp{}.
+Enfin, nous avons écrit les scripts C\# pour Unity que nous avons utilisés dans la \autoref{sec:cameras_alignment}. Nous avons d'abord écrit de simples scripts séquentiels d'étalonnage et de suivi de marqueur, mais le besoin s'est vite faite sentir de rendre cette couche plus robuste et performante. De plus, le travail dans Unity se fait préférentiellement en deux temps : les développeurs programment les fonctionnalités dans les scripts, et les artistes les utilisent et configurent à volonté avec l'interface graphique de Unity sans toucher au code source.
 
 \subsection{Réalisation du greffon et de la liaison}
-La première étape de réalisation a donc été le greffon pour Unity, pour rendre accessible les fonctions des modules aruco, calib3d et ccalib d'OpenCV.
-
-Le principal défi est la rigueur de la gestion de la mémoire.
+La première étape de réalisation a donc été le greffon pour Unity, pour rendre accessible les fonctions des modules aruco, calib3d et ccalib d'OpenCV. Il existe plusieurs techniques de liaison. Nous avons choisis la plus simple : P/Invoke (\texten{Platform Invocation Services}). Le principal défi dans son utilisation est la rigueur de la gestion de la mémoire : d'une part on gère manuellement la création et la destruction d'objets et d'autre part le greffon et les scripts C\# doivent se partager cette mémoire.
 
 \begin{listingETS}{cpp}{lst:aruco_unity_plugin_cpp}{Extrait simplifié de l'interface en C autour de la classe Mat d'OpenCV dans le greffon d'ArucoUnity.}
   extern "C" {
@@ -230,67 +228,202 @@ Le principal défi est la rigueur de la gestion de la mémoire.
   }
 \end{listingETS}
 
+L'\autoref{lst:aruco_unity_plugin_cpp} montre un exemple simplifié de l'interface en C la classe \code{Mat}, qui permet de manipuler matrices et images dans OpenCV. On utilise en fait le patron de conception adaptateur : chaque constructeur, destructeur et fonction est enveloppé par une fonction C. On nomme cette fonction \code{new} pour les constructeurs, \code{delete} pour les destructeurs ou avec le nom de la fonction appelée. Le polymorphisme n'étant pas supporté en C, chaque surcharge est envelopée par une fonction : on les numérote alors avec un suffixe de $1$ à $n$. Le C ne comportant pas non plus d'espace de nom, on ajoute à chaque fonction le préfixe \code{au_cv_} suivi du nom de la classe pour éviter des collisions de noms. Enfin, on entoure toutes les fonctions avec l'instruction \code{extern "C"} pour indiquer au compilateur et à l'éditeur de liens que nous travaillons bien avec des fonctions en C.
+
+Le passage de paramètres est la problématique principale avec cette technique. Certains types primitifs de C\# comme \code{int} ou \code{float} ont des équivalences en C++, on peut alors les passer directement en paramètres au greffon. Cependant, d'autres types plus complexes sont représentés différement dans les deux languages, par exemple les classes, les chaînes de caractères \cite{Peterson2015}. Nous avons alors voulu faire simple : tous les objets OpenCV sont alloué avec le code C++, via les fonctions C pour la construction et la destruction que nous venons de décrire. Elles retournent alors un pointeur (qui n'est qu'un entier sur une adresse mémoire) au code C\#. Quand on souhaite exécuter une fonction sur un objet, il suffit de simplement y passer son pointeur comme paramètre. Sans rigueur, il y a plus de risques d'erreurs de segmentation ou de fuites de mémoire mais notre couche de liaison prend en charge cette responsabilité sans que l'utilisateur n'ait à s'en soucier.
+
 \begin{listingETS}{cs}{lst:aruco_unity_plugin_cs}{Extrait simplifié de la liaison pour exposer en C\# la classe Mat d'OpenCV.}
-  namespace ArucoUnity.Plugin.Cv
+  public class Mat
   {
-    public class Mat
+    [DllImport("ArucoUnityPlugin")]
+    static extern System.IntPtr au_cv_Mat_new1();
+
+    [DllImport("ArucoUnityPlugin")]
+    static extern System.IntPtr au_cv_Mat_new2(int rows, int cols, int type);
+
+    [DllImport("ArucoUnityPlugin")]
+    static extern void au_cv_Mat_delete(System.IntPtr mat);
+    
+    [DllImport("ArucoUnityPlugin")]
+    static extern int au_cv_Mat_total(System.IntPtr mat);
+
+    public System.IntPtr Ptr { get; }
+
+    public Mat()
     {
-      [DllImport("ArucoUnityPlugin")]
-      static extern System.IntPtr au_cv_Mat_new1();
+      Ptr = au_cv_Mat_new1();
+    }
 
-      [DllImport("ArucoUnityPlugin")]
-      static extern System.IntPtr au_cv_Mat_new2(int rows, int cols, int type);
+    public Mat(int rows, int cols, int type)
+    {
+      Ptr = au_cv_Mat_new2(rows, cols, type);
+    }
 
-      [DllImport("ArucoUnityPlugin")]
-      static extern void au_cv_Mat_delete(System.IntPtr mat);
-      
-      [DllImport("ArucoUnityPlugin")]
-      static extern int au_cv_Mat_total(System.IntPtr mat);
+    ~Mat()
+    {
+      au_cv_Mat_delete(Ptr);
+    }
 
-      public System.IntPtr Ptr { get; }
-
-      public Mat()
-      {
-        Ptr = au_cv_Mat_new1();
-      }
-
-      public Mat(int rows, int cols, int type)
-      {
-        Ptr = au_cv_Mat_new2(rows, cols, type);
-      }
-
-      ~Mat()
-      {
-        au_cv_Mat_delete(Ptr);
-      }
-
-      public int Total()
-      {
-        return au_cv_Mat_total(Ptr);
-      }
+    public int Total()
+    {
+      return au_cv_Mat_total(Ptr);
     }
   }
 \end{listingETS}
 
-- Aussi parler de la mémoire partagée entre Unity et OpenCv sur les images :
-  - calcul de taille : 2 cameras * 950 px * 960 px * 3 bytes (RGB) = 5,47 MB
-  - lecture du buffer dans sens différents (voir note 2017-04-11)
-  - Threads et ordonnancement + copies des buffers images (c'était plus rapide de faire des copies que de faire attendre l'affichage avant le nouveau detect : voir note 2017-05-10) -> il n'y a pas d'attente/blocages entre les threads hormis sur les copies de buffer
+L'\autoref{lst:aruco_unity_plugin_cs} montre la liaison associée à l'interface de l'\autoref{lst:aruco_unity_plugin_cpp}. Elle est composé de deux parties. Tout d'abord, il y a les appels au greffon : on déclare des fonctions statiques avec la même signature (nom et paramètres) que celles du greffon et on indique au compilateur de les appeler dans le greffon avec l'attribut \code{DllImport}. Ensuite, on construit une interface orienté objet reproduisant celle d'OpenCV : on utilise le patron de conception façade pour masquer la liaison qui est complexe à utiliser et source d'erreurs de segmentations ou de fuites de mémoire si mal utilisée. La classe \code{Mat} reconstruite en C\# appelle donc automatiquement un des constructeurs C++ quand l'utilisateur désire en créer une instance, par exemple \code{var mat = new Mat()}. Le pointeur vers la classe C++ sous-jacente est stocké dans l'instance C\# correspondante.
+
+\begin{listingETS}{cs}{lst:aruco_camera_cs}{Extrait simplifié de la classe C\# ArucoCamera pour passer une image à OpenCV.}
+  public class ArucoCamera : MonoBehaviour, IArucoCamera
+  {
+    public Mat Image { get; protected set; }
+    public Texture2D ImageTexture { get; protected set; }
+    public byte[] ImageData { get; protected set; }
+
+    // Exécuté au démarrage
+    protected virtual void Start()
+    {
+      Image = new Mat(width, height, Format.8UC3); // Format RVB : 3 octets par pixels (3x8=24 bits)
+      ImageTexture = new Texture2D(width, height, TextureFormat.RGB24);
+      ImageData = new byte[3 * Images[cameraId].Total()];
+      Image.DataByte = ImageData;
+    }
+
+    // Exécuté à chaque frame
+    protected virtual void Update()
+    {
+      UpdateImages(); // Copie de l'image de la caméra dans ImageData
+      ... // Operations sur l'image
+
+      // Mise à jour de l'image Unity
+      ImageTexture.LoadRawTextureData(Image.DataIntPtr, 3 * Images[cameraId].Total());
+      ImageTexture.Apply();
+    }
+
+    protected abstract void UpdateImages();
+  }
+\end{listingETS}
+
+\begin{listingETS}{cs}{lst:ovrvision_aruco_camera}{Extrait simplifié de la classe C\# OvrvisionCamera.}
+  public class OvrvisionArucoCamera : StereoArucoCamera
+  {
+    [DllImport("ovrvision"]
+    static extern int ovOpen(int cameraId, float markerLength, int mode);
+    ... // Autres liaisons
+
+    protected override void Start()
+    {
+      base.Start();
+      ovOpen(cameraId: 0, markerLength: 1, mode: CameraMode.VR_960x950_60FPS);
+      ovSetCamSyncMode(false);
+    }
+
+    protected override void UpdateImages()
+    {
+      ovPreStoreCamData(ProcessingMode.Demosaic); // Retourner les images couleurs non corrigées
+      ovGetCamImageRGB(ImageDatas[0], 0); // Oeil gauche
+      ovGetCamImageRGB(ImageDatas[1], 1); // Oeil droit
+    }
+  }
+\end{listingETS}
+
+Le code C++ travaille par instants avec les images capturées par la caméra, cette fois allouées en mémoire dans le code C\#. On passe alors simplement un pointeur de l'image, ainsi que sa taille, aux fonctions d'OpenCV. Concrètement, on crée un objet \code{Mat} dans OpenCV et un objet \code{Texture2D} dans Unity pour manipuler l'image ainsi qu'un tableau partagé entre les deux objets pour représenter le contenu de l'image. On utilise le format le plus courant pour encoder l'image dans le tableau : chaque pixel est représenté en couleurs rouge, vert, bleu (RVB) avec un octet (8 bits) par couleur, soit un total de $3 \times 8 = 24\text{ bits}$ par pixel.
+
+Enfin, nous avons besoin d'accéder à la caméra Ovrvision Pro. La caméra est fonctionnelle, les deux images sont bien synchronisées mais, comme nous l'avons expliqué dans la \autoref{subsec:technical_choices}, l'étalonnage de la caméra et le suivis de marqueurs ne sont pas bons avec les scripts C\# fournis par le constructeur. Un greffon similaire au nôtre étant disponible, nous avons développé la classe \code{OvrvisionArucoCamera} de liaison \autorefp{lst:ovrvision_aruco_camera} pour pouvoir étalonner cette caméra avec Aruco Unity et y intégrer de la RA.
 
 
-% aruco unity wrapper plugin : http://www.mono-project.com/docs/advanced/pinvoke/
-% C++/CLI semble plus facile et optimisé mais compatible seulement sur windows : voulait se laisser la posiblité de rendre dispo aruco unity sur d'autres plateformes (smartphones surtout)
-% + c'est une méthode utilisé par Unity eux-même : https://blogs.unity3d.com/2015/07/02/il2cpp-internals-pinvoke-wrappers/
-% Détails techniques : https://msdn.microsoft.com/fr-fr/library/eyzhw3s8.aspx et http://www.mono-project.com/docs/advanced/pinvoke/
+\subsection{Réalisation des scripts pour Unity}
+\label{subsec:aruco_unity_scripts}
+Le travail avec les images des caméra à la sous-section précédente montre pourquoi nous avons besoin d'une couche supplémentaire de scripts C\# au dessus de celle de la liaison : si cette dernière prends en charge la gestion de la mémoire, les scripts permettent de faciliter l'usage d'OpenCV dans Unity. Les deux systèmes ne sont en effet pas conçus pour travailler ensemble : cette complexité est masquée par la façade supplémentaire que nous créons avec les scripts. Ce besoin nous a confirmé dans notre choix de développer Aruco Unity.
+
+La \autoref{ArucoUnityArchitecture} montre l'architecture générale 
+
+Nous avons documenté chacune de ces classes. Ces informations se trovent également dans une documentation en ligne (\url{https://normanderwan.github.io/ArucoUnity/group__aruco__unity__package.html}) %TODO : mettre à jour le lien
+
+
+- Threads et ordonnancement + copies des buffers images (c'était plus rapide de faire des copies que de faire attendre l'affichage avant le nouveau detect : voir note 2017-05-10) -> il n'y a pas d'attente/blocages entre les threads hormis sur les copies de buffer
+
+\figureLayoutETS{ArucoUnityArchitecture2}{
+  \begin{tikzpicture}
+    \begin{umlpackage}{ArucoUnity}
+      \begin{umlpackage}{Cameras}
+        \umlsimpleclass[type=abstract]{ArucoCamera}
+        \umlsimpleclass[y=-1.5, type=abstract]{ArucoCameraDisplay}
+        \umlsimpleclass[y=-3, type=abstract]{ArucoCameraUndistortion}
+        \umlsimpleclass[y=-4.5]{ArucoCameraCalibration}
+
+        \umlsimpleclass[x=-6, y=-3.75]{CameraParameters}
+        \umlHVHuniaggreg{ArucoCameraUndistortion}{CameraParameters}
+        \umlHVHuniaggreg{ArucoCameraCalibration}{CameraParameters}
+      \end{umlpackage}
+
+      \umlsimpleclass[x=6, type=abstract]{ArucoCameraController}
+      \umluniaggreg{ArucoCameraController}{ArucoCamera}
+      \umlHVHinherit{ArucoCameraDisplay}{ArucoCameraController}
+      \umlHVHinherit{ArucoCameraUndistortion}{ArucoCameraController}
+
+      \umlsimpleclass[x=6, y=-2, type=abstract]{ArucoObjectDetector}
+      \umlinherit{ArucoObjectDetector}{ArucoCameraController}
+    \end{umlpackage}
+  \end{tikzpicture}
+}{bla}
+
+\figureLayoutETS{ArucoUnityArchitecture}{
+  \begin{tikzpicture}
+    \umlsimpleclass[type=abstract]{ArucoCamera}
+
+    \umlsimpleclass[x=5, type=abstract]{ArucoCameraController}
+    \umluniaggreg{ArucoCameraController}{ArucoCamera}
+
+    \umlsimpleclass[y=-2, type=abstract]{ArucoCameraUndistortion}
+    \umlVHVinherit{ArucoCameraUndistortion}{ArucoCameraController}
+    \umlsimpleclass[x=0.6, y=-3.35]{CameraParameters}
+    \umlVHuniaggreg[anchor1=-169]{ArucoCameraUndistortion}{CameraParameters}
+
+    \umlsimpleclass[x=5, y=-2, type=abstract]{ArucoObjectDetector}
+    \umlVHVinherit{ArucoObjectDetector}{ArucoCameraController}
+    \umlsimpleclass[x=9, y=-3.5]{DetectorParameters}
+    \umlVHuniaggreg[anchor1=-30]{ArucoObjectDetector}{DetectorParameters}
+
+    \umlsimpleclass[x=10, y=-2, type=abstract]{ArucoCameraDisplay}
+    \umlVHVinherit{ArucoCameraDisplay}{ArucoCameraController}
+
+    \umlsimpleclass[y=-5, type=abstract]{ArucoCameraCalibration}
+    \umlVHVinherit[arm1=0.75]{ArucoCameraCalibration}{ArucoObjectDetector}
+    \umlVHuniaggreg[anchor1=167]{ArucoCameraCalibration}{CameraParameters}
+
+    \umlsimpleclass[x=5, y=-5]{ArucoObjectsTracker}
+    \umlVHVinherit[arm1=0.75]{ArucoObjectsTracker}{ArucoObjectDetector}
+
+    \umlsimpleclass[x=10, y=-5, type=abstract]{ArucoObject}
+    \umluniaggreg{ArucoObjectsTracker}{ArucoObject}
+
+    \umlsimpleclass[x=10, y=-7]{ArucoDiamond}
+    \umlVHVinherit{ArucoObject}{ArucoDiamond}
+
+    \umlsimpleclass[x=5, y=-7]{ArucoMarker}
+    \umlVHVinherit{ArucoObject}{ArucoMarker}
+
+    \umlsimpleclass[y=-7, type=abstract]{ArucoBoard}
+    \umlVHVinherit{ArucoObject}{ArucoBoard}
+
+    \umlsimpleclass[y=-9]{ArucoGridBoard}
+    \umlVHVinherit{ArucoBoard}{ArucoGridBoard}
+
+    \umlsimpleclass[x=5, y=-9]{ArucoCharucoBoard}
+    \umlVHVinherit{ArucoBoard}{ArucoCharucoBoard}
+  \end{tikzpicture}
+}{
+  Diagramme de classes simplifé de la couche de scripts C\# d'ArucoUnity. Les classes notées en italique sont abstraites.
+}
+
+- La doc qui a été faite, la petite PR pour rendre compatible les modues aruco et ccalib, le package Unity, les forks et ajouts sur internet, le package pour ovrvision (preuve que c'est extensible (citer les termes du cours MGL843))
+- Utiliser des boards de 2 markers minimum pour la détection : beaucoup plus robuste qu'utiliser des markers seuls
 
 %- OpenCV est système main droite dans son système de coordonnées (\url{http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/OWENS/LECT9/img4.gif}) alors qu'Unity est système main gauche : il suffit d'inverser l'axe des Y (\url{https://answers.unity.com/storage/temp/8053-spaces.jpg}) : faire un petit graphe comme la 2e image
 
 %- OpenCV encode sa rotation dans un vecteur dont les coordonnées normalisées donnent l'axe et sa norme l'angle autour de cet axe, alors qu'Unity utilise des quaternions. Adapté ce calcul (\url{http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/}) pour passer du premier au second : \url{https://github.com/enormand/aruco-unity/blob/master/src/aruco_unity_package/Assets/ArucoUnity/Scripts/Plugin/Cv/Vec3d.cs}. Voir BuJo 2017-11-07.
 
-\subsection{Réalisation des scripts pour Unity}
-\label{subsec:aruco_unity_scripts}
-- La doc qui a été faite, la petite PR pour rendre compatible les modues aruco et ccalib, le package Unity, les forks et ajouts sur internet, le package pour ovrvision (preuve que c'est extensible (citer les termes du cours MGL843))
-- Utiliser des boards de 2 markers minimum pour la détection : beaucoup plus robuste qu'utiliser des markers seuls
 
 
 \section{Alignement des caméras physique et virtuelle}
