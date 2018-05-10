@@ -8,6 +8,31 @@ Voir la liste de tâches : \url{https://docs.google.com/document/d/1X5-XW-9GTCz2
 
 Comme le téléphone et les écrans ont des basses résolutions et comme les techniques d'interactions sont peu maitrisées en IHM pour la RA/3D\citep{Piumsomboon2013}, il nous faut des tâches les plus fondamentales possibles : pointage et compréhension. Il faut pouvoir zoomer et naviguer pour compléter une tâche plus rapidement que si on avait le téléphone seul.
 
+\section{Conception de techniques d'interactions pour le VESAD}
+\label{sec:interaction_techniques}
+
+\subsection{Introduction}
+\label{subsec:interaction_techniques_intro}
+Notre visiocasque étant totalement fonctionnel et supportant notre concept de VESAD, nous pouvons maintenant concevoir des techniques d'interactions pour ce prototype.
+
+Aussi justification for why we won’t be doing experimental comparison with ray cast (INPUT: RayCast): because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
+
+\subsection{Écran tactile}
+\label{subsec:interaction_techniques_screen}
+User-Defined Gestures for Surface Computing \url{https://www.microsoft.com/en-us/research/wp-content/uploads/2009/04/SurfaceGestures_CHI2009.pdf}
+Référence industrie (Android) : \url{https://material.io/guidelines/patterns/gestures.html}
+
+\subsection{Main virtuelle}
+\label{subsec:interaction_techniques_leap}
+Leap in:
+User-Defined Gestures for Augmented Reality \url{https://hal.inria.fr/hal-01501749/document} : on garde quelque chose de simple, pointer avec son doigt. on a pas fait de pinch, mais touch avec un doigt : pour rester proche touch sur écran tactile, car taxonomie RA, car rester simple
+Pourquoi on teste l'interaction directe et pas mid-air interaction : c'est lent Vulture: a mid-air word-gesture keyboard \url{https://dl.acm.org/citation.cfm?id=2556964}
+Grasp-Shell vs Gesture-Speech: A comparison of direct and indirect natural interaction
+techniques in Augmented Reality \url{https://ir.canterbury.ac.nz/bitstream/handle/10092/11090/12652683_paper138-cr.pdf?sequence=1}
+Lee2013 : Augmented Reality systems exploit the cognitive benefits of co-locating 3D visualizations with direct input in a real environment, using optical combiners [8, 6, 5]. This makes it possible to enable unencumbered 3D input to directly interact with situated 3D graphics in mid-air [5, 9]. -> 5 ref HoloDesk : defense au mid-air pour dire que naturel colocate display et input, interagir directement avec des affichages 3D en l'air (comme sur un écran tactile)
+
+zoom centré sur le téléphone et non sur la grille : The focus point is generally coincident with the center of the view, more rarely with the cursor position. \cite{Guiard2004}
+
 \subsubsection{Description}
 Citer Liu et Chapuis
 
@@ -62,6 +87,13 @@ Nous avons recruté 12 personnes volontaires pour participer à l'expérience, a
 
 \subsection{Procédure}
 Le formulaire d'information et de consentement (voir \autoref{annex:consent})
+
+\subsection{Matériel}
+Nous avons bien évidemment utilisé notre visiocasque de RA, conçut avec un large champs de vision pour cette expérience et décrit au \autoref{ch:methodology}. Pour le faire tourner, nous avons utilisé un ordinateur de bureau roulant sous Windows 10, avec un processeur Intel Core i5 7400 (\SI[product-units = single]{4x3.0}{\GHz}), \SI{8}{\giga\byte} DDR4 de mémoire vive, une carte graphique NVIDIA GeForce GTX 1060 de \SI{6}{\giga\byte}. Pour le téléphone, nous avons utilisé un Xiaomi Redmi Note 4 : roulant sous Android 7, il est récent et léger, à faible prix et possède une bonne puissance de calcul ainsi qu'écran \SI{1920x1080}{\px} de \SI{5.5}{\inch}.
+
+Pour la localisation des mains nous avons utilisé un Leap Motion : c'est un dispositif peu dispendieux, particulièrement utilisé pour concevoir des IHMs avec une main virtuelle pour les visiocasques de RV et très bien intégré avec les moteurs de jeu Unity et Unreal Egine. Il se fixe également sur la face avant du visiocasque et se connecte simplement au PC par USB 3.0.
+
+Enfin, nous développé une bibliothèque, DevicesSyncUnity (\url{https://github.com/NormandErwan/DevicesSyncUnity}), pour synchroniser le visiocasque avec le téléphone. Basée sur la bibliothèque de mise en réseau haut-niveau UNet, fournie avec Unity, elle nous permet de facilement synchroniser l'interface graphique et les actions de l'utilisateur à la fois sur le visiocasque et sur le téléphone, donnant le sentiment d'interagir avec un seul appareil.
 
 \subsection{Collecte des données}
 \subsubsection{Pré-questionnaire}

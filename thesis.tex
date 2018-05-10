@@ -116,7 +116,8 @@
 \lstdefinelanguage{cs}{
   language=[Sharp]C,
   style=VisualStudio,
-  morekeywords=[2]{DllImport, IntPtr, InterpolationFlags, System, var}
+  morekeywords=[1]{var},
+  morekeywords=[2]{DllImport, IntPtr, Quaternion, Vector3}
 }
 
 \lstdefinelanguage{XML}{
@@ -142,8 +143,10 @@
   fill class = white,
   fill component = white,
   fill note = white,
+  fill object = white,
   fill package = white,
-  fill template = white
+  fill template = white,
+  font = {\fontsize{9pt}{12}\selectfont}
 }
 
 % Thesis configuration
@@ -194,25 +197,25 @@
 \setcounter{footnote}{0}
 
 \begin{introduction}
-  \input{content/1_introduction}
+  %\input{content/1_introduction}
 \end{introduction}
 
-\input{content/2_litterature_review}
-\input{content/3_concept}
+%\input{content/2_litterature_review}
+%\input{content/3_concept}
 \input{content/4_methodology}
-\input{content/5_experiment}
-\input{content/6_futur_work}
+%\input{content/5_experiment}
+%\input{content/6_futur_work}
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{CONCLUSION}
 \label{ch:conclusion}
-\input{content/7_conclusion}
+%\input{content/7_conclusion}
 
 \appendix
 \multiannexe
-\input{content/8_ovrvision_camera_parameters}
-\input{content/9_experiment_forms}
-\input{content/10_experiment_analysis}
+%\input{content/8_ovrvision_camera_parameters}
+%\input{content/9_experiment_forms}
+%\input{content/10_experiment_analysis}
 
 \newpage
 \begin{spacing}{1}
