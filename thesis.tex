@@ -10,6 +10,7 @@
 \usepackage{color} % Declare colors
 \usepackage{inconsolata} % Better typewriter font
 \usepackage{tikz-uml} % UML diagrams
+\usepackage{xfrac}
 
 % Quotations configuration
 \let\oldforeignlanguage\foreignlanguage
@@ -100,6 +101,7 @@
 }
 
 \lstdefinestyle{VisualStudio}{ % Style based on https://tex.stackexchange.com/a/45714
+  tabsize=2,
   breaklines=true,
   breakatwhitespace=true,
   basicstyle=\ttfamily\footnotesize,
@@ -116,8 +118,8 @@
 \lstdefinelanguage{cs}{
   language=[Sharp]C,
   style=VisualStudio,
-  morekeywords=[1]{var},
-  morekeywords=[2]{DllImport, IntPtr, Quaternion, Vector3}
+  morekeywords=[1]{get, set, var},
+  morekeywords=[2]{DllImport, IntPtr, List, Mat, Quaternion, Vector3, Texture2D}
 }
 
 \lstdefinelanguage{XML}{

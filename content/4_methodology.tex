@@ -33,9 +33,9 @@ Nous avons donc réalisé notre propre prototype de visiocasque similaire à l'A
 Notre visiocasque fonctionne, de manière similaire à \cite{Steptoe2013}, sur le principe suivant :
 \begin{enumerate}
   \item La caméra stéréoscopique physique filme l'environnement réel de l'utilisateur \reffigureETSp{ArRiftMarker_1.jpg}.
-  \item Un algorithme va corriger les déformations des deux images de cette caméra \reffigureETSp{ArRiftMarker_2.jpg}.
-  \item Une caméra stéréoscopique virtuelle d'un logiciel de rendu 3D va filmer des éléments virtuels ainsi que les deux images de la caméra physique en arrière-plan \reffigureETSp{ArRiftMarker_3.jpg}.
-  \item Les deux images sont affichées dans le visiocasque, une pour chaque \oe il \reffigureETSp{ArRiftMarker_4.jpg}.
+  \item Un algorithme \emph{corrige} les déformations des deux images de cette caméra \reffigureETSp{ArRiftMarker_2.jpg}.
+  \item Une caméra stéréoscopique virtuelle va filmer des éléments virtuels ainsi que les deux images de la caméra physique en arrière-plan \reffigureETSp{ArRiftMarker_3.jpg}.
+  \item Les deux images sont affichées dans le visiocasque, une pour chaque \oe il, affichant environnements virtuels et physiques superposés \reffigureETSp{ArRiftMarker_4.jpg}.
 \end{enumerate}
 \bigskip
 
@@ -54,29 +54,17 @@ Notre visiocasque fonctionne, de manière similaire à \cite{Steptoe2013}, sur l
   Vue de l'image capturée par l'objectif gauche de l'Ovrvision Pro, puis corrigée et augmentée pour être affichée dans le visiocasque.
 }
 
-Pour donner l'illusion que les éléments virtuels sont alignés avec l'environnement réel, nous devons donc \emph{aligner} la caméra virtuelle avec la caméra physique, c'est-à-dire :
+Pour donner l'illusion que les éléments virtuels sont alignés avec l'environnement réel, nous devons donc \emph{aligner} la caméra virtuelle avec la caméra physique, dans un travail qui se fait en trois temps :
 \begin{enumerate}
-  \item \emph{Étalonner} (\texten{calibrate} en anglais) la caméra physique, c'est-à-dire mesurer ses \emph{paramètres intrinsèques} (ses propriétés, comme son champs de vision), et les \emph{distorsions} de ses objectifs (les déformations sur les images capturées). L'étalonnage est à faire une seule fois sur une caméra.
-  \item \emph{Corriger} (\texten{undistort} en anglais) les distorsions à partir des résultats de l'étalonnage pour chaque image capturée \reffigureETSp{ArRiftMarker_2.jpg}.
-  \item Configurer la caméra virtuelle avec les mêmes paramètres intrinsèques et y ajouter en arrière plan les images corrigées  \reffigureETSp{ArRiftMarker_3.jpg}.
+  \item \emph{Étalonner} (\texten{calibrate} en anglais) la caméra physique, c'est-à-dire mesurer ses \emph{paramètres intrinsèques} (ses propriétés, comme son champs de vision), et les \emph{distorsions} de ses objectifs (les déformations sur les images capturées). L'étalonnage est à faire seulement une seule fois par caméra.
+  \item Au démarrage du visiocasque, aligner la caméra virtuelle en la configurant avec les paramètres intrinsèques de la caméra physique.
+  \item Pour chaque image capturée par la caméra physique, appliquer le procédé de la \reffigureETS{ArRiftMarker}.
 \end{enumerate}
 \bigskip
 
-La caméra virtuelle ainsi configurée, il suffit de placer (position, rotation) les éléments virtuels s'ils faisaient partie de l'environnement réel. Pour savoir où les placer, on utilise un algorithme de \emph{suivi de marqueurs} (\texten{fiducial marker tracking} en anglais) : ce sont des codes-barres en 2D (deux dimensions) que l'on place dans l'environnement réel \reffigureETSp{ArRiftMarker_1.jpg} et dont on peut déterminer très rapidement la position et l'orientation par rapport une caméra physique dont on connait les paramètres intrinsèques \cite{Garrido-Jurado2014}. On place alors les éléments virtuels à ses mêmes positions et orientations par rapport à la caméra virtuelle \reffigureETSp{ArRiftMarker_3.jpg}. Les marqueurs étant détectés en temps réels, on a donc l'illusion que les éléments virtuels font partie de l'environnement réel \reffigureETSp{ArRiftMarker_4.jpg}.
+La caméra virtuelle filmant ainsi du \emph{même point de vue} que la caméra physique, on peut donc placer les éléments virtuels comme s'ils faisaient partie de l'environnement réel. On utilise alors un algorithme de \emph{suivi de marqueurs} (\texten{fiducial marker tracking} en anglais) : ce sont des codes-barres en 2D (deux dimensions) imprimés \reffigureETSp{ArRiftMarker_2.jpg} et dont on peut déterminer très rapidement la position et l'orientation par rapport une caméra physique dont on connait les paramètres intrinsèques \cite{Garrido-Jurado2014}. Les marqueurs étant détectés en temps réel sur chaque image, on place les éléments virtuels à ces mêmes positions et orientations par rapport à la caméra virtuelle \reffigureETSp{ArRiftMarker_3.jpg}, donnant donc l'illusion qu'ils font partie de l'environnement réel \reffigureETSp{ArRiftMarker_4.jpg}.
 
 La \reffigureETS{ArRiftMarker} montre ce processus pour une caméra \emph{monoscopique} (avec un seul objectif). Pour une caméra stéréoscopique, on mesure en plus la différence de position et d'orientation entre les deux objectifs lors de l'étalonnage. On crée ensuite deux caméras monoscopiques virtuelles placées de la même manière que les deux objectifs de la caméra physique. Chaque caméra virtuelle va alors filmer le même environnement virtuel, d'un point de vue légèrement différent, mais avec seulement une image d'un des deux objectifs en arrière-plan.
-
-\subsection{Procédure de réalisation}
-\label{subsec:prototype_procedure}
-Pour realiser notre visiocasque, nous avons donc suivis la procédure suivante, basée sur celle de \cite{Steptoe2013} :
-\begin{enumerate}
-  \item Sélection d'une caméra physique stéréoscopique, d'un visiocasque de RV et d'un moteur 3D \autorefp{subsec:technical_choices}.
-  \item Réalisation de la bibliothèque d'étalonnage et de RA par suivi de marqueurs Aruco Unity \autorefp{sec:aruco_unity}.
-  \item Alignement des caméras physique et virtuelles \autorefp{sec:cameras_alignment}.
-\end{enumerate}
-\bigskip
-
-Si \citeauthor{Steptoe2013} détaille correctement la première étape de la procédure ci-dessus, il n'expose que le principe de la deuxième étape sans solution accessible pour la localisation d'éléments réels et n'explique pas correctement la troisième étape. Nous souhaitons donc détailler un peu plus dans ce chapitre.
 
 \subsection{Choix techniques}
 \label{subsec:technical_choices}
@@ -86,11 +74,16 @@ Nous avons tout d'abord choisis l'Ovrvision Pro comme caméra physique stéréos
   Notre prototype de visiocasque de RA, basé sur le concept de l'AR-Rift de \cite{Steptoe2013} : il est composé du visiocasque de RV Oculus DK2, de la caméra stéréoscopique Ovrvision Pro et du capteur de reconnaissance des mains Leap Motion (sous la caméra).
 }
 
-Nous souhaitions ensuite rapidement prototyper sur notre visiocasque. Nous avons alors choisis le moteur de jeu Unity : gratuit (mais au code source propriétaire), il est le standard dans l'industrie du jeu-vidéo pour prototyper et supporte notre caméra et le Leap Motion. Il est de fait très avantageux d'investir un peu de temps dans l'apprentissage d'un moteur de jeu, car il prends complètement en charge le rendu 3D, la simulation de la physique, les entrées sur clavier, souris ou écran tactile, l'affichage dans les visiocasques de RV, un support réseau et propose de nombreuses fonctions mathématiques. Unity est simple plus simple à prendre en main que son concurrent l'Unreal Engine, par son GUI intuitif et l'utilisation de scripts C\#, un langage haut niveau efficace. Enfin, nous avions une expertise dans le laboratoire avec un projet de quatre mois sur le Microsoft HoloLens et la maîtrise de \cite{Millette2016}.
+Nous souhaitions ensuite rapidement prototyper du contenu sur notre visiocasque. Nous avons alors choisis le moteur de jeu Unity : gratuit (mais au code source propriétaire), il est le standard dans l'industrie du jeu-vidéo pour prototyper et supporte notre caméra et le Leap Motion. Il est de fait très avantageux d'investir un peu de temps dans l'apprentissage d'un moteur de jeu, car il prends complètement en charge le rendu 3D, la simulation de la physique, les entrées sur clavier, souris ou écran tactile, l'affichage dans les visiocasques de RV, un support réseau et propose de nombreuses fonctions mathématiques. Unity est simple plus simple à prendre en main que son concurrent l'Unreal Engine, par son GUI intuitif et l'utilisation de scripts C\#, un langage haut niveau efficace. Enfin, nous avions une expertise dans le laboratoire avec un projet de quatre mois sur le Microsoft HoloLens et la maîtrise de \cite{Millette2016}.
 
 Après plusieurs essais de configuration et une lecture du code source de l'Ovrvision Pro (\url{https://github.com/Wizapply/OvrvisionPro/}), nous avons constaté que la bibliothèque fournie était non fonctionnelle : (1) les images affichées pour chaque \oe il dans le casque étaient décalées, rendant le visiocasque particulièrement inconfortable à utiliser et (2) un décalage important était présent entre le contenu virtuel et l'environment réel. Nous avons donc besoin de ré-étalonner cette caméra et d'une bibliothèque de RA.
 
-Enfin, nous avons donc réalisé la bibliothèque Aruco Unity (\url{https://github.com/NormandErwan/ArucoUnity/}) pour amener de la RA sur notre visiocasque. Basée sur la bibliothèque libre de vision par ordinateur OpenCV (\url{https://opencv.org/}), elle est la seule bibliothèque libre de RA par suivi de marqueurs sous Unity supportant plusieurs types de caméras : monoscopiques ou stéréoscopiques, avec des objectifs \texten{fisheye} ou << classiques >>, dit \emph{rectilinéaires} (similaire à la vision humaine). Elle est également la seule à permettre l'étalonnage de tout ces types de caméras.
+Nous avons donc réalisé la bibliothèque Aruco Unity (\url{https://github.com/NormandErwan/ArucoUnity/}) pour amener de la RA sur notre visiocasque. Utilisant la bibliothèque libre de vision par ordinateur OpenCV (\url{https://opencv.org/}), elle est la seule bibliothèque libre de RA par suivi de marqueurs sous Unity supportant plusieurs types de caméras : monoscopiques ou stéréoscopiques, avec des objectifs \texten{fisheye} ou << classiques >>, dit \emph{rectilinéaires} (similaire à la vision humaine). Elle est également la seule à permettre l'étalonnage de tout ces types de caméras. On utilise en particulier les modules d'OpenCV suivants :
+\begin{itemize}
+  \item aruco pour suivre les marqueurs (\url{https://docs.opencv.org/master/d9/d6a/group__aruco.html}) ;
+  \item calib3d pour étalonner et corriger les objectifs rectilinéaires (\url{https://docs.opencv.org/master/d9/d0c/group__calib3d.html}) ;
+  \item ccalib pour étalonner et corriger les objectifs \texten{fisheye} (\url{https://docs.opencv.org/master/d3/ddc/group__ccalib.html}).
+\end{itemize}
 
 
 \subsection{Discussion et limites}
@@ -105,7 +98,7 @@ Nous pourrions simplifier le visiocasque en utilisant une caméra monoscopique, 
   Images corrigées de l'Ovrvision Pro : les deux objectifs sont décalés horizontalement d'environ \SI{60}{\mm} pour simuler un écart pupillaire humain.
 }
 
-Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image affichée. La densité visuelle permet de mesurer la finesse d'affichage d'une image et se calcule à partir de la définition horizontale $l$ et le champs de vision : $Densite = \frac{l}{FoV_x}$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} quand la fovéa d'un \oe il humain est de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Une définition de 8K (\SI{7680x4320}{\px}), à champs de vision égal, par \oe il est alors nécessaire pour atteindre la même densité visuelle : $Densite_{8K} = 7680 / 110 = \SI{69.8}{\ppd}$.
+Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image affichée. La densité visuelle permet de mesurer la finesse d'affichage d'une image à partir de sa définition horizontale et du champs de vision : $Densite = \frac{d_x}{FoV_x}$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} quand la fovéa d'un \oe il humain est de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Une définition de 8K (\SI{7680x4320}{\px}), à champs de vision égal, par \oe il est alors nécessaire pour atteindre la même densité visuelle : $Densite_{8K} = 7680 / 110 = \SI{69.8}{\ppd}$.
 
 \begin{tableETS}{tab:visual_densities}{Caractéristiques d'affichage de l'Ovrvision Pro et de visiocasques de RV et RA}
   \begin{tabular}{| C{3.5cm} | C{3.25cm} | C{3.25cm} | C{3cm} |}
@@ -158,7 +151,7 @@ D'autres alternatives existent. Nous aurions pu par exemple nous appuyer sur la 
 
 \subsection{Motivation}
 \label{subsec:aruco_unity_motivation}
-Unity est un moteur de jeux-vidéos ainsi qu'une excellente solution pour développer avec des visiocasques de RV. Cependant, nous avons besoin de fonctionnalités manquantes pour permettre de la RA avec notre visiocasque. La bibliothèque OpenCV répond parfaitement à nos besoin, mais étant écrite en C++, elle est incompatible avec Unity utilisant le C\#. Nous avons donc réalisé la bibliothèque Aruco Unity pour rendre disponible OpenCV dans Unity. Son utilisation est décrite dans la \autoref{sec:cameras_alignment}.
+Unity est un moteur de jeux-vidéos ainsi qu'une excellente solution pour développer avec des visiocasques de RV. Cependant, nous avons besoin de fonctionnalités manquantes pour permettre de la RA avec notre visiocasque. La bibliothèque OpenCV répond parfaitement à nos besoin, mais étant écrite en C++, elle est incompatible avec Unity utilisant le C\#. Nous avons donc réalisé la bibliothèque Aruco Unity pour rendre disponible OpenCV dans Unity. Son utilisation est décrite dans la \autoref{sec:ar_hmd}.
 
 La solution que nous avons retenue est d'utiliser le système de greffons (\texten{plugin} en anglais, \url{https://docs.unity3d.com/Manual/Plugins.html}) d'Unity pour appeler des bibliothèques externes en C\# ou en C depuis nos scripts. Cette technique, appelée \emph{liaison} (\texten{binding} en anglais) est classique dans les domaines des jeux-vidéos et des simulations physiques : elle permet de réutiliser du code existant sans avoir à le transposer dans un autre langage et surtout d'optimiser des portions de code critiques, le C++ étant conçu pour la performance.
 
@@ -198,7 +191,7 @@ Aruco Unity est composé de trois couches logicielles, s'appuyant sur OpenCV \re
 
 Dans le projet, nous avons ensuite écrit les scripts de liaison (\url{https://github.com/NormandErwan/ArucoUnity/tree/master/Assets/ArucoUnity/Scripts/Plugin/}) : ils reproduisent en C\# l'interface orientée objet d'OpenCV en appelant en arrière-plan notre greffon. On peut alors utiliser en toutes les fonctionnalités d'OpenCV dans Unity de manière similaire qu'en C++.
 
-Enfin, nous avons écrit des scripts C\# pour Unity que nous utilisons dans la \autoref{sec:cameras_alignment}. Nous avions d'abord écrit de simples scripts séquentiels d'étalonnage et de suivi de marqueur, mais le besoin s'est vite faite sentir de les rendre plus robustes et performants. De plus, le travail dans Unity se fait préférentiellement en deux temps : les développeurs programment les fonctionnalités dans les scripts, et les artistes les utilisent et configurent à volonté avec l'interface graphique de Unity sans avoir à toucher au code source.
+Enfin, nous avons écrit des scripts C\# pour Unity que nous utilisons dans la \autoref{sec:ar_hmd}. Nous avions d'abord écrit de simples scripts séquentiels d'étalonnage et de suivi de marqueur, mais le besoin s'est vite faite sentir de les rendre plus robustes et performants. De plus, le travail dans Unity se fait préférentiellement en deux temps : les développeurs programment les fonctionnalités dans les scripts, et les artistes les utilisent et configurent à volonté avec l'interface graphique de Unity sans avoir à toucher au code source.
 
 \subsection{Réalisation du greffon et de la liaison}
 La première étape de réalisation a donc été le greffon pour Unity, pour rendre accessible les fonctions des modules aruco, calib3d et ccalib d'OpenCV. Il existe plusieurs techniques de liaison. Nous avons choisis la plus simple : P/Invoke (\texten{Platform Invocation Services}). Le principal défi dans son utilisation est la rigueur de la gestion de la mémoire : d'une part on gère manuellement la création et la destruction d'objets et d'autre part le greffon et les scripts C\# doivent se partager cette mémoire.
@@ -271,15 +264,16 @@ L'\autoref{lst:aruco_unity_plugin_cs} montre la liaison associée à l'interface
 \begin{listingETS}{cs}{lst:aruco_camera_cs}{Classe C\# ArucoCamera simplifée pour passer une image à OpenCV.}
   public class ArucoCamera : MonoBehaviour, IArucoCamera
   {
-    public Mat Image { get; protected set; }
-    public Texture2D ImageTexture { get; protected set; }
-    public byte[] ImageData { get; protected set; }
+    public Mat Image;
+    public Texture2D Texture;
+    public byte[] ImageData;
+    public Size Resolution;
 
     // Exécuté au démarrage
     protected virtual void Start()
     {
-      Image = new Mat(width, height, Format.8UC3); // Format RVB : 3 octets par pixels (3x8=24 bits)
-      ImageTexture = new Texture2D(width, height, TextureFormat.RGB24);
+      Image = new Mat(Resolution, Format.8UC3); // Format RVB : 3 octets par pixels (3x8=24 bits)
+      Texture = new Texture2D(Resolution.x, Resolution.y, TextureFormat.RGB24);
       ImageData = new byte[3 * Images[cameraId].Total()];
       Image.DataByte = ImageData;
     }
@@ -292,8 +286,8 @@ L'\autoref{lst:aruco_unity_plugin_cs} montre la liaison associée à l'interface
       ... // Correction des images et suivi des marqueurs
 
       // Mise à jour de l'image Unity
-      ImageTexture.LoadRawTextureData(Image.DataIntPtr, 3 * Images[cameraId].Total());
-      ImageTexture.Apply();
+      Texture.LoadRawTextureData(Image.DataIntPtr, 3 * Images[cameraId].Total());
+      Texture.Apply();
     }
 
     protected abstract void UpdateImages();
@@ -309,9 +303,10 @@ L'\autoref{lst:aruco_unity_plugin_cs} montre la liaison associée à l'interface
 
     protected override void Start()
     {
-      base.Start();
+      d = new Size(960, 950);
       ovOpen(cameraId: 0, markerLength: 1, mode: CameraMode.VR_960x950_60FPS);
       ovSetCamSyncMode(false);
+      base.Start();
     }
 
     protected override void UpdateImages()
@@ -335,7 +330,7 @@ Nous avons aussi besoin d'accéder à la caméra Ovrvision Pro. La caméra est f
   Illustrations des systèmes de coordonnées utilisés par Unity et OpenCV ; une inversion de l'axe des Y permet de passer de l'un à l'autre.
 }
 
-Nous avons également ajouté quelques fonctions de conversion, Unity et OpenCV utilisant des conventions et des classes différentes pour encoder les transformations d'objets. Pour encoder la position, Unity utilise un système de coordonnées main gauche \reffigureETSp{CoordinatesSystemLeft.png} tandis qu'OpenCV utilise un système main droite \reffigureETSp{CoordinatesSystemRight.png}. On inverse alors l'axe des Y pour passer de l'un à l'autre avec la fonction \code{Vector3 Vec3d.ToPosition()}. En outre, OpenCV utilise des matrices de rotation ou des angles de rotations, selon les fonctions. OpenCV propose des fonctions de conversions, que nous avons retranscrites dans la liaison. On convertit les angles de rotations en quaternions d'Unity suivant l'algorithme de \cite{Baker1998} avec la fonction \code{Quaternion Vec3.ToRotation()}.
+Nous avons également ajouté quelques fonctions de conversion, Unity et OpenCV utilisant des conventions et des classes différentes pour encoder les transformations d'objets dans la scène. Pour encoder la position, Unity utilise un système de coordonnées main gauche \reffigureETSp{CoordinatesSystemLeft.png} tandis qu'OpenCV utilise un système main droite \reffigureETSp{CoordinatesSystemRight.png}. On inverse alors l'axe des Y pour passer de l'un à l'autre avec la fonction \code{Vector3 Vec3d.ToPosition()}. En outre, OpenCV utilise des matrices de rotation ou des angles de rotations, selon les fonctions. OpenCV propose des fonctions de conversions, que nous avons retranscrites dans la liaison. On convertit les angles de rotations en quaternions d'Unity suivant l'algorithme de \cite{Baker1998} avec la fonction \code{Quaternion Vec3.ToRotation()}.
 
 
 \subsection{Réalisation des scripts pour Unity}
@@ -352,20 +347,20 @@ Nous avons également ajouté quelques fonctions de conversion, Unity et OpenCV 
   \end{tikzpicture}
 }{Diagramme de classes simplifé de la couche de scripts C\# d'ArucoUnity. Seules les interfaces ou les classes abstraites de haut niveaux sont affichées : dans chaque cas, le patron de conception stratégie est appliqué pour supporter différents types de caméras. Elles font toutes parties de l'espace de nom \code{ArucoUnity}, non affiché ici.}
 
-Ce travail avec les images des caméras et les conversions montre pourquoi nous avons besoin d'une couche supplémentaire de scripts C\# au dessus de celle de la liaison pour faciliter l'usage d'OpenCV dans Unity. Les deux systèmes ne sont en effet pas conçus pour travailler ensemble : cette complexité est ainsi masquée par la façade supplémentaire que nous créons avec les scripts.
+Ce travail avec les images des caméras et les conversions montre pourquoi nous avons besoin d'une couche supplémentaire de scripts C\# au dessus de celle de la liaison pour faciliter l'usage d'OpenCV dans Unity. Les deux systèmes ne sont en effet pas conçus pour travailler ensemble : on masque ainsi cette complexité avec avec les scripts, formant une façade supplémentaire.
 
-Avec ces scripts nous mettons aussi en place le fonctionnement de notre visiocasque décrit à la \autoref{subsec:prototype_operation}. Nous avons d'abord écrit un simple script séquentiel qui (1) configurait au démarrage la caméra virtuelle avec les paramètres de la caméra physique et les images capturées en arrière-plan puis qui (2) corrigeait à chaque \texten{frame} les images et plaçait les objets virtuels, en suivant la procédure que nous décrivons à la \autoref{sec:cameras_alignment}. Nous y avons rapidement appliqué quelques principes de conception pour l'améliorer. Nous utilisons donc une seule responsabilité par classe \autorefp{ArucoUnityArchitecture} :
+Avec ces scripts nous mettons aussi en place le fonctionnement de notre visiocasque décrit à la \autoref{subsec:prototype_operation} en suivant la procédure que nous décrivons à la \autoref{sec:ar_hmd}. Nous avons donc d'abord écrit premier script d'étalonnage et un second qui configurait au démarrage puis qui corrigeait à chaque \texten{frame} les images et plaçait les éléments virtuels. Nous y avons rapidement appliqué quelques principes de conception pour l'améliorer. Nous utilisons donc une seule responsabilité par classe \autorefp{ArucoUnityArchitecture} :
 \begin{itemize}
   \item \code{IArucoCamera} récupère les images de la caméra physique.
-  \item \code{IArucoCameraUndistortion} corrige ces images.
-  \item \code{IArucoObjectsTracker} et \code{ArucoObject} détectent la position des marqueurs sur les images.
-  \item \code{IArucoCameraDisplay} affiche les images et place les objets virtuels.
+  \item \code{IArucoCameraUndistortion} corrige les images capturées.
+  \item \code{IArucoObjectsTracker} et \code{ArucoObject} détectent les marqueurs sur les images et place les éléments virtuels.
+  \item \code{IArucoCameraDisplay} configure la caméra virtuelle.
   \item \code{ArucoCameraCalibration} étalonne la caméra physique.
-  \item \code{CameraParameters} gère les paramètres de l'étalonnage.
+  \item \code{CameraParametersController} gère les paramètres de l'étalonnage.
 \end{itemize}
 \bigskip
 
-Cette architecture est évidemment simplifiée. Pour chacune de ces interfaces ou classes abstraites, nous utilisons le patron de conception stratégie : chaque implémentation supporte ainsi un type de caméra, permettant de multiples combinaisons. Par exemple, \code{IArucoCamera} est implémenté par \code{ArucoWebcam} et \code{OvrvisionArucoCamera} et peuvent être utilisées indépendamment avec les implémentations de \code{IArucoCameraDisplay} (\code{MonoArucoCameraDisplay} ou \code{StereoArucoCameraDisplay}). Un développeur peut ainsi ajouter facilement le support d'un nouvelle caméra ou la correction d'un nouveau type d'objectif photographique.
+Cette architecture est évidemment simplifiée. Pour chacune de ces interfaces ou classes abstraites, nous utilisons le patron de conception stratégie : chaque implémentation supporte ainsi un type de caméra, permettant de multiples combinaisons. Par exemple, \code{IArucoCamera} est implémenté par \code{ArucoWebcam} et \code{OvrvisionArucoCamera} et peuvent être utilisées indépendamment avec les implémentations de \code{IArucoCameraDisplay} (\code{MonoArucoCameraDisplay} ou \code{StereoArucoCameraDisplay}). En outre, un développeur peut ajouter facilement le support d'un nouvelle caméra ou la correction d'un nouveau type d'objectif photographique.
 
 \figureLayoutETS{ArucoUnitySequence}{
   \begin{tikzpicture}
@@ -373,7 +368,6 @@ Cette architecture est évidemment simplifiée. Pour chacune de ces interfaces o
       \umlobject{ArucoCamera}
       \umlobject{ArucoCameraUndistortion}
       \umlobject{ArucoObjectsTracker}
-      \umlobject{ArucoCameraDisplay}
 
       \begin{umlcallself}[op=UpdateImages()]{ArucoCamera}
         \begin{umlfragment}[type=par, inner xsep=3]
@@ -399,8 +393,8 @@ Cette architecture est évidemment simplifiée. Pour chacune de ces interfaces o
         \begin{umlfragment}[type=par, inner xsep=3]
           \begin{umlcallself}[op={CopyImages()}]{ArucoObjectsTracker}
           \end{umlcallself}
-          \begin{umlcall}[op={PlaceArucoObjects()}]{ArucoObjectsTracker}{ArucoCameraDisplay}
-          \end{umlcall}
+          \begin{umlcallself}[op={UpdateTransforms()}]{ArucoObjectsTracker}
+          \end{umlcallself}
           \umlfpart[thread]
           \begin{umlcallself}[op={TrackArucoObjects()}]{ArucoObjectsTracker}
           \end{umlcallself}
@@ -410,24 +404,17 @@ Cette architecture est évidemment simplifiée. Pour chacune de ces interfaces o
   \end{tikzpicture}
 }{Diagramme de séquence simplifé de chaque \texten{frame} de la couche de scripts C\# d'ArucoUnity.}
 
-Enfin, nous améliorons les performances en externalisant certains calculs sur plusieurs fils d'exécution (\texten{thread} en anglais). Par défaut, les scripts tournent en effet sur le fil d'exécution principal d'Unity. L'ensemble des scripts doit donc s'exécuter rapidement pour avoir une application fluide, par exemple en moins de \SI{16}{\ms} pour atteindre 60 FPS. La capture des images, leurs corrections et le suivi des marqueurs sont trop les opérations les plus lentes. Nous créons donc un fil d'exécution pour chacune de ces trois calculs ci-dessous : chacun tourne alors de manière indépendante et ne bloque plus celui d'Unity \reffigureETSp{ArucoUnitySequence}. Si le fil d'exécution de la caméra a récupéré de nouvelles images, celui d'Unity va les copier dans les autres fils et recopie les images corrigées pour les afficher dans le visiocasque. Cette solution nous permet d'avoir d'excellentes performances avec une webcam où nous avions à l'origine peu de fluidité, mais n'est pas encore totalement satisfaisante avec l'Ovrvision \autorefp{subsec:solution_discusion} : les multiples copies des images prennent trop de temps.
+Enfin, nous améliorons les performances en externalisant certains calculs sur plusieurs fils d'exécution (\texten{thread} en anglais). Par défaut, les scripts tournent en effet sur le fil d'exécution principal d'Unity. L'ensemble des scripts doit donc s'exécuter rapidement pour avoir une application fluide, en moins de \SI{16}{\ms} pour atteindre 60 FPS par exemple. La capture des images, leur correction et le suivi des marqueurs sont les opérations les plus lentes. Nous créons donc un fil d'exécution pour chacune de ces trois calculs ci-dessous : chacun tourne alors de manière indépendante et ne bloque plus celui d'Unity \reffigureETSp{ArucoUnitySequence}. Si le fil d'exécution de la caméra a récupéré de nouvelles images, celui d'Unity va les copier dans les autres fils et recopie les images corrigées pour les afficher dans le visiocasque. Cette solution nous permet d'avoir d'excellentes performances avec une webcam où nous avions à l'origine peu de fluidité, mais n'est pas encore totalement satisfaisante avec l'Ovrvision \autorefp{subsec:solution_discusion}. Dans cette configuration, ce sont les multiples copies des images qui prennent trop de temps au processeur, mais nous en sommes resté là par manque de temps et la vitesse de 30 FPS avec notre visiocasque étant tout de même satisfaisante.
 
 
-\section{Alignement des caméras physique et virtuelle}
-\label{sec:cameras_alignment}
+\section{Intégration de la réalité augmentée dans le visiocasque}
+\label{sec:ar_hmd}
 
-\subsection{Introduction}
-\label{subsec:cameras_alignment_introduction}
-Notre bibliothèque d'étalonnage et RA par suivi de marqueur Aruco Unity étant fonctionnelle, nous avons pu mettre en place la RA dans notre visiocasque en alignant les caméras physiques et virtuelles. Nous détaillons donc ici le fonctionnement des scripts C\# décrit à la \autoref{sec:sec:aruco_unity}.
+\subsection{Procédure}
+\label{subsec:ar_hmd_procedure}
+Les fonctionnalités d'OpenCV étant maintenant disponibles dans Unity \autorefp{sec:aruco_unity}, nous pouvons maintenant enfin mettre en place la RA dans notre visiocasque. Pour cela, nous devons tout d'abord comprendre le principe d'une caméra \autorefp{subsec:camera_theory}. Puis nous étudions le cas le plus simple de l'alignement d'une caméra physique monoscopique avec un objectif rectilinéaire \autorefp{subsec:pinhole_camera_calibration}. Nous itérons ensuite avec des objectifs \texten{fisheye} \autorefp{subsec:fisheye_camera_calibration} puis enfin avec notre caméra stéréoscopique \autorefp{subsec:stereo_camera_calibration}. Les caméras physiques et virtuelles alignées nous pourrons alors utiliser les fonctions de suivi de marqueurs pour placer les éléments virtuels.
 
-Pour cela, nous devons tout d'abord comprendre le principe d'une caméra \autorefp{subsec:camera_theory}, puis le cas le plus simple : l'alignement dans le cas le d'une caméra physique monoscopique avec un objectif rectilinéaire \autorefp{subsec:pinhole_camera_calibration}. Nous itérons ensuite avec des objectifs \texten{fisheye} \autorefp{subsec:fisheye_camera_calibration} puis enfin avec notre caméra stéréoscopique \autorefp{subsec:stereo_camera_calibration}. Nous abordons seulement la théorie nécessaire pour résoudre nos problèmes d'étalonnage, de correction de distorsions et d'alignement ; le lecteur peut se référer à \cite[chap. 18-19]{Kaehler2017} pour une théorie et des procédures plus complètes.
-
-Aruco Unity permet de facilement étalonner une caméra directement dans Unity sans avoir à programmer. Après l'étalonnage, notre bibliothèque de RA corrige et aligne automatiquement les caméras sans que l'utilisateur n'ait à s'en soucier lors du suivi de marqueurs. Nous décrivons dans cette section les actions à faire dans Unity pour étalonner et aligner sa caméra ainsi que le code exécuté en arrière-plan. On utilise donc, via Aruco Unity, les modules d'OpenCV suivants :
-\begin{itemize}
-  \item aruco pour suivre les marqueurs (\url{https://docs.opencv.org/master/d9/d6a/group__aruco.html}) ;
-  \item calib3d pour étalonner et corriger les objectifs rectilinéaires (\url{https://docs.opencv.org/master/d9/d0c/group__calib3d.html}) ;
-  \item ccalib pour étalonner et corriger les objectifs \texten{fisheye} (\url{https://docs.opencv.org/master/d3/ddc/group__ccalib.html}).
-\end{itemize}
+Aruco Unity permet d'étalonner une caméra facilement et directement dans Unity, sans avoir à programmer. Après l'étalonnage, notre bibliothèque de RA corrige la caméra physique et aligne la caméra virtuelle automatiquement sans que l'utilisateur n'ait à s'en soucier lors du suivi de marqueurs. Nous décrivons ainsi dans cette section l'utilisation des scripts C\# d'Aruco Unity, le code OpenCV qu'ils exécutent en arrière-plan ainsi que la théorie nécessaire ; le lecteur peut se référer à \cite[chap. 18-19]{Kaehler2017} pour une théorie et des procédures plus complètes.
 
 Cette section a son équivalent en anglais sur plusieurs articles dans la documentation en ligne d'Aruco Unity (\url{https://normanderwan.github.io/ArucoUnity/}). Ils sont plus pratiques sans détailler la théorie pour permettre à nouvel utilisateur de rapidement construire son application de RA.
 
@@ -457,17 +444,15 @@ De manière simplifiée, c'est également le fonctionnement d'une caméra virtue
 \end{equation}
 
 \subsubsection{Caméra physique}
-Le sténopé est un modèle de caméra également suffisant pour décrire une caméra physique monoscopique, en y ajoutant un capteur numérique placé sur le plan image pour enregistrer l'image capturée. 
+Le sténopé est un modèle de caméra également suffisant pour décrire une caméra physique monoscopique. On y ajoute alors un capteur numérique placé sur le plan image pour enregistrer les images qui se forment sur le plan image. Cet ajout introduit de nouveaux paramètres que l'on va mesurer lors de l'étalonnage de la caméra \autorefp{subsec:pinhole_camera_calibration}. Comme nous travaillons seulement avec les images capturées dans ce procédé, les mesures sont donc faites en pixels et non plus en millimètres. De plus, nous déplaçons le repère dans le coin en bas à gauche du plan image.
 
-Cet ajout introduit de nouveaux paramètres que l'on va mesurer lors de l'étalonnage de la caméra \autorefp{subsec:pinhole_camera_calibration}. Comme nous travaillons seulement avec les images capturées dans ce procédé, les mesures sont donc faites en pixels et non en millimètres. De plus, nous devons déplacer le repère dans le coin en bas à gauche du plan image.
+Premièrement, le centre du capteur utilisé ne coïncide pas totalement avec l'axe optique : cela requerrait une précision trop importante et non nécessaire lors de la fabrication de la caméra. L'axe optique va donc intersecter le plan image non pas en son centre, mais sur un point décalé appelé \emph{centre optique} et noté $c$. On mesure en pixels le décalage $(c_x,c_y)$ sur l'image capturée.
 
-Le centre du capteur utilisé ne coïncide pas totalement avec l'axe optique : cela requerrait une précision trop importante et non nécessaire lors de la fabrication de la caméra. L'axe optique va donc intersecter le plan image non pas en son centre, mais sur un point décalé appelé \emph{centre optique} et noté $c$. On mesure en pixels le décalage $(c_x,c_y)$ sur l'image capturée.
-
-En outre, la longueur focale mesurée de la caméra peut être différente sur les deux axes $X$ et $Y$ du plan image. On note $f_x$ et $f_y$ les deux longueurs focales mesurées. Cela est dû a certains capteurs, de mauvais qualité, produisant des pixels rectangulaires et non carrés. On pourrait également les calculer en connaissant la taille physique $(L,H)$ et la définition $(l,h)$ du capteur et la longeur focale physique de la caméra avec l'\autoref{eq:focal_lengths}, mais on n'a pas toujours accès avec fiabilité à toutes ces informations (par exemple avec un téléphone).
+En outre, la longueur focale mesurée de la caméra peut être différente sur les deux axes $X$ et $Y$ du plan image. On note $f_x$ et $f_y$ les deux longueurs focales mesurées. Cela est dû a certains capteurs, de mauvais qualité, produisant des pixels rectangulaires et non carrés. On pourrait également les calculer en connaissant la taille physique $(L,H)$ et la définition $(d_x,d_y)$ du capteur et la longeur focale physique de la caméra avec l'\autoref{eq:focal_lengths}, mais on n'a pas toujours accès avec fiabilité à toutes ces informations (par exemple avec un téléphone).
 
 \begin{equation}
   \label{eq:focal_lengths}
-  f_x = f \frac{L}{l},\qquad f_y = f \frac{H}{h}
+  f_x = f \frac{L}{d_x},\qquad f_y = f \frac{H}{d_y}
 \end{equation}
 
 Ces nouveaux paramètres font partie de la \emph{matrice intrinsèque} de la caméra, notée $K$. Elle permet de transformer un point $P$ de la scène est transformé en un point $p'$ \autorefp{eq:projection}, qu'on projette ensuite sur le plan image en divisant ses coordonnées par $Z$ comme dans l'\autoref{eq:virtual_camera_projection}.
@@ -517,14 +502,14 @@ Ces distorsions éloignent le fonctionnement de la caméra du modèle idéal du 
 
 \subsection{Étalonnage d'une caméra}
 \label{subsec:pinhole_camera_calibration}
-Étalonner une caméra monoscopique rectilinéaire consiste à déterminer sa matrice intrinsèque $K$ et ses paramètres de distorsion $D$. Ce procédé fonctionne sur un principe simple. Nous avons décrit les équations qui permettent de projeter un point $P$ de la scène en un point $p$ sur le plan image. Connaissant les coordonnées de ces deux points, nous pouvons donc écrire les vecteurs de translation $T = (t_x, t_y, t_z)$ et rotation $R = (\theta_x, \theta_y, \theta_z)$ permettant de transformer un point $P$ de la scène en un point $p$ sur le plan image. En connaissant assez de couple de points $(P_i, p_i)$, on peut alors poser un ensemble d'équations pour résoudre $K$. Ainsi, les déviations des points $p_i$ du modèle de sténopé ainsi calculé permettent de déterminer $D$.
+Étalonner une caméra monoscopique rectilinéaire consiste donc à déterminer sa matrice intrinsèque $K$ et ses paramètres de distorsion $D$. Nous avons décrit les équations qui permettent de projeter un point $P$ de la scène en un point $p$ sur le plan image. Connaissant les coordonnées de ces deux points, nous pouvons donc écrire les vecteurs de translation $T = (t_x, t_y, t_z)$ et rotation $R = (\theta_x, \theta_y, \theta_z)$ permettant de transformer un point $P$ de la scène en un point $p$ sur le plan image. En connaissant assez de couple de points $(P_i, p_i)$, on peut alors poser un ensemble d'équations pour résoudre $K$. Ainsi, les déviations des points $p_i$ du modèle de sténopé ainsi calculé permettent de déterminer $D$.
 
 \figureETS{Bradski2008_2.jpg}{
   Une caméra physique monoscopique est étalonné avec OpenCV en capturant plusieurs images d'un échiquier imprimé sur une planche rigide capturé dans différentes positions et angles de vues.\\
   Tiré de \cite[p. 382]{Bradski2008}.
 }
 
-Concrètement, on utilise une image d'un échiquier qu'on capture avec la caméra dans plusieurs positions et angles de vues \reffigureETSp{Bradski2008_2.jpg}, les points utilisés étant les intersections entre les carrés noirs et blancs. On connait par avance les coordonnées relatives des points $P_i$ entre eux (il suffit de le mesurer sur l'échiquier) et ces intersections sont très facile à détecter sur l'image capturée par la caméra. La première étape de l'étalonnage consiste donc à capturer avec la caméra quelques images d'un échiquier dont on connait la configuration.
+Concrètement, on utilise une image d'un échiquier qu'on capture avec la caméra dans plusieurs positions et angles de vues \reffigureETSp{Bradski2008_2.jpg}, les points utilisés étant les intersections entre les carrés noirs et blancs. On connait par avance les coordonnées relatives des points $P_i$ entre eux (il suffit de le mesurer sur l'échiquier) et ces intersections sont détectées facilement sur l'image capturée par la caméra. La première étape de l'étalonnage consiste donc à capturer avec la caméra quelques images d'un échiquier dont on connait la configuration.
 
 \figureETS[0.9]{CharucoBoardCreation.jpg}{
   Création d'un échiquier d'étalonnage avec Aruco Unity : à gauche les scripts de configuration, à droite l'échiquier vu dans la scène Unity. Les marqueurs, décrits dans la \autoref{sec:aruco_unity}, dans les carrés blancs permettent l'amélioration de la détection de l'échiquier.
@@ -534,14 +519,14 @@ On crée alors notre échiquier d'étalonnage \reffigureETSp{CharucoBoardCreatio
 \begin{itemize}
   \item On crée un projet Unity configuré avec Aruco Unity \autorefp{sec:aruco_unity}.
   \item Dans ce projet, on ajoute un nouvel objet vide.
-  \item On ajoute à l'objet le script \code{ArucoCharucoBoard.cs}, qui représente l'échiquier, et on le configure :
+  \item On ajoute à l'objet le script \code{ArucoCharucoBoard}, qui représente l'échiquier, et on le configure :
   \begin{itemize}
     \item la taille des carrés en pixels avec le champs \code{SquareSideLength} ;
     \item le nombre de carrés avec \code{SquaresNumberX} et \code{SquaresNumberY} ;
     \item la taille des marqueurs avec \code{MarkerSideLength} ;
     \item la marge entre les marqueurs et les carrés blancs qui les contiennent avec \code{MarginLength}.
   \end{itemize}
-  \item On ajoute à l'objet le script \code{ArucoObjectCreator.cs}, qui permet de créer l'image de l'échiquier, et on fait pointer \code{ArucoObject} vers \code{ArucoCharucoBoard.cs}.
+  \item On ajoute à l'objet le script \code{ArucoObjectCreator}, qui permet de créer l'image de l'échiquier, et on fait pointer \code{ArucoObject} vers \code{ArucoCharucoBoard}.
   \item On démarre la scène Unity : l'image de l'échiquier s'affiche et est enregistrée sur le disque dur dans le dossier du projet (le chemin est indiqué par \code{OutputFolder}).
   \item On imprime l'image que l'on colle fermement sur une surface rigide pour qu'elle reste le plus plate possible.
 \end{itemize}
@@ -557,10 +542,10 @@ On crée alors notre échiquier d'étalonnage \reffigureETSp{CharucoBoardCreatio
 On prépare ensuite la scène de calibration \reffigureETSp{PinholeCameraCalibration}:
 \begin{enumerate}
   \item On ouvre la scène Unity \code{Assets/ArucoUnity/Scenes/Calibrate.unity} déjà préparée pour l'étalonnage d'une caméra monoscopique rectilinéaire.
-  \item Sur le script \code{ArucoWebcam.cs}, dans l'objet du même nom, on choisit la caméra à étalonner en renseignant son identifiant numérique dans le champs \code{WebcamId}.
+  \item Sur le script \code{ArucoWebcam}, dans l'objet du même nom, on choisit la caméra à étalonner en renseignant son identifiant numérique dans le champs \code{WebcamId}.
   \item On crée à nouveau un objet représentant notre échiquier imprimé, en y configurant cette fois la taille des carrés en mètres, permettant à Aruco Unity de construire automatiquement les positions relatives à l'échiquer des points $P_i$.
-  \item Sur le script \code{PinholeCameraCalibration.cs}, dans l'objet du même nom, on fait pointer le champs \code{CalibrationBoard} vers notre objet d'échiquier.
-  \item On peut ajuster les paramètres de calibration (\texten{calibration flags} en anglais) du module calib3d avec \code{PinholeCameraCalibrationFlags.cs} et les paramètres de détection du module aruco avec \code{DectectorParametersController.cs}, ces deux scripts ayant par défaut les valeurs recommandées par les documentations de leurs modules respectifs.
+  \item Sur le script \code{PinholeCameraCalibration}, dans l'objet du même nom, on fait pointer le champs \code{CalibrationBoard} vers notre objet d'échiquier.
+  \item On peut ajuster les paramètres de calibration (\texten{calibration flags} en anglais) du module calib3d avec le script \code{PinholeCameraCalibrationFlags} et les paramètres de détection du module aruco avec le script \code{DectectorParametersController}, ces deux scripts ayant par défaut les valeurs recommandées par les documentations de leurs modules respectifs.
 \end{enumerate}
 
 \figureETS[0.75]{PinholeCameraCalibration_3.jpg}{%
@@ -569,12 +554,14 @@ On prépare ensuite la scène de calibration \reffigureETSp{PinholeCameraCalibra
 
 On peut maintenant débuter l'étalonnage en jouant la scène \reffigureETSp{PinholeCameraCalibration_3.jpg}. Le flux vidéo de la caméra est affiché alors dans Unity ainsi qu'une IHM : le bouton \code{Add Image} permet de capturer l'image courante dans une liste, le bouton \code{Reset} permet de vider cette liste et le bouton \code{Calibrate} permet d'étalonner la caméra en utilisant cette liste d'images. Il est important de garder la caméra dans une position fixe durant l'étalonnage et de varier seulement la position et l'orientation de l'échiquier entre les images. On désactive aussi la mise au point automatique de la caméra, ce paramètre impactant en effet la matrice intrinsèque	$K$ de la caméra et les distorsions de l'objectif. Enfin, l'échiquier est surligné dans le flux vidéo pour aider à le positioner.
 
-\begin{listingETS}{cpp}{lst:pinhole_calibration}{Code C++ simplifié d'Aruco Unity pour étalonner une caméra monoscopique avec un objectif rectilinéaire.}
+\begin{listingETS}{cpp}{lst:aruco_camera_calibration}{Code C++ simplifié d'Aruco Unity pour étalonner une caméra monoscopique avec un objectif rectilinéaire.}
+  // (1) Création de l'échiquier
   auto dictionary = getPredefinedDictionary(name);
   auto board = CharucoBoard::create(squaresNumberX, squaresNumberY, squareSideLength, markerSideLength, dictionary);
 
   vector<Mat> images = ... // Transmis depuis Unity
 
+  // (2) Détection des points
   auto P = new vector<vector<Point3f>>(images.size()); // Points P
   auto p = new vector<vector<Point2f>>(images.size()); // Points p
 
@@ -588,58 +575,145 @@ On peut maintenant débuter l'étalonnage en jouant la scène \reffigureETSp{Pin
     getBoardObjectAndImagePoints(board, markerPos, markerIds, P[i], p[i]);
   }
 
-  Mat K, D; // Matrice intrinseque et parametres de distorsion
-  vector<Mat> T, R; // Position et rotation de l'echiquier a chaque image
+  // (3) Étalonnage
+  Mat K, D; // Matrice intrinsèque et paramètres de distorsion
+  vector<Mat> T, R; // Position et rotation de l'échiquier à chaque image
   double reprojectionError = calibrateCamera(P, p, board, imagesResolution, K, D, R, T, calibrationFlags);
 \end{listingETS}
 
-Le code C++ d'étalonnage exécuté alors en arrière-plan par Aruco Unity \autorefp{lst:pinhole_calibration} est simple : (1) on crée l'échiquier décrit, (2) on détecte l'échiquier dans et on extrait les points $P_i$ et $p_i$ pour chaque image de la liste, (3) on calcule la matrice intrinsèque $K$ et les paramètres de distorsion $D$.
+Le code C++ d'étalonnage exécuté alors en arrière-plan par Aruco Unity \autorefp{lst:aruco_camera_calibration} est simple : (1) on crée l'échiquier décrit, (2) on détecte l'échiquier dans et on extrait les points $P_i$ et $p_i$ pour chaque image de la liste, (3) on calcule la matrice intrinsèque $K$ et les paramètres de distorsion $D$.
 
-Une fois l'étalonnage effectué, un score mesurant sa qualité est alors affiché. Il correspond à la somme de l'erreur de reprojection pour chaque image de la liste : c'est la distance en pixels entre les points $p_i$ observés et la projection simulée des points $P_i$ sur le plan image avec le modèle de sténopé mesuré par l'étalonnage. Ce score doit être le plus proche possible de zéro si l'on souhaite un bon alignement des deux caméras : un décalage trop important dans l'alignement des éléments vrituels sur l'image de la caméra physique briserait l'illusion de la RA.
+Une fois l'étalonnage effectué, un score mesurant sa qualité est alors affiché. Il correspond à la somme de l'erreur de reprojection pour chaque image de la liste : c'est la distance en pixels entre les points $p_i$ observés et la projection simulée des points $P_i$ sur le plan image avec le modèle de sténopé mesuré par l'étalonnage. Ce score doit être le plus proche possible de zéro si l'on souhaite un bon alignement des deux caméras : un décalage trop important dans l'alignement des éléments vrituels sur l'image de la caméra physique briserait l'illusion de la RA. Enfin, les résultat de l'étalonnage sont enregistrés dans un fichier XML dans le dossier \code{Assets/ArucoUnity/CameraParameters/} que l'on pourra utiliser à volonté dans n'importe quelle application de RA utilisant cette caméra. L'\hyperref[appendix:ovrvision_camera_parameters]{Annexe~\ref{appendix:ovrvision_camera_parameters}} présente le fichier de l'étalonnage de l'Ovrvision Pro.
 
-Outre le score, les résultat de l'étalonnage sont enregistrés dans un fichier XML dans le dossier \code{Assets/ArucoUnity/CameraParameters/} que l'on pourra utiliser à volonté dans n'importe quelle application de RA utilisant cette caméra. L'\hyperref[appendix:ovrvision_camera_parameters]{Annexe~\ref{appendix:ovrvision_camera_parameters}} est le fichier de notre étalonnage de l'Ovrvision Pro.
-
-\subsection{Correction des distorsions d'une caméra}
+\subsection{Correction des image de la caméra}
 \label{subsec:pinhole_camera_undistortion}
-Une fois étalonner, nous corrigeons les distorsions de la caméra, sur chacune des images capturées.
 
-Corriger les distorsions une caméra consiste à reprojeter ses images selon un sténopé : l'opération inverse de la projection est d'abord faites sur les pixels, 
+\figureETS[0.9]{TrackMarkersCamera.jpg}{%
+  Configuration de la correction d'une caméra monoscopique rectilinéaire (\code{PinholeCameraUndistortion}) et de l'alignement d'une caméra virtuelle (\code{MonoArucoCameraDisplay}) pour permettre de la RA.
+}
 
-%  you may retrieve only sensible pixels alpha=0 , keep all the original image pixels if there is valuable information in the corners alpha=1 , or get something in between. When alpha>0 , the undistorted result is likely to have some black pixels corresponding to "virtual" pixels outside of the captured distorted image.
-
-Aruco Unity effectue la rectification et l'alignement automatiquement sans que l'utilisateur n'ai besoin de s'en soucier. Par exemple :
-\begin{enumerate}
-  \item On ouvre la scène Unity \code{Assets/ArucoUnity/Scenes/Tracking.unity} déjà préparée pour le suivi de marqueurs avec une caméra monoscopique rectilinéaire étalonnée.
-\end{enumerate}
-
-Ainsi, lors du démarrage de l'application, le fichier XML d'étalonnage de la caméra est d'abord chargé, puis la caméra virtuelle est configurée avec les paramètres intrinsèques de la caméra physique. En outre, 
-
-Concrètement, 
-
-\begin{listingETS}{cs}{lst:pinhole_calibration}{Code C\# simplifié d'Aruco Unity pour rectifier une caméra monoscopique avec un objectif rectilinéaire.}
-  // Demarrage de l'application
-  void Start()
+\begin{listingETS}{cs}{lst:pinhole_camera_undistortion}{Classe C\# ArucoCameraUndistortion simplifiée.}
+  public class PinholeCameraUndistortion : ArucoCameraUndistortion
   {
-    var rotation = new Cv.Mat(); // Mat vide = aucune rotation
-    var newK = Cv.GetOptimalCameraMatrix()
-    Cv.InitUndistortRectifyMap(K, D, rotation, newK, imageResolution, )
-  }
+    public float alpha;
+    protected Mat rectMapX, rectMapY;
 
-  // Execute a chaque frame
-  void Update()
-  {
-    ... // Suivi de marqueurs
+    protected void Start()
+    {
+      // (1) Matrice intrinsèque de la caméra corrigée
+      var newK = GetOptimalCameraMatrix(K, D, ArucoCamera.Resolution, alpha);
 
-    Cv.Remap(image, image, rectMapX, rectMapY, Cv.InterpolationFlags.Linear);
+      // (2) Fonction de mappage de correction
+      var noRot = new Mat(); // Aucune rotation de la caméra corrigée
+      InitUndistortRectifyMap(K, D, noRot, newK, ArucoCamera.Resolution, out rectMapX, out rectMapY);
+
+      ArucoCamera.UndistortImages += Undistort;
+    }
+
+    // (3) Correction des images
+    protected void Undistort()
+    {
+      Remap(ArucoCamera.Image, ArucoCamera.Image, rectMapX, rectMapY, InterpolationFlags.Linear);
+    }
   }
 \end{listingETS}
 
+Une fois la caméra étalonnée, nous pouvons mettre en place notre visiocasque. Nous devons tout d'abord pouvoir corriger les images de la caméra physique. Cette opération se fait en deux temps : on calcule d'abord une fonction de mappage $m$ entre les pixels de l'image corrigée $I_c$ et ceux l'image originale $I$, selon l'\autoref{eq:undistortion}, que l'on pourra ensuite appliquer sur chacune des images.
+
+\begin{equation}
+  \label{eq:undistortion}
+  I_c(x,y) = I(m_x(x,y), m_y(x,y))
+\end{equation}
+
+Cette opération est intéressante car elle nous permet donc de choisir une autre matrice intrinsèque, comme si les images corrigées avaient été capturées par une autre caméra. Cela nous permet de replacer le centre optique au centre de l'image soit $c_x = \sfrac{d_x}{2}$ et $c_y = \sfrac{d_y}{2}$. Nous pourrions également changer la position et l'orientation de cette caméra corrigée de cette manière.
+
+Aruco Unity effectue automatiquement la correction des images, lors du suivi de marqueurs, avec le script \code{ArucoCameraUndistortion}. On le met en place facilement \reffigureETSp{TrackMarkersCamera.jpg} :
+\begin{enumerate}
+  \item On ouvre la scène \code{Assets/ArucoUnity/Scenes/TrakcMarkers.unity} préparée pour le suivi de marqueurs avec une caméra monoscopique rectilinéaire.
+  \item Dans l'objet \code{ArucoWebcam}, sur le script \code{ArucoCameraParametersController}, on renseigne le nom du fichier XML d'étalonnage dans le champs \code{CameraParametersFilename}.
+  \item Le script \code{ArucoCameraUndistortion} est déjà configuré pour utiliser la caméra physique et le fichier d'étalonnage.
+\end{enumerate}
+
+Dans ce script, (1) on crée la nouvelle matrice intrinsèque, (2) on calcule la fonction de mappage puis (3) on l'applique sur chaque image capturée par la caméra \autorefp{lst:pinhole_camera_undistortion}. Cependant, lors de l'application de la fonction de mappage, il y a une ambiguïté à résoudre. D'abord, la fonction $m$ retourne des nombres décimaux alors que les coordonnées des pixels d'une image sont des entiers : il n'existe donc pas toujours une correspondance exacte entre les pixels des deux images. On choisit alors une méthode d'interpolation pour résoudre ce problème : l'interpolation bilinéaire donne de bons résultats sans trop augmenter le temps de calcul. En outre, certains pixels de l'image corrigée peuvent n'avoir aucune correspondance : on les colore en noir dans ce cas. Avec le paramètre $\alpha$ \reffigureETSp{PinholeCameraUndistortionAlpha.png}, l'utilisateur peut décider de n'afficher que les pixels de l'image corrigée ayant une correspondance ($\alpha = 0$) ou de conserver tous les pixels de l'image originale, introduisant de nombreux pixels noirs ($\alpha = 1$). Nous conseillons toutefois ce dernier cas pour conserver les valeurs de longueur focale non-corrigées.
+
+\figureETS[0.4]{PinholeCameraUndistortionAlpha.png}{%
+  Image corrigée avec en surimpression la zone sélectionnée suivant la valeur du paramètre $\alpha$ : seulement les pixels valides dans l'image corrigée avec $\alpha=0$ ou tous les pixels transformés de l'image originale $\alpha=0$.
+}
+
 \subsection{Alignement de la caméra virtuelle}
-\label{subsec:virtual_camera_alignement}
-Les images de notre caméra physique étant corrigées, nous alignons maintenant les caméras physique et virtuelle.
-%- Voir BuJo p.150 + AR-Rift PArt 5 pour les équations de configuration de la caméra virtuelle et du placement du background pour qu'il soit aligné avec le contenu 3D filmé par la caméra virtuelle
+\label{subsec:pinhole_camera_display}
+
+\begin{listingETS}{cs}{lst:aruco_camera_display}{Classe C\# MonoArucoCameraDisplay simplifiée.}
+  public class MonoArucoCameraDisplay : ArucoCameraDisplay
+  {
+    protected const int bgDistance = 1000;
+
+    protected void Start()
+    {
+      float dx = ArucoCamera.Resolution.Width,
+        dy = ArucoCamera.Resolution.Height;
+
+      // (1) Configuration de la caméra virtuelle
+      var camera = new GameObject().AddComponent<Camera>();
+      camera.transform.parent = this.transform.parent;
+      camera.transform.localPosition = Vector3.zero;
+      camera.transform.localRotation = Quaternion.identity;
+      camera.fieldOfView = 2f * Mathf.Atan(0.5f * dy / fy) * Mathf.Rad2Deg;
+
+      // (2) Configuration de l'arrière-plan
+      var bg = GameObject.CreatePrimitive(PrimitiveType.Quad);
+      bg.transform.parent = this.transform.parent;
+      bg.transform.localPosition = new Vector3(0, 0, bgDistance);
+      bg.transform.LookAt(camera.transform);
+      bg.transform.localScale = new Vector3(dx / fx * bgDistance,
+        dy / fy * bgDistance, 1);
+      bg.material.mainTexture = ArucoCamera.Texture;
+    }
+  }
+\end{listingETS}
+
+Nous pouvons maintenant configurer la caméra virtuelle en l'alignant avec la caméra physique corrigée. La matrice intrinsèque associée avec les images corrigées pouvant être modifiée par la correction, l'alignement doit donc se faire après.
+
+Comme pour la correction, Aruco Unity aligne automatiquement la caméra virtuelle, lors du suivi de marqueurs, avec le script \code{ArucoCameraDisplay} \autorefp{lst:aruco_camera_display}. En reprenant la scène que nous avons configuré à la \autoref{subsec:pinhole_camera_undistortion}, on voit le script déjà configuré pour utiliser la caméra physique \reffigureETSp{TrackMarkersCamera.jpg}.
+
+On y crée alors (1) une caméra virtuelle dans Unity, placée à l'origine, avec un champs de vision calculé \autorefp{eq:fov} depuis la matrice intrinsèque corrigée, puis (2) l'arrière-plan sous forme d'un rectangle face à la caméra virtuelle, le long de son axe optique (nous avons corrigé le centre optique) à une distance arbitraire lontaine pour éviter une intersection avec les éléments virtuels. Enfin, on calcule la taille du rectangle en utilisant les triangles semblables : $d_x' = \text{distance} \times \sfrac{d_x}{f_x}$ \reffigureETSp{Fov.png}.
+
+\subsection{Réalité augmentée par suivi de marqueur}
+\label{subsec:aruco}
+
+\figureETS[0.9]{TrackMarkersTracker.jpg}{%
+  Configuration du suivi de marqueurs avec une liste de trois objets : deux échiquiers et un marqueur seul. La caméra associée est surlignée en jaune.
+}
+
+\begin{listingETS}{cs}{lst:aruco_camera_display}{Classe C\# ArucoObjectsTracker simplifiée.}
+  public class ArucoObjectsTracker : ArucoObjectsController, IArucoObjectsTracker
+  {
+    public List<ArucoObject> arucoObjects;
+    public ArucoCameraDisplay display;
+    public DetectorParameters detectParams;
+
+    protected void Start()
+    {
+      ArucoCamera.ImagesUpdated += TrackArucoObjects;
+    }
+
+    protected void TrackArucoObjects()
+    {
+      foreach (var arucoObject in arucoObjects)
+      {
+        DeactivateArucoObjects();
+        Detect();
+        EstimatePositions();
+        UpdateTransforms();
+      }
+    }
+  }
+\end{listingETS}
+
+Notre caméra virtuelle étant désormais prête pour la RA, nous pouvons utiliser le suivi de marqueur pour savoir où placer nos éléments virtuels.
 
 % TODO: parler rapidement de comment faire du tracking de marker
+
 
 \subsection{Alignement avec une caméra avec un objectif \texten{fisheye}}
 \label{subsec:fisheye_camera_calibration}
