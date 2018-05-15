@@ -101,14 +101,18 @@
 }
 
 \lstdefinestyle{VisualStudio}{ % Style based on https://tex.stackexchange.com/a/45714
-  tabsize=2,
-  breaklines=true,
-  breakatwhitespace=true,
   basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=true,
+  breaklines=true,
   commentstyle=\color{green},
   keywordstyle=\color{blue},
   keywordstyle=[2]{\color{cyan}},
-  stringstyle=\color{red}
+  %numbers=left,
+  %numberstyle=\tiny,
+  %numbersep=-5pt,
+  %stepnumber=2,
+  stringstyle=\color{red},
+  tabsize=2
 }
 \lstdefinelanguage{cpp}{
   language=C++,
@@ -119,26 +123,26 @@
   language=[Sharp]C,
   style=VisualStudio,
   morekeywords=[1]{get, set, var},
-  morekeywords=[2]{DllImport, IntPtr, List, Mat, Quaternion, Vector3, Texture2D}
+  morekeywords=[2]{Dictionary, DllImport, IntPtr, List, Mat, Quaternion, Vector3, Texture2D}
 }
 
 \lstdefinelanguage{XML}{
-  tabsize=2,
   basicstyle=\ttfamily\footnotesize,
+  commentstyle=\color{green},
   identifierstyle=\color{maroon},
   morestring=[b][\color{blue}]",
   moredelim=[s][\color{red}]{\ }{=},
   moredelim=[s][\color{black}]{>}{<},
-  commentstyle=\color{green},
   morecomment=[s]{<?}{?>},
-  morecomment=[s]{<!--}{-->}
+  morecomment=[s]{<!--}{-->},
+  tabsize=2
 }
 
 \lstnewenvironment{listingETS}[3]{%
   \lstset{language={#1}, float, label=#2, caption={#3}}%
 }{}
 
-\newcommand{\code}[2][{cs}]{\lstinline[language=#1, basicstyle=\ttfamily\normalsize]|#2|}
+\newcommand{\code}[2][{cs}]{\lstinline[language=#1, basicstyle=\ttfamily\normalsize, numbers=none]|#2|}
 
 % UML configuration
 \tikzumlset{
