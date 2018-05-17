@@ -142,7 +142,7 @@
   \lstset{language={#1}, float, label=#2, caption={#3}}%
 }{}
 
-\newcommand{\code}[2][{cs}]{\lstinline[language=#1, basicstyle=\ttfamily\normalsize, numbers=none]|#2|}
+\newcommand{\code}[2][cs]{\lstinline[language=#1, basicstyle=\ttfamily\normalsize, numbers=none]|#2|}
 
 % UML configuration
 \tikzumlset{
@@ -189,7 +189,7 @@
 \tableofcontents
 \listoftables
 \listoffigures
-%\listofalgorithms
+\listofalgorithms
 \lstlistoflistings
 
 \begin{listofabbr}[3cm]
@@ -203,25 +203,25 @@
 \setcounter{footnote}{0}
 
 \begin{introduction}
-  %\input{content/1_introduction}
+  \input{content/1_introduction}
 \end{introduction}
 
-%\input{content/2_litterature_review}
-%\input{content/3_concept}
+\input{content/2_litterature_review}
+\input{content/3_concept}
 \input{content/4_methodology}
-%\input{content/5_experiment}
-%\input{content/6_futur_work}
+\input{content/5_experiment}
+\input{content/6_futur_work}
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{CONCLUSION}
 \label{ch:conclusion}
-%\input{content/7_conclusion}
+\input{content/7_conclusion}
 
 \appendix
 \multiannexe
-%\input{content/8_ovrvision_camera_parameters}
-%\input{content/9_experiment_forms}
-%\input{content/10_experiment_analysis}
+\input{content/8_ovrvision_camera_parameters}
+\input{content/9_experiment_forms}
+\input{content/10_experiment_analysis}
 
 \newpage
 \begin{spacing}{1}

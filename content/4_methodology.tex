@@ -153,7 +153,7 @@ D'autres alternatives existent. Nous aurions pu par exemple nous appuyer sur la 
 \label{subsec:aruco_unity_motivation}
 Unity est un moteur de jeux-vidéos ainsi qu'une excellente solution pour développer avec des visiocasques de RV. Cependant, nous avons besoin de fonctionnalités manquantes pour permettre de la RA avec notre visiocasque. La bibliothèque OpenCV répond parfaitement à nos besoin, mais étant écrite en C++, elle est incompatible avec Unity utilisant le C\#. Nous avons donc réalisé la bibliothèque Aruco Unity pour rendre disponible OpenCV dans Unity. Son utilisation est décrite dans la \autoref{sec:ar_hmd}.
 
-La solution que nous avons retenue est d'utiliser le système de greffons (\texten{plugin} en anglais, \url{https://docs.unity3d.com/Manual/Plugins.html}) d'Unity pour appeler des bibliothèques externes en C\# ou en C depuis nos scripts. Cette technique, appelée \emph{liaison} (\texten{binding} en anglais) est classique dans les domaines des jeux-vidéos et des simulations physiques : elle permet de réutiliser du code existant sans avoir à le transposer dans un autre langage et surtout d'optimiser des portions de code critiques, le C++ étant conçu pour la performance.
+La solution que nous avons retenue est d'utiliser le système de greffons (\texten{plugin} en anglais, \url{https://docs.unity3d.com/Manual/Plugins.html}) d'Unity pour appeler des bibliothèques externes en C\# ou en C. Cette technique, appelée \emph{liaison} (\texten{binding} en anglais) est classique dans les domaines des jeux-vidéos et des simulations physiques : elle permet de réutiliser du code existant sans avoir à le transposer dans un autre langage et surtout d'optimiser des portions de code critiques, le C++ étant conçu pour la performance.
 
 Le code source d'OpenCV étant libre, une alternative aurait pu être de ré-écrire en C\# les fonctionnalités dont nous avions besoin. Le code source du module aruco nous semblait assez court pour cela, étant lui même une ré-implémentation propre de la bibliothèque originale (\url{https://www.uco.es/investiga/grupos/ava/node/26}) proposée par \cite{Garrido-Jurado2014}. Une ré-écriture des fonction d'étalonnage et de correction de caméra nous a semblé par contre trop risquée, n'ayant pas une bonne maîtrise de la théorie mis en \oe uvre. De plus, de nombreux projets de liaison existent vers d'autres langages comme Python (\url{https://docs.opencv.org/master/d6/d00/tutorial_py_root.html}), Javascript (\url{https://docs.opencv.org/master/d5/d10/tutorial_js_root.html}) ou Java (\url{https://opencv.org/platforms/android/}). L'écriture d'une liaison de C++ vers C\# semble donc plus sûre qu'une ré-écriture.
 
@@ -180,7 +180,7 @@ Enfin, quelques bibliothèques de RA par suivi de marqueurs sont déjà disponib
     \umlassemblyconnector[interface=Appeler]{ArucoUnityPlugin}{OpenCV}
   \end{tikzpicture}
 }{
-  Diagramme des composants d'ArucoUnity : le greffon expose OpenCV dans une interface en C, appelée par la liaison qui expose une interface orienté objet en C\# similaire à celle d'OpenCV. Les scripts permettent de travailler directement dans l'interface d'Unity avec les fonctionnalité d'OpenCV.
+  Diagramme des composants d'ArucoUnity : le greffon expose OpenCV dans une interface en C, appelée par la liaison qui expose une interface orienté objet en C\# similaire à celle d'OpenCV. Les scripts permettent de travailler directement dans l'interface d'Unity avec les fonctionnalité d'OpenCV sans avoir à programmer.
 }
 
 Aruco Unity est composé de trois couches logicielles, s'appuyant sur OpenCV \reffigureETSp{ArucoUnityComponents}. Tout d'abord, nous avons créé une bibliothèque exposant les modules aruco, calib3d et ccalib d'OpenCV avec une interface en C (\url{https://github.com/NormandErwan/ArucoUnity/tree/master/ArucoUnityPlugin/}), que l'on peut appeler depuis C\#. Nous avons ensuite créé un projet Unity et placé la bibliothèque dans le dossier \code{Assets/Plugin} : elle est alors détectée comme un greffon par Unity \reffigureETSp{ArucoUnityPlugin.jpg}.
@@ -189,34 +189,34 @@ Aruco Unity est composé de trois couches logicielles, s'appuyant sur OpenCV \re
   Le greffon d'ArucoUnity exposant les modules aruco, calib3d et ccalib d'OpenCV avec une interface en C dans le projet Unity d'Aruco Unity. Les autres modules présents sont des dépendances.
 }
 
-Dans le projet, nous avons ensuite écrit les scripts de liaison (\url{https://github.com/NormandErwan/ArucoUnity/tree/master/Assets/ArucoUnity/Scripts/Plugin/}) : ils reproduisent en C\# l'interface orientée objet d'OpenCV en appelant en arrière-plan notre greffon. On peut alors utiliser en toutes les fonctionnalités d'OpenCV dans Unity de manière similaire qu'en C++.
+Dans le projet, nous avons ensuite écrit les classes de liaison (\url{https://github.com/NormandErwan/ArucoUnity/tree/master/Assets/ArucoUnity/Scripts/Plugin/}) : ils reproduisent en C\# l'interface orientée objet d'OpenCV en appelant en arrière-plan notre greffon. On peut alors utiliser en toutes les fonctionnalités que nous avons porté d'OpenCV dans Unity de manière similaire qu'en C++.
 
-Enfin, nous avons écrit des scripts C\# pour Unity que nous utilisons dans la \autoref{sec:ar_hmd}. Nous avions d'abord écrit de simples scripts séquentiels d'étalonnage et de suivi de marqueur, mais le besoin s'est vite faite sentir de les rendre plus robustes et performants. De plus, le travail dans Unity se fait préférentiellement en deux temps : les développeurs programment les fonctionnalités dans les scripts, et les artistes les utilisent et configurent à volonté avec l'interface graphique de Unity sans avoir à toucher au code source.
+Enfin, nous avons écrit des scripts C\# pour Unity que nous utilisons dans la \autoref{sec:ar_hmd}. Nous avions d'abord écrit de simples scripts séquentiels d'étalonnage et de suivi de marqueur, mais le besoin s'est vite faite sentir de les rendre plus robustes et performants. De plus, le travail dans Unity se fait préférentiellement en deux temps : les développeurs programment les fonctionnalités dans les scripts, et les artistes les utilisent et configurent à volonté avec l'interface graphique de Unity sans avoir à toucher au code source. Notre bibliothèque ayant demandé un certain effort de développement, faciliter son usage nous permet d'encourager sa réutilisation pour des équipes souhaitant travailler sur des problématiques similaires.
 
 \subsection{Réalisation du greffon et de la liaison}
-La première étape de réalisation a donc été le greffon pour Unity, pour rendre accessible les fonctions des modules aruco, calib3d et ccalib d'OpenCV. Il existe plusieurs techniques de liaison. Nous avons choisis la plus simple : P/Invoke (\texten{Platform Invocation Services}). Le principal défi dans son utilisation est la rigueur de la gestion de la mémoire : d'une part on gère manuellement la création et la destruction d'objets et d'autre part le greffon et les scripts C\# doivent se partager cette mémoire.
+La première étape de réalisation a donc été le greffon pour Unity, pour rendre accessible les fonctions des modules aruco, calib3d et ccalib d'OpenCV. Il existe plusieurs techniques de liaison. Nous avons choisis la plus simple : P/Invoke (\texten{Platform Invocation Services}). Le principal défi dans son utilisation est la rigueur de la gestion de la mémoire : d'une part on gère manuellement la création et la destruction d'objets et d'autre part le greffon et les scripts doivent se partager cette mémoire.
 
 \begin{listingETS}{cpp}{lst:aruco_unity_plugin_cpp}{Interface simplifiée en C autour de la classe Mat d'OpenCV dans le greffon d'ArucoUnity.}
   extern "C" {
-    Mat* au_cv_Mat_new1() {
-      return new Mat();
+    cv::Mat* au_cv_Mat_new1() {
+      return new cv::Mat();
     }
 
-    Mat* au_cv_Mat_new2(int rows, int cols, int type) {
-      return new Mat(rows, cols, type);
+    cv::Mat* au_cv_Mat_new2(int rows, int cols, int type) {
+      return new cv::Mat(rows, cols, type);
     }
     
-    void au_cv_Mat_delete(Mat* mat) {
+    void au_cv_Mat_delete(cv::Mat* mat) {
       delete mat;
     }
 
-    int au_cv_Mat_total(Mat* mat) {
+    int au_cv_Mat_total(cv::Mat* mat) {
       return mat->total();
     }
   }
 \end{listingETS}
 
-L'\autoref{lst:aruco_unity_plugin_cpp} montre un exemple simplifié de l'interface en C la classe \code{Mat}, qui permet de manipuler matrices et images dans OpenCV. On utilise en fait le patron de conception adaptateur : chaque constructeur, destructeur et fonction est enveloppé par une fonction C. On nomme cette fonction \code{new} pour les constructeurs, \code{delete} pour les destructeurs ou avec le nom de la fonction appelée. Le polymorphisme n'étant pas supporté en C, chaque surcharge est envelopée par une fonction : on les numérote alors avec un suffixe de $1$ à $n$. Le C ne comportant pas non plus d'espace de nom, on ajoute à chaque fonction le préfixe \code{au_cv_} suivi du nom de la classe pour éviter des collisions de noms. Enfin, on entoure toutes les fonctions avec l'instruction \code{extern "C"} pour indiquer au compilateur et à l'éditeur de liens que nous travaillons bien avec des fonctions en C.
+L'\autoref{lst:aruco_unity_plugin_cpp} montre un exemple simplifié de l'interface en C la classe \code[cpp]{cv::Mat}, qui permet de manipuler matrices et images dans OpenCV. On utilise en fait le patron de conception adaptateur : chaque constructeur, destructeur et fonction est enveloppé par une fonction C. On nomme cette fonction \code[cpp]{new} pour les constructeurs, \code[cpp]{delete} pour les destructeurs ou avec le nom de la fonction appelée. Le polymorphisme n'étant pas supporté en C, chaque surcharge est envelopée par une fonction : on les numérote alors avec un suffixe de $1$ à $n$. Le C ne comportant pas non plus d'espace de nom, on ajoute à chaque fonction le préfixe \code[cpp]{au_cv_} suivi du nom de la classe pour éviter des collisions de noms. Enfin, on entoure toutes les fonctions avec l'instruction \code[cpp]{extern "C"} pour indiquer au compilateur et à l'éditeur de liens que nous travaillons bien avec des fonctions en C.
 
 Le passage de paramètres est la problématique principale avec cette technique. Certains types primitifs de C\# comme \code{int} ou \code{float} ont des équivalences en C++, on peut alors les passer directement en paramètres au greffon. Cependant, d'autres types plus complexes sont représentés différement dans les deux languages, par exemple les classes, les chaînes de caractères \cite{Peterson2015}. Nous avons alors voulu faire simple : tous les objets OpenCV sont alloué avec le code C++, via les fonctions C pour la construction et la destruction que nous venons de décrire. Elles retournent alors un pointeur (qui n'est qu'un entier sur une adresse mémoire) au code C\#. Quand on souhaite exécuter une fonction sur un objet, il suffit de simplement y passer son pointeur comme paramètre. Sans rigueur, il y a plus de risques d'erreurs de segmentation ou de fuites de mémoire mais notre couche de liaison prend en charge cette responsabilité sans que l'utilisateur n'ait à s'en soucier.
 
@@ -259,7 +259,9 @@ Le passage de paramètres est la problématique principale avec cette technique.
   }
 \end{listingETS}
 
-L'\autoref{lst:aruco_unity_plugin_cs} montre la liaison associée à l'interface de l'\autoref{lst:aruco_unity_plugin_cpp}. Elle est composé de deux parties. Tout d'abord, il y a les appels au greffon : on déclare des fonctions statiques avec la même signature (nom et paramètres) que celles du greffon et on indique au compilateur de les appeler dans le greffon avec l'attribut \code{DllImport}. Ensuite, on construit une interface orienté objet reproduisant celle d'OpenCV : on utilise le patron de conception façade pour masquer la liaison qui est complexe à utiliser et source d'erreurs de segmentations ou de fuites de mémoire si mal utilisée. La classe \code{Mat} reconstruite en C\# appelle donc automatiquement un des constructeurs C++ quand l'utilisateur désire en créer une instance, par exemple \code{var mat = new Mat()}. Le pointeur vers la classe C++ sous-jacente est stocké dans l'instance C\# correspondante.
+L'\autoref{lst:aruco_unity_plugin_cs} montre la liaison associée à l'interface de l'\autoref{lst:aruco_unity_plugin_cpp}. Elle est composé de deux parties. Il y a d'abord les appels au greffon : on déclare des fonctions statiques avec la même signature (nom et paramètres) que celles du greffon et on indique au compilateur de les appeler dans le greffon avec l'attribut \code{DllImport}. Ensuite, on construit une interface orienté objet reproduisant celle d'OpenCV : on utilise le patron de conception façade pour masquer la liaison qui est complexe à utiliser et source d'erreurs de segmentations ou de fuites de mémoire si mal utilisée. La classe \code{Mat} reconstruite en C\# appelle donc automatiquement un des constructeurs C++ quand l'utilisateur désire en créer une instance, par exemple \code{var mat = new Mat()}. Le pointeur vers la classe C++ sous-jacente est stocké dans l'instance C\# correspondante. Nous avons placé toutes les classes de liaison dans l'espace de nom \code{ArucoUnity.Plugin} ; pour simplifier les extraits de code, nous ne les affichons pas.
+
+Enfin, nous avons intégré le conteneur \code[cpp]{vector} de la bibliothèque standard de C++. Utilisé dans le module aruco, ce modèle (\texten{template} en anglais) impose un peu plus de travail. Nous devons en effet créer une interface et une classe de liaison pour chaque cas d'utilisation : par exemple, \code{VectorMat} ou \code{VectorVectorInt} qui permettent de manipuler respectivement les objets \code[cpp]{std::vector<cv::Mat>} et \code[cpp]{std::vector<vector<int>>} via des fonctions C comme \code{IntPtr au_std_vectorMat_new()}. Nous avons décidé cette fois de ne pas répliquer l'interface C++ en utilisant des génériques C\#, car chaque cas d'utilisation devant être codé, le générique aurait demandé un travail complexe non nécessaire.
 
 \begin{listingETS}{cs}{lst:aruco_camera_cs}{Classe C\# ArucoCamera simplifée pour passer une image à OpenCV.}
   public class ArucoCamera : MonoBehaviour, IArucoCamera
@@ -360,7 +362,7 @@ Avec ces scripts nous mettons aussi en place le fonctionnement de notre visiocas
 \end{itemize}
 \bigskip
 
-Cette architecture est évidemment simplifiée. Pour chacune de ces interfaces ou classes abstraites, nous utilisons le patron de conception stratégie : chaque implémentation supporte ainsi un type de caméra, permettant de multiples combinaisons. Par exemple, \code{IArucoCamera} est implémenté par \code{ArucoWebcam} et \code{OvrvisionArucoCamera} et peuvent être utilisées indépendamment avec les implémentations de \code{IArucoCameraDisplay} (\code{MonoArucoCameraDisplay} ou \code{StereoArucoCameraDisplay}). En outre, un développeur peut ajouter facilement le support d'un nouvelle caméra ou la correction d'un nouveau type d'objectif photographique.
+Pour chacune de ces interfaces, nous utilisons le patron de conception stratégie : nous créons une classe abstraite implémentant le procédé (nous les décrivons à la \autoref{sec:ar_hmd}) mais laissant les détails spécifiques à un type de caméra à des enfants de cette classe. , Cela permet de multiples combinaisons : par exemple \code{IArucoCamera} est implémenté par \code{ArucoWebcam} et \code{OvrvisionArucoCamera}, qui peut être utilisé indépendamment avec les implémentations de \code{IArucoCameraDisplay}, par exemple \code{MonoArucoCameraDisplay} et \code{StereoArucoCameraDisplay}. Un développeur peut donc ajouter facilement le support d'un nouvelle caméra ou la correction d'un nouveau type d'objectif photographique à Aruco Unity.
 
 \figureLayoutETS{ArucoUnitySequence}{
   \begin{tikzpicture}
@@ -413,7 +415,7 @@ Enfin, nous améliorons les performances en externalisant certains calculs sur p
 
 \subsection{Procédure}
 \label{subsec:ar_hmd_procedure}
-Les fonctionnalités d'OpenCV étant maintenant disponibles dans Unity \autorefp{sec:aruco_unity}, nous pouvons maintenant enfin mettre en place la RA dans notre visiocasque. Pour cela, nous devons tout d'abord comprendre le principe d'une caméra \autorefp{subsec:camera_theory}. Puis nous étudions le cas le plus simple de l'alignement d'une caméra physique monoscopique avec un objectif rectilinéaire \autorefp{subsec:pinhole_camera_calibration}. Nous itérons ensuite avec des objectifs \texten{fisheye} \autorefp{subsec:fisheye_camera_calibration} puis enfin avec notre caméra stéréoscopique \autorefp{subsec:stereo_camera_calibration}. Les caméras physiques et virtuelles alignées nous pourrons alors utiliser les fonctions de suivi de marqueurs pour placer les éléments virtuels.
+Les fonctionnalités d'OpenCV étant maintenant disponibles dans Unity \autorefp{sec:aruco_unity}, nous pouvons maintenant enfin mettre en place la RA dans notre visiocasque. Pour cela, nous devons tout d'abord comprendre le principe d'une caméra \autorefp{subsec:camera_theory}. Puis nous étudions le cas le plus simple de l'alignement d'une caméra physique monoscopique avec un objectif rectilinéaire \autorefp{subsec:pinhole_camera_calibration}. Nous itérons ensuite avec notre caméra stéréoscopique à objectifs \texten{fisheye} \autorefp{subsec:ovrvision_camera_calibration}. Les caméras physiques et virtuelles alignées nous pourrons alors utiliser les fonctions de suivi de marqueurs pour placer les éléments virtuels.
 
 Aruco Unity permet d'étalonner une caméra facilement et directement dans Unity, sans avoir à programmer. Après l'étalonnage, notre bibliothèque de RA corrige la caméra physique et aligne la caméra virtuelle automatiquement sans que l'utilisateur n'ait à s'en soucier lors du suivi de marqueurs. Nous décrivons ainsi dans cette section l'utilisation des scripts C\# d'Aruco Unity, le code OpenCV qu'ils exécutent en arrière-plan ainsi que la théorie nécessaire ; le lecteur peut se référer à \cite[chap. 18-19]{Kaehler2017} pour une théorie et des procédures plus complètes.
 
@@ -503,7 +505,7 @@ Ces distorsions éloignent le fonctionnement de la caméra du modèle idéal du 
 
 \subsection{Étalonnage d'une caméra}
 \label{subsec:pinhole_camera_calibration}
-Étalonner une caméra monoscopique rectilinéaire consiste donc à déterminer sa matrice intrinsèque $K$ et ses paramètres de distorsion $D$. Nous avons décrit les équations qui permettent de projeter un point $P$ de la scène en un point $p$ sur le plan image. Connaissant les coordonnées de ces deux points, nous pouvons donc écrire les vecteurs de translation $T = (t_x, t_y, t_z)$ et rotation $R = (\theta_x, \theta_y, \theta_z)$ permettant de transformer un point $P$ de la scène en un point $p$ sur le plan image. En connaissant assez de couple de points $(P_i, p_i)$, on peut alors poser un ensemble d'équations pour résoudre $K$. Ainsi, les déviations des points $p_i$ du modèle de sténopé ainsi calculé permettent de déterminer $D$.
+Étalonner une caméra monoscopique rectilinéaire consiste donc à déterminer sa matrice intrinsèque $K$ et ses paramètres de distorsion $D$. Nous avons décrit les équations qui permettent de projeter un point $P$ de la scène en un point $p$ sur le plan image. Connaissant les coordonnées de ces deux points, nous pouvons donc écrire les vecteurs de translation $t = (t_x, t_y, t_z)$ et rotation $r = (r_x, r_y, r_z)$ permettant de transformer un point $P$ de la scène en un point $p$ sur le plan image. En connaissant assez de couple de points $(P_i, p_i)$, on peut alors poser un ensemble d'équations pour résoudre $K$. Ainsi, les déviations des points $p_i$ du modèle de sténopé ainsi calculé permettent de déterminer $D$.
 
 \figureETS{Bradski2008_2.jpg}{
   Une caméra physique monoscopique est étalonné avec OpenCV en capturant plusieurs images d'un échiquier imprimé sur une planche rigide capturé dans différentes positions et angles de vues.\\
@@ -555,7 +557,9 @@ On prépare ensuite la scène de calibration \reffigureETSp{PinholeCameraCalibra
 
 On peut maintenant débuter l'étalonnage en jouant la scène \reffigureETSp{PinholeCameraCalibration_3.jpg}. Le flux vidéo de la caméra est affiché alors dans Unity ainsi qu'une IHM : le bouton \code{Add Image} permet de capturer l'image courante dans une liste, le bouton \code{Reset} permet de vider cette liste et le bouton \code{Calibrate} permet d'étalonner la caméra en utilisant cette liste d'images. Il est important de garder la caméra dans une position fixe durant l'étalonnage et de varier seulement la position et l'orientation de l'échiquier entre les images. On désactive aussi la mise au point automatique de la caméra, ce paramètre impactant en effet la matrice intrinsèque	$K$ de la caméra et les distorsions de l'objectif. Enfin, l'échiquier est surligné dans le flux vidéo pour aider à le positioner.
 
-\begin{listingETS}{cpp}{lst:aruco_camera_calibration}{Code C++ simplifié d'Aruco Unity pour étalonner une caméra monoscopique avec un objectif rectilinéaire.}
+\begin{listingETS}{cs}{lst:pinhole_camera_calibration}{Classe C\# PinholeCameraCalibration simplifiée.}
+  public class PinholeCameraCalibration : ArucoCameraCalibration
+  {
   // (1) Création de l'échiquier
   auto dictionary = getPredefinedDictionary(name);
   auto board = CharucoBoard::create(squaresNumberX, squaresNumberY, squareSideLength, markerSideLength, dictionary);
@@ -580,9 +584,10 @@ On peut maintenant débuter l'étalonnage en jouant la scène \reffigureETSp{Pin
   Mat K, D; // Matrice intrinsèque et paramètres de distorsion
   vector<Mat> T, R; // Position et rotation de l'échiquier à chaque image
   double reprojectionError = calibrateCamera(P, p, board, imagesResolution, K, D, R, T, calibrationFlags);
+  }
 \end{listingETS}
 
-Le code C++ d'étalonnage exécuté alors en arrière-plan par Aruco Unity \autorefp{lst:aruco_camera_calibration} est simple : (1) on crée l'échiquier décrit, (2) on détecte l'échiquier dans et on extrait les points $P_i$ et $p_i$ pour chaque image de la liste, (3) on calcule la matrice intrinsèque $K$ et les paramètres de distorsion $D$.
+Le code C++ d'étalonnage exécuté alors en arrière-plan par Aruco Unity \autorefp{lst:pinhole_camera_calibration} est simple : (1) on crée l'échiquier décrit, (2) on détecte l'échiquier dans et on extrait les points $P_i$ et $p_i$ pour chaque image de la liste, (3) on calcule la matrice intrinsèque $K$ et les paramètres de distorsion $D$.
 
 Une fois l'étalonnage effectué, un score mesurant sa qualité est alors affiché. Il correspond à la somme de l'erreur de reprojection pour chaque image de la liste : c'est la distance en pixels entre les points $p_i$ observés et la projection simulée des points $P_i$ sur le plan image avec le modèle de sténopé mesuré par l'étalonnage. Ce score doit être le plus proche possible de zéro si l'on souhaite un bon alignement des deux caméras : un décalage trop important dans l'alignement des éléments vrituels sur l'image de la caméra physique briserait l'illusion de la RA. Enfin, les résultat de l'étalonnage sont enregistrés dans un fichier XML dans le dossier \code{Assets/ArucoUnity/CameraParameters/} que l'on pourra utiliser à volonté dans n'importe quelle application de RA utilisant cette caméra. L'\hyperref[appendix:ovrvision_camera_parameters]{Annexe~\ref{appendix:ovrvision_camera_parameters}} présente le fichier de l'étalonnage de l'Ovrvision Pro.
 
@@ -774,16 +779,20 @@ Notre caméra virtuelle étant désormais prête pour la RA, nous pouvons utilis
 
 On montre dans l'\autoref{lst:aruco_camera_tracker} l'utilisation du module aruco pour faire le suivi des marqueurs seuls. Le suivi des échiquiers fonctionne sur le même principe, avec des fonctions spécifiques de détection et d'estimation de position. Il fonctionne en quatre étapes : (1) on cache tous les marqueurs virtuels, (2) on détecte les marqueurs physique sur l'image (extraction des points $p$ comme durant l'étalonnage à la \autoref{subsec:pinhole_camera_calibration}), (3) on détermine la position et l'orientation des marqueurs physiques détectés par rapport à la caméra physique et enfin (4) on place les marqueurs virtuels configurés dans ces même positions et orientations par rapport à la caméra virtuelle.
 
+\figureETS[0.6]{Bradski2008_3.jpg}{%
+  Un échiquier projeté sur le plan image d'une caméra. Les lignes construisant la projection montrent que de multiples échiquiers pourraient produite le même résultat sur le plan image.\\
+  Tiré de \cite[p. 385]{Bradski2008}.
+}
+
 Comme aruco détecte tous les marqueurs physique sur l'image, nous devons faire une correspondance avec les marqueurs virtuels configurés lors du placement de ces derniers. Le procédé de détection est simple et rapide à effectuer \reffigureETSp{Garrido-Jurado2014.jpg} : (a) l'image est d'abord (b) segmentée pour permettre de (c) détecter les contours puis (d) d'extraire les polygones comme marqueurs potentiels. La (e) perspective est ensuite supprimée par reprojection en utilisant la matrice intrinsèque et (f) le code du marqueur est extrait. Chaque marqueur étant composé d'une grille de taille $n \times n$ de cellules noires ou blanches, entourée d'une bordure noire, il peut être facilement identifié par le code formé par les cellules. Les codes potentiels sont connus d'avance car la génération des marqueurs se fait avec un dictionnaire, qu'on fournit à l'algorithme de détection, par exemple un dictionnaire de 50 marqueurs 4x4 dans la \reffigureETS{TrackMarkersMarker.jpg} ou 5x5 dans la \reffigureETS{Garrido-Jurado2014.jpg}.
 
-Enfin, la position des marqueurs détectés est estimée avec une méthode de résolution au problème \texten{perspective-n-points}, en utilisant la fonction \code{solvePnP} d'OpenCV (\url{https://github.com/opencv/opencv/blob/master/modules/calib3d/src/solvepnp.cpp}). La projection perspective faisant << perdre >> une dimension, il existe de multiples solutions à la position d'un marqueur détecté : cela peut être l'image d'un petit marqueur proche de la caméra comme celle d'un grand marqueur loin de la caméra. C'est pourquoi on doit fournir à l'algorithme la taille du marqueur, donc la longueur d'un côté car c'est un carré. La fonction d'estimation de pose travaille en une fois avec tous les marqueurs détectés, en ne prenant qu'une seule longueur de côté. Comme l'on souhaite utiliser des marqueurs de tailles différentes, on fournit une longueur fictive pour ensuite corriger les positions calculées avec la vraie longueur des différent marqueurs \autorefp[(4)]{lst:aruco_camera_tracker}. Ce \texten{hack} (<< triche >>) nous évite de nombreux appels inutiles à la fonction.
+Enfin, la position des marqueurs détectés est estimée avec une méthode de résolution au problème \texten{perspective-n-points}, en utilisant la fonction \code{solvePnP} d'OpenCV (\url{https://github.com/opencv/opencv/blob/master/modules/calib3d/src/solvepnp.cpp}). La projection perspective faisant << perdre >> une dimension, il existe de multiples solutions à la position d'un marqueur détecté : cela peut être l'image d'un petit marqueur proche de la caméra comme celle d'un grand marqueur loin de la caméra \reffigureETSp{Bradski2008_3.jpg}. C'est pourquoi on doit fournir à l'algorithme la taille du marqueur, donc la longueur d'un côté car c'est un carré. La fonction d'estimation de pose travaille en une fois avec tous les marqueurs détectés, en ne prenant qu'une seule longueur de côté. Comme l'on souhaite utiliser des marqueurs de tailles différentes, on fournit une longueur fictive pour ensuite corriger les positions calculées avec la vraie longueur des différent marqueurs \autorefp[(4)]{lst:aruco_camera_tracker}. Ce \texten{hack} (<< triche >>) nous évite de nombreux appels inutiles et coûteux à la fonction.
 
 
-\subsection{Alignement avec une caméra avec un objectif \texten{fisheye}}
-\label{subsec:fisheye_camera_calibration}
-%- determine newK https://medium.com/@kennethjiang/calibrate-fisheye-lens-using-opencv-part-2-13990f1b157f
+\subsection{Alignement avec une caméra stéréoscopique avec objectifs \texten{fisheye}}
+\label{subsec:ovrvision_camera_calibration}
 
-Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle du sténopé ne s'y applique pas. En effet, contrairement à la perspective de l'\oe il humain ou des objectifs rectilinéaires, ces objectifs utilisent un autre type de projection perspective avec une distorsion en barillet volontairement importante pour capter un très grand champs de vision jusqu'à \ang{180} \reffigureETSp{JPRoche2004_1.jpg}.
+Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle du sténopé ne s'y applique pas. En effet, contrairement à la perspective de l'\oe il humain ou des objectifs rectilinéaires, ces objectifs utilisent une distorsion en barillet volontairement importante pour capter un très grand champs de vision jusqu'à \ang{180} \reffigureETSp{JPRoche2004_1.jpg}.
 
 \figureLayoutETS{JPRoche2004}{%
   \subfigureETS[0.15]{JPRoche2004_1.jpg}{Photographie par un objectif \texten{fisheye} : les distorsions sont très importantes dans l'image, les lignes droites sont vues courbes.}%
@@ -794,21 +803,35 @@ Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle 
   Adapté de \cite{JPRoche2004}.
 }
 
-\cite{Mei2007} proposent un modèle différent du sténopé utilisable pour les objectifs \texten{fisheye}. La caméra y est modélisée sur le principe suivant : la scène est d'abord projetée sur une sphère, puis une projection perspective rectilinéaire de la sphère est faite sur le plan image \reffigureETSp{Mei2007.jpg}. Comme pour une caméra avec un objectif rectilinéaire, nous avons besoin de corriger ces distorsions mais aussi de reprojetter les images capturées en perspective rectilinéaire pour pouvoir les aligner avec la caméra virtuelle \reffigureETSp{JPRoche2004_2.jpg}.
+Nous utilisons alors le modèle de \cite{Mei2007} utilisable pour les objectifs \texten{fisheye} et implémenté par le module ccalib d'OpenCV. La caméra y est modélisée sur le principe suivant : la scène est d'abord projetée sur une sphère, puis une projection perspective rectilinéaire de la sphère est faite sur le plan image \reffigureETSp{Mei2007.jpg}. Comme pour une caméra avec un objectif rectilinéaire, nous corrigeons ces distorsions : cela nous permet de reprojetter les images capturées en perspective rectilinéaire pour pouvoir les aligner avec la caméra virtuelle \reffigureETSp{JPRoche2004_2.jpg}.
 
 \figureETS[0.5]{Mei2007.jpg}{%
   Illustration du modèle de \cite{Mei2007} : un point $X$ de la scène est d'abord projeté en un point $X_s$ sur une sphère puis projeté à nouveau en perspective rectilinéaire en un point $p$ sur le plan image.\\
   Tiré de \cite{Mei2007}%
 }
 
-\subsection{Alignement avec une caméra stéréoscopique avec objectifs \texten{fisheye}}
-\label{subsec:stereo_camera_calibration}
-% - AdrianKaehler2017 -  Chapitre 19 pour l'étalonnage stereo + LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
-
-Sur une caméra stéréoscopique idéale, les caméras gauche et droite auraient les mêmes paramètres intrinsèques, leurs plans images respectifs seraient coplanaire (donc leurs axes optiques parallèles) simplement séparés horizontalement de quelques centimètres \reffigureETSp{StereoProjection.png}. Or nous avons vu que l'utilisation d'un objectif entraîne des distorsions radiales et tangentielles. Les caméras gauches et droites ont donc des paramètres intrinsèques légèrement différents et leurs plans images ne sont pas coplanaires et ont des orientations différentes.
+En outre, l'Ovrvision étant une caméra stéréoscopique nous avons besoin de déterminer sa géométrie. Sur une version idéale, les caméras gauche et droite auraient les mêmes paramètres intrinsèques et leurs plans images respectifs seraient coplanaire (donc leurs axes optiques parallèles) simplement séparés horizontalement de quelques centimètres \reffigureETSp{StereoProjection.png}. Or nous avons vu que l'utilisation d'un objectif entraîne des distorsions radiales et tangentielles. À l'étalonnage, les caméras gauches et droites ont donc des paramètres intrinsèques légèrement différents et, leurs plans images n'étant pas coplanaires, on mesure deux nouveaux paramètres : les vecteurs de translation $T$ et de rotation $R$ du plan image droit par rapport au plan image gauche \reffigureETSp{Bradski2008_4.jpg}.
 
 \figureETS[0.9]{StereoProjection.png}{%
   Modèle d'une caméra stéréoscopique rectilinéaire idéale : les deux plans images sont coplanaires, distants horizontalement, et les deux couples objectif-plan image ont les mêmes paramètres intrinsèques ($f_g = f_d$). Les objectifs pourraient également être placés verticalement.
 }
 
+\figureETS[0.6]{Bradski2008_4.jpg}{%
+  L'étalonnage d'une caméra stéréoscopique mesure deux paramètres supplémentaire : les vecteurs de translation $T$ et de rotation $R$ du plan droit ($\Pi_l$) par rapport au plan image gauche ($\Pi_r$).\\
+  Tiré de \cite[p. 420]{Bradski2008}.
+}
+
 En plus de la correction de la caméra, nous devons la \emph{rectifier} pour rendre à nouveau coplanaires les deux plans images. Le type d'objectif n'a pas d'impact sur la rectification, qui est faite après avoir corrigé la caméra. Comme pour les distorsions, nous n'avons pas besoin de comprendre la procédure de rectification ; pour plus de détails, nous redirigeons le lecteur vers \cite[p. 419]{Bradski2008}.
+
+Concrètement, tous les procédés avec les caméra rectilinéaires que nous venons de décrire restent les mêmes \autorefp{subsec:ar_hmd_procedure}. En revanche, nous utilisons quelques algorithmes différents, en créant simplement de nouveaux scripts spécifique d'étalonnage (\code{StereoOmnidirCameraCalibration}), de correction (\code{StereoOmnidirCameraUndistortion}) et d'alignement de caméra. (\code{StereoCameraDisplay}). Comme la correction nous permet de travailler avec une caméra corrigée rectilinéaire, le script suivi de marqueurs reste relativement inchangé.
+
+% AdrianKaehler2017 -  Chapitre 19 pour l'étalonnage stereo
+Pour l'étalonnage, la procédure à suivre est pratiquement la même que dans la \autoref{subsec:pinhole_camera_calibration}. Nous désactivons l'objet \code{PinholeCameraCalibration}, et nous glissons dans la scène les objets \code{Assets/ArucoUnity/Prefabs/Cameras/OvrvisionArucoCamera} et \code{Assets/ArucoUnity/Prefabs/Calibration/StereoOmnidirCameraCalibration} que l'on configure.
+
+Pour simplifier, 
+
+% determine newK https://medium.com/@kennethjiang/calibrate-fisheye-lens-using-opencv-part-2-13990f1b157f
+
+% LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
+
+Connaissant la position relative des deux plans images, on place alors les deux caméras virtuelles dans la même configuration spatiale. Ainsi on exécute le script de suivi de marqueurs avec une seule des deux caméras pour éviter des calculs redondants : on modifie alors légèrement le \autoref{lst:aruco_camera_tracker} pour qu'il ne travaille qu'avec la première caméra physique et la première caméra virtuelle.
