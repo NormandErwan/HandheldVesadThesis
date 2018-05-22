@@ -53,6 +53,7 @@
 % Table with ÉTS style
 \newenvironment{tableETS}[2]{%
   \begin{table}%
+
   \parbox{0.9\textwidth}{%
     \caption{#2}%
     \label{#1}%
@@ -102,15 +103,11 @@
 
 \lstdefinestyle{VisualStudio}{ % Style based on https://tex.stackexchange.com/a/45714
   basicstyle=\ttfamily\footnotesize,
-  breakatwhitespace=true,
+  breakindent=12pt,
   breaklines=true,
   commentstyle=\color{green},
   keywordstyle=\color{blue},
   keywordstyle=[2]{\color{cyan}},
-  %numbers=left,
-  %numberstyle=\tiny,
-  %numbersep=-5pt,
-  %stepnumber=2,
   stringstyle=\color{red},
   tabsize=2
 }
@@ -139,10 +136,10 @@
 }
 
 \lstnewenvironment{listingETS}[3]{%
-  \lstset{language={#1}, float, label=#2, caption={#3}}%
+  \lstset{language={#1}, float, label=#2, caption={#3}, breakatwhitespace=true}%
 }{}
 
-\newcommand{\code}[2][cs]{\lstinline[language=#1, basicstyle=\ttfamily\normalsize, numbers=none]|#2|}
+\newcommand{\code}[2][cs]{\lstinline[language=#1, basicstyle=\ttfamily\normalsize]|#2|}
 
 % UML configuration
 \tikzumlset{

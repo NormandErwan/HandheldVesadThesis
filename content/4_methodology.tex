@@ -271,6 +271,9 @@ Enfin, nous avons intégré le conteneur \code[cpp]{vector} de la bibliothèque 
     public byte[] ImageData;
     public Size Resolution;
 
+    public event Action UndistortImages;
+    public event Action ImageUpdated;
+
     // Exécuté au démarrage
     protected virtual void Start()
     {
@@ -285,10 +288,11 @@ Enfin, nous avons intégré le conteneur \code[cpp]{vector} de la bibliothèque 
     {
       UpdateImages(); // Copie de l'image de la caméra dans ImageData
 
-      ... // Correction des images et suivi des marqueurs
+      UndistortImages(); // Correction de l'image
+      ImageUpdated(); // Suivi des marqueurs
 
       // Mise à jour de l'image Unity
-      Texture.LoadRawTextureData(Image.DataIntPtr, 3 * Images[cameraId].Total());
+      Texture.LoadRawTextureData(image.DataIntPtr, 3 * Images[cameraId].Total());
       Texture.Apply();
     }
 
@@ -305,7 +309,7 @@ Enfin, nous avons intégré le conteneur \code[cpp]{vector} de la bibliothèque 
 
     protected override void Start()
     {
-      d = new Size(960, 950);
+      Resolution = new Size(960, 950);
       ovOpen(cameraId: 0, markerLength: 1, mode: CameraMode.VR_960x950_60FPS);
       ovSetCamSyncMode(false);
       base.Start();
@@ -314,8 +318,8 @@ Enfin, nous avons intégré le conteneur \code[cpp]{vector} de la bibliothèque 
     protected override void UpdateImages()
     {
       ovPreStoreCamData(ProcessingMode.Demosaic); // Retourner les images couleurs non corrigées
-      ovGetCamImageRGB(ImageDatas[0], 0); // Copie image oeil gauche
-      ovGetCamImageRGB(ImageDatas[1], 1); // Copie image oeil droit
+      ovGetCamImageRGB(ImageData[0], 0); // Copie image oeil gauche
+      ovGetCamImageRGB(ImageData[1], 1); // Copie image oeil droit
     }
   }
 \end{listingETS}
@@ -347,7 +351,7 @@ Nous avons également ajouté quelques fonctions de conversion, Unity et OpenCV 
       \umluniassoc{IArucoCameraController}{IArucoCamera}
     \end{umlpackage}
   \end{tikzpicture}
-}{Diagramme de classes simplifé de la couche de scripts C\# d'ArucoUnity. Seules les interfaces ou les classes abstraites de haut niveaux sont affichées : dans chaque cas, le patron de conception stratégie est appliqué pour supporter différents types de caméras. Elles font toutes parties de l'espace de nom \code{ArucoUnity}, non affiché ici.}
+}{TODO Diagramme de classes simplifé de la couche de scripts C\# d'ArucoUnity. Seules les interfaces ou les classes abstraites de haut niveaux sont affichées : dans chaque cas, le patron de conception stratégie est appliqué pour supporter différents types de caméras. Elles font toutes parties de l'espace de nom \code{ArucoUnity}, non affiché ici.}
 
 Ce travail avec les images des caméras et les conversions montre pourquoi nous avons besoin d'une couche supplémentaire de scripts C\# au dessus de celle de la liaison pour faciliter l'usage d'OpenCV dans Unity. Les deux systèmes ne sont en effet pas conçus pour travailler ensemble : on masque ainsi cette complexité avec avec les scripts, formant une façade supplémentaire.
 
@@ -451,7 +455,7 @@ Le sténopé est un modèle de caméra également suffisant pour décrire une ca
 
 Premièrement, le centre du capteur utilisé ne coïncide pas totalement avec l'axe optique : cela requerrait une précision trop importante et non nécessaire lors de la fabrication de la caméra. L'axe optique va donc intersecter le plan image non pas en son centre, mais sur un point décalé appelé \emph{centre optique} et noté $c$. On mesure en pixels le décalage $(c_x,c_y)$ sur l'image capturée.
 
-En outre, la longueur focale mesurée de la caméra peut être différente sur les deux axes $X$ et $Y$ du plan image. On note $f_x$ et $f_y$ les deux longueurs focales mesurées. Cela est dû a certains capteurs, de mauvais qualité, produisant des pixels rectangulaires et non carrés. On pourrait également les calculer en connaissant la taille physique $(L,H)$ et la définition $(d_x,d_y)$ du capteur et la longeur focale physique de la caméra avec l'\autoref{eq:focal_lengths}, mais on n'a pas toujours accès avec fiabilité à toutes ces informations (par exemple avec un téléphone).
+En outre, la longueur focale mesurée de la caméra peut être différente sur les deux axes $X$ et $Y$ du plan image. On note $f_x$ et $f_y$ les deux longueurs focales mesurées. Cela est dû a certains capteurs, de mauvais qualité, produisant des pixels rectangulaires et non carrés. On pourrait également les calculer en connaissant la taille physique $(L,H)$ et la définition $(d_x,d_y)$ du capteur et la longeur focale physique de la caméra avec l'\autoref{eq:focal_lengths}, mais on n'a pas toujours accès avec fiabilité à toutes ces informations\footnote{Les propriétés d'un appareil photo sont bien décrites sur internet mais c'est souvent moins le cas de la caméra d'un téléphone par exemple.}.
 
 \begin{equation}
   \label{eq:focal_lengths}
@@ -533,18 +537,19 @@ On crée alors notre échiquier d'étalonnage \reffigureETSp{CharucoBoardCreatio
   \item On démarre la scène Unity : l'image de l'échiquier s'affiche et est enregistrée sur le disque dur dans le dossier du projet (le chemin est indiqué par \code{OutputFolder}).
   \item On imprime l'image que l'on colle fermement sur une surface rigide pour qu'elle reste le plus plate possible.
 \end{itemize}
+\bigskip
 
 \figureLayoutETS{PinholeCameraCalibration}{%
-  \subfigureETS[0.4]{PinholeCameraCalibration_1.jpg}{Sélection de la première caméra disponible (identifiant \code{0} dans le champs \code{WebcamId}).}%
+  \subfigureETS[0.4]{PinholeCameraCalibration_1.jpg}{Sélection de la première webcam disponible (identifiant \code{0} dans le champs \code{WebcamId}).}%
   \figurehspace%
-  \subfigureETS[0.4]{PinholeCameraCalibration_2.jpg}{Lien vers l'échiquier utilisé (champs \code{CalibrationBoard}).}%
+  \subfigureETS[0.4]{PinholeCameraCalibration_2.jpg}{Scripts d'étalonnage.}%
 }{
-  Configuration de la scène Unity \code{Calibrate} pour étalonner une caméra monoscopique rectilinéaire.
+  Configuration de la scène Unity \code{CalibrateCamera.unity} pour étalonner une caméra monoscopique rectilinéaire.
 }
 
 On prépare ensuite la scène de calibration \reffigureETSp{PinholeCameraCalibration}:
 \begin{enumerate}
-  \item On ouvre la scène Unity \code{Assets/ArucoUnity/Scenes/Calibrate.unity} déjà préparée pour l'étalonnage d'une caméra monoscopique rectilinéaire.
+  \item On ouvre la scène Unity \code{Assets/ArucoUnity/Scenes/CalibrateCamera.unity} déjà préparée pour l'étalonnage d'une caméra monoscopique rectilinéaire.
   \item Sur le script \code{ArucoWebcam}, dans l'objet du même nom, on choisit la caméra à étalonner en renseignant son identifiant numérique dans le champs \code{WebcamId}.
   \item On crée à nouveau un objet représentant notre échiquier imprimé, en y configurant cette fois la taille des carrés en mètres, permettant à Aruco Unity de construire automatiquement les positions relatives à l'échiquer des points $P_i$.
   \item Sur le script \code{PinholeCameraCalibration}, dans l'objet du même nom, on fait pointer le champs \code{CalibrationBoard} vers notre objet d'échiquier.
@@ -552,42 +557,53 @@ On prépare ensuite la scène de calibration \reffigureETSp{PinholeCameraCalibra
 \end{enumerate}
 
 \figureETS[0.75]{PinholeCameraCalibration_3.jpg}{%
-  Scène \code{Calibrate} jouée pour étalonner une webcam. Les marqueurs de l'échiquier sont surlignés pour indiquer s'il est correctement détecté.
+  Scène \code{CalibrateCamera.unity} jouée pour étalonner une webcam. Les marqueurs de l'échiquier sont surlignés pour indiquer s'il est correctement détecté.
 }
 
 On peut maintenant débuter l'étalonnage en jouant la scène \reffigureETSp{PinholeCameraCalibration_3.jpg}. Le flux vidéo de la caméra est affiché alors dans Unity ainsi qu'une IHM : le bouton \code{Add Image} permet de capturer l'image courante dans une liste, le bouton \code{Reset} permet de vider cette liste et le bouton \code{Calibrate} permet d'étalonner la caméra en utilisant cette liste d'images. Il est important de garder la caméra dans une position fixe durant l'étalonnage et de varier seulement la position et l'orientation de l'échiquier entre les images. On désactive aussi la mise au point automatique de la caméra, ce paramètre impactant en effet la matrice intrinsèque	$K$ de la caméra et les distorsions de l'objectif. Enfin, l'échiquier est surligné dans le flux vidéo pour aider à le positioner.
 
-\begin{listingETS}{cs}{lst:pinhole_camera_calibration}{Classe C\# PinholeCameraCalibration simplifiée.}
-  public class PinholeCameraCalibration : ArucoCameraCalibration
+\begin{listingETS}{cs}{lst:aruco_camera_calibration}{Classe C\# ArucoCameraCalibration simplifiée.}
+  public abstract class ArucoCameraCalibration : ArucoCameraController, IArucoCameraCalibration, IHasCameraParameters
   {
-  // (1) Création de l'échiquier
-  auto dictionary = getPredefinedDictionary(name);
-  auto board = CharucoBoard::create(squaresNumberX, squaresNumberY, squareSideLength, markerSideLength, dictionary);
+    public Board Board; // L'échiquier
+    public CameraParameters CameraParameters;
+    public double Error;
+    public var ObjectPoints = new VectorVectorPoint3f(); // Points P
+    public var ImagePoints = new VectorVectorPoint2f(); // Points p
 
-  vector<Mat> images = ... // Transmis depuis Unity
+    // (1) Détection des points P et p
+    protected void AddImages()
+    {
+      VectorInt ids; // Identifiants des marqueurs
+      VectorVectorPoint2f corners; // Coins des marqueurs
+      DetectMarkers(ArucoCamera.Image, Board.Dictionary, out corners, out ids, DetectorParameters, out rejectedCandidateCorners);
+      
+      VectorPoint3f P;
+      VectorPoint2f p;
+      GetBoardObjectAndImagePoints(Board, corners, ids, out P, out p);
+      ObjectPoints.PushBack(P);
+      ImagePoints.PushBack(p);
+    }
 
-  // (2) Détection des points
-  auto P = new vector<vector<Point3f>>(images.size()); // Points P
-  auto p = new vector<vector<Point2f>>(images.size()); // Points p
-
-  for (int i = 0; i < images.size(); i++) {
-    // Positions et identifiants des marqueurs
-    auto markerPos = new vector<vector<Point2f>>();
-    auto markerIds = new vector<int>();
-
-    detectMarkers(images[i], dictionary, markerPos, markerIds, detectionParams);
-
-    getBoardObjectAndImagePoints(board, markerPos, markerIds, P[i], p[i]);
-  }
-
-  // (3) Étalonnage
-  Mat K, D; // Matrice intrinsèque et paramètres de distorsion
-  vector<Mat> T, R; // Position et rotation de l'échiquier à chaque image
-  double reprojectionError = calibrateCamera(P, p, board, imagesResolution, K, D, R, T, calibrationFlags);
+    public abstract void Calibrate(); // (2) Étalonnage
   }
 \end{listingETS}
 
-Le code C++ d'étalonnage exécuté alors en arrière-plan par Aruco Unity \autorefp{lst:pinhole_camera_calibration} est simple : (1) on crée l'échiquier décrit, (2) on détecte l'échiquier dans et on extrait les points $P_i$ et $p_i$ pour chaque image de la liste, (3) on calcule la matrice intrinsèque $K$ et les paramètres de distorsion $D$.
+\begin{listingETS}{cs}{lst:pinhole_camera_calibration}{Classe C\# PinholeCameraCalibration simplifiée.}
+  public class PinholeCameraCalibration : ArucoCameraCalibration
+  {
+    public PinholeCameraCalibrationFlags Flags;
+
+    public virtual void Calibrate()
+    {
+      VectorMat t, r; // Position et rotation de l'échiquier à chaque image
+      Error = CalibrateCamera(ObjectPoints, ImagePoints, ArucoCamera.Resolution, CameraParameters.K, CameraParameters.D, out r, out t, Flags);
+      CameraParameters.Save();
+    }
+  }
+\end{listingETS}
+
+Nos scripts d'étalonnages sont simples : (1) on détecte l'échiquier dans et on extrait les points $P_i$ et $p_i$ pour chaque image de la liste \autorefp{lst:aruco_camera_calibration}, (2) on calcule la matrice intrinsèque $K$ et les paramètres de distorsion $D$. Un script spécifique par type de caméra implémente cette seconde étape, par exemple l'\autoref{lst:pinhole_camera_calibration} pour une caméra monoscopique rectilinéaire.
 
 Une fois l'étalonnage effectué, un score mesurant sa qualité est alors affiché. Il correspond à la somme de l'erreur de reprojection pour chaque image de la liste : c'est la distance en pixels entre les points $p_i$ observés et la projection simulée des points $P_i$ sur le plan image avec le modèle de sténopé mesuré par l'étalonnage. Ce score doit être le plus proche possible de zéro si l'on souhaite un bon alignement des deux caméras : un décalage trop important dans l'alignement des éléments vrituels sur l'image de la caméra physique briserait l'illusion de la RA. Enfin, les résultat de l'étalonnage sont enregistrés dans un fichier XML dans le dossier \code{Assets/ArucoUnity/CameraParameters/} que l'on pourra utiliser à volonté dans n'importe quelle application de RA utilisant cette caméra. L'\hyperref[appendix:ovrvision_camera_parameters]{Annexe~\ref{appendix:ovrvision_camera_parameters}} présente le fichier de l'étalonnage de l'Ovrvision Pro.
 
@@ -598,49 +614,67 @@ Une fois l'étalonnage effectué, un score mesurant sa qualité est alors affich
   Configuration de la correction d'une caméra monoscopique rectilinéaire (\code{PinholeCameraUndistortion}) et de l'alignement d'une caméra virtuelle (\code{MonoArucoCameraDisplay}) pour permettre de la RA.
 }
 
-\begin{listingETS}{cs}{lst:pinhole_camera_undistortion}{Classe C\# ArucoCameraUndistortion simplifiée.}
-  public class PinholeCameraUndistortion : ArucoCameraUndistortion
+\begin{listingETS}{cs}{lst:aruco_camera_undistortion}{Classe C\# ArucoCameraUndistortion simplifiée.}
+  public class ArucoCameraUndistortion : ArucoCameraController, IArucoCameraUndistortion, IHasCameraParameters
   {
-    public float alpha;
+    public CameraParameters CameraParameters;
+    public Mat Knew;
+    public float Fx, Fy;
     protected Mat rectMapX, rectMapY;
 
     protected void Start()
     {
-      // (1) Matrice intrinsèque de la caméra corrigée
-      var newK = GetOptimalCameraMatrix(K, D, ArucoCamera.Resolution, alpha);
-
-      // (2) Fonction de mappage de correction
-      var noRot = new Mat(); // Aucune rotation de la caméra corrigée
-      InitUndistortRectifyMap(K, D, noRot, newK, ArucoCamera.Resolution, out rectMapX, out rectMapY);
-
+      InitializeUndistortion();
+      Fx = (float)Knew.AtDouble(0,0), Fy = (float)Knew.AtDouble(1,1);
       ArucoCamera.UndistortImages += Undistort;
     }
 
-    // (3) Correction des images
-    protected void Undistort()
+    protected abstract void InitializeUndistortion();
+
+    protected void Undistort() // (3) Correction des images
     {
       Remap(ArucoCamera.Image, ArucoCamera.Image, rectMapX, rectMapY, InterpolationFlags.Linear);
     }
   }
 \end{listingETS}
 
-Une fois la caméra étalonnée, nous pouvons mettre en place notre visiocasque. Nous devons tout d'abord pouvoir corriger les images de la caméra physique. Cette opération se fait en deux temps : on calcule d'abord une fonction de mappage $m$ entre les pixels de l'image corrigée $I_c$ et ceux l'image originale $I$, selon l'\autoref{eq:undistortion}, que l'on pourra ensuite appliquer sur chacune des images.
+\begin{listingETS}{cs}{lst:pinhole_camera_undistortion}{Classe C\# PinholeCameraUndistortion simplifiée.}
+  public class PinholeCameraUndistortion : ArucoCameraUndistortion
+  {
+    public float Alpha;
+
+    protected override void InitializeUndistortion()
+    {
+      // (1) Matrice intrinsèque de la caméra corrigée
+      Knew = GetOptimalCameraMatrix(CameraParameters.K, CameraParameters.D, ArucoCamera.Resolution, Alpha);
+
+      // (2) Fonction de mappage de correction
+      var noR = new Mat(); // Aucune rotation de la caméra corrigée
+      InitUndistortRectifyMap(CameraParameters.K, CameraParameters.D, noR, newK, ArucoCamera.Resolution, Type.CV_16SC2, out rectMapX, out rectMapY);
+    }
+  }
+\end{listingETS}
+
+Une fois la caméra étalonnée, nous pouvons y intégrer la RA. Nous devons donc tout d'abord corriger les images de la caméra physique. Cette opération se fait en deux temps : on calcule d'abord une fonction de mappage $m$ entre les pixels de l'image corrigée $I_c$ et ceux l'image originale $I$, selon l'\autoref{eq:undistortion}, que l'on pourra ensuite appliquer sur chacune des images.
 
 \begin{equation}
   \label{eq:undistortion}
   I_c(x,y) = I(m_x(x,y), m_y(x,y))
 \end{equation}
 
-Cette opération est intéressante car elle nous permet donc de choisir une autre matrice intrinsèque, comme si les images corrigées avaient été capturées par une autre caméra. Cela nous permet de replacer le centre optique au centre de l'image soit $c_x = \sfrac{d_x}{2}$ et $c_y = \sfrac{d_y}{2}$. Nous pourrions également changer la position et l'orientation de cette caméra corrigée de cette manière.
+Cette opération est intéressante car elle nous permet donc de choisir une autre matrice intrinsèque, comme si les images corrigées avaient été capturées par une autre caméra avec un autre plan image. Cela nous permet de replacer le centre optique au centre de l'image soit $c_x = \sfrac{d_x}{2}$ et $c_y = \sfrac{d_y}{2}$. Nous pourrions également changer la position et l'orientation de cette caméra corrigée de cette manière.
 
 Aruco Unity effectue automatiquement la correction des images, lors du suivi de marqueurs, avec le script \code{ArucoCameraUndistortion}. On le met en place facilement \reffigureETSp{TrackMarkersCamera.jpg} :
 \begin{enumerate}
   \item On ouvre la scène \code{Assets/ArucoUnity/Scenes/TrackMarkers.unity} préparée pour le suivi de marqueurs avec une caméra monoscopique rectilinéaire.
-  \item Dans l'objet \code{ArucoWebcam}, sur le script \code{ArucoCameraParametersController}, on renseigne le nom du fichier XML d'étalonnage dans le champs \code{CameraParametersFilename}.
+  \item Dans l'objet \code{ArucoWebcam}, sur le script \code{ArucoCameraParametersController}, on renseigne le nom du fichier d'étalonnage dans le champs \code{CameraParametersFilename}.
   \item Le script \code{ArucoCameraUndistortion} est déjà configuré pour utiliser la caméra physique et le fichier d'étalonnage.
 \end{enumerate}
+\bigskip
 
-Dans ce script, (1) on crée la nouvelle matrice intrinsèque, (2) on calcule la fonction de mappage puis (3) on l'applique sur chaque image capturée par la caméra \autorefp{lst:pinhole_camera_undistortion}. Cependant, lors de l'application de la fonction de mappage, il y a une ambiguïté à résoudre. D'abord, la fonction $m$ retourne des nombres décimaux alors que les coordonnées des pixels d'une image sont des entiers : il n'existe donc pas toujours une correspondance exacte entre les pixels des deux images. On choisit alors une méthode d'interpolation pour résoudre ce problème : l'interpolation bilinéaire donne de bons résultats sans trop augmenter le temps de calcul. En outre, certains pixels de l'image corrigée peuvent n'avoir aucune correspondance : on les colore en noir dans ce cas. Avec le paramètre $\alpha$ \reffigureETSp{PinholeCameraUndistortionAlpha.png}, l'utilisateur peut décider de n'afficher que les pixels de l'image corrigée ayant une correspondance ($\alpha = 0$) ou de conserver tous les pixels de l'image originale, introduisant de nombreux pixels noirs ($\alpha = 1$). Nous conseillons toutefois ce dernier cas pour conserver les valeurs de longueur focale non-corrigées.
+Dans les scripts de correction, on calcule tout d'abord (1) la nouvelle matrice intrinsèque et (2) la fonction de mappage \autorefp{lst:pinhole_camera_undistortion} puis (3) on l'applique sur chaque image capturée par la caméra \autorefp{lst:aruco_camera_undistortion}.
+
+Cependant, lors de l'application de la fonction de mappage, il y a une ambiguïté à résoudre. La fonction $m$ retourne des nombres décimaux alors que les coordonnées des pixels d'une image sont des entiers : il n'existe donc pas toujours une correspondance exacte entre les pixels des deux images. On choisit alors une méthode d'interpolation pour résoudre ce problème : l'interpolation bilinéaire donne de bons résultats sans trop augmenter le temps de calcul. En outre, certains pixels de l'image corrigée peuvent n'avoir aucune correspondance : on les colore en noir dans ce cas. Avec le paramètre $\alpha$ \reffigureETSp{PinholeCameraUndistortionAlpha.png}, l'utilisateur peut décider de n'afficher que les pixels de l'image corrigée ayant une correspondance ($\alpha = 0$) ou de conserver tous les pixels de l'image originale, introduisant de nombreux pixels noirs ($\alpha = 1$). Nous conseillons toutefois ce dernier cas pour conserver les valeurs de longueur focale non-corrigées et éviter un effet de << zoom >> non voulu.
 
 \figureETS[0.4]{PinholeCameraUndistortionAlpha.png}{%
   Image corrigée avec en surimpression la zone sélectionnée suivant la valeur du paramètre $\alpha$ : seulement les pixels valides dans l'image corrigée avec $\alpha=0$ ou tous les pixels transformés de l'image originale $\alpha=0$.
@@ -649,99 +683,92 @@ Dans ce script, (1) on crée la nouvelle matrice intrinsèque, (2) on calcule la
 \subsection{Alignement de la caméra virtuelle}
 \label{subsec:pinhole_camera_display}
 
-\begin{listingETS}{cs}{lst:aruco_camera_display}{Classe C\# MonoArucoCameraDisplay simplifiée.}
-  public class MonoArucoCameraDisplay : ArucoCameraDisplay
+\begin{listingETS}{cs}{lst:aruco_camera_display}{Classe C\# ArucoCameraDisplay simplifiée.}
+  public abstract class ArucoCameraDisplay : ArucoCameraController, IArucoCameraDisplay
   {
     public Camera Camera; // Caméra virtuelle d'Unity
+    public ArucoCameraUndistortion Undistortion;
+    protected float cameraFov;
     protected const int bgDistance = 1000;
 
-    protected void Start()
+    protected override void Start()
     {
-      float dx = ArucoCamera.Resolution.Width,
-        dy = ArucoCamera.Resolution.Height;
-
       // (1) Configuration de la caméra virtuelle
       Camera = new GameObject().AddComponent<Camera>();
       Camera.transform.SetParent(this.transform.parent);
       Camera.transform.localPosition = Vector3.zero;
       Camera.transform.localRotation = Quaternion.identity;
-      Camera.fieldOfView = 2f * Mathf.Atan(0.5f * dy / fy) * Mathf.Rad2Deg;
+      Camera.fieldOfView = cameraFov;
 
       // (2) Configuration de l'arrière-plan
       var bg = GameObject.CreatePrimitive(PrimitiveType.Quad);
       bg.transform.SetParent(this.transform.parent);
       bg.transform.localPosition = new Vector3(0, 0, bgDistance);
       bg.transform.LookAt(camera.transform);
-      bg.transform.localScale = new Vector3(dx / fx * bgDistance,
-        dy / fy * bgDistance, 1);
+      bg.transform.localScale = new Vector3(
+        ArucoCamera.Resolution.Width / Undistortion.Fx * bgDistance,
+        ArucoCamera.Resolution.Height / Undistortion.Fy * bgDistance, 1);
       bg.material.mainTexture = ArucoCamera.Texture;
     }
 
-    public void PlaceArucoObject(ArucoObject arucoObj, Vec3d pos, Vec3d rot)
+    public void PlaceArucoObject(ArucoObject obj, Vec3d pos, Vec3d rot)
     {
-      arucoObj.gameObject.SetActive(true);
-      arucoObj.transform.SetParent(Camera.transform);
-      arucoObj.transform.localPosition = new Vector3(pos);
-      arucoObj.transform.localRotation = new Quaternion(rot);
+      obj.gameObject.SetActive(true);
+      obj.transform.SetParent(Camera.transform);
+      obj.transform.localPosition = new Vector3(pos);
+      obj.transform.localRotation = new Quaternion(rot);
+    }
+  }
+\end{listingETS}
+
+\begin{listingETS}{cs}{lst:mono_aruco_camera_display}{Classe C\# MonoArucoCameraDisplay simplifiée.}
+  public class MonoArucoCameraDisplay : ArucoCameraDisplay
+  {
+    protected override void Start()
+    {
+      cameraFov = 2f * Mathf.Atan(0.5f * ArucoCamera.Resolution.Height / fy) * Mathf.Rad2Deg;
+      base.Start();
     }
   }
 \end{listingETS}
 
 Nous pouvons maintenant configurer la caméra virtuelle en l'alignant avec la caméra physique corrigée. La matrice intrinsèque associée avec les images corrigées pouvant être modifiée par la correction, l'alignement doit donc se faire après.
 
-Comme pour la correction, Aruco Unity aligne automatiquement la caméra virtuelle, lors du suivi de marqueurs, avec le script \code{ArucoCameraDisplay} \autorefp{lst:aruco_camera_display}. En reprenant la scène que nous avons configuré à la \autoref{subsec:pinhole_camera_undistortion}, on voit le script déjà configuré pour utiliser la caméra physique \reffigureETSp{TrackMarkersCamera.jpg}.
+Comme pour la correction, Aruco Unity aligne automatiquement la caméra virtuelle lors du suivi de marqueurs. En reprenant la scène que nous avons configuré à la \autoref{subsec:pinhole_camera_undistortion}, on voit le script déjà configuré pour utiliser la caméra physique \reffigureETSp{TrackMarkersCamera.jpg}.
 
-On y crée alors (1) une caméra virtuelle dans Unity, placée à l'origine, avec un champs de vision calculé \autorefp{eq:fov} depuis la matrice intrinsèque corrigée, puis (2) l'arrière-plan sous forme d'un rectangle face à la caméra virtuelle, le long de son axe optique (nous avons corrigé le centre optique) à une distance arbitraire lontaine pour éviter une intersection avec les éléments virtuels. Enfin, on calcule la taille de ce rectangle en utilisant les triangles semblables : $d_x' = \text{distance} \times \sfrac{d_x}{f_x}$ \reffigureETSp{Fov.png}.
+On crée alors dans les scripts : (1) une caméra virtuelle dans Unity, placée à l'origine, avec un champs de vision calculé \autorefp{eq:fov} depuis la matrice intrinsèque corrigée, puis (2) l'arrière-plan sous forme d'un rectangle face à la caméra virtuelle, le long de son axe optique (nous avons corrigé le centre optique) à une distance arbitraire lontaine pour éviter une intersection avec les éléments virtuels \autorefp{lst:aruco_camera_display}. Enfin, on calcule la taille de ce rectangle en utilisant les triangles semblables : $d_x' = \text{distance} \times \sfrac{d_x}{f_x}$ \reffigureETSp{Fov.png}.
 
 \subsection{Réalité augmentée par suivi de marqueur}
 \label{subsec:pinhole_camera_tracker}
 
-\figureETS[0.9]{TrackMarkersMarker.jpg}{%
-  Configuration d'un marqueur mesurant \SI{5.4}{\cm}, avec une théière comme élément enfant.
-}
-
-\figureETS[0.9]{TrackMarkersTracker.jpg}{%
-  Configuration du suivi de marqueurs avec une liste de trois objets : deux échiquiers et un marqueur seul. La caméra associée est surlignée en jaune.
-}
-
-\figureLayoutETS{TrackMarkersDetection}{%
-  \subfigureETS[0.15]{TrackMarkersDetection_1.jpg}{Vue de face.}%
-  \figurehspace%
-  \subfigureETS[0.15]{TrackMarkersDetection_2.jpg}{Vue de dessus.}%
-  \figurehspace%
-  \subfigureETS[0.15]{TrackMarkersDetection_3.jpg}{Vue du côté.}%
-}{
-  Détection du marqueur configuré à la \reffigureETS{TrackMarkersTracker.jpg} dans plusieurs angles de vues.
-}
-
 \begin{listingETS}{cs}{lst:aruco_camera_tracker}{Classe C\# ArucoObjectsTracker simplifiée pour le suivi des marqueurs seuls.}
   public class ArucoObjectsTracker : ArucoCameraController, IArucoObjectsTracker
   {
-    public Dictionary<int, ArucoMarker> markers; // Format: <id, marker>
+    public Dictionary<int, ArucoMarker> Markers; // Format: <id, marker>
 
-    private List<Aruco.Dictionary> markerDictionaries;
+    private List<Aruco.Dictionary> dictionaries;
     private int length = 1; // Valeur fictive pour l'estimation
     private Mat noD = new Mat(); // Aucunes distorsions
 
     protected void Start()
     {
-      markerDictionaries = ... // Extrait depuis markers
+      dictionaries = Markers.Select(m => m.Value.Dictionary).ToList();
       ArucoCamera.ImagesUpdated += TrackArucoObjects;
     }
 
     protected void TrackArucoObjects()
     {
       // (1) Masquer les éléments
-      foreach (var marker in markers)
+      foreach (var marker in Markers)
       {
         marker.gameObject.SetActive(false);
       }
 
-      foreach (var dic in markerDictionaries)
+      foreach (var dic in dictionaries)
       {
         // (2) Détection des marqueurs physiques sur l'image
         VectorVectorPoint2f corners; // Points p
-        VectorInt ids;
+        VectorInt ids; // Identifiants des marqueurs
         DetectMarkers(ArucoCamera.Image, dic, out corners, out ids);
         DrawDetectedMarkers(ArucoCamera.Image, corners, ids);
         
@@ -763,13 +790,31 @@ On y crée alors (1) une caméra virtuelle dans Unity, placée à l'origine, ave
   }
 \end{listingETS}
 
-Notre caméra virtuelle étant désormais prête pour la RA, nous pouvons utiliser le suivi de marqueur du module aruco pour savoir où placer nos éléments virtuels. Aruco Unity permet un suivi de marqueurs facile, à configurer directement dans l'éditeur d'Unity :
+\figureETS[0.9]{TrackMarkersMarker.jpg}{%
+  Configuration d'un marqueur mesurant \SI{5.4}{\cm} avec un modèle de théière comme élément enfant.
+}
+
+\figureETS[0.9]{TrackMarkersTracker.jpg}{%
+  Configuration du suivi de marqueurs avec une liste de trois objets : deux échiquiers et un marqueur seul. La caméra associée est surlignée en jaune.
+}
+
+\figureLayoutETS{TrackMarkersDetection}{%
+  \subfigureETS[0.15]{TrackMarkersDetection_1.jpg}{Vue de face.}%
+  \figurehspace%
+  \subfigureETS[0.15]{TrackMarkersDetection_2.jpg}{Vue de dessus.}%
+  \figurehspace%
+  \subfigureETS[0.15]{TrackMarkersDetection_3.jpg}{Vue du côté.}%
+}{
+  Détection du marqueur configuré à la \reffigureETS{TrackMarkersTracker.jpg} dans plusieurs angles de vues.
+}
+
+Nous pouvons utiliser le suivi de marqueur du module aruco pour savoir où placer nos éléments virtuels. Aruco Unity permet un suivi de marqueurs facile, à configurer directement dans l'éditeur d'Unity :
 \begin{enumerate}
   \item On crée tout d'abord des marqueurs comme nous l'avons vu dans la \autoref{subsec:pinhole_camera_calibration} qu'on imprime et place dans l'environnement physique.
   \item On reprends la scène configurée aux sections \ref{subsec:pinhole_camera_undistortion} et \ref{subsec:pinhole_camera_display}.
   \item On y crée à nouveau tous marqueurs suivis en y les configurants avec les valeurs en mètres de ceux imprimés, et on y ajoute les éléments que l'on souhaite afficher en RA comme enfants de ces marqueurs \reffigureETSp{TrackMarkersMarker.jpg}.
   \item Dans le script \code{ArucoObjectsTracker} sur l'objet du même nom, on dépose les marqueurs virtuels dans la liste \code{ArucoObjects} \reffigureETSp{TrackMarkersTracker.jpg}.
-  \item En jouant la scène, les marqueurs virtuels sont placés aux même positions et orientations que les marqueurs physiques détectés \reffigureETSp{TrackMarkersDetection}. Nous avons enfin intégré de la RA à notre caméra !
+  \item En jouant la scène, les marqueurs virtuels sont placés aux même positions et orientations que les marqueurs physiques détectés \reffigureETSp{TrackMarkersDetection}.
 \end{enumerate}
 
 \figureETS[0.6]{Garrido-Jurado2014.jpg}{%
@@ -784,14 +829,15 @@ On montre dans l'\autoref{lst:aruco_camera_tracker} l'utilisation du module aruc
   Tiré de \cite[p. 385]{Bradski2008}.
 }
 
-Comme aruco détecte tous les marqueurs physique sur l'image, nous devons faire une correspondance avec les marqueurs virtuels configurés lors du placement de ces derniers. Le procédé de détection est simple et rapide à effectuer \reffigureETSp{Garrido-Jurado2014.jpg} : (a) l'image est d'abord (b) segmentée pour permettre de (c) détecter les contours puis (d) d'extraire les polygones comme marqueurs potentiels. La (e) perspective est ensuite supprimée par reprojection en utilisant la matrice intrinsèque et (f) le code du marqueur est extrait. Chaque marqueur étant composé d'une grille de taille $n \times n$ de cellules noires ou blanches, entourée d'une bordure noire, il peut être facilement identifié par le code formé par les cellules. Les codes potentiels sont connus d'avance car la génération des marqueurs se fait avec un dictionnaire, qu'on fournit à l'algorithme de détection, par exemple un dictionnaire de 50 marqueurs 4x4 dans la \reffigureETS{TrackMarkersMarker.jpg} ou 5x5 dans la \reffigureETS{Garrido-Jurado2014.jpg}.
+Comme les fonctions aruco détectent tous les marqueurs physique sur l'image, nous devons faire une correspondance avec les marqueurs virtuels configurés. Le procédé de détection est simple et rapide à effectuer \reffigureETSp{Garrido-Jurado2014.jpg} : (a) l'image est d'abord (b) segmentée pour permettre de (c) détecter les contours puis (d) d'extraire les polygones comme marqueurs potentiels. La (e) perspective est ensuite supprimée par reprojection en utilisant la matrice intrinsèque et (f) le code du marqueur est extrait. Chaque marqueur étant composé d'une grille de taille $n \times n$ de cellules noires ou blanches, entourée d'une bordure noire, il peut être facilement identifié par le code formé par les cellules. Ces identifiants sont connus d'avance car la génération des marqueurs se fait avec un dictionnaire que l'on fournit à l'algorithme de détection, par exemple un dictionnaire de 50 marqueurs 4x4 dans la \reffigureETS{TrackMarkersMarker.jpg} ou 5x5 dans la \reffigureETS{Garrido-Jurado2014.jpg}. On fait alors la correspondance entre les marqueurs détectés et ceux configurés en utilisant ces identifiants.
 
-Enfin, la position des marqueurs détectés est estimée avec une méthode de résolution au problème \texten{perspective-n-points}, en utilisant la fonction \code{solvePnP} d'OpenCV (\url{https://github.com/opencv/opencv/blob/master/modules/calib3d/src/solvepnp.cpp}). La projection perspective faisant << perdre >> une dimension, il existe de multiples solutions à la position d'un marqueur détecté : cela peut être l'image d'un petit marqueur proche de la caméra comme celle d'un grand marqueur loin de la caméra \reffigureETSp{Bradski2008_3.jpg}. C'est pourquoi on doit fournir à l'algorithme la taille du marqueur, donc la longueur d'un côté car c'est un carré. La fonction d'estimation de pose travaille en une fois avec tous les marqueurs détectés, en ne prenant qu'une seule longueur de côté. Comme l'on souhaite utiliser des marqueurs de tailles différentes, on fournit une longueur fictive pour ensuite corriger les positions calculées avec la vraie longueur des différent marqueurs \autorefp[(4)]{lst:aruco_camera_tracker}. Ce \texten{hack} (<< triche >>) nous évite de nombreux appels inutiles et coûteux à la fonction.
+Enfin, la position des marqueurs détectés est estimée avec une méthode de résolution au problème \texten{perspective-n-points}, en utilisant la fonction \code{solvePnP} d'OpenCV (\url{https://github.com/opencv/opencv/blob/master/modules/calib3d/src/solvepnp.cpp}). La projection perspective faisant << perdre >> une dimension, il existe de multiples solutions à la position d'un marqueur détecté : cela peut être l'image d'un petit marqueur proche de la caméra comme celle d'un grand marqueur loin de la caméra \reffigureETSp{Bradski2008_3.jpg}. C'est pourquoi on doit fournir à l'algorithme la taille du marqueur, donc la longueur d'un côté car c'est un carré. La fonction d'estimation de pose travaille en une fois avec tous les marqueurs détectés, en ne prenant qu'une seule longueur de côté. Comme l'on souhaite utiliser des marqueurs de tailles différentes, on fournit une longueur fictive pour ensuite corriger les positions calculées avec la vraie longueur des différent marqueurs \autorefp[(4)]{lst:aruco_camera_tracker}. Ce \texten{hack} (<< triche >>) nous évite de nombreux appels inutiles et coûteux à cette fonction.
 
 
 \subsection{Alignement avec une caméra stéréoscopique avec objectifs \texten{fisheye}}
 \label{subsec:ovrvision_camera_calibration}
 
+\subsubsection{Description}
 Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle du sténopé ne s'y applique pas. En effet, contrairement à la perspective de l'\oe il humain ou des objectifs rectilinéaires, ces objectifs utilisent une distorsion en barillet volontairement importante pour capter un très grand champs de vision jusqu'à \ang{180} \reffigureETSp{JPRoche2004_1.jpg}.
 
 \figureLayoutETS{JPRoche2004}{%
@@ -821,17 +867,79 @@ En outre, l'Ovrvision étant une caméra stéréoscopique nous avons besoin de d
   Tiré de \cite[p. 420]{Bradski2008}.
 }
 
-En plus de la correction de la caméra, nous devons la \emph{rectifier} pour rendre à nouveau coplanaires les deux plans images. Le type d'objectif n'a pas d'impact sur la rectification, qui est faite après avoir corrigé la caméra. Comme pour les distorsions, nous n'avons pas besoin de comprendre la procédure de rectification ; pour plus de détails, nous redirigeons le lecteur vers \cite[p. 419]{Bradski2008}.
+En plus de la correction de la caméra, nous devons la \emph{rectifier} pour rendre à nouveau coplanaires les deux plans images. La correction étant faite en premier, le type d'objectif n'a pas d'impact sur la rectification. Comme pour les distorsions, nous n'avons pas besoin de comprendre la procédure de rectification ; pour plus de détails, nous redirigeons le lecteur vers \cite[p. 419]{Bradski2008}.
 
-Concrètement, tous les procédés avec les caméra rectilinéaires que nous venons de décrire restent les mêmes \autorefp{subsec:ar_hmd_procedure}. En revanche, nous utilisons quelques algorithmes différents, en créant simplement de nouveaux scripts spécifique d'étalonnage (\code{StereoOmnidirCameraCalibration}), de correction (\code{StereoOmnidirCameraUndistortion}) et d'alignement de caméra. (\code{StereoCameraDisplay}). Comme la correction nous permet de travailler avec une caméra corrigée rectilinéaire, le script suivi de marqueurs reste relativement inchangé.
+\subsubsection{Application dans Aruco Unity}
+Tous les procédés avec les caméra rectilinéaires que nous venons de décrire restent les mêmes \autorefp{subsec:ar_hmd_procedure}. En revanche, nous utilisons quelques algorithmes différents, en créant simplement de nouveaux scripts spécifique d'étalonnage de correction t d'alignement de caméra. Comme la correction nous permet de travailler avec une caméra corrigée rectilinéaire, le script suivi de marqueurs reste inchangé. Nous avons cependant mis à jour tous les scripts vu ci-dessus pour qu'ils supportent des caméras capturant de multiples images, par exemple en remplaçant \code{Mat ArucoCamera.Image} par \code{Mat[] ArucoCamera.Image} initialisé au démarrage de l'application : tous les algorithmes que nous avons décrits sont alors exécutés pour chaque image capturée.
 
-% AdrianKaehler2017 -  Chapitre 19 pour l'étalonnage stereo
-Pour l'étalonnage, la procédure à suivre est pratiquement la même que dans la \autoref{subsec:pinhole_camera_calibration}. Nous désactivons l'objet \code{PinholeCameraCalibration}, et nous glissons dans la scène les objets \code{Assets/ArucoUnity/Prefabs/Cameras/OvrvisionArucoCamera} et \code{Assets/ArucoUnity/Prefabs/Calibration/StereoOmnidirCameraCalibration} que l'on configure.
+\figureLayoutETS{OvrvisionCalibration}{%
+  \subfigureETS[0.4]{OvrvisionCalibration_1.jpg}{Scripts pour la caméra.}%
+  \figurehspace%
+  \subfigureETS[0.4]{OvrvisionCalibration_2.jpg}{Scripts pour l'étalonnage.}%
+}{
+  Configuration de l'étalonner dans Unity de la caméra Ovrvision.
+}
 
-Pour simplifier, 
+% TODO
+%\figureETS[0.75]{OvrvisionCalibration_3.jpg}{%
+%  Étalonnage de la caméra Ovrvision.
+%}
 
-% determine newK https://medium.com/@kennethjiang/calibrate-fisheye-lens-using-opencv-part-2-13990f1b157f
+Pour l'étalonnage, la procédure à suivre est la même que dans la \autoref{subsec:pinhole_camera_calibration}. Nous désactivons cependant l'objet \code{PinholeCameraCalibration} pour travailler avec les objets \code{Assets/ArucoUnity/Prefabs/Cameras/OvrvisionArucoCamera} pour la caméra et \code{Assets/ArucoUnity/Prefabs/Calibration/StereoOmnidirCameraCalibration} que nous glissons dans la scène \reffigureETSp{OvrvisionCalibration}. Nous avons donc créée un nouveau script d'étalonnage, \code{StereoOmnidirCameraCalibration} : très similaire à \autoref{lst:pinhole_camera_calibration}, nous avons seulement remplacé la fonction d'étalonnage par \code{Cv.Omnidir.StereoCalibrate}. Cette dernière étalonne chaque caméra individuellement, puis calcule la position et l'orientation relative des deux plans images, et retourne tous ces paramètres que l'on enregistre dans un fichier d'étalonnage.
 
-% LeapMotionAlignmentCameraAR2015 pour expliquer pourquoi on applique aux caméras virtuelles l'ICD et non l'IPD
+\figureETS[0.9]{OvrvisionTracking.jpg}{%
+  Configuration de la correction et la rectification de la caméra Ovrvision et de l'alignement d'une caméra virtuelle pour intégrer la RA dans notre visiocasque.
+}
 
-Connaissant la position relative des deux plans images, on place alors les deux caméras virtuelles dans la même configuration spatiale. Ainsi on exécute le script de suivi de marqueurs avec une seule des deux caméras pour éviter des calculs redondants : on modifie alors légèrement le \autoref{lst:aruco_camera_tracker} pour qu'il ne travaille qu'avec la première caméra physique et la première caméra virtuelle.
+On met finalement en place la RA dans notre visiocasque. Comme pour l'étalonnage, la procédure est la même que dans les sous-sections \ref{subsec:pinhole_camera_undistortion} et \ref{subsec:pinhole_camera_display}, mais on utilise des objets différents : on désactive donc les objets de correction et d'affichage pour la webcam et on glisse dans la scène ceux pour une caméra stéréoscopique \texten{fisheye} ainsi que \code{OvrvisionArucoCamera} \reffigureETSp{OvrvisionTracking.jpg}. Contrairement à la correction des caméras rectilinéaires, les fonctions du module omnidir nous permettent de choisir directement le champs de vision des caméras gauches et droites corrigées. On les définis toutes les deux à un champs de vision vertical de \SI{105}{\deg}, comme le visiocasque de RV que nous nous utilisons. Les marqueurs et leur suivi une fois configurés, notre visiocasque fonctionne comme nous l'avons décrit à la \autoref{subsec:prototype_operation} !
+
+\begin{listingETS}{cs}{lst:stereo_omnidir_camera_undistortion}{Classe C\# StereoOmnidirCameraUndistortion simplifiée.}
+  public class StereoOmnidirCameraUndistortion : ArucoCameraUndistortion
+  {
+    public float[] Fovs;
+
+    protected override void InitializeUndistortion()
+    {
+      // (1) Matrices intrinsèques pour la correction
+      var newKs = new Mat[ArucoCamera.Images.Length]
+      for (int i = 0; i < newKs.Length; i++)
+      {
+        float f = ArucoCamera.Resolutions[i].Height / (2f * Mathf.Tan(0.5f * Fovs[i] * Mathf.Deg2Rad));
+        newKs[i] = new Mat(3, 3, Type.CV_64F, new double[9] {
+          f, 0, ArucoCamera.Resolution[i].Width / 2,
+          0, f, ArucoCamera.Resolution[i].Height / 2,
+          0, 0, 1});
+      }
+
+      // (2) Rotations pour la rectification
+      var R = new Mat[ArucoCamera.Images.Length];
+      Omnidir.StereoRectify(CameraParameters.R, CameraParameters.T, out R[0], out R[1]);
+
+      // (3) Fonction de mappage
+      for (int i = 0; i < newKs.Length; i++)
+      {
+        Omnidir.InitUndistortRectifyMap(CameraParameters.K[i], CameraParameters.D[i], CameraParameters.Xi[i], R[i], newK[i], ArucoCamera.Resolutions[i], Type.CV_16SC2, out rectMapX[i], out rectMapY[i], Omnidir.Rectifify.Perspective);
+      }
+    }
+  }
+\end{listingETS}
+
+Nous effectuons la correction et la rectification dans le même temps \autorefp{lst:stereo_omnidir_camera_undistortion} : nous (1) créons  les matrices intrinsèques pour les caméras corrigées rectilinéaires à partir des champs de visions choisis, puis on calcule (2) la rotation des deux plans images pour les rectifier, enfin (3) la fonction de mappage pour chaque caméra. Ces fonctions sont toujours appliquées sur toutes les images capturées dans le script parent \autorefp{lst:aruco_camera_undistortion}.
+
+\begin{listingETS}{cs}{lst:stereo_vr_aruco_camera_display}{Classe C\# StereoVRArucoCameraDisplay simplifiée.}
+  public class StereoVRArucoCameraDisplay : ArucoCameraDisplay
+  {
+    protected override void Start()
+    {
+      cameraFov[0] = Undistort.Fovs[0], cameraFov[1] = Undistort.Fovs[1]; // (1)
+      base.Start();
+
+      Cameras[0].stereoTargetEye = StereoTargetEyeMask.Left; // (2)
+      Cameras[1].stereoTargetEye = StereoTargetEyeMask.Right;
+
+      Cameras[1].transform.localPosition += Undistort.CameraParameters.T; // (3)
+    }
+  }
+\end{listingETS}
+
+Pour la configuration des caméras virtuelles, nous devons tout d'abord activer la RV dans Unity avec l'option \code{Virtual Reality Supported} dans le menu \code{Edit/Project Settings/Player/XR Settings}. Nous (1) créons et configurons ensuite deux caméras virtuelles, une pour chaque \oe il avec les champs de visions choisis. Puis nous (2) indiquons à Unity pour quel \oe il chaque caméra rend. Enfin, on (3) décale la caméra droite suivant le vecteur $T$.
