@@ -22,7 +22,7 @@
 \newcommand{\autorefp}[2][]{(\textit{Voir} \autoref{#2}#1)}
 
 % Figure with ÉTS style
-\newcommand{\figureLayoutETS}[3]{%
+\newcommand{\figureLayoutETS}[4]{%
   \begin{figure}%
     \centering%
     \fbox{#2}\\%
@@ -136,7 +136,7 @@
 }
 
 \lstnewenvironment{listingETS}[3]{%
-  \lstset{language={#1}, float, label=#2, caption={#3}, breakatwhitespace=true}%
+  \lstset{language={#1}, float=htbp, label=#2, caption={#3}, breakatwhitespace=true}%
 }{}
 
 \newcommand{\code}[2][cs]{\lstinline[language=#1, basicstyle=\ttfamily\normalsize]|#2|}
@@ -181,7 +181,7 @@
   \input{content/0_2_acknowledgements}
 \end{remerciements}
 
-\input{content/0_3_abstracts}
+%\input{content/0_3_abstracts}
 
 \tableofcontents
 \listoftables
@@ -199,26 +199,26 @@
 \reversemarginpar
 \setcounter{footnote}{0}
 
-\begin{introduction}
-  \input{content/1_introduction}
-\end{introduction}
+%\begin{introduction}
+  %\input{content/1_introduction}
+%\end{introduction}
 
-\input{content/2_litterature_review}
-\input{content/3_concept}
+%\input{content/2_litterature_review}
+%\input{content/3_concept}
 \input{content/4_methodology}
-\input{content/5_experiment}
-\input{content/6_futur_work}
+%\input{content/5_experiment}
+%\input{content/6_futur_work}
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{CONCLUSION}
 \label{ch:conclusion}
-\input{content/7_conclusion}
+%\input{content/7_conclusion}
 
 \appendix
 \multiannexe
-\input{content/8_ovrvision_camera_parameters}
-\input{content/9_experiment_forms}
-\input{content/10_experiment_analysis}
+%\input{content/8_ovrvision_camera_parameters}
+%\input{content/9_experiment_forms}
+%\input{content/10_experiment_analysis}
 
 \newpage
 \begin{spacing}{1}
