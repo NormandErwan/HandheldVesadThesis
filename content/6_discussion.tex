@@ -1,0 +1,114 @@
+\chapter{Discussion}
+\label{ch:discussion}
+
+\section{Leçons apprises}
+\label{sec:discussion_lessons}
+Although users preferred the \condition{VESAD tactile} technique overall, some participants felt that \condition{VESAD} is the technique with the most potential because it allows directly selecting items. We observed users spontaneously reaching out to touch items on the VESAD before being prompted to do so. Several users wished that they could pan and zoom in the \condition{VESAD} technique without having to switch modes through a menu, similar to pinch-to-zoom on status quo phone interfaces. Unfortunately, despite our use of off-the-shelf sensing technology (Leap Motion), the sensing of the finger position was not always reliable. Better hand-tracking techniques \cite{Taylor2016} could improve this in the future.
+
+The physical navigation performed by users in the \condition{VESAD} technique was often to bring a distant target (e.g., located in a corner) closer to the dominant hand. This suggests that targets for the input on the VESAD should not be placed too far from the phone, and this also recalls the recommendation by Ens et al. \cite{Ens2014} that windows suspended in front of the user should be given an equidistant, spherical layout.
+
+Le leap capture en continue vs le touch qui fonctionne sur le principe du bouton : est-ce que le leap n'est pas mieux faire pour les interactions naturelles avec des objets tels que notre vie de tous les jours ? Remarque : un téléphone fait partie de notre vie de tous les jours, on peut le simuler en 3d avec interactions. Donc il faut surtout améliorer la précision du tracking.
+La précision du tracking est mauvaise combinée avec la reprojection des fisheyes : il faudrait faire une bonne calibration. En fait l'effet observé est que la position calculée de l'index est trop proche du visage quand on rapproche la main du visage, et trop éloignée quand on éloigne la main. La position calculée varie moins vite que la position perçue de la main à travers la reprojection de l'ovrvision. Après la calibration était pas parfaite, et on voyait qu'il y avait un effet de déformation. En tout cas ça a influencé les résultats.
+Donc contrairement au tactile où il faut toucher l'écran pour agir dessus, il faut mettre des boites d'interaction autour des objets pour le leap, comme proposé par Grasp Shell. Parce que le tracking est pas fiable à 100\%, fonctionne mal avec la reprojection perspective de l'ovrvision et le doigt n'ayant pas de support physique sur lequel s'arrêter pour appuyer, il y a des mouvements involontraires pour tenir une position en l'air et un intervalle d'erreur quand le doigt veut toucher une cible 3D (même avec de la stéréoscopie et de la parallaxe).
+Quand on veut combiner le leap et le tactile, il faut penser à désactiver cette boite : sinon on actionne la boite avec le leap avant de toucher le téléphone.
+
+Pour LeapIn, on utilise un long press plutôt qu'un tap. La règle est simple à comprendre, mais pas toutes les conditions : ne sais pas vraiment combien de temps doit rester, ni quand le chrono démarre, ou s'arrête si une erreur (si on déplace trop le doigt). Il serait bon d'utiliser un simple cercle qui chargerai autour du doigt, comme les interactions gaze. C'est simple, facilement compréhensible et répond au problème.
+
+Pour le LeapIn, faire plus intelligent que bloquer toutes les interactions après une sélection ou un déplacement : on peut vouloir sélectionner, reste le long de la grille et s'arrêter là où on veut déplacer l'item. = pouvoir faire un vrai drag n drop
+
+Pour LeapIn le côté non dominant est horrible à interagir car croiser les mains, étendre le bras, mauvais tracking, l'autre main peut bloquer.
+
+% \subsection{The VESAD} % Erwan: the idea here is (1) VESAD works (2) it's not clear what interaction techniques are the best as MidAirInArOut could be very great
+% The VESAD is a workable display, appreciated from users for its increased visual output. It's especially suitable for mobile device tasks requiring to navigate large area, as a map or a photo gallery.
+ 
+%People liked most the \PhoneInArOut, but some participants feel that the \condition{VESAD} has more potential and could be very good with an excellent hand tracking + people immediately tried touching the VESAD (compare this to HoloLens: we have observed people doing the same thing when they first use the HL).
+
+% \subsection{Selection task} % Erwan: the idea is: there is display-only zone only on the VESAD space
+% some users used their hands with \condition{VESAD} in conjunction to select targets (in corners, or at a side limit) : users turned the phoned to make them closer. This can be compared to Personal Cockpit recommendations, i.e. equidistant spherical layout.
+
+% With \condition{VESAD}, selections can be very hard in certain zones: at the left of the phone for right-handed in particular. This suggest of interactable zones and display-only zone on the VESAD.
+
+% TODO: for Future Work?
+% Questions: how to determine the size of the display zone (we used arbitrarily 
+
+% \subsection{Navigation techniques}
+% Zoom and pan with \condition{VESAD} didn’t work well : Leap Motion designed for VR where tracking is not required to be as much precise as for AR + we missed a time-consuming calibration process between the Ovrvsision and the Leap Motion + 3D gestures on a 2D plan are difficult (it’s hard to keep one’s finger within a plane while moving it ).
+
+% one user said that they prefer to bring the phone physically closer to themself rather than using the leap to pan : therefore the physical navigation is important for a VESAD (versus with a phone only, we can rely only on virtual navigation)
+
+% some user felt tiring to have to drag a target to the phone screen to select it with \PhoneInArOut: it's better to be able to interact directly with all the VESAD plane.
+
+% TODO: for Future Work?
+% Questions: How can we do the pan and zoom gestures in 3D? Or they always need to be done on a physical surface (track-pad ideas for \PhoneInArOut)? Grasp-Shell found that vocal commands were better that mid-air interaction technique for scaling tasks 3D object in AR (but mid-air were better for translation and rotation tasks).
+
+
+\section{Implications dans la conception d'un VESAD}
+\label{sec:discussion_consequences}
+Quelles interactions sont plus intéressantes et dans quels contextes ? Direct (leap), indirect (hololens), touch
+Quelles techniques d'interactions sont à utiliser ?
+
+Based on our observations of users and their feedback, we recommend avoiding placing VESAD input elements in areas that require crossing arms. We suggest the zones in \reffigureETS{HandheldVESADZones.png} as a guide for laying out user interfaces. These zones avoid crossing of arms during input by the right hand, and the narrow margin below the phone avoids interference with the user's body when the phone is held in a comfortably low position. Of course, the layout would need to be flipped if held in the right hand of a left-handed user. Furthermore, since users sometimes prefer or need to operate their phone with a single hand, there should be a way to access all input elements on the phone's physical screen, either by scrolling through input elements or by switching to a single-handed mode.
+
+\figureLayoutETS{DesignConsequences}{%
+  \subfigureETS{HandheldVESADZones.png}{
+    For a right-handed user holding the phone in their left hand, the green zones are suggested as the best ones for input and output, the orange zones are suggested as less convenient but still acceptable for input and output, and the surrounding white zone is suggested for any additional output.
+  }%
+  \figurehspace%
+  \subfigureETS{HandheldVESADApps3.jpg}{
+    Redesign of \reffigureETS{HandheldVESADMap.jpg} based on the zones in \reffigureETS{HandheldVESADZones.png} (mock-up).
+  }%
+}{
+}
+
+We used the layout guide in \reffigureETS{HandheldVESADZones.png} to redesign one of our earlier mock-ups \reffigureETSp{HandheldVESADApps3.jpg}. As on the original mock-up, the hand is rotating the phone $\approx$\ang{90} to access alternative screens, which now show up on the side of the user's right (dominant) hand to facilitate selection of an alternative screen. Notifications appear above the screen, since they are for output only.
+
+%Based on our experimental results, observations of users, and user feedback, 
+Finally, we propose the following guidelines for future VESAD designs:
+
+\begin{itemize}
+ \item Avoid placing input targets on the VESAD far from the phone.
+ \item Avoid interactions or layouts that require users to cross their arms (i.e., where the dominant hand must reach over to the opposite side of the non-dominant hand).
+ \item Allow the VESAD layout to be flipped according to the handedness of the user.
+ \item Anticipate single-handed use scenarios. It should be possible to access all essential input options from the phone's screen, e.g., using a finger or thumb of the hand holding the device.
+ \item Allow both physical and virtual navigation.
+\end{itemize}
+
+%See paper about personal cockpit, 3rd study, page 7 : "Time and error are both higher for targets in the down direction than for up (Figure 6). Despite this finding, several participants preferred the down direction to up, as it reduced arm fatigue (Figure 7). Pointing time generally increases with angle, as expected, due to increased travel distance."
+
+
+\section{Directions futures}
+\label{sec:future_work}
+Mettre les directions futures et les recommendations : évaluer les scénarios du \autoref{ch:concept} au regard des résultats.
+
+Refaire expérience avec technique d'interaction à la hololens et peephole
+
+Refaire l'expérience de wedge avec téléphone seul, wedge, phone touch+ar, mid-air+ar, phone+mid-air+ar
+
+multi-apps + Tâche de commutation d'affichages
+
+bureau en realité augmentée
+
+Dans le cadre Ethereal Planes : rester avec des fenêtres 2D mais à organiser en 3D (data mountain)
+
+Tester les applications : Google Maps, multi-application (comme le Personal Cockpit)
+
+Interaction pour le multi écran / écran étendu : vise avec regard, qui donne l'intention, (ou tête à défaut, voir l'étude pursuit target \citep{Esteves2017}) et agit avec le doigt. Serait bien pour scroller sur une app sur l'écran étendu (car on a vu que difficile de pan avec le doigt). Citer les article utilisation du regard sur les table de travail pour select les outils
+
+Nous n'étudions que Zooming, car c'est le plus courant sur les appareils mobiles. Or on compare les techniques d'interactions de notre solution à un mobile seul. Il aurait été intéressant cependant, dans une deuxième expérimentation, de comparer ces techniques de visualization sur notre solution versus sur un appareil mobile seul.
+
+Future work could include improvements to the \condition{VESAD} technique with better sensing of mid-air finger positions, adding haptic feedback
+with a hand-worn device to let the user know when they are in contact with the VESAD plane, or comparing direct touch with allowing the user to point at locations on the VESAD using the HMD's view vector (similar to how the HoloLens allows users to aim at targets). A variant of the \condition{VESAD} technique could also be developed where the phone acts like a touchpad that can reach the entire surface of the VESAD using an appropriate gain or cursor acceleration function.
+
+%TODO evaluate the layout in fig 19,
+%determine best extents of margins zones,
+%experiment with ways to automatically and manually switch handedness
+%and double- and single-handed modes.
+
+% TODO
+%compare \condition{VESAD} with trackpad interaction technique (the phone screen is mapped to the VESAD entire view) and with a cursor controlled by the gaze (the phone screen is used to interact as a "big button": the actions are done where the cursor is, and interactions can be done with finger anywhere on the phone screen
+
+% TODO
+% Compare with peephole displays,
+% compare with pointing with head (like HoloLens),
+% try accelerated physical navigation,
+% try accelerated virtual navigation.

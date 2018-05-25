@@ -152,8 +152,12 @@
   font = {\fontsize{9pt}{12}\selectfont}
 }
 
+% Custom commands
+\newcommand{\variable}[1]{\textsc{#1}} % Independent variable
+\newcommand{\condition}[1]{\textit{#1}} % Levels of an independent variable
+
 % Thesis configuration
-\title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée - Handheld VESAD (Virtually Extended Screen-Aligned Display)}
+\title{Agrandissement de l'écran d'un téléphone intelligent par réalité augmentée}
 
 \author{Erwan NORMAND}
 \authorcopyright{Erwan Normand}
@@ -173,25 +177,25 @@
 \maketitle
 \presentjury
 
-\begin{avantpropos}
-  \input{content/0_1_preface}
-\end{avantpropos}
+%\begin{avantpropos}
+  %\input{content/0_1_preface}
+%\end{avantpropos}
 
-\begin{remerciements}
-  \input{content/0_2_acknowledgements}
-\end{remerciements}
+%\begin{remerciements}
+  %\input{content/0_2_acknowledgements}
+%\end{remerciements}
 
 %\input{content/0_3_abstracts}
 
-\tableofcontents
-\listoftables
-\listoffigures
-\listofalgorithms
-\lstlistoflistings
+%\tableofcontents
+%\listoftables
+%\listoffigures
+%\listofalgorithms
+%\lstlistoflistings
 
-\begin{listofabbr}[3cm]
-  \input{content/0_4_abbreviations}
-\end{listofabbr}
+%\begin{listofabbr}[3cm]
+  %\input{content/0_4_abbreviations}
+%\end{listofabbr}
 
 \cleardoublepage
 
@@ -199,15 +203,15 @@
 \reversemarginpar
 \setcounter{footnote}{0}
 
-%\begin{introduction}
-  %\input{content/1_introduction}
-%\end{introduction}
+\begin{introduction}
+  \input{content/1_introduction}
+\end{introduction}
 
 %\input{content/2_litterature_review}
-%\input{content/3_concept}
-\input{content/4_methodology}
-%\input{content/5_experiment}
-%\input{content/6_futur_work}
+\input{content/3_concept}
+%\input{content/4_methodology}
+\input{content/5_experiment}
+\input{content/6_discussion}
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{CONCLUSION}

@@ -2,41 +2,87 @@
 \label{ch:concept}
 
 \section{Présentation}
+\label{sec:concept_introduction}
 
-Nous proposons de concevoir un prototype de téléphone intelligent tenu en main dont l'écran est étendu par RA et de l'évaluer expérimentalement par rapport à un téléphone seul non étendu. Nous appelons cette IHM : un téléphone augmenté par un \texten{Virtuality Extended Screen-Aligned Display} (VESAD), comme le montre la figure.
+Un VESAD est une technique d'aggrandissement d'un écran physique par RA. Le visiocasque de RA affiche un écran virtuel placé automatiquement autour de l'écran physique, sur le même plan que lui ; les affichages des deux écrans synchronisés, l'utilisateur peut alors voir et interagir comme s'il s'aggissait d'un seul écran étendu. Cette technique peut ainsi être appliquée pour tout type d'écran, incluant ceux des ordinateurs, les télévisions ou les affichages muraux. Nous travaillons cependant seulement avec l'aggrandissement de l'écran d'un téléphone intelligent dans ce mémoire. Nous avons tout d'abord identifié quelques applications potentielles et des techniques d'interactions possibles.
 
-\figureETS{HandheldVESADApps.jpg}{
-  Photomontage d'un téléphone tenu en main augmenté par un VESAD : un affichage en RA étendant l'écran et aligné avec le téléphone. L'écran étendu permet d'afficher de multiples fenêtres d'affichage autour de l'écran tactile.
-}
-
-Appliquer Ens2014 - Ethereal Planes.
-
-Deux modes (comme le HoloLens) :\\
-vue étendue (l'écran tactile et l'écran étendu ne forme qu'une seule surface)\\
-vue multi-fenêtres (une app sur l'ecran tactile et plusieurs apps autour)
+Nous situons notre concept par rapport au cadre de conception de \cite{Ens2014a}.
 
 \section{Applications potentielles}
-Déplacer du contenu entre l'écran tactile et l'ecran étendu (comme une application)
+\label{sec:concept_applications}
 
-Multi-apps (notes + wikipedia + youtube)
+Nous distinguons tout d'abord deux modes de vues pour afficher du contenu dans un VESAD :
+\begin{itemize}
+  \item Vue multi-fenêtres \reffigureETSp{HandheldVESADApp} : une application utilise l'écran physique tandis que de multiples applications sont placées autour dans l'écran virtuel sous forme de fenêtres, comme l'IHM du Personal Cockpit \citep{Ens2014}.
+  \item Vue étendue \reffigureETSp{HandheldVESADExtended} : une seule application utilise tout les écrans physique et virtuel comme seul écran étendu, de manière similaire à l'IHM de Multifi \citep{Grubert2015}.
+\end{itemize}
+\bigskip
 
-Application étendue multi-fenêtres (messagerie : contacts à gauche, conversation au centre, fichiers échangés à droite)
+En vue multi-fenêtres, idée : l'utilisateur organise son espace, sous forme d'une grille ou librement ?
+Par exemple : prises de notes en regardant un cours en ligne avec applications notes + wikipedia + youtube
+Multi-tâches comme on peut le faire sur un pc
+For example, the phone and VESAD could display multiple phone-sized screen-fulls containing sets of app launcher icons and/or running apps \reffigureETSp{HandheldVESADApps.jpg}
 
-\figureETS{HandheldVESADDogs.jpg}{
+\figureLayoutETS{HandheldVESADApp}{%
+  \subfigureETS{HandheldVESADApps.jpg}{Plusieurs applications affichées dans des fenêtres différentes sur l'écran virtuel en parallèle à celle sur l'écran physique.}%
+  \figurehspace%
+  \subfigureETS{HandheldVESADApps2.jpg}{Une rotation de la main permet de rapidement changer l'application sur l'écran physique.}%
+}{
+  Photomontages d'un VESAD en vue multi-fenêtres, où de multiples applications se partagent l'écran étendu.
 }
 
-Une carte étendue
+En vue étendue
+Focus sur une app, comme on le fait sur un téléphone
 
-\figureETS{HandheldVESADMap.jpg}{
+The VESAD can show an extended view of content already on the phone. \reffigureETS{HandheldVESADMap.jpg} shows this for a geographic map.
+
+The VESAD can provide information that refers to the content on the phone. The content on the phone might be a user interface or a document, while the VESAD displays tooltips, annotations, or callouts \reffigureETSp{HandheldVESADTooltip.jpg}.
+
+The VESAD could display some content that is controlled with a UI on the phone. For example, the phone might show a gallery of thumbnails, where selecting one thumbnail causes an enlarged photo to be displayed on the VESAD \reffigureETSp{HandheldVESADDogs.jpg}. As another example, the phone might display video and audio player controls, while the VESAD shows the video playback. A third example of this would be a text chat or video conferencing application, where the phone displays a list of contacts and options to invite people to conversations, while the VESAD displays a history of the text messages exchanged and/or videos of participants.
+and/or web browser tabs : ressemble à du multi-fenêtres, mais la structure de l'affichage est contrôlé par l'app, pas par l'utilisateur (onglets à gauche et à droite, favoris en haut : gestes un doigt pour l'écran physique, deux pouces pour l'écran étendu : défilement gauche-droite des onglets, haut pour favoris, droit pour supprimer, direct touch sur écran virtuel possible)
+
+The phone and VESAD could also be used for overview + details or focus + context visualizations of data \cite{cockburn2009,burigat2013}. In such cases, either display modality could be used to show extra detail. For example, in \reffigureETSp{HandheldVESADDogs.jpg}, the gallery of thumbnails on the phone serves as a kind of overview, with the VESAD showing a detailed (zoomed in) view of one selected photo. However, these roles could be swapped to allow for more thumbnails to be visible at once (in the VESAD) while also displaying a single photo with greater pixel density (on the phone).
+
+\figureLayoutETS{HandheldVESADExtended}{%
+  \subfigureETS{HandheldVESADMap.jpg}{Une carte de navigation.}%
+  \figurehspace%
+  \subfigureETS{HandheldVESADDogs.jpg}{Une galerie d'images.}%
+  \figurehspace%
+  \subfigureETS{HandheldVESADTooltip.jpg}{Info-bulles dans l'écran virtuel.}%
+}{
+  Photomontages d'applications en vue étendue, exploitant tout l'écran étendu du VESAD.
 }
 
-Aide
+L'écran virtuel peut également être utilisé par le système d'exploitation en parallèle de ce que fait l'utilisateur, comme sur un téléphone actuel avec la bare de notifications, ou un PC avec la barre de tâches
 
-\figureETS{HandheldVESADTooltip.jpg}{
-}
+The VESAD can display alternative versions of what the phone already displays. \reffigureETS{HandheldVESADApps.jpg} also indicates how the VESAD could display notifications with details (for example, the sender's name and subject of incoming messages,
+descriptions of upcoming appointments, and a chart of battery level over time).
 
 Notifications en profondeurs\\
-Justification : Robertson1998 - Data mountain.  Overlapping windows on a 2D screen adds more cognitive load than arranging a stack of physical papers in  3D space [7]. (Lee, 2013 pour DataMoutain)D\\
+Justification : Robertson1998 - Data mountain. Overlapping windows on a 2D screen adds more cognitive load than arranging a stack of physical papers in  3D space [7]. (Lee, 2013 pour DataMoutain)D\\
 Ça fonctionne de s'appuyer sur la mémoire spatiale humaine : justifie notre concept d'organiser l'espace autour du cellulaire comme une idée pertinente. On pourrait organiser les applications dans le plan et en profondeur le long d'un plan qui part de la base du cellulaire avec une pente positive : cela permet de voir toutes les applications, comme sur des gradins d'un stade (c'est ce que Data Moutain suggère comme placement des app dans l'espace)
 
 Copier/coller : zone en bas de l'écran tactile
+
+
+\section{Techniques d'interactions}
+\label{sec:concept_interaction_techniques}
+
+Plusieurs types d'interactions possibles tirées de la RL :
+\begin{itemize}
+  \item toucher le contenu directement avec une main virtuelle (leap motion en RV)
+  \item pointeur virtuel (à la hololens) avec gestes
+  \item interactions avec le cell (d'une certaine manière ce que font ARKit et ARCore)
+  \item commandes vocales
+\end{itemize}
+
++ deux techniques : wrist et slide to hang
+
+We envision the VESAD normally following the phone and remaining co-planar to it. However, a simple wrist motion could be useful for quickly changing the orientation of the phone, triggering a temporary change in the VESAD's output, switching to another view. \reffigureETS{HandheldVESADApp} shows the user flipping the phone $\approx$\ang{90} around a vertical axis to switch from a map view to alternative apps and launcher icons. The wrist motion could be detected by the phone's inertial measurement unit (IMU), or be triggered by the angle between the phone's screen and the HMD's forward vector, and may depend on where the user is looking (e.g., a user looking away from the phone may be trying to avoid occlusion from a VESAD).
+
+\figureETS{HandheldVESADSlideToHang.jpg}{
+  A \texten{slide-to-hang} feature, allowing the user to slide the app in the phone toward the right, causing it to become suspended in 3D and detached from the phone, as if hanging in space. On the left, the user first slides out a webpage, then on the right, the user slides out a video player. This feature would allow a user to position apps around them in 3D, or onto physical surfaces such as walls and tables (mock-up).
+}
+
+Déplacer du contenu entre l'écran tactile et l'ecran étendu (comme une application)
+A strength of the VESAD is that it implicitly follows the phone, remaining close to the user. However, in some cases, the user may want to \texten{pin} virtual windows to a wall, a table, or suspend them in midair. We propose allowing the user to detach a VESAD from their phone and suspend it in a fixed position in world space. \reffigureETS{HandheldVESADSlideToHang.jpg} shows how a \texten{slide-to-hang} gesture could be used to convert two VESADs into such virtual windows. This gesture might be done with the phone on or near a wall or table, to \texten{pin} windows there. It might also be done around a user's current position, to surround themself with windows suspended in 3D. Note that the HoloLens allows users to pin windows to flat surfaces and then subsequently reposition or rotate them, which requires several actions. By comparison, our proposed \texten{slide-to-hang} gesture establishes the position, orientation, and detaching of a virtual window in a single action.
