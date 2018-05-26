@@ -28,16 +28,7 @@ Nous avons d'abord voulu utiliser le Microsoft HoloLens, un visiocasque optique 
 
 \subsection{Fonctionnement du visiocasque}
 \label{subsec:prototype_operation}
-Nous avons donc réalisé notre propre prototype de visiocasque similaire à l'AR-Rift \citep{Steptoe2013} : c'est un visiocasque de RA vidéo de conception simple qui a fait ses preuves, utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}. Il consiste à coller une caméra physique \emph{stéréoscopique} (avec deux objectifs capturant chacun une image pour un \oe il) à un visiocasque de RV. Il permet en plus de localiser les mains de l'utilisateur.
-
-Notre visiocasque fonctionne, de manière similaire à \cite{Steptoe2013}, sur le principe suivant :
-\begin{enumerate}
-  \item La caméra stéréoscopique physique filme l'environnement réel de l'utilisateur \reffigureETSp{ArRiftMarker_1.jpg}.
-  \item Un algorithme \emph{corrige} les déformations des deux images de cette caméra \reffigureETSp{ArRiftMarker_2.jpg}.
-  \item Une caméra stéréoscopique virtuelle va filmer des éléments virtuels ainsi que les deux images de la caméra physique en arrière-plan \reffigureETSp{ArRiftMarker_3.jpg}.
-  \item Les deux images sont affichées dans le visiocasque, une pour chaque \oe il, affichant environnements virtuels et physiques superposés \reffigureETSp{ArRiftMarker_4.jpg}.
-\end{enumerate}
-\bigskip
+Nous avons donc réalisé notre propre prototype, similaire à l'AR-Rift \citep{Steptoe2013} : c'est un visiocasque de RA vidéo de conception simple qui a fait ses preuves, utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}. Il consiste à coller une caméra physique \emph{stéréoscopique} (avec deux objectifs capturant chacun une image pour un \oe il) à un visiocasque de RV.
 
 \figureLayoutETS{ArRiftMarker}{%
   \parbox{0.72\textwidth}{% Allow line breaks
@@ -54,6 +45,14 @@ Notre visiocasque fonctionne, de manière similaire à \cite{Steptoe2013}, sur l
   Vue de l'image capturée par l'objectif gauche de l'Ovrvision Pro, puis corrigée et augmentée pour être affichée dans le visiocasque.
 }
 
+Notre visiocasque fonctionne sur le principe suivant :
+\begin{enumerate}
+  \item La caméra stéréoscopique physique filme l'environnement réel de l'utilisateur \reffigureETSp{ArRiftMarker_1.jpg}.
+  \item Un algorithme \emph{corrige} les déformations des deux images de cette caméra \reffigureETSp{ArRiftMarker_2.jpg}.
+  \item Une caméra stéréoscopique virtuelle va filmer des éléments virtuels ainsi que les deux images de la caméra physique en arrière-plan \reffigureETSp{ArRiftMarker_3.jpg}.
+  \item Les deux images sont affichées dans le visiocasque, une pour chaque \oe il, affichant environnements virtuels et physiques superposés \reffigureETSp{ArRiftMarker_4.jpg}.
+\end{enumerate}
+\bigskip
 Pour donner l'illusion que les éléments virtuels sont alignés avec l'environnement réel, nous devons donc \emph{aligner} la caméra virtuelle avec la caméra physique, dans un travail qui se fait en trois temps :
 \begin{enumerate}
   \item \emph{Étalonner} (\texten{calibrate} en anglais) la caméra physique, c'est-à-dire mesurer ses \emph{paramètres intrinsèques} (ses propriétés, comme son champ de vision), et les \emph{distorsions} de ses objectifs (les déformations sur les images capturées). L'étalonnage est à faire seulement une seule fois par caméra.
@@ -922,8 +921,12 @@ En plus de la correction de la caméra, nous devons la \emph{rectifier} pour ren
   Étalonnage de la caméra Ovrvision.
 }
 
-\figureETS[0.9]{OvrvisionTracking.jpg}{%
+\figureETS[0.9]{OvrvisionTracking_1.jpg}{%
   Configuration de la correction et la rectification de la caméra Ovrvision et de l'alignement d'une caméra virtuelle pour intégrer la RA dans notre visiocasque.
+}
+
+\figureETS[0.9]{OvrvisionTracking_2.jpg}{%
+  Vues des yeux gauche et droit dans notre visiocasque lors du suivi d'un marqueur.
 }
 
 \begin{listingETS}{cs}{lst:stereo_omnidir_camera_undistortion}{Classe C\# StereoOmnidirCameraUndistortion simplifiée.}
@@ -980,7 +983,7 @@ Tous les procédés avec les caméras rectilinéaires que nous venons de décrir
 
 Pour l'étalonnage, la procédure à suivre est la même que dans la \autoref{subsec:pinhole_camera_calibration} à la différence que nous travaillons avec les objets \code{OvrvisionArucoCamera} pour la caméra et \code{StereoOmnidirCameraCalibration} pour l'étalonnage que nous glissons dans la scène depuis le dossier \code{Assets/ArucoUnity/Prefabs/} et nous désactivons \code{PinholeCameraCalibration} \reffigureETSp{OvrvisionCalibration}. Ce nouveau script d'étalonnage que nous avons crée est très similaire à \autoref{lst:pinhole_camera_calibration} : nous y avons seulement remplacé la fonction d'étalonnage par \code{Cv.Omnidir.StereoCalibrate}. Cette fonction étalonne chaque caméra individuellement, puis calcule la position et l'orientation relative des deux plans images, et retourne tous ces paramètres que l'on enregistre dans un fichier d'étalonnage.
 
-On met finalement en place la RA dans notre visiocasque. Comme pour l'étalonnage, la procédure est la même que dans les sous-sections \ref{subsec:pinhole_camera_undistortion} et \ref{subsec:pinhole_camera_display}, mais on utilise des objets différents : on désactive donc les objets de correction et d'affichage pour la webcam et on glisse dans la scène ceux pour une caméra stéréoscopique \texten{fisheye} ainsi que \code{OvrvisionArucoCamera} \reffigureETSp{OvrvisionTracking.jpg}. Contrairement à la correction des caméras rectilinéaires, les fonctions du module omnidir nous permettent de choisir directement le champ de vision des caméras gauches et droites corrigées. On les définit toutes les deux à un champ de vision vertical de \SI{105}{\deg}, comme le visiocasque de RV que nous nous utilisons. Les marqueurs et leur suivi une fois configurés, notre visiocasque fonctionne comme nous l'avons décrit à la \autoref{subsec:prototype_operation} !
+On met finalement en place la RA dans notre visiocasque. Comme pour l'étalonnage, la procédure est la même que dans les sous-sections \ref{subsec:pinhole_camera_undistortion} et \ref{subsec:pinhole_camera_display}, mais on utilise des objets différents : on désactive donc les objets de correction et d'affichage pour la webcam et on glisse dans la scène ceux pour une caméra stéréoscopique \texten{fisheye} ainsi que \code{OvrvisionArucoCamera} \reffigureETSp{OvrvisionTracking_1.jpg}. Contrairement à la correction des caméras rectilinéaires, les fonctions du module omnidir nous permettent de choisir directement le champ de vision des caméras gauches et droites corrigées. On les définit toutes les deux à un champ de vision vertical de \SI{105}{\deg}, comme le visiocasque de RV que nous nous utilisons. Les marqueurs et leur suivi une fois configurés, notre visiocasque fonctionne comme nous l'avons décrit à la \autoref{subsec:prototype_operation} \reffigureETSp{OvrvisionTracking_2.jpg} !
 
 Nous effectuons la correction et la rectification dans le même temps \autorefp{lst:stereo_omnidir_camera_undistortion} : nous (1) créons les matrices intrinsèques pour les caméras corrigées rectilinéaires à partir des champs de visions choisis, puis on calcule (2) la rotation des deux plans images pour les rectifier, enfin (3) la fonction de mappage pour chaque caméra. Ces fonctions sont toujours appliquées sur toutes les images capturées dans le script parent \autorefp{lst:aruco_camera_undistortion}.
 
