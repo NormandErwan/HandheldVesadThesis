@@ -4,9 +4,13 @@
 \section{Présentation}
 \label{sec:concept_introduction}
 
-Un VESAD est une technique d'aggrandissement d'un écran physique par RA. Le visiocasque de RA affiche un écran virtuel placé automatiquement autour de l'écran physique, sur le même plan que lui ; les affichages des deux écrans synchronisés, l'utilisateur peut alors voir et interagir comme s'il s'aggissait d'un seul écran étendu. Cette technique peut ainsi être appliquée pour tout type d'écran, incluant ceux des ordinateurs, les télévisions ou les affichages muraux. Nous travaillons cependant seulement avec l'aggrandissement de l'écran d'un téléphone intelligent dans ce mémoire. Nous avons tout d'abord identifié quelques applications potentielles et des techniques d'interactions possibles.
+Un VESAD est une technique d'aggrandissement d'un écran physique par RA. Le visiocasque de RA affiche un écran virtuel placé automatiquement autour de l'écran physique, sur le même plan que lui ; les affichages des deux écrans synchronisés, l'utilisateur peut alors voir et interagir comme s'il s'aggissait d'un seul écran étendu. Cette technique peut ainsi être appliquée pour tout type d'écran, incluant ceux des ordinateurs, les télévisions ou les affichages muraux. Nous travaillons cependant seulement avec l'aggrandissement de l'écran d'un téléphone intelligent dans ce mémoire. Notre premier sous-problème est de concevoir cette IHM : nous décrivons donc quelques applications et techniques d'interactions potentielles.
 
-Nous situons notre concept par rapport au cadre de conception de \cite{Ens2014a}.
+Nous situons également notre concept par rapport au cadre de conception proposé par \cite{Ens2014a}. Cela est pertinent car nous concevons une IHM sous forme d'une fenêtre 2D dans un environnement de RA. De plus, nous pouvons situer notre concept par rapport aux travaux entrant dans ce cadre .
+
+Notre concept est d'une certaine manière un cas particulier du Personal Cockpit : une seule fenêtre, étendue, située sur le téléphone. On peut très bien imaginer une coexistence des deux designs : des fenêtres autour de soi, dans des espaces de travail (comme le propose hololens), et d'autres liées à notre téléphone qu'on peut porter avec soi.
+
+Notre concept est également dans la continuité de la condition \condition{Smartwatch referenced} de MultiFi \citep{Grubert2015} où une montre intelligente est étendue par un visiocasque de RA.
 
 \section{Applications potentielles}
 \label{sec:concept_applications}
@@ -26,7 +30,7 @@ For example, the phone and VESAD could display multiple phone-sized screen-fulls
 \figureLayoutETS{HandheldVESADApp}{%
   \subfigureETS{HandheldVESADApps.jpg}{Plusieurs applications affichées dans des fenêtres différentes sur l'écran virtuel en parallèle à celle sur l'écran physique.}%
   \figurehspace%
-  \subfigureETS{HandheldVESADApps2.jpg}{Une rotation de la main permet de rapidement changer l'application sur l'écran physique.}%
+  \subfigureETS{HandheldVESADApps2.jpg}{Wrist : une rotation de la main permet de rapidement changer l'application sur l'écran physique.}%
 }{
   Photomontages d'un VESAD en vue multi-fenêtres, où de multiples applications se partagent l'écran étendu.
 }
@@ -68,21 +72,22 @@ Copier/coller : zone en bas de l'écran tactile
 \section{Techniques d'interactions}
 \label{sec:concept_interaction_techniques}
 
-Plusieurs types d'interactions possibles tirées de la RL :
+Une de nos questions de recherche \autorefp{sec:research_problem} est quelle technique d'interaction est la plus adaptée pour un téléphone étendu par un VESAD. On peut en effet penser à différentes techniques qui ont été explorées dans la littérature pour interagir dans avec telle IHM :
+
 \begin{itemize}
-  \item toucher le contenu directement avec une main virtuelle (leap motion en RV)
-  \item pointeur virtuel (à la hololens) avec gestes
-  \item interactions avec le cell (d'une certaine manière ce que font ARKit et ARCore)
-  \item commandes vocales
+  \item Pointer directement le contenu avec une main virtuelle, utilisé par le Personal Cockpit \cite{Ens2014} et exploré par \cite{Piumsomboon2013}.
+  \item Utiliser l'écran tactile du téléphone, comme dans la condition \condition{Smartwatch referenced} de MultiFi \citep{Grubert2015} ou dans une application ARCore ou ARKit.
+  \item Utiliser un pointeur virtuel et des gestes de sélection \cite{Wilson2006}, comme sur un Microsoft HoloLens.
+  \item Via des commandes vocales, évaluées par \cite{Piumsomboon2014}.
 \end{itemize}
-
-+ deux techniques : wrist et slide to hang
-
-We envision the VESAD normally following the phone and remaining co-planar to it. However, a simple wrist motion could be useful for quickly changing the orientation of the phone, triggering a temporary change in the VESAD's output, switching to another view. \reffigureETS{HandheldVESADApp} shows the user flipping the phone $\approx$\ang{90} around a vertical axis to switch from a map view to alternative apps and launcher icons. The wrist motion could be detected by the phone's inertial measurement unit (IMU), or be triggered by the angle between the phone's screen and the HMD's forward vector, and may depend on where the user is looking (e.g., a user looking away from the phone may be trying to avoid occlusion from a VESAD).
+\bigskip
 
 \figureETS{HandheldVESADSlideToHang.jpg}{
-  A \texten{slide-to-hang} feature, allowing the user to slide the app in the phone toward the right, causing it to become suspended in 3D and detached from the phone, as if hanging in space. On the left, the user first slides out a webpage, then on the right, the user slides out a video player. This feature would allow a user to position apps around them in 3D, or onto physical surfaces such as walls and tables (mock-up).
+  Un geste Slide to Hang permet à un utilisateur de détacher une application de l'écran étendu pour la fixer en l'air, contre une surface ou relativement à son corps. Dans ce photomontage, un utilisateur détache dans un premier temps une page web en l'air, puis un lecteur vidéo.
 }
 
-Déplacer du contenu entre l'écran tactile et l'ecran étendu (comme une application)
-A strength of the VESAD is that it implicitly follows the phone, remaining close to the user. However, in some cases, the user may want to \texten{pin} virtual windows to a wall, a table, or suspend them in midair. We propose allowing the user to detach a VESAD from their phone and suspend it in a fixed position in world space. \reffigureETS{HandheldVESADSlideToHang.jpg} shows how a \texten{slide-to-hang} gesture could be used to convert two VESADs into such virtual windows. This gesture might be done with the phone on or near a wall or table, to \texten{pin} windows there. It might also be done around a user's current position, to surround themself with windows suspended in 3D. Note that the HoloLens allows users to pin windows to flat surfaces and then subsequently reposition or rotate them, which requires several actions. By comparison, our proposed \texten{slide-to-hang} gesture establishes the position, orientation, and detaching of a virtual window in a single action.
+En outre, nous présentons deux nouvelles techniques d'interactions pour notre IHM :
+\begin{enumerate}
+  \item Wrist : un mouvement de la main tenant le téléphone permet de changer rapidement l'affichage sur l'écran physique. La \reffigureETS{HandheldVESADApps2.jpg} montre par exemple l'utilisateur tournant son téléphone à \ang{90} environ vers la droite pour changer l'application affichée sur l'écran physique. Un pointeur virtuel suivant le regard ou la tête de l'utilisateur permettrait de choisir l'application sur l'ecran virtuel à utiliser, par exemple parmi une liste d'icônes d'applications.
+  \item Slide to Hang : un geste de glissement permet de détacher une fenêtre de l'écran étendu et la fixer en l'air. La \reffigureETS{HandheldVESADSlideToHang.jpg} montre l'utilisateur faisant un geste de glissement (\texten{slide} en anglais) sur le téléphone pour fixer en l'air la fenêtre qui y est affichée. La fenêtre peut être alors placée à un endroit fixe sur un mur ou en l'air, comme avec le Microsoft HoloLens, ou relativement à son propre corps, comme dans le Personal Cockpit \cite{Ens2014}. Ce geste de glissement peut se faire avec deux doigts simultanément sur le téléphone pour distinguer d'actions faites sur l'application, ou avec la main entière dans l'écran virtuel. Un geste de la fenêtre fixée vers l'écran étendu permettrait de la ramener relative au téléphone.
+\end{enumerate}
