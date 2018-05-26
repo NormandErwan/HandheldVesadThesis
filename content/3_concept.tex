@@ -4,13 +4,43 @@
 \section{Présentation}
 \label{sec:concept_introduction}
 
-Un VESAD est une technique d'aggrandissement d'un écran physique par RA. Le visiocasque de RA affiche un écran virtuel placé automatiquement autour de l'écran physique, sur le même plan que lui ; les affichages des deux écrans synchronisés, l'utilisateur peut alors voir et interagir comme s'il s'aggissait d'un seul écran étendu. Cette technique peut ainsi être appliquée pour tout type d'écran, incluant ceux des ordinateurs, les télévisions ou les affichages muraux. Nous travaillons cependant seulement avec l'aggrandissement de l'écran d'un téléphone intelligent dans ce mémoire. Notre premier sous-problème est de concevoir cette IHM : nous décrivons donc quelques applications et techniques d'interactions potentielles.
-
-Nous situons également notre concept par rapport au cadre de conception proposé par \cite{Ens2014a}. Cela est pertinent car nous concevons une IHM sous forme d'une fenêtre 2D dans un environnement de RA. De plus, nous pouvons situer notre concept par rapport aux travaux entrant dans ce cadre .
+Un VESAD est une technique d'aggrandissement d'un écran physique par RA : un visiocasque de RA affiche un écran virtuel placé automatiquement autour d'écran physique que l'on souhaite étendre, sur le même plan que lui ; les deux écrans étant synchronisés, l'utilisateur peut alors voir et interagir avec comme s'il s'aggissait d'un seul écran étendu. Cette technique peut ainsi être appliquée pour tout type d'écran, incluant ceux des ordinateurs, les télévisions ou les affichages muraux. Nous travaillons cependant seulement avec l'aggrandissement de l'écran d'un téléphone intelligent dans ce mémoire. Notre premier sous-problème est de concevoir l'IHM d'un VESAD sur un téléphone : nous décrivons donc quelques applications et techniques d'interactions potentielles de ce concept.
 
 Notre concept est d'une certaine manière un cas particulier du Personal Cockpit : une seule fenêtre, étendue, située sur le téléphone. On peut très bien imaginer une coexistence des deux designs : des fenêtres autour de soi, dans des espaces de travail (comme le propose hololens), et d'autres liées à notre téléphone qu'on peut porter avec soi.
 
 Notre concept est également dans la continuité de la condition \condition{Smartwatch referenced} de MultiFi \citep{Grubert2015} où une montre intelligente est étendue par un visiocasque de RA.
+
+Enfin, nous situons notre concept par rapport au cadre de conception proposé par \cite{Ens2014a}. Cela est pertinent car nous concevons une IHM sous forme d'une fenêtre 2D dans un environnement de RA. De plus, nous pouvons situer notre concept par rapport aux travaux entrant dans ce cadre .
+
+\figureLayoutETS{HandheldVESADApp}{%
+  \begin{tikzpicture}[font=\footnotesize] 
+    \draw [thick] (-0.5,-1.25) -- (-0.5,-1.5) -- (1,-1.5) node [below] {\small Cadre de référence} -- (2.5,-1.5) -- (2.5,-1.25) ;
+    \draw [thick, <->] (0,0) node [below, align=center] {Egocentrique\\\textbf{Perspective}} -- (0,4) node [above] {Exocentrique} ;
+    \draw [thick, <->] (2,0) node [below, align=center] {Mobile\\\textbf{Mobilité}} -- (2,4) node [above] {Fixe} ;
+
+    \draw [thick] (3.5,-1.25) -- (3.5,-1.5) -- (6,-1.5) node [below] {\small Manipulation Spatiale} -- (8.5,-1.5) -- (8.5,-1.25) ;
+    \draw [thick, <->] (4,0) node [below, align=center] {Lointain\\\textbf{Proximité}} -- (4,4) node [above, align=center] {Sur le\\corps} ;
+    \draw [thick] (3.8,2) -- (4,2) node [below right] {Proche} -- (4.2,2) ;
+    \draw [thick, <->] (6,0) node [below, align=center] {Direct\\\textbf{Mode}\\\textbf{d'entrée}} -- (6,4) node [above] {Indirect} ;
+    \draw [thick, <->] (8,0) node [below, align=center] {Tangible\\\textbf{Tangibilité}} -- (8,4) node [above] {Intangible} ;
+
+    \draw [thick] (9.5,-1.25) -- (9.5,-1.5) -- (11,-1.5) node [below] {\small Organisation Spatiale} -- (12.5,-1.5) -- (12.5,-1.25) ;
+    \draw [thick, <->] (10,0) node [below, align=center] {Haute\\\textbf{Visibilité}} -- (10,4) node [above] {Basse} ;
+    \draw [thick] (9.8,2) -- (10,2) node [below] {Intermédiaire} -- (10.2,2) ;
+    \draw [thick, <->] (12,0) node [below, align=center] {Continu\\\textbf{Discrétisation}} -- (12,4) node [above] {Discret} ;
+
+    \draw [draw=purple, fill=purple] (0,0.3) circle [radius=0.15] ;
+    \draw [draw=purple, fill=purple] (2,0.3) circle [radius=0.15] ;
+    \draw [draw=purple, fill=purple] (4,2) circle [radius=0.15] ;
+    \draw [draw=purple, fill=purple] (10,0.3) circle [radius=0.15] ;
+    \draw [draw=purple, fill=purple] (12,0.3) circle [radius=0.15] ;
+    \draw [purple, line width=0.2cm, opacity=0.5] (0,0.3) -- (2,0.3) -- (4,2) ;
+    \draw [purple, line width=0.2cm, opacity=0.5] (10,0.3) -- (12,0.3);
+  \end{tikzpicture}%
+}{
+  Application du cadre de conception \texten{Ethereal Planes} à notre concept de téléphone à affichage étendu.
+}
+
 
 \section{Applications potentielles}
 \label{sec:concept_applications}
