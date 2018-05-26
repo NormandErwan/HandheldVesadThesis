@@ -10,13 +10,13 @@
 \subsubsection{Motivations}
 Comme le téléphone et les écrans ont des basses résolutions et comme les techniques d'interactions sont peu maitrisées en IHM pour la RA/3D \citep{Piumsomboon2013}, il nous faut des tâches les plus fondamentales possibles : pointage et compréhension. Il faut pouvoir zoomer et naviguer pour compléter une tâche plus rapidement que si on avait le téléphone seul.
 
-Several tasks could have been used for such an experiment. We considered performing a Fitts-style pointing task \cite{soukoreff2004} where the user must navigate to different targets and select them; interpreting a map of a road network \cite{baudisch2002} or circuit diagram to find connections or pathways; performing a primary task on the phone's screen while also responding to notifications from other apps that are \texten{outside} the main display area; or implementing a multi-tasking scenario where the user must switch between, and interact with, several apps \cite{ens2014cockpit}. Finally, we decided to use the classification task used by Liu et al. \cite{liu2014}, where users must categorize items by moving them into containers. This task is more realistic than a pure pointing task (but also includes pointing as a subtask); it cannot be automated like path-finding in a road network could be; and it is easier to implement and easier to control than a multi-tasking scenario with many apps.
+Several tasks could have been used for such an experiment. We considered performing a Fitts-style pointing task \citep{Soukoreff2004} where the user must navigate to different targets and select them; interpreting a map of a road network \citep{Baudisch2002} or circuit diagram to find connections or pathways; performing a primary task on the phone's screen while also responding to notifications from other apps that are \texten{outside} the main display area; or implementing a multi-tasking scenario where the user must switch between, and interact with, several apps \citep{Ens2014}. Finally, we decided to use the classification task used by \cite{Liu2014}, where users must categorize items by moving them into containers. This task is more realistic than a pure pointing task (but also includes pointing as a subtask); it cannot be automated like path-finding in a road network could be; and it is easier to implement and easier to control than a multi-tasking scenario with many apps.
 
-\figureETS{TaskGrid.jpg}{
-  La grille de notre tâche expérimentale au début d'un essai dans la condition \variable{Text}=\condition{Grand}.
+\figureETS[0.5]{TaskGrid.png}{
+  La grille de notre tâche expérimentale au début d'un essai dans la condition \variable{TAILLE}=\condition{Grand}.
 }
 
-Liu et al.'s classification task requires users to group abstract items of the same type by moving items into containers with matching items. At the start of each trial, the user is presented with a grid like the one in \reffigureETS{TaskGrid.jpg}, where a small number of items are mis-classified and highlighted in red. The user must move these red items into their correct containers (i.e., into containers that contain a majority of matching items) to complete the trial. In a real-world scenario, the judgment of which items actually match could correspond to any criterion evaluated by the user, and could require the user to zoom in on each item to examine it in detail. This is operationalized in the experimental task by labeling each item with a small single-letter label, and by requiring users to group together items with the same label. Furthermore, to focus the task on correctly categorizing items, any mis-classified items are highlighted in red. In a real-world scenario, such highlighting would of course be absent, however having it in the experiment reduces the variance of measured variables within each condition, increasing statistical power. Our experiment investigates (1) whether the VESAD provides any advantage over displaying output only on a phone, and (2) whether it is better to have input only on the phone, or to perform input in mid-air on the VESAD's plane. Input on the phone has the advantage that the physical surface of the phone stabilizes the finger, making input more precise, enabling reliable detection of touch events, and where the Fitts' index of performance is theoretically higher because the fingers, rather than the arms, are involved. However, mid-air input is more direct, possibly more intuitive, and may benefit from the user performing coordinated, simultaneous motions of both arms (e.g., moving hands in opposite directions so that the non-dominant hand \texten{pulls} a target closer to the dominant hand that is reaching toward the target).
+\citeauthor{Liu2014}'s classification task requires users to group abstract items of the same type by moving items into containers with matching items. At the start of each trial, the user is presented with a grid like the one in \reffigureETS{TaskGrid.png}, where a small number of items are mis-classified and highlighted in red. The user must move these red items into their correct containers (i.e., into containers that contain a majority of matching items) to complete the trial. In a real-world scenario, the judgment of which items actually match could correspond to any criterion evaluated by the user, and could require the user to zoom in on each item to examine it in detail. This is operationalized in the experimental task by labeling each item with a small single-letter label, and by requiring users to group together items with the same label. Furthermore, to focus the task on correctly categorizing items, any mis-classified items are highlighted in red. In a real-world scenario, such highlighting would of course be absent, however having it in the experiment reduces the variance of measured variables within each condition, increasing statistical power. Our experiment investigates (1) whether the VESAD provides any advantage over displaying output only on a phone, and (2) whether it is better to have input only on the phone, or to perform input in mid-air on the VESAD's plane. Input on the phone has the advantage that the physical surface of the phone stabilizes the finger, making input more precise, enabling reliable detection of touch events, and where the Fitts' index of performance is theoretically higher because the fingers, rather than the arms, are involved. However, mid-air input is more direct, possibly more intuitive, and may benefit from the user performing coordinated, simultaneous motions of both arms (e.g., moving hands in opposite directions so that the non-dominant hand \texten{pulls} a target closer to the dominant hand that is reaching toward the target).
 
 Eux le text size esr vraiment lié à la tâche (les infos de l'item pour decider de le classer). Plus capacité grille limité : tache d'allocation de ressource. Tâche de classification.
 Nous on veut juste une tâche simple de navigation et de pointage (target acquisition). Donc tâche de classification très bien. En plus celle la a montré que bonne pour comparer des tailles de display. + on est intéressés par l'utilisation des techniques de pan et zoom pour les deux display (phone only, phone+ar)
@@ -34,11 +34,11 @@ On a pas gardé le difficulty : une lettre par cellule de la grille. mais gardé
   La grille de notre tâche expérimentale pour les techniques (variable indépendante \variable{TECHNIQUE}).
 }
 
-Our grid was a $3 \times 5$ matrix of rectangular containers \reffigureETSp{TaskGrid.jpg}. Each container holds a maximum of 6 circular items. The grid contents are randomly generated each time a trial begins: Each container is assigned 5 items (of which at least 4 have matching labels), and 5 items in the grid are initially in the wrong container. There are 15 containers $\times$ 5 items/container = 75 items in the entire grid.
+Our grid was a $3 \times 5$ matrix of rectangular containers \reffigureETSp{TaskGrid.png}. Each container holds a maximum of 6 circular items. The grid contents are randomly generated each time a trial begins: Each container is assigned 5 items (of which at least 4 have matching labels), and 5 items in the grid are initially in the wrong container. There are 15 containers $\times$ 5 items/container = 75 items in the entire grid.
 
 A unique single-letter label, from A to O, is assigned to each container and its correctly-classified items. Each item can be correctly classified in only one container. The label of an item is displayed at its center. To simplify the searching subtask, similarly to Liu et al., we colored correctly classified items in green, mis-classified items in red, and the currently selected item in blue \reffigureETSp{ExperimentTechniques}. To know the label associated with a container, one must read the letter of any green item in the container.
 
-The goal of the task is to classify all the red items in their matching container to \textquote{make everything green} \cite{liu2014}.
+The goal of the task is to classify all the red items in their matching container to \textquote{make everything green} \citep{Liu2014}.
 
 L'expérience a demandé un long effort de conception et de développement de quatre mois. Le code source du projet est donc disponible en ligne, pour pouvoir être reproduit ou réutilisé au besoin, sous la license libre MIT, à l'adresse suivante : \url{https://github.com/NormandErwan/master-thesis-experiment}.
 
@@ -54,25 +54,16 @@ Our experiment manipulated the following independent variables:
  \item The average \variable{DISTANCE} between initially mis-classified items and their matching containers could be \condition{Proche} or \condition{Loin}.
 \end{itemize}
 
-The \variable{TECHNIQUE}, \variable{DISTANCE}, and \variable{TAILLE} variables were all within subjects (i.e. each user experienced all levels of each of these variables). Since \variable{TECHNIQUE} was the main variable of interest, the order of techniques was counterbalanced with a 3$\times$3 Latin square. \variable{DISTANCE} and \variable{TAILLE} had a fixed ordering from easier to more difficult. In total, there were 12 participants $\times$ 3 techniques $\times$ 2 distances $\times$ 2 text sizes $\times$ 2 repetitions = 288 trials.
+The \variable{TECHNIQUE}, \variable{DISTANCE}, and \variable{TAILLE} variables were all within subjects (i.e. each user experienced all levels of each of these variables). Since \variable{TECHNIQUE} was the main variable of interest, the order of techniques was counterbalanced with a $3 \times 3$ Latin square. \variable{DISTANCE} and \variable{TAILLE} had a fixed ordering from easier to more difficult. In total, there were 12 participants $\times$ 3 techniques $\times$ 2 distances $\times$ 2 text sizes $\times$ 2 repetitions = 288 trials.
 
-The \Ordering of techniques was an additional independent variable with 3 levels, and was of course between subjects (i.e., each user only experienced one ordering of the Latin square).
+The \variable{GROUPE} of techniques was an additional independent variable with 3 levels, and was of course between subjects (i.e., each user only experienced one ordering of the Latin square).
 
 In all conditions of the experiment, the user wears the same AR headset, to maintain the same weight and visual latency across conditions, even when the user does not benefit from any augmented reality feedback.
 
-Task difficulty is controlled with the \variable{TAILLE} and \variable{DISTANCE} factors.
-At the start of each trial, the grid is zoomed such that
-each container has the size of the phone screen (\SI{68x121}{\mm}), and the diameter of items is half of a container's width (\SI{34x34}{\mm}).
-The font size of the item's letter is \SI{12}{\pt} (\SI{4.22x4.22}{\mm}, \SI{12}{\percent} of the item diameter) for the \condition{Grand} text condition, and \SI{10}{\pt} (\SI{3.51x3.51}{\mm}, \SI{10}{\percent} of the item diameter) for the \condition{Petit} text condition.
-(Assuming the viewing distance of 13.4 inches stated in Section~\ref{sec:implementation},
-this means that each letter of \condition{Grand} text was \SI{6.6}{\px} high when viewed through the headset, if the grid was zoomed such that one container filled the phone's screen).
-We generated random initial layouts and chose ones who distances matched the conditions reported by Liu et al. \cite{liu2014}: the average distance (measured in containers)
-%\footnote{We use Euclidean distance, where one unit is the size of a container. Therefore there is a distance of 1 between two adjacent containers.} % TODO c'est la même chose que Liu et al. ont écrit, mais je trouve leur description ambigue, car leurs containers (et les nôtres) ne sont pas des carrés, donc la distance verticale et horizontale ne me semble pas avoir la même échelle. Donc, dans notre experience, est-ce que les unités de distance sont des largeurs ou des hauteurs de un container? -> Oui ce sont des largeurs des containers sur l'axe x et des hauteurs de containers sur l'axe y
+Task difficulty is controlled with the \variable{TAILLE} and \variable{DISTANCE} factors. At the start of each trial, the grid is zoomed such that each container has the size of the phone screen (\SI{68x121}{\mm}), and the diameter of items is half of a container's width (\SI{34x34}{\mm}). The font size of the item's letter is \SI{12}{\pt} (\SI{4.22x4.22}{\mm}, \SI{12}{\percent} of the item diameter) for the \condition{Grand} text condition, and \SI{10}{\pt} (\SI{3.51x3.51}{\mm}, \SI{10}{\percent} of the item diameter) for the \condition{Petit} text condition. (Assuming the viewing distance of 13.4 inches stated in \autoref{ch:methodology}, this means that each letter of \condition{Grand} text was \SI{6.6}{\px} high when viewed through the headset, if the grid was zoomed such that one ontainer filled the phone's screen). We generated random initial layouts and chose ones who distances matched the conditions reported by \cite{Liu2014}: the average distance (measured in containers) \footnote{We use Euclidean distance, where one unit is the size of a container. Therefore there is a distance of 1 between two adjacent containers.} % TODO c'est la même chose que Liu et al. ont écrit, mais je trouve leur description ambigue, car leurs containers (et les nôtres) ne sont pas des carrés, donc la distance verticale et horizontale ne me semble pas avoir la même échelle. Donc, dans notre experience, est-ce que les unités de distance sont des largeurs ou des hauteurs de un container? -> Oui ce sont des largeurs des containers sur l'axe x et des hauteurs de containers sur l'axe y
 between a mis-classified item and its container is between 1.25 and 1.45 for the \condition{Proche} distance condition and between 2.5 and 2.7 for the \condition{Loin} distance condition.
 
-A pilot study with 3 users involved a larger number of initially mis-classified items as well as smaller text labels, however this proved to be excessively difficult
-and time consuming for users, especially in the \condition{VESAD} condition.
-The smaller text size was thus increased, and the number of mis-classified items reduced to 5 items per trial, so that users could complete the entire experiment in under one hour. % , while still ensuring that zoom operations would be necessary in all conditions.  OLD_ARGUMENT_ABOUT_AVOIDING_BIAS_AGAINST_PHONE
+A pilot study with 3 users involved a larger number of initially mis-classified items as well as smaller text labels, however this proved to be excessively difficult and time consuming for users, especially in the \condition{VESAD} condition. The smaller text size was thus increased, and the number of mis-classified items reduced to 5 items per trial, so that users could complete the entire experiment in under one hour. % , while still ensuring that zoom operations would be necessary in all conditions. OLD_ARGUMENT_ABOUT_AVOIDING_BIAS_AGAINST_PHONE
 
 On pourrait faire une taxonomie des INPUT (PhoneTouch, MidAirTouch) et OUTPUT (PhoneOnly, ExtendedPhone) mais certains sont absurdes donc combiner en une variable à trois modalités (TECHNIQUE). Après, cela reste utile pour les analyses : les deux inputs en versus et les deux outputs en versus.
 
@@ -97,12 +88,20 @@ Plan multifactoriel, quasi complet, avec trois variables indépendantes que nous
 \end{itemize}
 
 TODO tableau
-+ \variable{ORDRE} : 3 groupes indépendants qui passent à travers toutes les modalités des trois autres VIs. En carré latin
-\begin{enumerate}
-  \item PhoneOnlyFirst
-  \item PhoneInArOutFirst
-  \item LeapInArOutFirst
-\end{enumerate}
++ \variable{GROUPE} : 3 groupes indépendants qui passent à travers toutes les modalités des trois autres VIs. En carré latin
+\begin{tableETS}{tab:expermient_groups}{Ordre de passage des différentes techniques suivant un carré latin des trois groupes indépendants}
+  \begin{tabular}{| C{3.5cm} | C{3.25cm} | C{3.25cm} | C{3cm} |}
+    \hline
+    \textbf{Groupe} & \textbf{Technique 1} & \textbf{Technique 2} & \textbf{Technique 3}\\
+    \hline
+    1 & \condition{Téléphone} & \condition{VESAD tactile} & \condition{VESAD} \\
+    \hline
+    2 & \condition{VESAD tactile} & \condition{VESAD} & \condition{Téléphone} \\
+    \hline
+    3 & \condition{VESAD} & \condition{Téléphone} & \condition{VESAD tactile} \\
+    \hline
+  \end{tabular}
+\end{tableETS}
 
 Ainsi, chaque participants rencontre toutes les conditions expérimentales mais dans un ordre différent. En effet cela peut-être fatigant de faire tous les essais + effet d'apprentissage entre chaque essai, donc balancé le facteur principal \variable{TECHNIQUE}. Cependant les participants ont été divisés en trois groupes : un tiers d'entre eux ont commencé par la première technique, un deuxième tiers par la deuxième technique et le dernier tiers par la troisième technique. L'ordre de passage est cependant le même pour les trois groupes : \condition{VESAD tactile} après \condition{Téléphone}, \condition{VESAD} après \condition{VESAD tactile}, \condition{Téléphone} après \condition{VESAD}. On justifie d'avoir varié juste la technique de départ car on suppose que la découverte et l'apprentissage de la tâche se fait surtout sur cette première technique, ensuite moins ; versus avoir à recruter $3! \times 4 = 24$ participants.
 
@@ -124,7 +123,7 @@ Each trial required the user to correctly classify all 5 items that were initial
 
 With the \condition{Téléphone} and \condition{VESAD tactile} techniques, selecting an item or a container was done with a tap on the phone's screen that had to last less than \SI{500}{\ms}; panning was done by pressing and dragging a single finger; and zooming was done with two fingers using the status quo pinch-to-zoom gesture.
 
-With \PhoneInArOut, the user directly pointed at targets, but this could only be done on the portion of the grid visible within the phone's screen. To select a target item or target container outside the phone's screen, the user first had to pan the target into the phone's screen (or zoom out enough to make the target visible on the phone's screen).
+With \condition{VESAD tactile}, the user directly pointed at targets, but this could only be done on the portion of the grid visible within the phone's screen. To select a target item or target container outside the phone's screen, the user first had to pan the target into the phone's screen (or zoom out enough to make the target visible on the phone's screen).
 
 In all techniques, panning responded with a 1:1 gain, as if the grid was a sheet of paper moving under the friction of the finger tip.
 
@@ -143,7 +142,7 @@ Pourquoi on teste l'interaction directe et pas mid-air interaction : c'est lent 
 Grasp-Shell vs Gesture-Speech: A comparison of direct and indirect natural interaction
 techniques in Augmented Reality \url{https://ir.canterbury.ac.nz/bitstream/handle/10092/11090/12652683_paper138-cr.pdf?sequence=1}
 Lee2013 : Augmented Reality systems exploit the cognitive benefits of co-locating 3D visualizations with direct input in a real environment, using optical combiners [8, 6, 5]. This makes it possible to enable unencumbered 3D input to directly interact with situated 3D graphics in mid-air [5, 9]. -> 5 ref HoloDesk : defense au mid-air pour dire que naturel colocate display et input, interagir directement avec des affichages 3D en l'air (comme sur un écran tactile)
-Cite \cite{chan2010} as justification for the projected finger position on the plane
+Cite \cite{Chan2010} as justification for the projected finger position on the plane
 
 Aussi justification for why we won’t be doing experimental comparison with ray cast (INPUT: RayCast): because Leap Motion and HoloLens require your hand to be visible, not pulled back, so ray cast selection wouldn’t help the user avoid fatigue
 
@@ -198,48 +197,48 @@ Post-questionnaire, inspiré du NASA TLX (enlevé charge physique, mais ajouté 
 
 \subsubsection{Temps de complétion}
 \label{subsubsec:experiment_results_time}
-Task Completion Time (\TCT) was analyzed with ANOVA, which found a significant effect due to \variable{TECHNIQUE} ($F=49.9$, $p < 0.0001$), but no effect due to \variable{DISTANCE}, \variable{TAILLE}, nor \Ordering ($p > 0.05$). There were, however, significant interactions involving \variable{TAILLE} $\times$ \variable{DISTANCE} ($F=4.06$, $p < 0.05$) and \variable{TECHNIQUE} $\times$ \variable{TAILLE} $\times$ \variable{DISTANCE} ($F=3.38$, $p < 0.05$) \reffigureETSp{TCT}.
+Task Completion Time was analyzed with ANOVA, which found a significant effect due to \variable{TECHNIQUE} ($F=49.9$, $p < 0.0001$), but no effect due to \variable{DISTANCE}, \variable{TAILLE}, nor \variable{GROUPE} ($p > 0.05$). There were, however, significant interactions involving \variable{TAILLE} $\times$ \variable{DISTANCE} ($F=4.06$, $p < 0.05$) and \variable{TECHNIQUE} $\times$ \variable{TAILLE} $\times$ \variable{DISTANCE} ($F=3.38$, $p < 0.05$) \reffigureETSp{TCT}.
 
 ANOVA :
 - les groupes sont indépendants : chaque essai est généré aléatoirement. Cependant effet d'apprentissage des participants ?
 - tester la normalité des groupes : on peut simplement analyser la normalité des résidus avec un test de shapiro wilk
-- on a pas besoin de tester l'homogénéité de la variance : la méthode est robuste si les groupes sont de même taille (ce qui est vrai) et qu'il y a 30 ou plus valeurs testeés par groupe
+- on a pas besoin de tester l'homogénéité de la variance : la méthode est robuste si les groupes sont de même taille (ce qui est vrai) et qu'il y a 30 ou plus valeurs testées par groupe
 
-\figureLayoutETS{TCT}{%
-  \subfigureETS{tct.png}{En fonction de la technique.}%
-  \figurehspace%
-  \subfigureETS{tct_2.png}{En fonction de la technique, la taille du texte et la distance.}%
-}{
-  Temps de complétion moyens par essai pour différentes conditions (les barres d'erreurs montrent l'intervalle de confiance à 95\%).
+\figureETS[0.5]{tct.png}{
+  Temps de complétion moyens par essai pour chaque \variable{TECHNIQUE} (les barres d'erreurs montrent l'intervalle de confiance à 95\%).
 }
 
-A pairwise t-test (with Benjamini-Hochberg correction) compared the \TCT for the 3 techniques, and found them to all be significantly different from each other ($p < 0.0001$ for all pairs). The fastest technique is \PhoneInArOut, which is 22 seconds or 33\% faster than \PhoneOnly, which is itself 50 seconds or 36\% faster than \MidAirInArOut.
+\figureETS[0.9]{tct_2.png}{
+  Temps de complétion moyens par essai pour chaque condition \variable{TECHNIQUE} $\times$ \variable{TAILLE} $\times$ \variable{DISTANCE} (les barres d'erreurs montrent l'intervalle de confiance à 95\%).
+}
+
+A pairwise t-test (with Benjamini-Hochberg correction) compared the TCT for the 3 techniques, and found them to all be significantly different from each other ($p < 0.0001$ for all pairs). The fastest technique is \condition{VESAD tactile}, which is 22 seconds or 33\% faster than \condition{Téléphone}, which is itself 50 seconds or 36\% faster than \condition{VESAD}.
 
 \subsubsection{Taux d'erreur}
 \label{subsubsec:experiment_results_errors}
-Two kinds of mistakes could happen during trials. First, a user could select an item and attempt to drop it in an incorrect container. This was counted toward the number of \Errors for the trial. Second, a user could select one item, and while searching for the container to drop it in, they might decide to select a different item (possibly because they forgot the letter of the first item), causing their previous selection to be canceled. This was not counted toward \Errors, but was counted toward the total number of \Selections. Because there were 5 mis-classified items to move during each trial, \Selections was at least 5 in each trial, and in general, \Selections = 5 + \Errors + (number of times the user canceled a selection). Hence, \Errors is a more conservative measure of classification errors, whereas \Selections includes both kinds of mistakes.
+Two kinds of mistakes could happen during trials. First, a user could select an item and attempt to drop it in an incorrect container. This was counted toward the number of errors for the trial. Second, a user could select one item, and while searching for the container to drop it in, they might decide to select a different item (possibly because they forgot the letter of the first item), causing their previous selection to be canceled. This was not counted toward errors, but was counted toward the total number of selections. Because there were 5 mis-classified items to move during each trial, selections was at least 5 in each trial, and in general, selections = 5 + errors + (number of times the user canceled a selection). Hence, errors is a more conservative measure of classification errors, whereas selections includes both kinds of mistakes.
 
-\reffigureETS{Errors} shows both \Selections and \Errors, which were analyzed using Kruskal-Wallis tests (with Benjamini-Hochberg correction) to check for effects due to \variable{TECHNIQUE}, \variable{TAILLE}, \variable{DISTANCE}, and \Ordering. We found that \variable{TECHNIQUE} ($p < 0.001$) and \Ordering ($p < 0.001$) had significant effects on \Selections, but \variable{TAILLE} and \variable{DISTANCE} did not. When analyzing \Errors, we found that \Ordering ($p<0.05$) still had a significant effect, but that \variable{TECHNIQUE} ($p<0.08$) had only a moderately significant effect.
+\reffigureETS{Errors} shows both selections and errors, which were analyzed using Kruskal-Wallis tests (with Benjamini-Hochberg correction) to check for effects due to \variable{TECHNIQUE}, \variable{TAILLE}, \variable{DISTANCE}, and \variable{GROUPE}. We found that \variable{TECHNIQUE} ($p < 0.001$) and \variable{GROUPE} ($p < 0.001$) had significant effects on selections, but \variable{TAILLE} and \variable{DISTANCE} did not. When analyzing errors, we found that \variable{GROUPE} ($p<0.05$) still had a significant effect, but that \variable{TECHNIQUE} ($p<0.08$) had only a moderately significant effect.
 
 \figureLayoutETS{Errors}{%
-  \subfigureETS{selections.png}{Nombre moyen d'éléments sélectionnés.}%
+  \subfigureETS[0.25]{selections.png}{Nombre moyen d'éléments sélectionnés.}%
   \figurehspace%
-  \subfigureETS{errors.png}{Nombre moyen d'erreurs.}%
+  \subfigureETS[0.25]{errors.png}{Nombre moyen d'erreurs.}%
 }{
   Erreurs moyennes par essai pour chaque technique (les barres d'erreurs montrent l'intervalle de confiance à 95\%).
 }
 
-To further analyze the effect of \variable{TECHNIQUE} on \Selections, we used a Mann-Whitney U test (with Benjamini-Hochberg correction). This found that all 3 techniques produced significantly different \Selections ($p < 0.05$ for all three pairs of techniques), with \condition{VESAD tactile} the best of the techniques.
+To further analyze the effect of \variable{TECHNIQUE} on selections, we used a Mann-Whitney U test (with Benjamini-Hochberg correction). This found that all 3 techniques produced significantly different selections ($p < 0.05$ for all three pairs of techniques), with \condition{VESAD tactile} the best of the techniques.
 
-\figureETS{selections_errors_distributions.png}{
+\figureETS[0.8]{selections_errors_distributions.png}{
   Distributions du nombre de sélections et d'erreurs pour chaque essai.
 }
 
-The poor performance of \condition{Téléphone} in terms of \Selections agrees with our observation that, when using \PhoneOnly, users sometimes forgot what they had selected or changed their mind during the drop operation, increasing the number of selections. At the same time, the poor performance of \condition{VESAD} in terms of \Errors agrees with our observation that, with this technique, users sometimes dropped items in the wrong container, not voluntarily but because they were too zoomed out and/or the sensing limitations of the Leap Motion made it difficult to successfully aim at targets, especially when arms were crossed (i.e., the user was trying to drop an item on the opposite side of the arm holding the phone).
+The poor performance of \condition{Téléphone} in terms of selections agrees with our observation that, when using \condition{Téléphone}, users sometimes forgot what they had selected or changed their mind during the drop operation, increasing the number of selections. At the same time, the poor performance of \condition{VESAD} in terms of errors agrees with our observation that, with this technique, users sometimes dropped items in the wrong container, not voluntarily but because they were too zoomed out and/or the sensing limitations of the Leap Motion made it difficult to successfully aim at targets, especially when arms were crossed (i.e., the user was trying to drop an item on the opposite side of the arm holding the phone).
 
-Breaking \Selections down by \Ordering \reffigureETSp{selections_ordering.png}, it appears that users committed more mistakes in the conditionvariable{Téléphone} condition when that was the first condition they experienced, suggesting that this technique was initially more prone to mistakes, possibly due to the limited screen size.
+Breaking selections down by \variable{GROUPE} \reffigureETSp{selections_ordering.png}, it appears that users committed more mistakes in the conditionvariable{Téléphone} condition when that was the first condition they experienced, suggesting that this technique was initially more prone to mistakes, possibly due to the limited screen size.
 
-\figureETS{selections_ordering.png}{
+\figureETS[0.9]{selections_ordering.png}{
   L'ordre des techniques a un effet significatif sur le nombre moyen d'éléments sélectionnés par essai.
 }
 
@@ -255,16 +254,16 @@ We similarly quantified the moments when an item was selected, in terms of time 
 We also recorded how much head motion was performed, by finding the distance moved by the head (in any direction) with respect to the phone,
 from frame to frame, and adding up all these displacements. The data are shown from \reffigureETSp{navigation_time.png} to \reffigureETSp{navigation_distance.png}.
 
-\figureETS{navigation_time.png}{
+\figureETS[0.8]{navigation_time.png}{
   The total time (per trial) spent with an item selected, or panning, or zooming. Note that these times could overlap.
 }
 
-\figureETS{navigation_distance.png}{
+\figureETS[0.9]{navigation_distance.png}{
   The total distance dragged or moved while (upper left) an item was selected, (upper right) panning, (lower left) zooming, and (lower right) total distance moved by the head with respect to the phone. All quantities are per trial.
 }
 
 A first question we consider is: how much virtual navigation (panning and zooming) versus physical navigation (moving the phone with respect to the head) was performed by users in each condition?
-% OLD_ARGUMENT_ABOUT_AVOIDING_BIAS_AGAINST_PHONE Did users perform zooming with all techniques? This question is important for the following reason. Users wore the HMD in all conditions, even the \condition{Téléphone} condition, to have the same weight on their head and the same latency in visual feedback. However, as already explained, this pixelated the phone's screen below its normal angular resolution, requiring the user to zoom more than would be necessary in the \condition{Téléphone} condition if the user were not wearing an HMD. However, if the task is difficult enough that it requires zooming with all techniques, then theoretically there is no bias against \PhoneOnly: the reduced resolution should penalize all techniques and increase the amount of zooming by an equal amount across techniques.
+% OLD_ARGUMENT_ABOUT_AVOIDING_BIAS_AGAINST_PHONE Did users perform zooming with all techniques? This question is important for the following reason. Users wore the HMD in all conditions, even the \condition{Téléphone} condition, to have the same weight on their head and the same latency in visual feedback. However, as already explained, this pixelated the phone's screen below its normal angular resolution, requiring the user to zoom more than would be necessary in the \condition{Téléphone} condition if the user were not wearing an HMD. However, if the task is difficult enough that it requires zooming with all techniques, then theoretically there is no bias against \condition{Téléphone}: the reduced resolution should penalize all techniques and increase the amount of zooming by an equal amount across techniques.
 Virtual navigation was more prominent in the first two techniques. \reffigureETSp{navigation_count.png} shows that the number of pan and zoom operations for \condition{Téléphone} and \condition{VESAD tactile} was more than 5 per trial, implying that each item to be classified involved, on average, more than one pan and one zoom operation. With the \condition{VESAD} technique, the count is lower, however \reffigureETSp{navigation_distance.png} (lower left) shows that this technique involved more \texten{physical} navigation as measured by head-phone motion. This can be explained by two observations made during the experiment. First, users often performed physical navigation with \condition{VESAD} to bring target containers closer to their dominant hand. Second, users also found it difficult to perform virtual navigation with \condition{VESAD} due to somewhat unreliable sensing with the Leap Motion. 
 % TODO Erwan: actually, we don't know if the head motion was more forward-backward or sideways; if we had more time, it would be good to compute these two components separately. If the motion is mostly sideways, then maybe the text was big enough to see without zooming, which would bias the experiment against PhoneOnly
 %Such physical navigation was also possible with the \condition{VESAD tactile} technique, but with that technique, we instead see more zoom operations (\autoref{fig:navCount}) that with \MidAirInArOut, i.e. more virtual navigation rather than physical navigation. In summary, all three techniques required at least some minimal zooming or physical navigation.  because the text labels were too small to read when zoomed out and held at arm's length.  This answers the first question.
@@ -275,7 +274,7 @@ Virtual navigation was more prominent in the first two techniques. \reffigureETS
 
 A second question is: What was the main weakness of the \condition{VESAD} technique? This technique performed well, compared to the others, in terms of panning and zooming, requiring few of these operations as measured by distance, time, and count. However, \condition{VESAD} also has the worst selection distance \reffigureETSp{navigation_distance.png} (upper left), indicating the users moved their dominant more when performing pick-and-drop operations to move items to containers. This is an inherent problem with direct input techniques: the user's arm must perform larger motions to touch content directly. User feedback indicates that motions requiring them to cross there arms, to drop an item on the other side of the non-dominant arm, were tiring or awkward. An added problem is the lack of a physical surface that is touched to stabilize the finger's motion during dragging and to provide non-visual feedback. The use of a Leap Motion was also not as reliable for sensing finger position as the phone's touchscreen.
 
-A third question: what explains the smaller TCT with the \condition{VESAD tactile} technique compared to \PhoneOnly? \reffigureETSp{navigation_time.png} shows that \condition{VESAD tactile} required somewhat less time for zooming and slightly less for panning, but the differences are insufficient to explain the difference in total time. We also see that \condition{VESAD tactile} resulted in much less selection time than \PhoneOnly. Since most of the difference in time was not spent panning nor zooming, we suspect it was simply easier to find each target container in the \condition{VESAD tactile} because of the increased display area.
+A third question: what explains the smaller TCT with the \condition{VESAD tactile} technique compared to \condition{Téléphone}? \reffigureETSp{navigation_time.png} shows that \condition{VESAD tactile} required somewhat less time for zooming and slightly less for panning, but the differences are insufficient to explain the difference in total time. We also see that \condition{VESAD tactile} resulted in much less selection time than \condition{Téléphone}. Since most of the difference in time was not spent panning nor zooming, we suspect it was simply easier to find each target container in the \condition{VESAD tactile} because of the increased display area.
 
 \subsubsection{Évaluations des participants}
 \label{subsubsec:experiment_results_evaluations}
@@ -291,15 +290,15 @@ We then used pairwise Mann-Whitney test (with Benjamini–Hochberg correction) f
  \item Overall Preference: \condition{VESAD tactile} is significantly preferred over \condition{Téléphone} ($p<0.005$) and over \condition{VESAD} ($p<0.05$). 
 \end{itemize}
 
-\figureETS{ranks_distributions.png}{
+\figureETS[0.9]{ranks_distributions.png}{
   Distributions des notes données par les participants à chaque technique. Une note élevée est meilleure ($5$ correspond à une faible frustration).
 }
 
-\figureETS{ranks.png}{
+\figureETS[0.9]{ranks.png}{
   Notes moyennes des participants à chaque technique (les barres d'erreurs montrent l'intervalle de confiance à 95\%).
 }
 
-\figureETS{preferences.png}{
+\figureETS[0.6]{preferences.png}{
   Distribution du classement donné par chaque participants aux techniques.
 }
 
