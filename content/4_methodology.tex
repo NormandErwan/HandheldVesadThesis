@@ -101,18 +101,12 @@ Ensuite, si notre visiocasque est relativement simple à concevoir, son principa
 
 \begin{tableETS}{tab:visual_densities}{Caractéristiques d'affichage de l'Ovrvision Pro et de visiocasques de RV et RA}
   \begin{tabular}{| C{3.5cm} | C{3.25cm} | C{3.25cm} | C{3cm} |}
-    \hline
-    \textbf{Nom} & \textbf{Définition\newline(pour chaque \oe il)} & \textbf{Champ de vision\newline(pour chaque \oe il)} & \textbf{Densité visuelle}\\
-    \hline
-    Ovrvision Pro & \SI{960x950}{\px} & \SI{100x98}{\degree} & \SI{9.6}{\ppd}\\
-    \hline
-    Oculus DK2 & \SI{960x1080}{\px} & \SI{94x105}{\degree} & \SI{10.2}{\ppd}\\
-    \hline
-    Oculus Rift & \SI{1080x1200}{\px} & \SI{94x93}{\degree} & \SI{11.5}{\ppd}\\
-    \hline
-    HTC Vive & \SI{1080x1200}{\px} & \SI{110x113}{\degree} & \SI{9.8}{\ppd}\\
-    \hline
-    Microsoft HoloLens & \SI{1268x720}{\px} & \SI{30x17.5}{\degree} & \SI{42.3}{\ppd}\\
+    \hline \textbf{Nom} & \textbf{Définition\newline(pour chaque \oe il)} & \textbf{Champ de vision\newline(pour chaque \oe il)} & \textbf{Densité visuelle}\\
+    \hline Ovrvision Pro & \SI{960x950}{\px} & \SI{100x98}{\degree} & \SI{9.6}{\ppd} \\
+    \hline Oculus DK2 & \SI{960x1080}{\px} & \SI{94x105}{\degree} & \SI{10.2}{\ppd} \\
+    \hline Oculus Rift & \SI{1080x1200}{\px} & \SI{94x93}{\degree} & \SI{11.5}{\ppd} \\
+    \hline HTC Vive & \SI{1080x1200}{\px} & \SI{110x113}{\degree} & \SI{9.8}{\ppd} \\
+    \hline Microsoft HoloLens & \SI{1268x720}{\px} & \SI{30x17.5}{\degree} & \SI{42.3}{\ppd} \\
     \hline
   \end{tabular}
 \end{tableETS}
@@ -480,7 +474,7 @@ Cette section a son équivalent en anglais sur plusieurs articles dans la docume
 \subsubsection{Caméra virtuelle}
 Une caméra est un dispositif qui capture une vue en 2D d'une scène en 3D. Cette vue est une projection en \emph{perspective} rectilinéaire. Le plus simple des dispositifs de projection en perspective est le \emph{sténopé} (\texten{pinhole} en anglais) : c'est une simple boite percée d'une petite ouverture, le \emph{centre de projection}, noté $O$, sur une de ses face, et d'un écran, \emph{le plan image}, sensible à la lumière sur la face opposée. La scène n'est donc visible que par un unique point de vue : ainsi, chaque point sur le plan image ne provenant que d'un seul rayon de lumière à travers le centre de projection, une image nette et inversée de la scène va se former \reffigureETSp{Pinhole.png}.
 
-\figureETS[0.9]{Pinhole.png}{
+\figureETS[1]{Pinhole.png}{
   Un sténopé : une petite ouverture sur une face de la boite laisse entrer la lumière, projettant une scène 3D (par exemple les points $P_1$ et $P_2$) en une image inversée sur la face opposée à l'ouverture (les projections respectives sont les points $p_1$ et $p_2$).
 }
 
@@ -488,7 +482,7 @@ L'image formée sur le plan image étant toujours nette, on peut modifier le cha
 
 Pour simplifier nos équations, on peut modifier le modèle du sténopé tout en le gardant valide mathématiquement. On crée un nouveau plan image symétrique au véritable plan image par rapport au centre de projection, placé donc à la même distance $f$ du centre optique. La vue générée sur ce plan image virtuel reste la même mais est non inversée : les rayons de la scène sont toujours projeté vers le centre de projection mais interceptés par ce nouveau plan image \reffigureETSp{PerspectiveProjection.png}. Le repère est placé sur le centre de projection.
 
-\figureETS[0.9]{PerspectiveProjection.png}{
+\figureETS[1]{PerspectiveProjection.png}{
   Projection en perspective rectilinéaire : un point $P=(X,Y,Z)$ va être projeté sur le plan image situé à une distance $z=f$ du centre de projection $O$ en un point $p=(x,y,f)$. Une caméra virtuelle est basée sur ce principe et on peut également simplifier le sténopé à ce modèle.
 }
 
@@ -567,7 +561,7 @@ Ces distorsions éloignent le fonctionnement de la caméra du modèle idéal du 
 
 Concrètement, on utilise une image d'un échiquier qu'on capture avec la caméra dans plusieurs positions et angles de vues \reffigureETSp{Bradski2008_2.jpg}, les points utilisés étant les intersections entre les carrés noirs et blancs. On connaît par avance les coordonnées relatives des points $P_i$ entre eux (il suffit de le mesurer sur l'échiquier) et ces intersections sont détectées facilement sur l'image capturée par la caméra. La première étape de l'étalonnage consiste donc à capturer avec la caméra quelques images d'un échiquier dont on connaît la configuration.
 
-\figureETS[0.9]{CharucoBoardCreation.jpg}{
+\figureETS[1]{CharucoBoardCreation.jpg}{
   Création d'un échiquier d'étalonnage avec Aruco Unity : à gauche les scripts de configuration, à droite l'échiquier vu dans la scène Unity. Les marqueurs, décrits dans la \autoref{sec:aruco_unity}, dans les carrés blancs permettent l'amélioration de la détection de l'échiquier.
 }
 
@@ -659,7 +653,7 @@ Une fois l'étalonnage effectué, un score mesurant sa qualité est alors affich
 \subsection{Correction des image de la caméra}
 \label{subsec:pinhole_camera_undistortion}
 
-\figureETS[0.9]{TrackMarkersCamera.jpg}{%
+\figureETS[1]{TrackMarkersCamera.jpg}{%
   Configuration de la correction d'une caméra monoscopique rectilinéaire (\code{PinholeCameraUndistortion}) et de l'alignement d'une caméra virtuelle (\code{MonoArucoCameraDisplay}) pour permettre de la RA.
 }
 
@@ -791,11 +785,11 @@ On crée alors dans les scripts : (1) une caméra virtuelle dans Unity, placée 
 \subsection{Réalité augmentée par suivi de marqueur}
 \label{subsec:pinhole_camera_tracker}
 
-\figureETS[0.9]{TrackMarkersMarker.jpg}{%
+\figureETS[1]{TrackMarkersMarker.jpg}{%
   Configuration d'un marqueur mesurant \SI{5.4}{\cm} avec un modèle de théière comme élément enfant.
 }
 
-\figureETS[0.9]{TrackMarkersTracker.jpg}{%
+\figureETS[1]{TrackMarkersTracker.jpg}{%
   Configuration du suivi de marqueurs avec une liste de trois objets : deux échiquiers et du marqueur de la \reffigureETS{TrackMarkersMarker.jpg}. La caméra associée est surlignée en jaune.
 }
 
@@ -890,7 +884,7 @@ Enfin, la position des marqueurs détectés est estimée avec une méthode de r�
   Tiré de \cite[Figure 4]{Mei2007}%
 }
 
-\figureETS[0.9]{StereoProjection.png}{%
+\figureETS[1]{StereoProjection.png}{%
   Modèle d'une caméra stéréoscopique rectilinéaire idéale : les deux plans images sont coplanaires, distants horizontalement, et les deux couples objectif-plan image ont les mêmes paramètres intrinsèques ($f_g = f_d$). Les objectifs pourraient également être placés verticalement.
 }
 
@@ -921,11 +915,11 @@ En plus de la correction de la caméra, nous devons la \emph{rectifier} pour ren
   Étalonnage de la caméra Ovrvision.
 }
 
-\figureETS[0.9]{OvrvisionTracking_1.jpg}{%
+\figureETS[1]{OvrvisionTracking_1.jpg}{%
   Configuration de la correction et la rectification de la caméra Ovrvision et de l'alignement d'une caméra virtuelle pour intégrer la RA dans notre visiocasque.
 }
 
-\figureETS[0.9]{OvrvisionTracking_2.jpg}{%
+\figureETS[1]{OvrvisionTracking_2.jpg}{%
   Vues des yeux gauche et droit dans notre visiocasque lors du suivi d'un marqueur.
 }
 

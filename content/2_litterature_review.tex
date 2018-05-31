@@ -2,7 +2,9 @@
 \label{ch:litterature}
 
 \section{Historique et concepts de la RA}
-C'est \cite{Sutherland1968} qui conçoit le premier visiocasque de RA \reffigureETSp{Sutherland1968.jpg} : ce prototype permet déjà de visualiser du contenu 3D affiché dans l'espace réel de l'utilisateur, donnant l'illusion que le contenu virtuel fait réellement partie de la pièce. Par la suite, la recherche académique en RA se développe lentement : les applications développées sont surtout à visées militaires et gouvernementales \citep{VanKrevelen2010}. Il faut alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Plusieurs conférences dédiées à la RA sont notamment créées, fusionnées aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence d'importance pour la recherche et l'industrie en RA \citep{Azuma2001}.
+\label{sec:litterature_ar}
+
+\cite{Sutherland1968} conçoit le premier visiocasque de RA \reffigureETSp{Sutherland1968.jpg} : ce prototype permet déjà de visualiser du contenu 3D affiché dans l'espace réel de l'utilisateur, donnant l'illusion que le contenu virtuel fait réellement partie de la pièce. Par la suite, la recherche académique en RA se développe lentement : les applications développées sont surtout à visées militaires et gouvernementales \citep{VanKrevelen2010}. Il faut alors attendre les années 1990, avec la miniaturisation des PCs, pour que le domaine de recherche s'établisse enfin. Plusieurs conférences dédiées à la RA sont notamment créées, fusionnées aujourd'hui sous le nom de International Symposium on Mixed and Augmented Reality (ISMAR), une conférence d'importance pour la recherche et l'industrie en RA \citep{Azuma2001}.
 
 \figureETS[0.6]{Sutherland1968.jpg}{
   Photos du visiocasque de RA de Sutherland.\\
@@ -11,17 +13,17 @@ C'est \cite{Sutherland1968} qui conçoit le premier visiocasque de RA \reffigure
 
 \cite{Milgram1994} donne un premier cadre théorique au domaine, en proposant une échelle ordonnée nommée \texten{Reality-Virtuality Continuum} \reffigureETSp{Milgram1994.png}. \citeauthor{Milgram1994} y oppose deux extrèmes : les environnements réels et les environnements virtuels. Les IHMs habituelles sur ordinateurs et téléphones, ou encore \texten{graphical user interface} (GUI), font partie de la première catégorie, tandis qu'un visiocasque de RV, qui immerge totalement son utilisateur dans un monde virtuel, de la seconde. Entre ces deux extrêmes, les environnements de Réalité Mixte (RM), comme la RA, vont mélanger éléments réels et virtuels. La force de cette représentation est qu'il n'existe pas de catégories séparées entre réel, RA et RV mais que la RA peut se trouver d'un extrème à un autre le long de cette échelle.
 
-Le second enseignement de l'échelle de \citeauthor{Milgram1994} est que RA et RV sont techniquement très proches : les dispositifs de localisation, d'affichage et de géneration de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champs de vision ; par exemple, le champs de vision du visiocasque de RV HTC Vive est de \SI{100x113}{\degree} (horizontalement $\times$ verticalement) pour les deux yeux \citep{Kreylos2016}, ce qui est proche du champs de vision humain qui est de \SI{200x135}{\degree} pour les deux yeux (\url{https://biology.stackexchange.com/a/28140}). La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
+Le second enseignement de l'échelle de \citeauthor{Milgram1994} est que RA et RV sont techniquement très proches : les dispositifs de localisation, d'affichage et de géneration de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champ de vision ; par exemple, le champ de vision du visiocasque de RV HTC Vive est de \SI{100x113}{\degree} (horizontalement $\times$ verticalement) pour les deux yeux \citep{Kreylos2016}, ce qui est proche du champ de vision humain qui est de \SI{200x135}{\degree} pour les deux yeux (\url{https://biology.stackexchange.com/a/28140}). La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
 
 \figureETS{Milgram1994.png}{
   L'échelle du \texten{Reality-Virtuality Continuum} de Milgram.\\
   Tiré de \citet[p. 3]{Milgram1994}
 }
 
-\cite{Rekimoto1995} apportent un second cadre théorique à la RA \reffigureETSp{Rekimoto1995.png}. Ils montrent que les GUI sont coupées des interactions avec l'environment réel, tandis que la RV isole l'utilisateur dans des IHMs totalement virtuelles. Deux approches à ces extrèmes sont la RA et l'informatique ubiquitaire (en anglais: \texten{ubiquitous computing}) : cette dernière permet à l'utilisateur d'interagir avec des ordinateur intégrés dans l'environnement réel, par exemple avec téléphones intelligents et des objets connectés, tandis que la RA fusionne réel et virtuel en un seul environnement pour l'utilisateur. Ainsi, avec une IHM bien faite, la RA s'intègre naturellement à l'environment réel et devient invisible à l'utilisation.
+\cite{Rekimoto1995} apportent un second cadre théorique à la RA \reffigureETSp{Rekimoto1995.png}. Ils montrent que les GUI sont coupées des interactions avec l'environnement réel, tandis que la RV isole l'utilisateur dans des IHMs totalement virtuelles. Deux approches à ces extrèmes sont la RA et l'informatique ubiquitaire (en anglais: \texten{ubiquitous computing}) : cette dernière permet à l'utilisateur d'interagir avec des ordinateur intégrés dans l'environnement réel, par exemple avec téléphones intelligents et des objets connectés, tandis que la RA fusionne réel et virtuel en un seul environnement pour l'utilisateur. Ainsi, avec une IHM bien faite, la RA s'intègre naturellement à l'environnement réel et devient invisible à l'utilisation.
 
 \figureETS{Rekimoto1995.png}{
-  Comparaison de quatre styles d'IHMs : (a) les GUI, coupées de l'environment réel, (b) les IHMs en VR, isolant l'utilisateur dans un environment virtuel, (c) l'informatique ubiquitaire, faite d'ordinateurs faisant partie intégrante de l'environment réel et (d) les IHMs en RA faisant interface entre l'utilisateur et l'environment réel.\\
+  Comparaison de quatre styles d'IHMs : (a) les GUI, coupées de l'environnement réel, (b) les IHMs en VR, isolant l'utilisateur dans un environnement virtuel, (c) l'informatique ubiquitaire, faite d'ordinateurs faisant partie intégrante de l'environnement réel et (d) les IHMs en RA faisant interface entre l'utilisateur et l'environnement réel.\\
   Tiré de \cite{Rekimoto1995}
 }
 
@@ -31,22 +33,22 @@ Une première définition formelle de la RA est par la suite proposée par \cite
   \item est interactive en temps réel ;
   \item aligne les éléments virtuels avec les éléments réels.
 \end{enumerate}
-Ce sont les trois conditions techniques à respecter en RA et qui vont permettre le \emph{sentiment de la présence du virtuel} dans l'environnement réel, c'est-à-dire à notre cerveau de voir virtuel et réel comme un seul et même environment. Cette définition a le mérite d'être assez générale pour s'appliquer tout autant à la RA visuelle, qu'au RA auditives ou haptiques.
+Ce sont les trois conditions techniques à respecter en RA et qui vont permettre le \emph{sentiment de la présence du virtuel} dans l'environnement réel, c'est-à-dire à notre cerveau de voir virtuel et réel comme un seul et même environnement. Cette définition a le mérite d'être assez générale pour s'appliquer tout autant à la RA visuelle, qu'au RA auditives ou haptiques.
 
 Enfin, \cite{Buxton1998} repris par \cite{Bimber2005} catégorisent les différents dispositifs d'affichage en RA \reffigureETSp{Bimber2005.jpg}. On retient essentiellement (nous excluons volontairement les projecteurs) :
 \begin{itemize}
-  \item Le \texten{cave automatic virtual environment} (CAVE) : c'est un environnment immersif sous forme de cube de \SI{3}{\m^{3}}, chaque face comportant un écran \reffigureETSp{CAVE.jpg}. Les capteurs portés par l'utilisateur permettent au CAVE de suivre son mouvement et ainsi recalculer son champs de vision en temps réel. C'est un dispositif coûteux et encombrant, mais très utile pour prototyper des concepts.
-  \item Les affichages fixes : la RA est affichée à travers un écran fixé dans l'environment \reffigureETSp{Lee2013.jpg}. Ils sont utiles pour des démonstrations pour plusieurs personnes à la fois.
+  \item Le \texten{cave automatic virtual environnement} (CAVE) : c'est un environnment immersif sous forme de cube de \SI{3}{\m^{3}}, chaque face comportant un écran \reffigureETSp{CAVE.jpg}. Les capteurs portés par l'utilisateur permettent au CAVE de suivre son mouvement et ainsi recalculer son champ de vision en temps réel. C'est un dispositif coûteux et encombrant, mais très utile pour prototyper des concepts.
+  \item Les affichages fixes : la RA est affichée à travers un écran fixé dans l'environnement \reffigureETSp{Lee2013.jpg}. Ils sont utiles pour des démonstrations pour plusieurs personnes à la fois.
   \item Les appareils mobiles : identique à un affichage fixe mais l'écran est tenu en main, comme une \emph{fenêtre sur le contenu} en RA \reffigureETSp{MobileAR.jpg}. Ils sont populaires mais limités en taille et en puissance \citep{Huang2013}.
   \item Les \texten{head-mounted display} (HMD) ou visiocasques en français : ils sont portés sur la tête et projetent les images virtuelles directement aux yeux de l'utilisateur. Ils ont l'avantage de laisser les mains libres. On distingue deux technologies :
   \begin{itemize}
-    \item Les visiocasques vidéo : des caméras placées devant le casque filment l'environment de l'utilisateur, les images capturées sont ensuite combinées avec le contenu virtuel puis affichées sur un écran \reffigureETSp{ARRift.jpg}.
+    \item Les visiocasques vidéo : des caméras placées devant le casque filment l'environnement de l'utilisateur, les images capturées sont ensuite combinées avec le contenu virtuel puis affichées sur un écran \reffigureETSp{ARRift.jpg}.
     \item Les visiocasques optique : le contenu virtuel est projeté sur un écran transparent par un système de mirroirs \reffigureETSp{HoloLens.jpg}.
   \end{itemize}
   \item Les lentilles : elles sont identiques aux visiocasques mais posées directement sur les yeux. Peu utilisées, elles sont encore au stade de prototype mais une fois maîtrisées, elles pourront être à l'avenir le dispotif de RA idéal \citep{VanKrevelen2010}.
 \end{itemize}
 
-Tout ces dispositifs ont été explorés dans la recherche, mais ce sont essentiellement des prototypes sur appareils mobiles qui ont été développés : en effet, à partir des années 2000, les téléphones intelligents ont eu des caméras intégrées d'une qualité suffisante, tous les capteurs nécessaire et assez de puissance de calcul pour rendre la RA possible \citep{Huang2013}. Cependant, avec l'arrivée du Microsoft HoloLens en 2016 et bientôt du Magic Leap et du Meta en 2018, les visiocasques vont pouvoir être à leur tour plus utilisés dans des recherches en RA ; c'est pourquoi nous souhaitons étudier la combinaisons des visiocasques avec des téléphones intelligents, ces deux appareils  étant présents dans nos quotidiens personnels et professionnels.
+Tout ces dispositifs ont été explorés dans la recherche, mais ce sont essentiellement des prototypes sur appareils mobiles qui ont été développés : en effet, à partir des années 2000, les téléphones intelligents ont eu des caméras intégrées d'une qualité suffisante, tous les capteurs nécessaire et assez de puissance de calcul pour rendre la RA possible \citep{Huang2013}. Cependant, avec l'arrivée du Microsoft HoloLens en 2016 et bientôt du Magic Leap et du Meta en 2018, les visiocasques vont pouvoir être à leur tour plus utilisés dans des recherches en RA ; c'est pourquoi nous souhaitons étudier la combinaisons des visiocasques avec des téléphones intelligents, ces deux appareils étant présents dans nos quotidiens personnels et professionnels.
 
 \figureETS{Bimber2005.jpg}{
   Les différents dispositifs d'affichages en RA.\\
@@ -72,7 +74,10 @@ Dans leur état de l'art \cite{Azuma2001} identifient les trois obstables à dé
 
 
 \section{Conception et évaluation d'IHMs de RA}
+\label{sec:litterature_ar_hci}
+
 \subsection{IHMs en RA}
+\label{subsec:litterature_ar_hci_presentation}
 \cite{Billinghurst2005} a exploré le premier des principes de conception d'IHM en RA. indiquait : 
 
 \cite{VanKrevelen2010} rappellent qu'aucun paradigme d'IHM pertinent n'a encore été trouvé pour la RA. En effet, la métaphore du bureau WIMP (pour \texten{windows}, \texten{icons}, \texten{menus} et \texten{pointing device}) utilisé par les IHM des systèmes d'exploitations des ordinateurs ne fonctionne pas en RA, tout comme les dispositifs d'entrées en 2D tels que la souris : ils sont fait pour fonctionner sous la contrainte d'un plan 2D et restreignent alors l'expérience de la RA. \citep{VanKrevelen2010} A l'inverse, les dispositifs d'interactions dit naturels, sans aucune contraintes dans l'espace, c'est-à-dire avec six degrés de libertés (6 DoF), sont, en réalité, difficiles à manipuler avec dans un environnement virtuel. \cite{ChanKaoChenEtAl2010} ont en particulier montré que sans retour tactile il est difficile pour une personne d'estimer sans erreur la profondeur. Un paradigme d'IHM différent et approprié pour la RA, est donc à déterminer.
@@ -102,6 +107,7 @@ there are three components that must be designed in an AR application (see Figur
 1 et 2 : affordances visuelles pour faire comprendre comment peuvent être manipulés. La technique d'interaction lie 1 et 2
 
 \subsection{Interfaces Utilisateur Intangibles (IUT)}
+\label{subsec:litterature_ar_hci_tui}
 Billinghurst2015, p.169 : interface tangibles (Tangible User Interface (TUI))\\
 Kato et al. [2000] proposed the concept of Tangible AR (TAR). TAR uses Tangible UI as input interaction metaphor while using AR for visualising virtual information overlaid on the physical object used for interaction. the interaction space and display space are seamlessly merged together\\
 The basic goal of designing a Tangible AR interface is to map physical objects (input) with virtual objects (output) using an appropriate interaction metaphor.\\
@@ -113,6 +119,7 @@ Lee2011 : Graphical Menus Using a Mobile Phone for Wearable AR Systems\\
 White2009 : shake menus
 
 \subsection{Interactions en 3D}
+\label{subsec:litterature_ar_hci_interactions}
 Si les interactions sur des surfaces tactiles comme les téléphones intelligents sont bien maîtrisées, les interactions dans les environnements en 3D sont moins connues.
 
 Berard2009 : c'est quoi une technique d'interaction : « « Interaction is not defined by an input device alone, but by the combination of a device and an interaction technique. In the example of 3D object rotation, the mouse is typically used with the virtual sphere technique while a free-space device is used with a direct mapping (either absolute or relative) Thus, each device must be matched with its most suitable interaction technique in making performance comparisons, rather than choosing a single interaction technique for all devices. » »
@@ -124,9 +131,9 @@ Argelaguet2013 : pb des interactions 3D, sélection tâche + métaphores main et
 Métaphore main virtuelle : cependant, cette technique amène un autre problème quand elle est utilisée en RA. En effet, en RA, le contenu virtuel est « imprimé par dessus » le contenu réel et peut donc masquer le contenu réel. Par exemple, je peux vouloir toucher un objet 3D en l'air avec ma main, mais cette dernière sera toujours masqué par l'objet même si ma main semble en avant de l'objet. Dès lors, il faut utiliser une technique d'occlusion, c'est-à-dire masquer l'objet 3D quand un objet réel, comme la main de l'utilisateur, se trouve devant \reffigureETSp{Piumsomboon2014_1}.
 
 \figureLayoutETS{Argelaguet2013}{%
-  \subfigureETS[0.2]{Argelaguet2013_1.jpg}{Main virtuelle}%
+  \subfigureETS[0.25]{Argelaguet2013_1.jpg}{Main virtuelle}%
   \figurehspace%
-  \subfigureETS[0.2]{Argelaguet2013_2.jpg}{Pointeur virtuel}%
+  \subfigureETS[0.25]{Argelaguet2013_2.jpg}{Pointeur virtuel}%
 }{
   Différentes techniques de sélection.\\
   Adapté de \cite{Argelaguet2013}.
@@ -142,22 +149,22 @@ Piumsomboon2013 : fait une taxonomie des gestes mid-air pour l'AR, sur le modèl
 \cite{Piumsomboon2014} ont comparé différentes techniques de sélection et de manipulation d'objets 3D avec un visiocasque de RA : des interactions avec la main et des commandes vocales \reffigureETSp{Piumsomboon2014_2}. Une des première leçon de leur travail est sur l'occlusion des mains avec le contenu virtuel : dans une étude pilote, ils ont remarqué que les utilisateurs n'avaient pas de préférence entre l'occlusion de la main avec le contenu 3D ou ajouter de la transparence à ce contenu virtuel \reffigureETSp{Piumsomboon2014_1}. L'occlusion de la main virtuelle étant un problème difficile à résoudre et lourd en calcul, la transparence sur le contenu virtuel en RA est une solution simple à mettre en oeuvre, comme a pu le faire \cite{Lee2013} avec SpaceTop.
 
 \figureLayoutETS{Piumsomboon2014_1}{%
-  \subfigureETS[0.15]{Piumsomboon2014_1.jpg}{Main virtuelle faisant occlusion avec le contenu 3D.}%
+  \subfigureETS[0.2]{Piumsomboon2014_1.jpg}{Main virtuelle faisant occlusion avec le contenu 3D.}%
   \figurehspace%
-  \subfigureETS[0.15]{Piumsomboon2014_2.jpg}{Contenu 3D transparent laissant la main virtuelle visible.}%
+  \subfigureETS[0.2]{Piumsomboon2014_2.jpg}{Contenu 3D transparent laissant la main virtuelle visible.}%
 }{
   Différentes techniques d'occlusion de la main.\\
   Tiré de \cite{Piumsomboon2014}.
 }
 
-Dans une seconde expérience, \citeauthor{Piumsomboon2014} ont également trouvé que les participants préféraient utiliser et étaient plus performants avec les interactions manuelles plutôt que vocales sur les tâches de manipulation et de rotation d'objets. Les participants ont par contre préféré les commandes vocales pour modifier la taille des objets 3D, sans qu'il n'y ait de différence de performance avec les interactions manuelles. Les auteurs suggèrent donc de combiner les deux types d'interactions dans les IHMs de RA. Une limite du travail de \citeauthor{Piumsomboon2014} cependant est de n'avoir pas étudié de techniques de navigation. De plus, les interactions étaient conçues et étudiées pour manipuler des objets en 3D : une IHM de RA peut demander d'interagir avec des données plus abstraites, comme le sont nos interfaces graphiques sur ordinateur et téléphone actuellement. Les résultats de cette étude sont donc intéressant pour des métier manipulant de la 3D, mais il serait intéressant de savoir qu'elles IHM seraient adaptée pour un usage personnel au quotidien de la RA.
+Dans une seconde expérience, \citeauthor{Piumsomboon2014} ont également trouvé que les participants préféraient utiliser et étaient plus performants avec les interactions manuelles plutôt que vocales sur les tâches de manipulation et de rotation d'objets. Les participants ont par contre préféré les commandes vocales pour modifier la taille des objets 3D, sans qu'il n'y ait de différence de performance avec les interactions manuelles. Les auteurs suggèrent donc de combiner les deux types d'interactions dans les IHMs de RA. Une limite du travail de \citeauthor{Piumsomboon2014} cependant est de n'avoir pas étudié de techniques de navigation. De plus, les interactions étaient conçues et étudiées pour manipuler des objets en 3D : une IHM de RA peut demander d'interagir avec des données plus abstraites, comme le sont nos interfaces graphiques sur ordinateur et téléphone actuellement. Les résultats de cette étude sont donc intéressant pour des métier manipulant de la 3D, mais il serait intéressant de savoir qu'elles IHM seraient adaptée pour un usage quotidien de la RA.
 
 \figureLayoutETS{Piumsomboon2014_2}{%
-  \subfigureETS{Piumsomboon2014_3.jpg}{Configuration expérimentale.}%
+  \subfigureETS[0.3]{Piumsomboon2014_3.jpg}{Configuration expérimentale.}%
   \figurehspace%
-  \subfigureETS{Piumsomboon2014_4.jpg}{Utilisateur saisissant un objet virtuel (technique de main virtuelle).}%
+  \subfigureETS[0.3]{Piumsomboon2014_4.jpg}{Utilisateur saisissant un objet virtuel (technique de main virtuelle).}%
   \figurehspace%
-  \subfigureETS{Piumsomboon2014_5.jpg}{Vue de l'utilisateur saisissant l'objet virtuel.}%
+  \subfigureETS[0.3]{Piumsomboon2014_5.jpg}{Vue de l'utilisateur saisissant l'objet virtuel.}%
 }{
   Photos de Grasp-Shell.\\
   Adapté de \cite{Piumsomboon2014}.
@@ -166,6 +173,7 @@ Dans une seconde expérience, \citeauthor{Piumsomboon2014} ont également trouv�
 Pour valider une action avec un pointeur virtuel, HoloLens utilise TAFFI \cite{Wilson2006}
 
 \subsection{Évaluation d'IHM en RA}
+\label{subsec:litterature_ar_hci_evaluation}
 Swan2005, Duenser2008 (p.203) : evaluation en RA\\
 (1) Objective measurements : performance (temps, erreurs, efficacité), surtout temps de complétion et taux d'erreur, ou encore score, position, nombre d'actions, mouvements\\
 (2) Subjective measurements : engagament, retour utilisateur, questionnaires, notes utilisateurs, retours utilisateurs\\
@@ -177,46 +185,88 @@ taches plus écologiques (proches des usages réels du quotidien)
 
 
 \section{Espaces de travail en RA}
-La séparation entre les styles d'IHMs présentées \cite{Rekimoto1995} \reffigureETSp{Rekimoto1995.png} est artificielle : comme le souligne très justement \cite{Billinghurst2015}, l'échelle de \cite{Milgram1994} nous montre que la RA devrait s'intégrer avec l'informatique ubiquitaire, les GUI et la RV. Par exemple, \cite{Heun2016} propose l'application RA mobile \texten{Reality Editor} pour interagir de façon naturelle avec les objets intelligents autour de soi \reffigureETSp{Heun2016.jpg}, tandis que le prototype \texten{SpaceTop} de \cite{Lee2013} permet de combiner un GUI sur ordinateur avec des interactions 3D de manière unifiée \reffigureETSp{Lee2013.jpg}. Un VESAD est donc une IHM combinant RA et un GUI sur un téléphone intelligent.
+\label{sec:litterature_ar_worspaces}
 
-\figureETS[0.6]{Heun2016.jpg}{
+La séparation entre les styles d'IHMs présentées \cite{Rekimoto1995} \reffigureETSp{Rekimoto1995.png} est artificielle : comme le souligne très justement \cite{Billinghurst2015}, l'échelle de \cite{Milgram1994} nous montre que la RA devrait s'intégrer avec l'informatique ubiquitaire, les GUI et la RV. Par exemple, \cite{Heun2016} utilise la RA comme interface pour interagir de façon naturelle avec les objets intelligents autour de soi \reffigureETSp{Heun2016.jpg}, tandis que le prototype \texten{SpaceTop} de \cite{Lee2013} transforme un GUI sur ordinateur en 3D \reffigureETSp{Lee2013.jpg}. C'est pourquoi nous pensons que la RA peut révolutionner nos rapports avec les ordinateurs et appareils intelligents mobiles.
+
+\figureETS[0.7]{Heun2016.jpg}{
   Photo du \texten{Reality Editor}, un navigateur RA pour interagir avec les objets ubiquitaires autour de soi. Ici l'utilisateur paye un stationnement via le navigateur en pointant son téléphone vers le parc-mètre. La communication entre le téléphone et l'objet intelligent passant par internet est rendue visible grâce à la RA.\\
   Tiré de \cite{Heun2016}.
 }
 
-\cite{KoelleKranzMoeller2015} rappellent que l'expérimentation de Google Glass a permis de montrer, malgré les problèmes de vie privée et d'acceptation sociale qu'elle a posée, qu'il était intéressant de combiner un visiocasque avec un téléphone intelligent : le système proposait à l'utilisateur d'interagir avec son téléphone via le visiocasque par des interactions multimodales à la voix ou avec des gestes en l'air lus et décodés par la caméra du visiocasque.\\
-Une limite du Google Glass est que son IHM est affichée seulement sur un plan virtuel à une distance fixe des yeux. Ce n'est alors pas totalement de la RA au sens de la définition de \cite{AzumaBaillotBehringerEtAl2001}, car les éléments virtuels ne sont pas alignés avec les éléments réels. De plus, \cite{SerranoEnsYangEtAl2015} rappellent que ce plan peut faire occlusion avec l'environnement réel, et gêner la vue de l'utilisateur. En outre, les mains étant libres d'utiliser un autre système tel qu'un ordinateur de bureau ou téléphone intelligent, \cite{SerranoEnsYangEtAl2015b} proposent de faire travailler en synergie un système de RA d'un visiocasque avec les autres systèmes informatiques de l'utilisateur.
+Google Glass a été une expérience novatrice de visiocasque. Malgré les problèmes de vie privée et d'acceptation sociale que son usage a posé, \cite{Koelle2015} rappellent que cela a montré qu'il était intéressant de combiner un visiocasque de RA avec un téléphone intelligent : l'utilisateur interagissant avec son téléphone via le visiocasque, par des interactions multimodales à la voix ou encore avec des gestes en l'air décodés par la caméra du visiocasque. Cette expérience montre ainsi que les visiocasques de RA vont d'abord prendre place dans nos quotididiens professionnels où ils seront mieux acceptés ; c'est également la stratégie de la nouvelle version de ce visiocasque \cite{Levi2017}. Il est donc plus intéressant d'orienter des recherches en IHM pour la RA
 
-\cite{Ens2014} partent de ce même constat sur les IHM des visiocasques actuels : un visiocasque peut afficher du contenu en 3D dans l'environnement, et pourrait permettre d'exploiter l'espace de la vision périphérique de l'utilisateur. Ainsi, plusieurs fenêtres pourraient être affichées en même temps à des endroits différents dans l'espace de la vision d'un utilisateur.\\
-Pour explorer les capacités des visiocasques, \citeauthor{Ens2014} réalisent un prototype de RA affichant de multiples fenêtres dans les airs \reffigureETSp{Ens2014.jpg}. Un utilisateur peut alors interagir directement avec les fenêtres par le toucher (c'est donc une \emph{interaction directe}). Ils explorent alors plusieurs facteurs de conception du prototype, au travers de quatre expériences : la taille d'affichage des fenêtres virtuelles, leur distance d'affichage, leur angle de placement par rapport à l'utilisateur, et enfin leur référentiel de placement des fenêtres virtuelle (fixées au corps ou fixées au monde). Les performances (temps et taux d'erreurs), la fatigue ainsi que les retours des utilisateurs étaient mesurés.\\ 
-Leurs résultats ont montrés, entre autres, qu'un affichage courbe est important pour que toutes les fenêtres soient affichées à la même distance de l'utilisateur~; ce qui confirme les résultats de \cite{ShuppBallYostEtAl2006} pour les affichages virtuels. En outre, leur conception a montré qu'elle permettait un travail 40\% plus rapide qu'avec une fenêtre simple sur une tache multi-applications : en effet, leur prototype permet d'afficher plusieurs fenêtres simultanément et ainsi réduit le changement de fenêtre, donc d'application pour du multi-tâches, à un simple mouvement de tête. Ce résultat montre également que l'interaction directe est compatible avec du contenu virtuel sous forme de fenêtres. Enfin, le référentiel sur le corps avait de plus grands taux d'erreurs que le référentiel sur le monde, car l'action de sélection entraînait des perturbations involontaires des fenêtres par rapport à l'utilisateur.\\ 
-Ce travail présente cependant quelques limites. Tout d'abord, leur IHM requiert des interactions directes, ce qui est à l'origine d'erreurs de sélection et de fatigue du bras des utilisateurs : il serait alors intéressant de savoir si un référentiel sur le corps permettrait d'être précis avec une interaction indirecte. En outre, le champ de vision était très limité : 30° à l'horizontal et 40° à la verticale, ce qui biaise les mesures de performances Enfin, le prototype a été réalisé dans un CAVE, c'est-à-dire des projections de l'image sur des écrans entourant l'utilisateur. Ainsi, il faudrait reproduire les expérimentations avec un visiocasque et différentes techniques d'interactions. On peut également se demander si l'utilisation de fenêtres est une représentation adaptée pour la RA, aucune contrainte d'écrans physiques n'étant présente, ou s'il existe une meilleure représentation de l'information virtuelle dans un espace de RA.
+Le Google Glass était un prototype limité visible seulement par l'\oe il droit avec un faible champ de vue \reffigureETSp{Phandroid2013_1.jpg}, mais surtout sans proposer une véritable IHM de RA : affichée sur un unique plan virtuel à une distance fixe des yeux \reffigureETSp{Phandroid2013_2.jpg}, elle ne répond pas à l'alignement virtuel-réel dans la définition d'\cite{Azuma1997}. Aussi, cette fenêtre virtuelle peut faire occlusion avec l'environnement réel, et gêner la vue de l'utilisateur. De nombreux autres visiocasques, comme Epson Moverio ou Vusix, souffrent de ces mêmes limites. C'est pourquoi le HoloLens a apporté une innovation majeure dans l'industrie de la RA en proposant de placer de multiples fenêtres virtuelles contre les mur, comme on peut accrocher un tableau, donnant réellement le sentiment qu'elles font partie de l'environnement réel.
+
+\figureLayoutETS{Glass}{%
+  \subfigureETS[0.2]{Phandroid2013_1.jpg}{Utilisateur portant le visiocasque : le champ de vision est très petit et limité à l'\oe il droit.}%
+  \figurehspace%
+  \subfigureETS[0.2]{Phandroid2013_2.jpg}{Vue depuis le visiocasque : l'IHM est affichée sur un rectangle à distance fixe de l'utilisateur sans intégration avec l'environnement réel.}%
+}{
+  Photographies du Google Glass.\\
+  Tiré de \cite{Phandroid2013}.
+}
+
+Partant de la mêmes limite d'un seul écran de ces visiocasques, \cite{Ens2014} proposent alors le Personal Cockpit, une IHM de RA affichant de multiples fenêtres autour de l'utilisateur \reffigureETSp{Ens2014.jpg}. Il peut y organiser l'information sur différents écrans qui le suivent dans ces déplacements et avec qu'il interagit directement avec une technique de main virtuelle. \citeauthor{Ens2014} mesurent alors qu'un utilisateur travaille 40\% plus rapidement avec de multiples fenêtres qu'avec une simple fenêtre fixe en faisant du multi-tâches. Ils y évaluent également plusieurs facteurs de conception : leurs résultats indiquent (1) qu'un affichage courbe est moins fatiguant et moins sujet à des erreurs de sélection, les fenêtres étant ainsi affichées à la même distance de l'utilisateur, (2) que les interactions avec une main virtuelle sont plus stables et faciles avec des fenêtres fixées dans l'espace que placées sur le corps, car l'utilisateur peut les faire bouger involontairement et (3) la distance minimum des fenêtres est \SI{50}{\cm} de l'utilisateur, provoquant autrement de l'inconfort. Cependant, leur étude utilisait un CAVE simulant un petit champ de vision de $\ang{40} \times \ang{30}$ : il serait alors intéressant de la reproduire avec visiocasque à large champ de vision.
 
 \figureETS{Ens2014.jpg}{
-  À gauche, photo du Personal Cockpit. À droite, illustration du positionnement idéal de fenêtres virtuelles.\\
+  À gauche, photo du Personal Cockpit. À droite, illustration du positionnement idéal des fenêtres virtuelles en un affichage courbe.\\
   Tiré de \cite{Ens2014}.
 }
 
-Dans un article suivant, \cite{Serrano2015} généralisent le travail de conception réalisé avec MultiFi \citep{Grubert2015}. Ils proposent pour cela Gluey : une IHM qui utilise le visiocasque comme affichage pour unifier les entrées et sorties de tous les appareils, qu'ils soient mobiles ou de bureau. \citeauthor{Serrano2015} s'appuient pour cela sur les propriétés de l'affichage permanent aux yeux de l'utilisateur du visiocasque et de sa connaissance de sa position dans les environnements réels et virtuels. Ainsi, c'est un médium idéal de transmission de l'information et de redirection des entrées entre les appareils \reffigureETSp{Serrano2015.jpg}.
-Un utilisateur peut donc interagir sur un appareil, et voir ses actions s'exécuter sur un autre appareil qu'il regarde. Il est intéressant que le système permette que n'importe quel appareil puisse être utilisé de manière transparente et flexible comme un dispositif d'entrée (souris, téléphone, tablette). Le système permet également de transmettre des données, par exemple pour copier des données ou les imprimer.\\
-\citeauthor{Serrano2015} présentent avec ce travail un ensemble de pistes de conception pour un tel système. Leur idée était de pouvoir créer des interactions invisibles entre les appareils, pour faciliter les taches demandant d'utiliser plusieurs appareils. Pour cela, l'IHM doit permettre de : 
-\begin{itemize}
-  \item rediriger les entrées entre les appareils
-  \item migrer du contenu entre les appareils
-  \item tous les appareils doivent être compatibles
-  \item d'enregistrer de nouveaux appareils
-  \item de tenir un modèle spatial du système
-  \item les retours du système doit toujours être visibles (ici par le visiocasque)
-  \item le système doit être mobile
-\end{itemize}. Ainsi, MultiFi \citep{Grubert2015} ne satisfait qu'aux critères 1, 5, 6 et 7.\\
-Une limite toutefois de l'article relève dans la faiblesse de son évaluation, informelle, qui a seulement pu montrer que le concept et la preuve de concept réalisée étaient enthousiasmantes et intéressantes aux yeux des participants. Une évaluation formelle devrait être reconduite avec un prototype léger et totalement mobile. Le visiocasque présentant en outre des limites de champs de vision et de résolution : si ces caractéristiques vont s'améliorer dans le futur, nous pensons que leur impact sur la navigation et les performances des interactions des utilisateurs n'est pas encore bien connue.
+Avec MultiFi, \cite{Grubert2015} explorent de leur côté comment combiner les entrées et les sorties des appareils intelligents que nous portons (téléphone, tablettes, montre) avec un visiocasque de RA. Ces appareils mobiles ne sont souvent pas conçus pour travailler ensemble, mais gagneraient à l'être. La \reffigureETS{Grubert2015_2.jpg} montre par exemple une liste affichée sur une montre à l'écran étendu : en plaçant son téléphone sur un élément de la liste, l'utilisateur peut alors le voir en détails. Les différentes tailles et définitions d'affichage sont ainsi exploitées pour composer une seule vue pour l'utilisateur. \citeauthor{Grubert2015} distinguent alors trois alignements possibles entre une fenêtre virtuelle de RA et un appareil mobile \reffigureETSp{Grubert2015_1.jpg} :
+\begin{enumerate}
+  \item mode \texten{body-aligned} : la fenêtre a pour référence le corps de l'utilisateur, comme \cite{Ens2014}, l'appareil mobile formant alors une vue \texten{detail} sur le contenu (\reffigureETS{Grubert2015_3.jpg}, similaire à \cite{Berge2014}) ;
+  \item mode \texten{device-aligned} : la fenêtre est centrée et alignée sur l'appareil mobile dont elle étend l'écran \reffigureETSp{Grubert2015_2.jpg} ;
+  \item mode \texten{side-by-side} : un des appareils, visiocasque compris, redirige ces interactions vers un autre appareil, par exemple les interactions tactiles du téléphone vers une fenêtre virtuelle.
+\end{enumerate}
+\bigskip
 
-\figureETS{Serrano2015.jpg}{
-  Illustration du concept de Gluey.\\
+\figureLayoutETS{Grubert2015_Demos}{%
+  \subfigureETS{Grubert2015_2.jpg}{Une montre intelligente à écran étendu par RA en haut (mode \texten{device-aligned}). En bas, un téléphone intelligent placé sur la fenêtre virtuelle permet de la voir de manière plus détaillé : c'est une vue \texten{detail} sur l'écran étendu qui est alors une vue \texten{overview}.}%
+  \figurehspace%
+  \subfigureETS{Grubert2015_3.jpg}{L'utilisateur pointe son téléphone vers des éléments affichés par le visiocasque en mode \texten{body-aligned} pour les voir en détail.}%
+}{
+  Photographies de MultiFi.\\
+  Tiré de \cite{Grubert2015}.
+}
+
+\figureETS{Grubert2015_1.jpg}{
+  Illustrations des alignements possibles de contenu entre un visiocasque de RA et un appareil mobile : le mode \texten{body-aligned} à gauche, le mode \texten{device-aligned} au milieu et le mode \texten{side-by-side} à droite.\\
+  Tiré de \cite{Grubert2015}.
+}
+
+Leurs résultats expérimentaux, dans une tâche de recherche d'information et de pointage, montrent que le couplage des appareils mobiles avec un visiocasque de RA peut permettre des temps plus rapides par rapport aux appareils seuls, visiocasque compris, mais au détriment d'un plus grand effort perçu par les utilisateurs. En outre, les préférences des utilisateurs étaient variées, ce qui montre que le choix du couplage entre appareils mobiles et visiocasque doit être laissé à l'utilisateur. Cependant, le visiocasque utilisé était lourd et avait aussi un petit champ de vision de $\ang{31} \times \ang{17}$ : ne pouvant pas voir de large contenu en une fois, les participants devaient fréquemment bouger la tête. De plus, seules des interactions sur les écrans tactiles, ou en plaçant l'appareil mobile dans l'espace, ont été évaluées. Il serait intéressant de les comparer avec des interactions utilisant une main virtuelle, et dans un visiocasque avec un large champ de vision.
+
+\cite{Serrano2015} généralisent avec Gluey le mode \texten{side-by-side} de MultiFi. Un visiocasque de RA affichant du contenu virtuel en permanence sans encombrer les mains de son utilisateur est le support idéal pour transmettre de l'information facilement entre différents appareils. Par exemple, une personne peut utiliser un clavier, une souris ou un écran tactile et voir ses actions s'exécuter sur un autre appareil qu'il regarde \reffigureETSp{Serrano2015_1.jpg}, ou encore copier des données depuis un ordinateur et les \textquote{coller} sur une imprimante pour les imprimer \reffigureETSp{Serrano2015_Demos}. Pour \citeauthor{Serrano2015}, les fonctionnalités d'une telle IHM sont (1) la redirection des entrées entre les appareils, (2) la migration du contenu entre les appareils, (3) la compatibilité de tous les appareils pour 1 et 2, (4) l'identification des appareils disponibles, (5) l'identification de leurs positions, (6) donner des retours de ces actions à l'utilisateur et (7) être mobile. Ainsi, MultiFi ne satisfait qu'aux critères 1, 5, 6 et 7. L'article de \citeauthor{Serrano2015} présente toutefois des limites, par la faiblesse de son évaluation, informelle, qui a seulement montré que le prototype de leur était, mais aussi par le faible champ de vision de leur visiocasque.
+
+\figureETS[1]{Serrano2015_1.jpg}{
+  Illustration du concept de Gluey : le visiocasque de RA sert de support intermédiaire pour transmettre de l'information facilement entre tous les appareils disponibles.\\
   Tiré de \cite{Serrano2015}.
 }
 
-\cite{Serrano2015a} ont par la suite complété leur travail, en proposant Desktop-Gluey : ce concept étend les possibilités de Gluey en permettant à l'utilisateur d'étendre les écrans physiques de ses appareils par des fenêtres virtuelles. Les fenêtres peuvent être arrangés dans l'espace autour des écrans physique par l'utilisateur. Le système autorise donc le travail collaboratif en permettant de partager des fenêtres virtuelles entre plusieurs utilisateurs \reffigureETSp{Serrano2015a.jpg}. Enfin, les fenêtres peuvent suivre l'utilisateur dans ses déplacements et lui permettre d'interagir avec en utilisant son téléphone, une tablette ou des gestes de la main ou pour interagir, créant ainsi un concept de bureau mobile \reffigureETSp{Serrano2015a.jpg}. La métaphore du bureau sur l'ordinateur personnel est donc reprise et augmentée à \"partout\" et en \"tout temps\" : tout dispositif d'entrée peut être utilisé et tout dispositif d'entrée peut être augmenté dans son affichage.\\
+\figureLayoutETS{Serrano2015_Demos}{%
+  \subfigureETS[0.3]{Serrano2015_2.jpg}{Copie du lien d'une vidéo vers le presse-papier du visiocasque.}%
+  \figurehspace[2]%
+  \subfigureETS[0.3]{Serrano2015_3.jpg}{Impression d'une image en la déplaçant du presse-papier du visiocasque pour la déposer sur l'imprimante.}%
+}{
+  Photographies du fonctionnement de Gluey.\\
+  Adapté de \cite{Serrano2015}.
+}
+
+Enfin, \cite{Serrano2015a} ont complété Gluey en proposant un concept de \emph{bureau virtuel} qu'ils ont nommé Desktop-Gluey. Cette série d'IHMs permet d'intégrer des fenêtres virtuelles dans un environnement de travail de bureau. Leur première idée est de les utiliser en parallèle d'écrans d'ordinateur voire de les remplacer tout en continuant à utiliser clavier et souris, comme avec Gluey \reffigureETSp{Serrano2015a_1.jpg}. Ces fenêtres virtuelles peuvent également être placées pour étendre les écrans physique comme dans le mode \texten{device-aligned} de MultiFi ou dans des dispositions spatiales similaires au Personal Cockpit \reffigureETSp{Serrano2015a_2.jpg}. Enfin, le bureau virtuel peut être emmené avec soi, en utilisant son téléphone ou une tablette pour interagir avec ou par des interactions directes utilisant une main virtuelle \reffigureETSp{Serrano2015a_3.jpg}. Ce court article ne présentant que des idées, sa principale limite est de ne pas les évaluer.
+
+\figureLayoutETS{Serrano2015a_Demos}{%
+  \subfigureETS[0.3]{Serrano2015a_1.jpg}{Copie du lien d'une vidéo vers le presse-papier du visiocasque.}%
+  \figurehspace%
+  \subfigureETS[0.3]{Serrano2015a_2.jpg}{Copie du lien d'une vidéo vers le presse-papier du visiocasque.}%
+  \figurehspace%
+  \subfigureETS[0.3]{Serrano2015a_3.jpg}{Impression d'une image en la déplaçant du presse-papier du visiocasque pour la déposer sur l'imprimante.}%
+}{
+  Illustration de Deskto-Gluey : ce concept de bureau virtuel explore comment les fenêtres virtuelles vue par RA peuvent s'intégrer dans un espace de travail de bureau.\\
+  Adapté de \cite{Serrano2015}.
+}
+
 Le concept recoupe celui de MultiFi \citep{Grubert2015}, et le généralise des appareils mobiles seuls à tous les appareils visibles par l'utilisateur. Une autre différence majeure est que MultiFi a été conçu pour faciliter les taches demandant d'utiliser plusieurs appareils, alors que Desktop-Gluey propose de travailler avec ces fenêtres virtuelles : on peut dire que c'est une application du Personal Cockpit \citep{EnsFinneganIrani2014} dans une IHM tangible et située autour d'appareils mobiles (comme MultiFi).\\
 \citeauthor{Serrano2015a} ne présentent dans cet article que le concept mais n'en réalise aucun prototype, ni aucune évaluation. Nous pensons qu'il serait intéressant de montrer que ce concept fonctionne et d'implémenter ce système de bureau virtuel et mobile, afin d'explorer son espace de conception et d'en ajuster au mieux les paramètres.
 
@@ -225,20 +275,45 @@ Le concept recoupe celui de MultiFi \citep{Grubert2015}, et le généralise des 
   Tiré de \cite{Serrano2015a}.
 }
 
-Ens2014a - Ethereal Planes : cadre de conceptions pour des fenetres 2D dans un espace de travail en RA. Redonner application au Personal Cockpit
+On peut mieux classer ces différents travaux en utilisant Ethereal Planes : \cite{Ens2014a} proposent ce cadre de conception pour les IHMs de RA utilisant des fenêtres 2D, en les classant selon trois groupes de sept dimensions en tout :
+\begin{itemize}
+  \item Cadre de référence :
+  \begin{itemize}
+    \item \emph{Perspective} : les fenêtres sont placées par rapport au corps ou à la tête de l'utilisateur (\emph{egocentrique}) ou par rapport à l'environnement (\emph{exocentrique}).
+    \item \emph{Mobilité} : les fenêtres sont \emph{mobiles} ou \emph{fixes}.
+    \item \emph{Proximité} : la distance avec l'utilisateur, \emph{sur le corps}, à porté de main (\emph{proche}) ou au-delà (\emph{lointain}).
+  \end{itemize}
+  \item Manipulation spatiale :
+  \begin{itemize}
+    \item \emph{Mode d'entrée} : les techniques d'interactions sont soit \emph{directes} (écran tactile, main virtuelle), soit \emph{indirectes} (pointeur virtuel).
+    \item \emph{Tangibilité} : les techniques d'interactions sont \emph{tangibles} ou \emph{intangibles}.
+  \end{itemize}
+  \item Composition spatiale :
+  \begin{itemize}
+    \item \emph{Visibilité} : si le contenu est visible (\emph{haut}), par exemple avec un grand champ de vision, ou s'appuie sur la mémoire spatiale de l'utilisateur (\emph{bas}).
+    \item \emph{Discrétisation} : décrit la fragmentation de l'espace virtuel, qui est plutôt \emph{continu} (un seul affichage) ou \emph{discret} (de multiples affichages disjoints).
+  \end{itemize}
+\end{itemize}
+\bigskip
 
 \figureETS[0.5]{Ens2014a_1.jpg}{
-  Illustrations du cadre de conception \texten{Ethereal Planes}, qui facile la conception de systèmes utilisant des fenêtres 2D dans des environnements de RA : (a) exemple de multi-tâches, (b) exemple de travail en collaboration.\\
+  Illustrations du cadre de conception \texten{Ethereal Planes}, qui facile la conception de systèmes utilisant des fenêtres 2D dans des environnements de RA : (a) exemple de multi-tâches, (b) exemple de travail en collaboration. On observe une similitude avec \cite{Serrano2015a}.\\
   Tiré de \cite[Figure 1]{Ens2014a}.
 }
 
-\figureETS[0.9]{Ens2014a_2.jpg}{
+Par exemple, \cite{Ens2014a} évaluent leur Personal Cockpit comme egocentrique et mobile, proche de l'utilisateur, à interactions indirectes et intangibles, avec une petite visibilité et continu (les écrans forment une \textquote{bulle} continue autour de l'utilisateur). Ils classent de la même manière un échantillon de 34 IHMs dans la littérature dans leur cadre en cinq catégories \reffigureETSp{Ens2014a_2.jpg}. De même, nous classons les applications de RA sur mobile, utilisant ARCore ou ARKit, où la RA est vue à travers le téléphone tenu en main font partie de la catégorie \texten{peephole}, tandis que le HoloLens fait partie de la catégorie \texten{floating} où des fenêtres virtuelles sont placées par rapport aux murs. Ce cadre est également utile pour décrire plusieurs modes d'une IHM : un utilisateur de Desktop-Gluey place par exemple les fenêtres autour de l'écran d'un ordinateur dans un cadre alors exocentrique et fixé, ou autour d'un téléphone tenu en main dans un cadre egocentrique et mobile.
+
+\figureETS[1]{Ens2014a_2.jpg}{
   Application du cadre de conception \texten{Ethereal Planes} à quelques exemples dans la littérature regroupés en cinq catégories.\\
   Tiré de \cite[Figure 3]{Ens2014a}.
 }
 
+On pourrait s'étonner que toutes ces IHMs que nous venons de voir se limitent à des fenêtres 2D pourtant affichées dans un espace en 3D. \cite{Ens2014a} indiquent que nous devons déjà comprendre comment concevoir des affichages 2D en RA, car ils sont connus et bien maîtrisés sur les ordinateurs, les téléphones ou montres intelligents et permettent donc de travailler rapidement et avec précision. De plus, les affichages 2D resteront toujours présents sous forme d'IHM et même physiquement, car [traduction] \textquote{ils resteront adaptés pour un large éventail d'utilisations, particulièrement celles impliquant des simplifications ou abstractions d'informations (par exemple, du texte, des plans, des panneaux de contrôles)} \citep[p. 1]{Ens2014a}. C'est donc une première étape de recherche vers la conception d'IHMs pour la RA, pour ensuite y bâtir des IHMs plus innovantes en 3D.
+
 
 \section{Visualisation et navigation de larges documents}
+\label{sec:litterature_large_documents}
+
 Dépasser les limites physiques d'un écran est un thème courant dans la littérature. En effet, un petit écran comme ceux des téléphones intelligents, ou des PCs dans les années 2000 \citep{Baudisch2002}, ne permet pas de visualiser et de naviguer correctement de grands documents : il n'est pas possible de visualiser en même temps les détails et une vue d'ensemble du document \reffigureETSp{Guiard2004_1}.
 
 \figureLayoutETS{Guiard2004_1}{%
@@ -254,9 +329,9 @@ Dépasser les limites physiques d'un écran est un thème courant dans la litté
 
 Une approche est d'utiliser des IHMs multi-échelles (\texten{multiscale interfaces}) : elles permettent à l'utilisateur de visualiser des informations plus larges que l'écran utilisé. Le principe est d'afficher à l'écran une ou plusieurs vues du document à différentes échelles et positions. Trois techniques sont décrites par \cite{Guiard2004} :
 \begin{itemize}
-  \item \texten{Pan+Zoom} : une vue peut-être déplacée sur le document par défilement (\texten{pan}), tandis que le zoom permet de changer l'échelle du document \reffigureETSp{Guiard2004_4.png}.
-  \item \texten{Overview+Detail} : une vue zoomée (\texten{detail}) et une vue sur le document en entier (\texten{overview}) sont affichées simultanément \reffigureETSp{Guiard2004_5.png}. Elles sont placées côte-à-côte ou superposées et peuvent être déplacées indépendamment. Cependant, la navigation peut-être difficile si la différence d'échelle est trop grande entre les deux vues.
-  \item \texten{Focus+Context} : une seule vue permet d'afficher le document en entier et le document zoomé, grâce à une distortion optique \reffigureETSp{Guiard2004_6.png}. Aucune partie du document n'est cachée, mais il peut être difficile d'interpréter le contenu de la vue à cause de la distortion.
+  \item Pan+Zoom : une vue peut-être déplacée sur le document par défilement (\texten{pan}), tandis que le zoom permet de changer l'échelle du document \reffigureETSp{Guiard2004_4.png}.
+  \item Overview+Detail : une vue zoomée (\texten{detail}) et une vue sur le document en entier (\texten{overview}) sont affichées simultanément \reffigureETSp{Guiard2004_5.png}. Elles sont placées côte-à-côte ou superposées et peuvent être déplacées indépendamment. Cependant, la navigation peut-être difficile si la différence d'échelle est trop grande entre les deux vues.
+  \item Focus+Context : une seule vue permet d'afficher le document en entier et le document zoomé, grâce à une distortion optique \reffigureETSp{Guiard2004_6.png}. Aucune partie du document n'est cachée, mais il peut être difficile d'interpréter le contenu de la vue à cause de la distortion.
 \end{itemize}
 
 \figureLayoutETS{Guiard2004_1}{%
@@ -297,65 +372,49 @@ Cependant le non-alignement entre les deux écrans pose problème en divisant l'
 
 
 \section{Affichages étendus}
-L'agrandissement d'affichages est un thème déjà existant dans la littérature. \cite{Bi2011} proposent par exemple de remplacer un bureau de PC par une table tactile \reffigureETSp{Bi2011.jpg} : des fenêtres et barres d'outils peuvent être déplacées de l'ordinateur vers la table tactile, des miniatures pour interagir avec des fenêtres ouvertes y sont affichées en bas de la table tactile et le clavier et la souris sont augmentés par une IHM les suivant. \citeauthor{Bi2011} ont évalué la faisaibilité de leur concept : les participants pouvaient facilement faire aller et venir leurs mains du clavier et de la souris pour interagir à une main ou à deux mains sur la table tactile, en particulier au dessus et en dessous du clavier mais plus difficilement sur les côtés gauche et droit de la table tactile.
+\label{sec:litterature_extended_displays}
+
+Enfin, plusieurs techniques n'impliquant pas de RA ont été explorées pour étendre des affichages. \cite{Bi2011} proposent par exemple de remplacer un bureau de PC par une table tactile \reffigureETSp{Bi2011.jpg} : des fenêtres et barres d'outils peuvent être déplacées de l'ordinateur vers la table tactile, des miniatures pour interagir avec des fenêtres ouvertes y sont affichées en bas de la table tactile et le clavier et la souris sont augmentés par une IHM les suivant. \citeauthor{Bi2011} ont évalué la faisaibilité de leur concept : les participants pouvaient facilement faire aller et venir leurs mains du clavier et de la souris pour interagir à une main ou à deux mains sur la table tactile, en particulier au dessus et en dessous du clavier mais plus difficilement sur les côtés gauche et droit de la table tactile.
 
 \figureETS[0.6]{Bi2011.jpg}{
   Photo de MagicDesk : le clavier et la souris d'un ordinateur sont posés sur et augmentés par une table tactile.\\
   Tiré de \cite{Bi2011}.
 }
 
-\subsection{Affichages étendus par un projecteur}
 Proche du prototype de \cite{Baudisch2002}, l'aggrandissement d'un écran de télévision à été exploré par \cite{Jones2013}, qui ont créé une IHM \texten{Focus+Context} avec un projecteur \reffigureETSp{Jones2013.jpg}. Ils ont alors conçus 11 visualisations différentes qu'ils ont évaluées auprès de joueurs et de game designers : les participants ont tous été impressionnés et enthousiasmés par le concept. Cependant l'effet peut être trop envahissant sur le long terme : un équilibre doit alors être trouvé entre contenu et confort (\reffigureETS{Jones2013.jpg} (b)). 
 
-De manière similaire, \cite{Benko2015} ont étendu le champs de vision d'un visiocasque de RA à l'aide d'un projecteur \reffigureETSp{Benko2015.jpg}. En effet, la plupart des visiocasques de l'industrie ont de petits champs de vision ($\approx$\ang{40} horizontalement), ce qui limite la taille du contenu virtuel visible. L'avantage du visiocasque par rapport à la télévision de \cite{Jones2013} est qu'il peut afficher du contenu en 3D et non projetté mais leur système est fixé dans la pièce, ce qui limite les applications possibles.
+De manière similaire, \cite{Benko2015} ont étendu le champ de vision d'un visiocasque de RA à l'aide d'un projecteur \reffigureETSp{Benko2015.jpg}. En effet, la plupart des visiocasques de l'industrie ont de petits champ de vision ($\approx$\ang{40} horizontalement), ce qui limite la taille du contenu virtuel visible. L'avantage du visiocasque par rapport à la télévision de \cite{Jones2013} est qu'il peut afficher du contenu en 3D et non projetté mais leur système est fixé dans la pièce, ce qui limite les applications possibles.
 
 Notre concept de VESAD a ainsi l'avantage d'être portable par rapport à \cite{Jones2013} et \cite{Benko2015}. Il aussi permet d'afficher le contenu en périphérie en 3D sans être limité par le plan du mur. Enfin, les interactions peuvent profiter de l'écran tactile.
 
 \figureETS[0.6]{Jones2013.jpg}{
-  Photos de Illumiroom : (a) le champs de vision de la télévision haute-définition (\texten{focus}) est étendu par un projecteur (\texten{context}), (b)  une partie du champs de vision de la télévision est étendu (ici les balles du fusil).\\
+  Photos de Illumiroom : (a) le champ de vision de la télévision haute-définition (\texten{focus}) est étendu par un projecteur (\texten{context}), (b) une partie du champ de vision de la télévision est étendu (ici les balles du fusil).\\
   Adapté de \cite{Jones2013}.
 }
 
 \figureETS{Benko2015.jpg}{
-  Photo de FoveAR : (a) le visiocasque de RA utilisé, (b) vue depuis le visiocasque, (c) vue depuis le visiocasque étendu par un projecteur, (d) illustration du champs de vision du visiocasque étendu.\\
+  Photo de FoveAR : (a) le visiocasque de RA utilisé, (b) vue depuis le visiocasque, (c) vue depuis le visiocasque étendu par un projecteur, (d) illustration du champ de vision du visiocasque étendu.\\
   Tiré de \cite{Benko2015}.
 }
-
-\subsection{Aggrandissement d'appareils mobiles}
-\cite{Grubert2015} proposent déjà d'utiliser les visiocasques pour étendre et joindre les affichages des différents appareils mobiles portés sur soi : téléphones intelligents, tablettes ou montres connectées. En effet, ces appareils mobiles ne sont souvent pas conçus pour travailler ensemble, mais gagneraient à l'être. 
-
-Leur article explore tout d'abord les facteurs de conception de ce concept, dont le type d'alignement \reffigureETSp{Grubert2015_1.jpg} : (1) le contenu projetté par le visiocasque a pour référence le corps de l'utilisateur (similaire à \cite{Ens2014}), l'appareil mobile formant une vue \texten{detail} sur le contenu (similaire à \cite{Berge2014}) dans le \texten{body-aligned mode}, (2) le contenu est centré sur l'appareil mobile et agrandi au-delà de l'écran par le visiocasque dans le \texten{device-aligned mode}, que nous appellons un VESAD, (3) l'appareil mobile et le visiocasque affichent indépendemment leur contenu dans le \texten{side-by-side mode}. D'autres facteurs de conceptions sont : le type d'interaction, directement ou indirectement sur le contenu, et la précision possible des affichages et interactions de chaque appareil \reffigureETSp{Grubert2015_2.jpg}.
-
-\figureETS{Grubert2015_1.jpg}{
-  Illustrations des alignements possibles de contenu entre un visiocasque de RA et un appareil mobile : à gauche, le \texten{body-aligned mode}, au milieu, le \texten{device-aligned mode} et à droite, le \texten{side-by-side mode}.\\
-  Tiré de \cite{Grubert2015}.
-}
-
-\figureETS[0.5]{Grubert2015_2.jpg}{
-  Photo d'une montre intelligente agrandie en haut. En bas, un téléphone intelligent agissant comme une vue \texten{detail} sur une partie du contenu étendu.\\
-  Tiré de \cite{Grubert2015}.
-}
-
-Leurs résultats expérimentaux montrent, dans deux tâches de navigation, que le couplage des appareils mobiles avec un visiocasque de RA peut permettre des temps plus rapides par rapport aux appareils seuls (visiocasque seul ou appareil mobile seul), mais au détriment d'un plus grand effort perçu par les utilisateurs. De plus, les préférences des utilisateurs étaient variées : cela montre que le choix du couplage entre appareils mobiles et visiocasque doit être laissé à l'utilisateur.
-En outre, le visiocasque utilisé était lourd et avait un petit champs de vision (\ang{30.5} horizontalement et \ang{17.15} verticalement) ne permettant pas de visualiser de large contenus, ce qui limite leurs résultats expérimentaux. Aussi, les interactions n'étaient possibles que sur les écrans tactiles : il serait intéressant de les comparer avec des interactions utilisant une main virtuelle.
 
 
 \section{Problématique}
 \label{sec:research_problem}
-Cette revue de littérature a permit d'identifier un besoin de conception d'IHMs en RA s'appuyant sur des visiocasques. En particulier, nous souhaitons explorer la conception d'une IHM pour un visiocasque de RA combiné avec un téléphone intelligent. Ainsi, nous définissons la problématique de ce mémoire ainsi : est-ce qu'un téléphone à affichage étendu donne un avantage à un utilisateur par rapport à un téléphone non étendu ? Est-il mieux d'interagir avec une main virtuelle directement sur l'écran étendu ou seulement sur l'écran tactile ?
+
+Cette revue de littérature a permit d'identifier un besoin de conception d'IHMs en RA s'appuyant sur des visiocasques. En particulier, nous souhaitons explorer la conception d'une IHM pour un visiocasque de RA combiné avec un téléphone intelligent. Ainsi, nous définissons la problématique de ce mémoire ainsi : est-ce qu'un téléphone à écran étendu donne un avantage à un utilisateur par rapport à un téléphone non étendu ? Est-il mieux d'interagir avec une main virtuelle directement sur l'écran étendu ou seulement sur l'écran tactile ?
 
 Nous formulons les hypothèses suivantes par rapport à cette problématique :
 \begin{enumerate}[label={(H\arabic*)}]
-  \item Un téléphone à affichage étendu permettra à un utilisateur d'être plus performant sur des tâches de navigation, de classification ou demandant d'utiliser plusieurs applications en parallèle que sur un téléphone non étendu, quelle que soit la technique d'interaction utilisée.
-  \item Les utilisateurs apprécieront d'avantage pouvoir interagir directement avec l'écran étendu autour du téléphone sur notre système. Cette technique d'interaction est plus directe et \textquote{naturelle}, l'utilisateur agissant directement sur le contenu qu'il voit, et possiblement plus intuitive.
-  \item Les utilisateurs seront en revanche plus performants en interagissant seulement avec l'écran physique tactile du téléphone sur notre système, car les gestes sont plus précis, détectés de manière fiable et moins fatiguants sur un petit écran tactile tenu de manière stable.
+  \item Un téléphone à écran étendu permettra à un utilisateur d'être plus performant sur des tâches de navigation, de classification ou demandant d'utiliser plusieurs applications en parallèle que sur un téléphone non étendu, quelle que soit la technique d'interaction utilisée.
+  \item Les utilisateurs apprécieront d'avantage pouvoir interagir directement avec la fenêtre virtuelle autour du téléphone, l'utilisateur agissant directement sur le contenu qu'il voit, cela lui semblera plus naturel et possiblement plus intuitif.
+  \item Les utilisateurs seront en revanche plus performants en interagissant seulement avec l'écran physique tactile du téléphone, car les gestes y sont plus précis et moins fatiguant sur un petit écran tactile tenu de manière stable.
 \end{enumerate}
 
 Enfin, pour y répondre, nous divisons cette problématique en quatre sous-problèmes :
 \begin{enumerate}
-  \item Concevoir une IHM d'un téléphone à affichage étendu.
-  \item Développer un visiocasque de RA à large champs de vision.
-  \item Réaliser une expérimentation évaluant différentes techniques d'interactions sur téléphone à affichage étendu comparées à un téléphone non étendu sur une tâche de classification.
+  \item Concevoir une IHM d'un téléphone à écran étendu.
+  \item Développer un visiocasque de RA à large champ de vision.
+  \item Réaliser une expérimentation évaluant différentes techniques d'interactions sur téléphone à écran étendu comparées à un téléphone non étendu sur une tâche de classification.
 \end{enumerate}
 
 Les résultats à ces objectifs permettront de donner des recommandations pour de futures recherches d'IHM en RA.
