@@ -13,7 +13,7 @@
 
 \cite{Milgram1994} donne un premier cadre théorique au domaine, en proposant une échelle ordonnée nommée \texten{Reality-Virtuality Continuum} \reffigureETSp{Milgram1994}. \citeauthor{Milgram1994} y oppose deux extrèmes : les environnements réels et les environnements virtuels. Les IHMs habituelles sur ordinateurs et téléphones, ou encore \texten{graphical user interface} (GUI), font partie de la première catégorie, tandis qu'un visiocasque de RV, qui immerge totalement son utilisateur dans un monde virtuel, de la seconde. Entre ces deux extrêmes, les environnements de Réalité Mixte (RM), comme la RA, vont mélanger éléments réels et virtuels. La force de cette représentation est qu'il n'existe pas de catégories séparées entre réel, RA et RV mais que la RA peut se trouver d'un extrème à un autre le long de cette échelle.
 
-Le second enseignement de l'échelle de \citeauthor{Milgram1994} est que RA et RV sont techniquement très proches : les dispositifs de localisation, d'affichage et de géneration de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champ de vision ; par exemple, le champ de vision du visiocasque de RV HTC Vive est de \SI{100x113}{\degree} (horizontalement $\times$ verticalement) pour les deux yeux \citep{Kreylos2016}, ce qui est proche du champ de vision humain qui est de \SI{200x135}{\degree} pour les deux yeux (\url{https://biology.stackexchange.com/a/28140}). La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
+Le second enseignement de l'échelle de \citeauthor{Milgram1994} est que RA et RV sont techniquement très proches : les dispositifs de localisation, d'affichage et de géneration de contenu sont les mêmes \citep{Billinghurst2015}. Cependant, ces deux technologies n'ont pas les mêmes attentes. En effet, pour que l'immersion en RV fonctionne, il est nécessaire d'avoir un large champ de vision (\texten{field of view} ou FoV en anglais) ; par exemple, le champ de vision du visiocasque de RV HTC Vive est de \SI{100x113}{\degree} (horizontalement $\times$ verticalement) pour les deux yeux \citep{Kreylos2016}, ce qui est proche du champ de vision humain qui est de \SI{200x135}{\degree} pour les deux yeux (\url{https://biology.stackexchange.com/a/28140}). La RA va en revanche demander tout d'abord une très grande précision et rapidité dans la localisation de l'utilisateur et des objets à augmenter pour donner le sentiment de « présence » du virtuel dans l'environnement réel.
 
 \figureLayoutETS{Milgram1994}{%
   \begin{tikzpicture}[font=\footnotesize\bfseries]
@@ -42,7 +42,7 @@ Le second enseignement de l'échelle de \citeauthor{Milgram1994} est que RA et R
 
 \cite{Rekimoto1995} apportent un second cadre théorique à la RA \reffigureETSp{Rekimoto1995.png}. Ils montrent que les GUI sont coupées des interactions avec l'environnement réel, tandis que la RV isole l'utilisateur dans des IHMs totalement virtuelles. Deux approches à ces extrèmes sont la RA et l'informatique ubiquitaire (en anglais: \texten{ubiquitous computing}) : cette dernière permet à l'utilisateur d'interagir avec des ordinateur intégrés dans l'environnement réel, par exemple avec téléphones intelligents et des objets connectés, tandis que la RA fusionne réel et virtuel en un seul environnement pour l'utilisateur. Ainsi, avec une IHM bien faite, la RA s'intègre naturellement à l'environnement réel et devient invisible à l'utilisation.
 
-\figureETS{Rekimoto1995.png}{
+\figureETS[0.7]{Rekimoto1995.png}{
   Comparaison de quatre styles d'IHMs : (a) les GUI, coupées de l'environnement réel, (b) les IHMs en VR, isolant l'utilisateur dans un environnement virtuel, (c) l'informatique ubiquitaire, faite d'ordinateurs faisant partie intégrante de l'environnement réel et (d) les IHMs en RA faisant interface entre l'utilisateur et l'environnement réel.\\
   Tiré de \cite{Rekimoto1995}.
 }
@@ -55,7 +55,7 @@ Une première définition formelle de la RA est par la suite proposée par \cite
 \end{enumerate}
 Ce sont les trois conditions techniques à respecter en RA et qui vont permettre le \emph{sentiment de la présence du virtuel} dans l'environnement réel, c'est-à-dire à notre cerveau de voir virtuel et réel comme un seul et même environnement. Cette définition a le mérite d'être assez générale pour s'appliquer tout autant à la RA visuelle, qu'au RA auditives ou haptiques.
 
-\figureETS{Bimber2005.jpg}{
+\figureETS[0.7]{Bimber2005.jpg}{
   Les différents dispositifs d'affichages en RA.\\
   Tiré de \citet[p. 72]{Bimber2005}.
 }
@@ -73,13 +73,13 @@ Enfin, \cite{Buxton1998} repris par \cite{Bimber2005} catégorisent les différe
   \item Les lentilles : elles sont identiques aux visiocasques mais posées directement sur les yeux. Peu utilisées, elles sont encore au stade de prototype mais une fois maîtrisées, elles pourront être à l'avenir le dispotif de RA idéal \citep{VanKrevelen2010}.
 \end{itemize}
 
-\figureETS[0.7]{CAVE.jpg}{
+\figureETS[0.6]{CAVE.jpg}{
   Un CAVE : un cube immersif d'écrans à taille humaine réagissant aux déplacement de l'utilisateur. Ici, l'utilisateur tape la main de son propre hologramme.\\
   Tiré de \cite{Kreylos2012}.
 }
 
 \figureETS{Lee2013.jpg}{
-  Photos de SpaceTop : l'utilisateur peut interagir avec du contenu 3D à travers un écran transparent.\\
+  Photos de SpaceTop : l'utilisateur peut déplacer des fenêtres dans espace 3D à travers un écran transparent.\\
   Tiré de \cite{Lee2013}.
 }
 
@@ -88,7 +88,7 @@ Enfin, \cite{Buxton1998} repris par \cite{Bimber2005} catégorisent les différe
   Tiré de \cite{KWC2012}.
 }
 
-Tout ces dispositifs ont été explorés dans la recherche, mais ce sont essentiellement des prototypes sur appareils mobiles qui ont été développés : en effet, à partir des années 2000, les téléphones intelligents ont eu des caméras intégrées d'une qualité suffisante, tous les capteurs nécessaire et assez de puissance de calcul pour rendre la RA possible \citep{Huang2013}. Cependant, avec l'arrivée du Microsoft HoloLens en 2016 les visiocasques vont pouvoir être à leur tour plus utilisés dans des recherches en RA.
+Tout ces dispositifs ont été explorés dans la littérature, mais ce sont essentiellement des prototypes sur appareils mobiles qui ont été développés : en effet, à partir des années 2000, les téléphones intelligents ont eu des caméras intégrées d'une qualité suffisante, tous les capteurs nécessaire et assez de puissance de calcul pour rendre la RA possible \citep{Huang2013}. Cependant, avec l'arrivée du Microsoft HoloLens en 2016 les visiocasques vont pouvoir être à leur tour plus utilisés dans des recherches en RA.
 
 Dans leur état de l'art \cite{Azuma2001} identifient les trois obstables à dépasser pour que la RA puisse être utilisable par le grand public : (1) les limites techniques, (2) les limites des IHMs et (3) les problème d'acception sociale. Cependant, si quelques concepts et cadres théoriques pour la RA existent depuis plusieurs années, la recherche s'est malgré tout majoritairement consacrée à dépasser les limites techniques de la RA, comme le souligne \cite{Zhou2008}, \cite{VanKrevelen2010} et \cite{Billinghurst2015}, dans leurs états de l'art respectifs. Ils indiquent également que trop peu de travaux ont été consacrés aux IHM et à l'expérience utilisateur en RA : \textquote{there is a need to develop interface metaphors and interaction techniques specific to [augmented reality]} \citep{Billinghurst2015}.
 
@@ -98,7 +98,7 @@ Dans leur état de l'art \cite{Azuma2001} identifient les trois obstables à dé
 
 \subsection{IHMs en RA}
 \label{subsec:litterature_ar_hci_presentation}
-Une IHM consistue la principale interface, l'intermédiaire, avec laquelle un utilisateur va interagir avec un ordinateur. Sa bonne conception est donc nécessaire pour rendre accesible et efficace le travail sur une machine. Son rôle est simple : comme le montre la \reffigureETS{Billinghurst2005}, il s'agit de lier des entrées utilisateurs issues de capteurs physiques (souris, écran tactile, images d'une caméra) à des actions sur l'ordinateur (affichage, son, commande) via une technique d'interaction, c'est-à-dire une méthode pour faire cette liaison \citep{Billinghurst2005}. La technique d'interaction est donc une métaphore qui permet à l'utilisateur d'associer ses actions avec des résultats sur l'ordinateur : par exemple, bouger un curseur avec sa souris, déplacer une carte en balayant de son doigt l'écran tactile ou encore activer des éléments en les \textquote{touchant} avec une main virtuelle. Il existe de nombreux dispositifs d'entrée, de sortie et de techniques d'interaction, le défi étant de : \textquote{\texten{combine these together in a way that is most appropriate to the desired task, facilitates ease of use and learning and provides a high level of user performance and satisfaction}} \citep{Billinghurst2005}.
+Une IHM consistue la principale interface, l'intermédiaire, avec laquelle un utilisateur va interagir avec un ordinateur. Sa bonne conception est donc nécessaire pour rendre accessible et efficace le travail sur une machine. Son rôle est simple : comme le montre la \reffigureETS{Billinghurst2005}, il s'agit de lier des entrées utilisateurs issues de capteurs physiques (souris, écran tactile, images d'une caméra) à des actions sur l'ordinateur (affichage, son, commande) via une technique d'interaction, c'est-à-dire une méthode pour faire cette liaison \citep{Billinghurst2005}. La technique d'interaction est donc une métaphore qui permet à l'utilisateur d'associer ses actions avec des résultats sur l'ordinateur : par exemple, bouger un curseur avec sa souris, déplacer une carte en balayant de son doigt l'écran tactile ou encore activer des éléments en les \textquote{touchant} avec une main virtuelle. Il existe de nombreux dispositifs d'entrée, de sortie et de techniques d'interaction, le défi étant de : \textquote{\texten{combine these together in a way that is most appropriate to the desired task, facilitates ease of use and learning and provides a high level of user performance and satisfaction}} \citep{Billinghurst2005}.
 
 \figureLayoutETS{Billinghurst2005}{%
   \begin{tikzpicture}[font=\footnotesize]
@@ -108,7 +108,7 @@ Une IHM consistue la principale interface, l'intermédiaire, avec laquelle un ut
     \draw (5,0) node[label, draw]{\textbf{Éléments}\\\textbf{d'affichage}};
 
     \draw[->, very thick] (1.5,-0.5) -- (3.5,-0.5)
-      node[label, pos=0.5, below]{Métaphore\\d'interaction};
+      node[label, pos=0.5, below]{Technique\\d'interaction};
 
     \draw (0,-1.1) node[label]{Entrée};
     \draw (5,-1.1) node[label]{Sortie};
@@ -123,42 +123,42 @@ La RA représente donc un excellent média car l'écart entre les éléments phy
 C'est en réalité un des but visé par la recherche en IHM : \cite{VanDam1997} et \cite{Jacob2008} rapellent que les interactions avec les ordinateurs sont allées en plusieurs génerations visant à chaque fois une utilisation plus simple, plus directe et plus proche des actions quotidiennes. Les ordinateurs s'utilisaient par des cartes de commandes et des résultats imprimés (avant 1960), puis avec une ligne de commandes via des terminaux avec clavier (jusque dans les années 1980), enfin par des interfaces graphiques \reffigureETSp{Jacob2008.jpg}. Cette troisième génération d'IHM suit le paradigme WIMP : un ensemble de fenêtres (\texten{windows}), icônes (\texten{icons}) et menus (\texten{menus}) accessibles par un appareil de pointage (\texten{pointing device}), comme une souris. Ces IHMs sont excellentes pour des applications graphiques en 2D, mais limitées, entre autres, pour celles en 3D. \cite{VanDam1997} appella alors à développer une nouvelle génération d'IHMs \textquote{post-WIMP}, contenant des techniques d'interactions non dépendantes de fenêtre, icônes ou de menu en 2D. L'objectif étant de diversifier les types d'IHM pour proposer le plus adapté selon les besoins de l'utilisateur.
 
 \figureETS[0.5]{Jacob2008.jpg}{
-  Illustrations des deuxième et troisième générations d'IHM, en ligne de commande puis par interfaces graphiques WIMP, ainsi que les nombreux types émergeants d'IHMs \textquote{post-WIMP}. Toutes sont complémentaires, chacune étant adapté à des usages spécifiques qu'étudie la recherche sur les IHMs.\\
+  Illustrations des deuxième et troisième générations d'IHM, en ligne de commande puis par interfaces graphiques WIMP, ainsi que les nombreux types émergeants d'IHMs \textquote{post-WIMP}. Toutes sont complémentaires, chacune adaptée à des usages spécifiques qu'étudie la recherche sur les IHMs.\\
   Tiré de \cite{Jacob2008}.
 }
 
-Si de nombreuses IHMs \textquote{post-WIMP} ont par la suite été développées, comme celles désormais bien connues des téléphones intelligents à écrans tactiles \cite{Jacob2008}, aucun paradigme pour la RA n'est encore établi \citep{VanKrevelen2010}. \cite{Billinghurst2005} décrit que ce processus se déroule en quatre étapes : (1) développement de prototypes, (2) adoption de techniques d'interactions d'autres types IHMs, (3) développement de métaphores spécifiques au média, (4) développement de paradigmes de conception d'IHM pour le média. De nombreuses techniques d'interactions ont été développées en RA, mais un effort de conception est encore nécessaire pour atteindre la quatrième étape : \cite{Billinghurst2015}
+Si de nombreuses IHMs \textquote{post-WIMP} ont par la suite été développées, comme celles désormais bien connues des téléphones intelligents à écrans tactiles \cite{Jacob2008}, aucun paradigme pour la RA n'est encore établi \citep{VanKrevelen2010}. \cite{Billinghurst2005} décrit le processus du développement d'un paradigme d'IHM pour un nouveau média :
+\begin{itemize}
+  \item développement de prototypes ;
+  \item adoption de techniques d'interactions d'autres types d'IHM ;
+  \item développement de métaphores et paradigmes d'IHMs adaptés au média ;
+  \item développement de modèles théoriques pour ces paradigmes.
+\end{itemize}
+\bigskip
 
-Billinghurst2015, p. 165 : il y a maintenant plein de méthodes d'interactions mais encore besoin d'effort de conception
-There have been a number of AR interface types developed since the 1960’s, including:\\
-1) Information Browsers: Interfaces for showing AR information on the real world\\
-2) 3D User Interfaces: Using 3D interaction techniques to manipulate content in space\\
-3) Tangible User Interfaces: Using real objects to interact with AR virtual content\\
-4) Natural User Interfaces: Using natural body input such as free hand gestures\\
-5) Multimodal Interfaces: Using combined speech and gesture input\\
+Pour \cite{Billinghurst2015} toutes les IHMs qui ont été développées pour la RA atteignent seulement les première et deuxième étapes, important et appliquant des techniques d'interactions des IHMs WIMP, de la RV ou utilisées avec des écrans tactiles. Ils les classent en plusieurs catégories :
+\begin{enumerate}
+  \item Navigateurs d'informations : affichant de l'information en RA sur l'environnement réel. Ce sont principalement les IHMs que l'on retrouve dans les applications pour téléphones intelligents \reffigureETSp{MobileAR.jpg} : elles permettent simplement d'afficher du contenu en surimpression de l'environnement réel, l'utilisateur se déplaçant simplement pour le voir sous différents angles. Des IHMs WIMP sont souvent utilisées, mais ce type d'interfaces est limité dans les interactions avec le contenu virtuel en 3D.
+  \item Interfaces en 3D : utilisant des techniques d'interactions en 3D pour manipuler le contenu dans l'espace.
+  \item Interfaces utilisateur tangibles (IUT) : utilisant des objets réels pour interagir avec du contenu virtuel.
+  \item Interfaces utilisateur naturelles : utilisant les mouvements du corps de l'utilisateur, par exemple des commandes gestuelles.
+  \item Interfaces multimodales : utilisant simultanément des commandes vocales et gestuelles.
+\end{enumerate}
 
-Discuter des IHM sur mobile pendant les années 2000 et 2010 (information Browsers dans la classification de Billinghurst2015)
+Nous détaillons les interfaces en 3D, les interfaces naturelles et les IUT car ce sont celles qui nous concernent pour notre téléphone à écran étendu.
 
-Billinghurst2015, p.179 : par contre clairement besoin de recherche dans les interfaces\\
-+ étapes construction d'IHM pour la RA (le WIMP est passé par là) :\\
-1) Prototype Demonstration\\
-2) Adoption of Interaction techniques from other interface metaphors\\
-3) Development of new interface metaphors appropriate to the medium\\
-4) Development of formal theoretical models for modelling user in teractions\\
-La plupart des IHM en RA ne vont pas au dela des étapes 1 et 2. Vs VR qui en est à l'étape 3 (Go-Go, controlleurs, gaze)\\
-MacIntyre points out that AR design is driven by the need to define and fuse the relationship between entities in the physical world and virtual world [MacIntyre, 2002]
-
-there are three components that must be designed in an AR application (see Figure 8.1): (1) the real physical objects, (2) the virtual elements to be displayed, and (3) the interaction metaphor that links the real and virtual elements together.\\
-1 et 2 : affordances visuelles pour faire comprendre comment peuvent être manipulés. La technique d'interaction lie 1 et 2
-
-\subsection{Interactions en 3D}
+\subsection{Interfaces en 3D et interfaces naturelles}
 \label{subsec:litterature_ar_hci_interactions}
-Si les interactions sur des surfaces tactiles comme les téléphones intelligents sont bien maîtrisées, les interactions dans les environnements en 3D sont moins connues.
+Ces interfaces et interactions sont importées des recherches dans les environnements en 3D (affichés sur un écran d'ordinateur) et de la RV. \cite{Bowman2004} les classent en trois catégories : (1) navigation, (2) sélection et (3) manipulation. Seules ces deux dernières sont applicables à la RA, le contenu virtuel étant aligné avec l'environnement réel, l'utilisateur se déplace simplement lui-même.
 
-Berard2009 : c'est quoi une technique d'interaction : « « Interaction is not defined by an input device alone, but by the combination of a device and an interaction technique. In the example of 3D object rotation, the mouse is typically used with the virtual sphere technique while a free-space device is used with a direct mapping (either absolute or relative) Thus, each device must be matched with its most suitable interaction technique in making performance comparisons, rather than choosing a single interaction technique for all devices. » »
+De nombreux dispositifs ont été développés pour les IHMs 3D : des souris 3D, des joysticks, des stylos suivis en 3D ou des dispositifs haptiques (avec retour de force, donnant l'illusion de toucher le contenu virtuel) \reffigureETSp{Adcock2003.jpg}. Tous permettent de manipuler (translation et rotation) avec précision du contenu virtuel, mais présentent souvent l'inconvénient d'occuper les mains de l'utilisateur : les espaces de visualisation et d'interaction sont donc séparés, mais, surtout, les méthodes d'interactions avec les objets virtuels sont alors différentes de celles avec les objets réels \cite{Billinghurst2015}.
 
-Bowman2004 : summarizes various types of 3D interactions into three categories: (1) navigation, (2) selection, and (3)
-manipulation
+\figureETS[0.6]{Adcock2003.jpg}{
+  Exemple d'une IHM de RA utilisant des dispositifs d'IHMs d'environnements en 3D : la main gauche utilise plusieurs boutons pour interagir avec le menu 2D, tandis que la main droite tient un stylo haptique pour manipuler le crâne avec 6 DoF.\\
+  Tiré de \cite{Adcock2003}.
+}
+
+Les interfaces utilisateurs naturelles utilisent directement les mouvements du corps de l'utilisateur comme dispotif d'interaction, en particulier les mains. De nombreuses méthodes de vision par ordinateur permettent ce suivi en utilisant simplement les images d'une caméra \cite{Billinghurst2015}. Un utilisateur peut alors agir directement avec les objets virtuels comme il le ferait avec des objets physiques, ou exécuter des commandes avec des gestes avec ses mains.
 
 Argelaguet2013 : pb des interactions 3D, sélection tâche + métaphores main et gaze, subjectivité vs performance, design technique, taxonomie technique,  (voir cahier gris)\\
 Métaphore main virtuelle : cependant, cette technique amène un autre problème quand elle est utilisée en RA. En effet, en RA, le contenu virtuel est « imprimé par dessus » le contenu réel et peut donc masquer le contenu réel. Par exemple, je peux vouloir toucher un objet 3D en l'air avec ma main, mais cette dernière sera toujours masqué par l'objet même si ma main semble en avant de l'objet. Dès lors, il faut utiliser une technique d'occlusion, c'est-à-dire masquer l'objet 3D quand un objet réel, comme la main de l'utilisateur, se trouve devant \reffigureETSp{Piumsomboon2014_1}.
@@ -205,7 +205,7 @@ Dans une seconde expérience, \citeauthor{Piumsomboon2014} ont également trouv�
 
 Pour valider une action avec un pointeur virtuel, HoloLens utilise TAFFI \cite{Wilson2006}
 
-\subsection{Interfaces Utilisateur Intangibles}
+\subsection{Interfaces utilisateur tangibles}
 \label{subsec:litterature_ar_hci_tui}
 Billinghurst2015, p.169 : interface tangibles (Tangible User Interface (TUI))\\
 Kato et al. [2000] proposed the concept of Tangible AR (TAR). TAR uses Tangible UI as input interaction metaphor while using AR for visualising virtual information overlaid on the physical object used for interaction. the interaction space and display space are seamlessly merged together\\
@@ -221,20 +221,23 @@ White2009 : shake menus
 
 \subsection{Évaluation d'IHM en RA}
 \label{subsec:litterature_ar_hci_evaluation}
-Swan2005, Duenser2008 (p.203) : evaluation en RA\\
+Enfin, pour déterminer si une IHM est pertinente, fonctionne et prouve son efficacité, il convient de l'évaluer. Il existe plusieurs méthodes :
 (1) Objective measurements : performance (temps, erreurs, efficacité), surtout temps de complétion et taux d'erreur, ou encore score, position, nombre d'actions, mouvements\\
 (2) Subjective measurements : engagament, retour utilisateur, questionnaires, notes utilisateurs, retours utilisateurs\\
 (3) Qualitative analysis : avis d'experts, observations, interviews formelles, classification des comportements utilisateurs\\
 (4) Usability evaluation techniques : évaluations experts, évaluations heuristiques, analyse de tache, description à haute voix, méthode magicien d'Oz\\
 (5) Informal evaluations : observations utilisateurs, retours utilisateurs
 
+Swan2005, Duenser2008 (p.203) : evaluation en RA
+
+Enfin, 
+
 taches plus écologiques (proches des usages réels du quotidien)
 
 
 \section{Espaces de travail en RA}
 \label{sec:litterature_ar_worspaces}
-
-La séparation entre les styles d'IHMs présentées \cite{Rekimoto1995} \reffigureETSp{Rekimoto1995.png} est artificielle : comme le souligne très justement \cite{Billinghurst2015}, l'échelle de \cite{Milgram1994} nous montre que la RA devrait s'intégrer avec l'informatique ubiquitaire, les GUI et la RV. Par exemple, \cite{Heun2016} utilise la RA comme interface pour interagir de façon naturelle avec les objets intelligents autour de soi \reffigureETSp{Heun2016.jpg}, tandis que le prototype \texten{SpaceTop} de \cite{Lee2013} transforme un GUI sur ordinateur en 3D \reffigureETSp{Lee2013.jpg}. C'est pourquoi nous pensons que la RA peut révolutionner nos rapports avec les ordinateurs et appareils intelligents mobiles.
+La séparation entre les styles d'IHMs présentées \cite{Rekimoto1995} \reffigureETSp{Rekimoto1995.png} est artificielle : comme nous l'avons vu, l'échelle de \cite{Milgram1994} nous montre que la RA devrait s'intégrer avec l'informatique ubiquitaire, les GUI et la RV \cite{Billinghurst2005}. Par exemple, \cite{Heun2016} utilise la RA comme interface pour interagir de façon naturelle avec les objets intelligents autour de soi \reffigureETSp{Heun2016.jpg}, tandis que le prototype \texten{SpaceTop} de \cite{Lee2013} transforme un GUI sur ordinateur en 3D \reffigureETSp{Lee2013.jpg}.
 
 \figureETS[0.7]{Heun2016.jpg}{
   Photo du \texten{Reality Editor}, un navigateur web de RA pour interagir facilement avec les objets intelligents autour de soi. Ici, une personne paye un parc-mètre via son téléphone.\\
@@ -243,7 +246,7 @@ La séparation entre les styles d'IHMs présentées \cite{Rekimoto1995} \reffigu
 
 Google Glass a été une expérience novatrice de visiocasque. Malgré les problèmes de vie privée et d'acceptation sociale que son usage a posé, \cite{Koelle2015} rappellent que cela a montré qu'il était intéressant de combiner un visiocasque de RA avec un téléphone intelligent : l'utilisateur interagissant avec son téléphone via le visiocasque, par des interactions multimodales à la voix ou encore avec des gestes en l'air décodés par la caméra du visiocasque. Cette expérience montre ainsi que les visiocasques de RA vont d'abord prendre place dans nos quotididiens professionnels où ils seront mieux acceptés ; c'est également la stratégie de la nouvelle version de ce visiocasque \cite{Levi2017}. Il est donc plus intéressant d'orienter des recherches en IHM pour la RA
 
-Le Google Glass était un prototype limité visible seulement par l'\oe il droit avec un faible champ de vue \reffigureETSp{Phandroid2013_1.jpg}, mais surtout sans proposer une véritable IHM de RA : affichée sur un unique plan virtuel à une distance fixe des yeux \reffigureETSp{Phandroid2013_2.jpg}, elle ne répond pas à l'alignement virtuel-réel dans la définition d'\cite{Azuma1997}. Aussi, cette fenêtre virtuelle peut faire occlusion avec l'environnement réel, et gêner la vue de l'utilisateur. De nombreux autres visiocasques, comme Epson Moverio ou Vusix, souffrent de ces mêmes limites. C'est pourquoi le HoloLens a apporté une innovation majeure dans l'industrie de la RA en proposant de placer de multiples fenêtres virtuelles contre les mur, comme on peut accrocher un tableau, donnant réellement le sentiment qu'elles font partie de l'environnement réel.
+Le Google Glass était un prototype limité visible seulement par l'\oe il droit avec un faible champ de vision \reffigureETSp{Phandroid2013_1.jpg}, mais surtout sans proposer une véritable IHM de RA : affichée sur un unique plan virtuel à une distance fixe des yeux \reffigureETSp{Phandroid2013_2.jpg}, elle ne répond pas à l'alignement virtuel-réel dans la définition d'\cite{Azuma1997}. Aussi, cette fenêtre virtuelle peut faire occlusion avec l'environnement réel, et gêner la vue de l'utilisateur. De nombreux autres visiocasques, comme Epson Moverio ou Vusix, souffrent de ces mêmes limites. C'est pourquoi le HoloLens a apporté une innovation majeure dans l'industrie de la RA en proposant de placer de multiples fenêtres virtuelles contre les mur, comme on peut accrocher un tableau, donnant réellement le sentiment qu'elles font partie de l'environnement réel.
 
 \figureLayoutETS{Glass}{%
   \subfigureETS[0.2]{Phandroid2013_1.jpg}{Utilisateur portant le visiocasque : le champ de vision est très petit et limité à l'\oe il droit.}%
@@ -318,7 +321,7 @@ Enfin, \cite{Serrano2015a} ont complété Gluey en proposant un concept de \emph
   Adapté de \cite{Serrano2015}.
 }
 
-On peut mieux comprendre comment toutes ces IHMs s'articulent entre elles en utilisant Ethereal Planes \citep{Ens2014a} : cadre de conception pour les IHMs de RA utilisant des fenêtres 2D, en les classant selon trois groupes de sept dimensions en tout :
+On peut mieux comprendre comment toutes ces IHMs s'articulent entre elles en utilisant le cadre de conception Ethereal Planes \citep{Ens2014a}. Il permet de classer et concevoir les IHMs de RA utilisant des fenêtres 2D selon sept dimensions :
 \begin{itemize}
   \item Cadre de référence :
   \begin{itemize}
@@ -346,12 +349,11 @@ Par exemple, \cite{Ens2014a} évaluent leur Personal Cockpit comme egocentrique 
   Tiré de \cite[Figure 3]{Ens2014a}.
 }
 
-On pourrait s'étonner que toutes ces IHMs que nous venons de voir se limitent à des fenêtres 2D pourtant affichées dans un espace en 3D. \cite{Ens2014a} indiquent que nous devons déjà comprendre comment concevoir des affichages 2D en RA, car ils sont connus et bien maîtrisés sur les ordinateurs, les téléphones ou montres intelligents et permettent donc de travailler rapidement et avec précision. De plus, les affichages 2D resteront toujours présents sous forme d'IHM et même physiquement, car [traduction] \textquote{ils resteront adaptés pour un large éventail d'utilisations, particulièrement celles impliquant des simplifications ou abstractions d'informations (par exemple, du texte, des plans, des panneaux de contrôles)} \citep[p. 1]{Ens2014a}. C'est donc une première étape de recherche vers la conception d'IHMs pour la RA, pour ensuite y bâtir des IHMs plus innovantes en 3D.
+On pourrait s'étonner que toutes ces IHMs que nous venons de voir se limitent à des fenêtres 2D pourtant affichées dans un espace en 3D. \cite{Ens2014a} indiquent que nous devons déjà comprendre comment concevoir des affichages 2D en RA, car ils sont connus et bien maîtrisés sur les ordinateurs (IHMs WIMP), les téléphones ou montres intelligents et permettent donc de travailler rapidement et avec précision. De plus, les affichages 2D resteront toujours présents sous forme d'IHM et même physiquement, car [traduction] \textquote{ils resteront adaptés pour un large éventail d'utilisations, particulièrement celles impliquant des simplifications ou abstractions d'informations (par exemple, du texte, des plans, des panneaux de contrôles)} \citep[p. 1]{Ens2014a}. Toutes ces IHMs et ce cadre de conceptions sont donc une passerelle pour passer de la deuxième étape du processus de construction d'un paradigme d'interface de \cite{Billinghurst2005} pour ensuite bâtir des IHMs spécifiques à la RA (troisième étape du processus).
 
 
 \section{Visualisation et navigation de larges documents}
 \label{sec:litterature_large_documents}
-
 Dépasser les limites physiques d'un écran est un thème courant dans la littérature. En effet, un petit écran comme ceux des téléphones intelligents, ou des PCs dans les années 2000 \citep{Baudisch2002}, ne permet pas de visualiser et de naviguer correctement de grands documents : il n'est pas possible de visualiser en même temps les détails et une vue d'ensemble du document \reffigureETSp{Guiard2004_1}.
 
 \figureLayoutETS{Guiard2004_1}{%
@@ -411,7 +413,6 @@ Cependant le non-alignement entre les deux écrans pose problème en divisant l'
 
 \section{Affichages étendus}
 \label{sec:litterature_extended_displays}
-
 Enfin, plusieurs techniques n'impliquant pas de RA ont été explorées pour étendre des affichages. \cite{Bi2011} proposent par exemple de remplacer un bureau de PC par une table tactile \reffigureETSp{Bi2011.jpg} : des fenêtres et barres d'outils peuvent être déplacées de l'ordinateur vers la table tactile, des miniatures pour interagir avec des fenêtres ouvertes y sont affichées en bas de la table tactile et le clavier et la souris sont augmentés par une IHM les suivant. \citeauthor{Bi2011} ont évalué la faisaibilité de leur concept : les participants pouvaient facilement faire aller et venir leurs mains du clavier et de la souris pour interagir à une main ou à deux mains sur la table tactile, en particulier au dessus et en dessous du clavier mais plus difficilement sur les côtés gauche et droit de la table tactile.
 
 \figureETS[0.6]{Bi2011.jpg}{
@@ -448,11 +449,11 @@ Nous formulons les hypothèses suivantes par rapport à cette problématique :
   \item Les utilisateurs seront en revanche plus performants en interagissant seulement avec l'écran physique tactile du téléphone, car les gestes y sont plus précis et moins fatiguant sur un petit écran tactile tenu de manière stable.
 \end{enumerate}
 
-Enfin, pour y répondre, nous divisons cette problématique en quatre sous-problèmes :
+Enfin, pour y répondre, nous divisons cette problématique en trois sous-problèmes :
 \begin{enumerate}
   \item Concevoir une IHM d'un téléphone à écran étendu.
   \item Développer un visiocasque de RA à large champ de vision.
-  \item Réaliser une expérimentation évaluant différentes techniques d'interactions sur téléphone à écran étendu comparées à un téléphone non étendu sur une tâche de classification.
+  \item Réaliser une expérimentation évaluant différentes techniques d'interactions sur téléphone à écran étendu comparées à un téléphone non étendu.
 \end{enumerate}
 
 Les résultats à ces objectifs permettront de donner des recommandations pour de futures recherches d'IHM en RA.
