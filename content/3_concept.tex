@@ -13,33 +13,33 @@ Nous situons donc notre IHM en utilisant le cadre de conception Ethereal Planes 
 \figureLayoutETS{VesadInEtherealPlanes}{%
   \begin{tikzpicture}[font=\footnotesize, scale=0.95]
     \tikzstyle{dimension}=[thick, <->]
-    \tikzstyle{etiquetteb}=[below, align=center, text depth=.25ex]
-    \tikzstyle{etiquettea}=[above, align=center, text depth=.25ex]
+    \tikzstyle{labelb}=[below, align=center, text depth=.25ex]
+    \tikzstyle{labela}=[above, align=center, text depth=.25ex]
 
-    \draw[thick] (-0.9,-1.25) -- (-0.9,-1.5) -- (1,-1.5) node[etiquetteb] {\small Cadre de référence} -- (2.9,-1.5) -- (2.9,-1.25);
-    \draw[dimension] (0,0) node[etiquetteb] {Egocentrique\\\textbf{Perspective}} -- (0,4) node[etiquettea] {Exocentrique};
-    \draw[dimension] (2,0) node[etiquetteb] {Mobile\\\textbf{Mobilité}} -- (2,4) node[etiquettea] {Fixe};
+    \draw[thick] (-0.9,-1.25) -- (-0.9,-1.5) -- (1,-1.5) node[labelb] {\small Cadre de référence} -- (2.9,-1.5) -- (2.9,-1.25);
+    \draw[dimension] (0,0) node[labelb] {Egocentrique\\\textbf{Perspective}} -- (0,4) node[labela] {Exocentrique};
+    \draw[dimension] (2,0) node[labelb] {Mobile\\\textbf{Mobilité}} -- (2,4) node[labela] {Fixe};
 
-    \draw[thick] (3.1,-1.25) -- (3.1,-1.5) -- (6,-1.5) node[etiquetteb] {\small Manipulation Spatiale} -- (8.9,-1.5) -- (8.9,-1.25);
-    \draw[dimension] (4,0) node[etiquetteb] {Lointain\\\textbf{Proximité}} -- (4,4) node[etiquettea] {Sur le corps};
-    \draw[thick] (3.8,2) -- (4,2) node[etiquettea, above left] {Proche} -- (4.2,2);
-    \draw[dimension] (6,0) node[etiquetteb] {Direct\\\textbf{Mode}\\\textbf{d'entrée}} -- (6,4) node[etiquettea] {Indirect};
-    \draw[dimension] (8,0) node[etiquetteb] {Tangible\\\textbf{Tangibilité}} -- (8,4) node[etiquettea] {Intangible};
+    \draw[thick] (3.1,-1.25) -- (3.1,-1.5) -- (6,-1.5) node[labelb] {\small Manipulation Spatiale} -- (8.9,-1.5) -- (8.9,-1.25);
+    \draw[dimension] (4,0) node[labelb] {Lointain\\\textbf{Proximité}} -- (4,4) node[labela] {Sur le corps};
+    \draw[thick] (3.8,2) -- (4,2) node[labela, above left] {Proche} -- (4.2,2);
+    \draw[dimension] (6,0) node[labelb] {Direct\\\textbf{Mode}\\\textbf{d'entrée}} -- (6,4) node[labela] {Indirect};
+    \draw[dimension] (8,0) node[labelb] {Tangible\\\textbf{Tangibilité}} -- (8,4) node[labela] {Intangible};
 
-    \draw[thick] (9.1,-1.25) -- (9.1,-1.5) -- (12,-1.5) node[etiquetteb] {\small Organisation Spatiale} -- (14.9,-1.5) -- (14.9,-1.25);
-    \draw[dimension] (10,0) node[etiquetteb] {Haute\\\textbf{Visibilité}} -- (10,4) node[etiquettea] {Basse};
-    \draw[thick] (9.8,2) -- (10,2) node[etiquettea] {Intermédiaire} -- (10.2,2);
-    \draw[dimension] (12,0) node[etiquetteb] {Continu\\\textbf{Discrétisation}} -- (12,4) node[etiquettea] {Discret};
-    \draw[dimension] (14,0) node[etiquetteb] {Alignés\\\textbf{Aligne-}\\\textbf{ment}} -- (14,4) node[etiquettea] {Virtuel seul};
-    \draw[thick] (13.8,2) -- (14,2) node[etiquettea] {Côte à côte} -- (14.2,2);
+    \draw[thick] (9.1,-1.25) -- (9.1,-1.5) -- (12,-1.5) node[labelb] {\small Organisation Spatiale} -- (14.9,-1.5) -- (14.9,-1.25);
+    \draw[dimension] (10,0) node[labelb] {Haute\\\textbf{Visibilité}} -- (10,4) node[labela] {Basse};
+    \draw[thick] (9.8,2) -- (10,2) node[labela] {Intermédiaire} -- (10.2,2);
+    \draw[dimension] (12,0) node[labelb] {Continu\\\textbf{Discrétisation}} -- (12,4) node[labela] {Discret};
+    \draw[dimension] (14,0) node[labelb] {Alignés\\\textbf{Aligne-}\\\textbf{ment}} -- (14,4) node[labela] {Virtuel seul};
+    \draw[thick] (13.8,2) -- (14,2) node[labela] {Côte à côte} -- (14.2,2);
 
     \tikzstyle{ligne}=[line width=0.2cm, opacity=0.5]
     \draw[ligne, orange] (0,0.3) -- (2,0.3) -- (4,2) -- (6,0.3) -- (8,0.3) -- (10,0.3);
     \draw[ligne, purple] (4,2) -- (6,3.7) -- (8,3.7) -- (10,0.3);
     \draw[ligne, red] (10,0.3) -- (12,0.3) -- (14,0.3);
 
-    \draw[orange] (7,0.3) node[etiquettea, font=\scriptsize] {Écran tactile};
-    \draw[purple] (7,3.7) node[etiquetteb, font=\scriptsize] {Main virtuelle\\Pointeur virtuel};
+    \draw[orange] (7,0.3) node[labela, font=\scriptsize] {Écran tactile};
+    \draw[purple] (7,3.7) node[labelb, font=\scriptsize] {Main virtuelle\\Pointeur virtuel};
 
     \draw[orange, fill=orange] (0,0.3) circle[radius=0.15];
     \draw[orange, fill=orange] (2,0.3) circle[radius=0.15];
@@ -56,11 +56,11 @@ Nous situons donc notre IHM en utilisant le cadre de conception Ethereal Planes 
   Évaluation de notre IHM de téléphone étendu par un VESAD avec notre version d'Ethereal Planes : il suit la catégorie \texten{palette} (en orange), sauf pour le mode d'entrée et la tangibilité où nous proposons plusieurs techniques d'interactions utilisées dans les catégories \texten{palette} et \texten{floating} (en violet). Quand ces deux catégories se recoupent, on utilise le rouge.
 }
 
-En outre, nous avons ajouté une nouvelle dimension à ce cadre. Le mode d'alignement de MultiFi \citep{Grubert2015} décrit le placement de la fenêtre virtuelle, à la fois par rapport à l'utilisateur et par rapport au téléphone ou à la montre intelligente ainsi que les interactions possibles. Cette description est un peu floue et mélange en réalité les dimensions de perspective et de mode d'entrée du cadre avec une nouvelle dimension que nous appelons \emph{alignement}. Cette dernière permet de répondre à la question de l'alignement virtuel-réel dans la définition d'\cite{Azuma1997}. En effet, en suivant l'échelle de \cite{Milgram1994}, on imagine qu'un espace de travail en RA permet de :
+En outre, nous avons ajouté une nouvelle dimension à ce cadre. Le mode d'alignement de MultiFi \citep{Grubert2015} décrit le placement de la fenêtre virtuelle, à la fois par rapport à l'utilisateur et par rapport au téléphone ou à la montre intelligente ainsi que les interactions possibles. Cette description est un peu floue et mélange en réalité les dimensions de perspective et de mode d'entrée du cadre avec une nouvelle dimension que nous appelons \emph{alignement}. Cette dernière permet de répondre à la question de l'alignement virtuel-réel dans la définition d'\cite{Azuma1997} : comment le contenu virtuel se mêle au objets réels (par exemple des écrans physiques) ? En effet, en suivant l'échelle de \cite{Milgram1994}, on imagine qu'un espace de travail en RA permet de :
 \begin{itemize}
-  \item travailler seulement avec des fenêtres virtuelles sans lien avec des objets ou écrans physiques comme avec le Personal Cockpit ou le HoloLens (virtuel seul);
-  \item utiliser ensemble des fenêtres virtuelles et des objets ou écrans physiques, sans qu'il n'y ait de relations spatiales entre eux, comme dans Gluey ou Desktop-Gluey (côte à côte);
-  \item étendre, joindre et augmenter des objets ou écrans physiques avec des fenêtres virtuels, comme avec MultiFi ou notre VESAD (alignés).
+  \item travailler seulement avec des fenêtres virtuelles sans lien avec des objets réels comme avec le Personal Cockpit ou le HoloLens (virtuel seul);
+  \item utiliser ensemble des fenêtres virtuelles et des objets réels, sans qu'il n'y ait de relations spatiales entre eux, en redirigant éventuellement entrées et sorties entre eux, comme dans Gluey ou Desktop-Gluey (côte à côte);
+  \item étendre, joindre et augmenter des objets réels avec des fenêtres virtuels, comme avec MultiFi ou notre VESAD (alignés).
 \end{itemize}
 \bigskip
 
