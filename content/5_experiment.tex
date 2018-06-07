@@ -1,14 +1,13 @@
 \chapter{Étude expérimentale}
 \label{ch:experiment}
 
-\section{Expérience}
-\label{sec:experiment}
+\section{Tâche expérimentale}
+\label{sec:experiment_task}
 
-\subsection{Tâche expérimentale}
-\label{subs:experiment_task}
-
-\subsubsection{Motivations}
+\subsection{Motivations}
 Comme le téléphone et les écrans ont des basses résolutions et comme les techniques d'interactions sont peu maitrisées en IHM pour la RA/3D \citep{Piumsomboon2013}, il nous faut des tâches les plus fondamentales possibles : pointage et compréhension. Il faut pouvoir zoomer et naviguer pour compléter une tâche plus rapidement que si on avait le téléphone seul.
+
+3D interaction is more physically-demanding and might hinder user tasks by increasing the required dexterity. Compare for example the act of selecting an object using a mouse pointer to that of grasping a 3D object in free space. Mouse movement involves small, fast muscles whereas grasping often requires a complex arm movement involving larger and slower muscles [23, 48]. Furthermore, current immersive VEs, even the most sophisticated ones, \cite{Argelaguet2013}
 
 Several tasks could have been used for such an experiment. We considered performing a Fitts-style pointing task \citep{Soukoreff2004} where the user must navigate to different targets and select them; interpreting a map of a road network \citep{Baudisch2002} or circuit diagram to find connections or pathways; performing a primary task on the phone's screen while also responding to notifications from other apps that are \texten{outside} the main display area; or implementing a multi-tasking scenario where the user must switch between, and interact with, several apps \citep{Ens2014}. Finally, we decided to use the classification task used by \cite{Liu2014}, where users must categorize items by moving them into containers. This task is more realistic than a pure pointing task (but also includes pointing as a subtask); it cannot be automated like path-finding in a road network could be; and it is easier to implement and easier to control than a multi-tasking scenario with many apps.
 
@@ -22,7 +21,7 @@ Eux le text size esr vraiment lié à la tâche (les infos de l'item pour decide
 Nous on veut juste une tâche simple de navigation et de pointage (target acquisition). Donc tâche de classification très bien. En plus celle la a montré que bonne pour comparer des tailles de display. + on est intéressés par l'utilisation des techniques de pan et zoom pour les deux display (phone only, phone+ar)
 On a pas gardé le difficulty : une lettre par cellule de la grille. mais gardé le principe de distance.
 
-\subsubsection{Description}
+\subsection{Description}
 
 \figureLayoutETS{ExperimentTechniques}{%
   \subfigureETS{ExperimentPhoneOnly.jpg}{Condition \condition{Téléphone}}%
@@ -43,8 +42,8 @@ The goal of the task is to classify all the red items in their matching containe
 L'expérience a demandé un long effort de conception et de développement de quatre mois. Le code source du projet est donc disponible en ligne, pour pouvoir être reproduit ou réutilisé au besoin, sous la license libre MIT, à l'adresse suivante : \url{https://github.com/NormandErwan/master-thesis-experiment}.
 
 
-\subsection{Plan expérimental}
-\label{subsec:experiment_design}
+\section{Plan expérimental}
+\label{sec:experiment_design}
 
 Our experiment manipulated the following independent variables:
 
@@ -114,7 +113,7 @@ Variables parasites :
 - Le participant peut comprendre au cours de l'expérience qu'un item n'a qu'une seule bonne cellule et qu'une cellule n'a que cinq bon items. Ainsi il a juste besoin de permuter les items mal classés et n'a pas besoin de regarder les cellules avec cinq items biens classés.
 
 
-\subsection{Conception de techniques d'interactions pour le VESAD}
+\section{Conception de techniques d'interactions pour le VESAD}
 \label{sec:experiment_interaction_techniques}
 
 In all three techniques, the user performed pick-and-drop actions to move mis-classified items into their correct container. Each pick-and-drop action was initiated by selecting an item and later selecting the container to drop it in. The user could also pan and zoom the entire grid.
@@ -149,15 +148,15 @@ Aussi justification for why we won’t be doing experimental comparison with ray
 zoom centré sur le téléphone et non sur la grille : The focus point is generally coincident with the center of the view, more rarely with the cursor position. \cite{Guiard2004}
 
 
-\subsection{Participants}
-\label{subsec:experiment_participants}
+\section{Participants}
+\label{sec:experiment_participants}
 Nous avons recruté 12 personnes volontaires pour participer à l'expérience, agés entre 18 et 49 ans : six hommes et six femmes. Tous avaient une vision normale ou portaient un dispositif de correction de vision.
 
 We recruited 12 volunteers (3 females), aged from 18 to 49 (two above 25). Twelve have normal or corrected vision, and one self-reported to be color blind but was able to distinguish all the task elements. Ten were right-handed and 2 left-handed; we asked each participant to hold the phone in their non-dominant hand. Eight had already used a VR HMD, and 1 also an AR HMD. Eight regularly use 3D software and all use a computer daily.
 
 
-\subsection{Procédure de l'expérience}
-\label{subsec:experiment_procedure}
+\section{Procédure de l'expérience}
+\label{sec:experiment_procedure}
 Le formulaire d'information et de consentement se trouve à l'\autoref{annex:consent}.
 
 Nous avons bien évidemment utilisé notre visiocasque de RA, conçut avec un large champs de vision pour cette expérience et décrit au \autoref{ch:methodology}. Pour le faire tourner, nous avons utilisé un ordinateur de bureau roulant sous Windows 10, avec un processeur Intel Core i5 7400 (\SI[product-units = single]{4x3.0}{\GHz}), \SI{8}{\giga\byte} DDR4 de mémoire vive, une carte graphique NVIDIA GeForce GTX 1060 de \SI{6}{\giga\byte}. Pour le téléphone, nous avons utilisé un Xiaomi Redmi Note 4 : roulant sous Android 7, il est récent et léger, à faible prix et possède une bonne puissance de calcul ainsi qu'écran \SI{1920x1080}{\px} de \SI{5.5}{\inch}.
@@ -167,8 +166,8 @@ Pour la localisation des mains nous avons utilisé un Leap Motion : c'est un dis
 Enfin, nous développé une bibliothèque, DevicesSyncUnity (\url{https://github.com/NormandErwan/DevicesSyncUnity}), pour synchroniser le visiocasque avec le téléphone. Basée sur la bibliothèque de mise en réseau haut-niveau UNet, fournie avec Unity, elle nous permet de facilement synchroniser l'interface graphique et les actions de l'utilisateur à la fois sur le visiocasque et sur le téléphone, donnant le sentiment d'interagir avec un seul appareil.
 
 
-\subsection{Mesures}
-\label{subsec:experiment_measures}
+\section{Mesures}
+\label{sec:experiment_measures}
 Pré-questionnaire
 
 Mesures :
@@ -192,11 +191,11 @@ Post-questionnaire, inspiré du NASA TLX (enlevé charge physique, mais ajouté 
 \end{itemize}
 
 
-\subsection{Résultats}
-\label{subsec:experiment_results}
+\section{Résultats}
+\label{sec:experiment_results}
 
-\subsubsection{Temps de complétion}
-\label{subsubsec:experiment_results_time}
+\subsection{Temps de complétion}
+\label{subsec:experiment_results_time}
 Task Completion Time was analyzed with ANOVA, which found a significant effect due to \variable{TECHNIQUE} ($F=49.9$, $p < 0.0001$), but no effect due to \variable{DISTANCE}, \variable{TAILLE}, nor \variable{GROUPE} ($p > 0.05$). There were, however, significant interactions involving \variable{TAILLE} $\times$ \variable{DISTANCE} ($F=4.06$, $p < 0.05$) and \variable{TECHNIQUE} $\times$ \variable{TAILLE} $\times$ \variable{DISTANCE} ($F=3.38$, $p < 0.05$) \reffigureETSp{TCT}.
 
 ANOVA :
@@ -214,8 +213,8 @@ ANOVA :
 
 A pairwise t-test (with Benjamini-Hochberg correction) compared the TCT for the 3 techniques, and found them to all be significantly different from each other ($p < 0.0001$ for all pairs). The fastest technique is \condition{VESAD tactile}, which is 22 seconds or 33\% faster than \condition{Téléphone}, which is itself 50 seconds or 36\% faster than \condition{VESAD}.
 
-\subsubsection{Taux d'erreur}
-\label{subsubsec:experiment_results_errors}
+\subsection{Taux d'erreur}
+\label{subsec:experiment_results_errors}
 Two kinds of mistakes could happen during trials. First, a user could select an item and attempt to drop it in an incorrect container. This was counted toward the number of errors for the trial. Second, a user could select one item, and while searching for the container to drop it in, they might decide to select a different item (possibly because they forgot the letter of the first item), causing their previous selection to be canceled. This was not counted toward errors, but was counted toward the total number of selections. Because there were 5 mis-classified items to move during each trial, selections was at least 5 in each trial, and in general, selections = 5 + errors + (number of times the user canceled a selection). Hence, errors is a more conservative measure of classification errors, whereas selections includes both kinds of mistakes.
 
 \reffigureETS{Errors} shows both selections and errors, which were analyzed using Kruskal-Wallis tests (with Benjamini-Hochberg correction) to check for effects due to \variable{TECHNIQUE}, \variable{TAILLE}, \variable{DISTANCE}, and \variable{GROUPE}. We found that \variable{TECHNIQUE} ($p < 0.001$) and \variable{GROUPE} ($p < 0.001$) had significant effects on selections, but \variable{TAILLE} and \variable{DISTANCE} did not. When analyzing errors, we found that \variable{GROUPE} ($p<0.05$) still had a significant effect, but that \variable{TECHNIQUE} ($p<0.08$) had only a moderately significant effect.
@@ -242,8 +241,8 @@ Breaking selections down by \variable{GROUPE} \reffigureETSp{selections_ordering
   L'ordre des techniques a un effet significatif sur le nombre moyen d'éléments sélectionnés par essai.
 }
 
-\subsubsection{Navigation}
-\label{subsubsec:experiment_results_navigation}
+\subsection{Navigation}
+\label{subsec:experiment_results_navigation}
 To gain a deeper understanding of the source of differences between
 the techniques, for each trial, we recorded the number of times that the user performed a pan or zoom, and the total time spent on these operations,
 as well as the total physical distance (as measured projected onto the VESAD plane) traveled by the dominant hand's index finger (the Leap Motion was used to measure these distances, regardless of which \variable{TECHNIQUE} was in use).
@@ -276,9 +275,8 @@ A second question is: What was the main weakness of the \condition{VESAD} techni
 
 A third question: what explains the smaller TCT with the \condition{VESAD tactile} technique compared to \condition{Téléphone}? \reffigureETSp{navigation_time.png} shows that \condition{VESAD tactile} required somewhat less time for zooming and slightly less for panning, but the differences are insufficient to explain the difference in total time. We also see that \condition{VESAD tactile} resulted in much less selection time than \condition{Téléphone}. Since most of the difference in time was not spent panning nor zooming, we suspect it was simply easier to find each target container in the \condition{VESAD tactile} because of the increased display area.
 
-\subsubsection{Évaluations des participants}
-\label{subsubsec:experiment_results_evaluations}
-
+\subsection{Évaluations des participants}
+\label{subsec:experiment_results_evaluations}
 Users rated the three techniques according to 6 criteria on Likert scales (\textit{Voir} \reffigureETS{ranks_distributions.png} et \reffigureETS{ranks.png}) and also gave a ranking for overall Preference \reffigureETSp{preferences.png}. A Kruskal-Wallis test (Benjamini–Hochberg correction) on each criterion checked for significant differences due to \variable{TECHNIQUE}. Five of the criteria were significantly affected by \variable{TECHNIQUE}: Easy to Understand ($p<0.01$), Mentally Easy to Use ($p<0.01$), Subjective Speed ($p<0.05$), Subjective Performance ($p<0.01$), and overall Preference ($p<0.01$), whereas Physically Easy to Use and Frustration were not significantly affected.
 
 We then used pairwise Mann-Whitney test (with Benjamini–Hochberg correction) for the appropriate criteria, finding the following:
