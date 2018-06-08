@@ -162,7 +162,7 @@ De nombreux dispositifs d'entrée ont été développés pour les IHMs en 3D : d
   Tiré de a) \cite{Evan-Amos2017} et b) \cite{Adcock2003}.
 }
 
-Les IHMs naturelles utilisent quant à elle directement les mouvements du corps de l'utilisateur comme dispositif d'entrée, en particulier les mains. De nombreuses méthodes de vision par ordinateur permettent ce suivi en utilisant simplement les images d'une caméra \citep{Billinghurst2015}. Un utilisateur peut alors en théorie agir directement avec du contenu virtuel comme il le ferait avec des objets réels. Malgré tout, de telles interactions demandent souvent des mouvements complexes et fatiguants à l'utilisateur \citep{Bowman2001}, le manque de contraintes physiques les rends imprécises \citep{Chan2010} et il peut être difficile de comprendre comment interagir avec un environnement virtuel utilisant une IHM naturelle \citep{Argelaguet2013}.
+Les IHMs naturelles utilisent quant à elle directement les mouvements du corps de l'utilisateur comme dispositif d'entrée, en particulier les mains. De nombreuses méthodes de vision par ordinateur permettent ce suivi en utilisant simplement les images d'une caméra \citep{Billinghurst2015}. Un utilisateur peut alors en théorie agir directement avec du contenu virtuel comme il le ferait avec des objets réels. Malgré tout, de telles interactions demandent souvent des mouvements complexes et fatiguants à l'utilisateur \citep{Bowman2001}. De plus, ces IHMs ne peuvent répliquer exactement de monde réel : le manque de contraintes physiques rends les interactions imprécises \citep{Chan2010} et il peut être difficile de comprendre comment interagir avec un environnement virtuel utilisant une IHM naturelle \citep{Argelaguet2013}.
 
 Un écart existant donc toujours entre éléments physiques et éléments graphiques, des techniques d'interactions sont toujours nécessaires ; deux types de techniques sont majoritairement utilisées. La \emph{main virtuelle} affiche un modèle 3D de main pouvant interagir avec le contenu virtuel et suivant la main réelle de l'utilisateur \reffigureETSp{Argelaguet2013_1.jpg}. Elle est la plus naturelle, mais souffre particulièrement des problématiques que nous venons d'énoncer, mais aussi de problème d'occlusion, car elle peut cacher des objets virtuels. La technique du \emph{pointeur virtuel} permet à l'inverse de projeter un rayon, depuis la main ou la tête, pour sélectionner des objets \reffigureETSp{Argelaguet2013_2.jpg} : il permet de facilement atteindre des objets lointains avec peu d'effort, mais cela est difficile s'ils sont de trop petite taille. De plus, si l'action de sélection peut entraîner un déplacement involontaire du pointeur, par exemple en pressant un bouton \citep{Argelaguet2013}. Cette technique a notamment été choisie pour le HoloLens : le pointeur suit les mouvements de la tête, stables et précis \citep{Kitoe2018}, tandis que la sélection se fait avec un geste de la main pour ne pas perturber le pointage.
 
@@ -218,17 +218,28 @@ Enfin, \cite{Piumsomboon2013} et \cite{Piumsomboon2014} recommandent, à la suit
 
 \subsection{Interfaces utilisateur tangibles}
 \label{subsec:litterature_ar_hci_tui}
+Les IHMs de RA tangible utilisent des objets réels comme dispositifs d'entrées et d'affichages, qui sont alors augmentés par RA \cite{Kato2000}. Autrement dit, chaque objet virtuel est aligné avec un objet réel et est manipulé via cet objet réel \cite{Billinghurst2005} : les espaces d'interactions et d'affichage sont donc alignés \cite{Billinghurst2015}. Les interactions sont donc familières, faciles et intuitives et peuvent s'appuyer sur les contraintes physiques de ces objets réels \cite{Zhou2008}.
+
+Cependant, des techniques d'interactions sont toujours nécessaires pour certaines commandes où il existe encore un écart entre entrées et affichages : par exemple changer les dimensions de l'objet virtuel ou, de manière générale, ses propriétés, l'activer ou encore réaliser des opérations de copie.
+
 Les IHMs tangibles sont une autre approche pour la RA car elles utilisent des objets réels pour afficher des objets virtuels. Si les interactions de sélection et de manipulation sont donc totalement naturelles, l'utilisateur interagissant directement avec les objets réels, cela présente certaines limites pour d'autres actions sur les objets virtuels, par exemple changer leurs dimensions, les activer ou encore réaliser des opérations de copie : il y a parfois un écart entre les espaces de visualisation et d'interactions.
 
-\cite{Kato2000} propose alors le concept de RA tangible ()
+Les objets physiques ont l'avantage d'êtres familiers, facile à utiliser et de présenter des contraintes physiques sur lesquelles l'IHM peut s'appuyer \citep{ZhouDuhBillinghurst2008}. La voie de recherche de la RA tangible a été initiée par \cite{FeinerMacIntyreHauptEtAl1993} qui ont proposé un prototype accrochant des fenêtres virtuelles aux objets~; \citeauthor{FeinerMacIntyreHauptEtAl1993} parlaient alors, à juste titre, de \emph{design spatial}. Cependant, \citeauthor{ZhouDuhBillinghurst2008} soulignent que l'utilisation de telle IHM pose le défi de faire comprendre à l'utilisateur les commandes possibles avec les objets physiques et les conséquences de ces actions.
 
-Kato et al. [2000] proposed the concept of Tangible AR (TAR). TAR uses Tangible UI as input interaction metaphor while using AR for visualising virtual information overlaid on the physical object used for interaction. the interaction space and display space are seamlessly merged together\\
-The basic goal of designing a Tangible AR interface is to map physical objects (input) with virtual objects (output) using an appropriate interaction metaphor.\\
+\cite{Lee2004} proposèrent \reffigureETSp{Lee2004}
+
+\figureLayoutETS{Lee2004}{%
+  \subfigureETS[0.2]{Lee2004_1.jpg}{Main virtuelle.}%
+  \figurehspace%
+  \subfigureETS[0.2]{Lee2004_2.jpg}{Redimensionnement d'un cube .}%
+}{
+  Deux techniques d'interactions de sélection dans les IHMs naturelles.\\
+  Tiré de \cite{Lee2004}.
+}
+
 Space multiplexed (ex la souris qui se déplace sur bureau) vs time multiplexed
 Tangible user interfaces are extremely intuitive to use because physical object manipulations are mapped one-to-one to virtual
 object operations, and they follow a spacemultiplexed input design [5]. In general, input devices can be classified as either space- or time-multiplexed. With a space-multiplexed interface, each function has a single physical device occupying its own space. In contrast in a time-multiplexed design, a single device controls different functions as different points in time. The mouse is a good example of a time-multiplexed device. Space-multiplexed devices are faster to use than time-multiplexed because users do not have to make the extra step of mapping the physical device input to one of several logical functions. \cite{Billinghurst2005}
-
-Les objets physiques ont l'avantage d'êtres familiers, facile à utiliser et de présenter des contraintes physiques sur lesquelles l'IHM peut s'appuyer \citep{ZhouDuhBillinghurst2008}. La voie de recherche de la RA tangible a été initiée par \cite{FeinerMacIntyreHauptEtAl1993} qui ont proposé un prototype accrochant des fenêtres virtuelles aux objets~; \citeauthor{FeinerMacIntyreHauptEtAl1993} parlaient alors, à juste titre, de \emph{design spatial}. Cependant, \citeauthor{ZhouDuhBillinghurst2008} soulignent que l'utilisation de telle IHM pose le défi de faire comprendre à l'utilisateur les commandes possibles avec les objets physiques et les conséquences de ces actions.
 
 Lee2011 : Graphical Menus Using a Mobile Phone for Wearable AR Systems\\
 White2009 : shake menus
