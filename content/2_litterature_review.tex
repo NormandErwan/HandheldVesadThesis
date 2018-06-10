@@ -37,7 +37,7 @@ Le second enseignement de l'échelle de \citeauthor{Milgram1994} est que RA et R
   \end{tikzpicture}%
 }{
   L'échelle du \texten{Reality-Virtuality Continuum} de Milgram.\\
-  Adapté de \cite[p. 3]{Milgram1994}.
+  Adapté de \cite{Milgram1994}.
 }
 
 \cite{Rekimoto1995} apportent un second cadre théorique à la RA \reffigureETSp{Rekimoto1995.png}. Ils montrent que les IHMs graphiques sont coupées des interactions avec l'environnement réel, tandis que la RV isole l'utilisateur dans des IHMs totalement virtuelles. Deux approches à ces extrèmes sont la RA et l'informatique ubiquitaire (en anglais: \texten{ubiquitous computing}) : cette dernière permet à l'utilisateur d'interagir avec des ordinateur intégrés dans l'environnement réel, par exemple avec téléphones intelligents et des objets connectés, tandis que la RA fusionne réel et virtuel en un seul environnement pour l'utilisateur. Ainsi, avec une IHM bien faite, la RA s'intègre naturellement à l'environnement réel et devient invisible à l'utilisation.
@@ -53,11 +53,13 @@ Une première définition formelle de la RA est par la suite proposée par \cite
   \item est interactive en temps réel ;
   \item aligne les éléments virtuels avec les éléments réels.
 \end{enumerate}
+\medskip
+
 Ce sont les trois conditions techniques à respecter en RA et qui vont permettre le \emph{sentiment de la présence du virtuel} dans l'environnement réel, c'est-à-dire à notre cerveau de voir virtuel et réel comme un seul et même environnement. Cette définition a le mérite d'être assez générale pour s'appliquer tout autant à la RA visuelle, qu'au RA auditives ou haptiques.
 
 \figureETS[0.7]{Bimber2005.jpg}{
   Les différents dispositifs d'affichages en RA.\\
-  Tiré de \citet[p. 72]{Bimber2005}.
+  Tiré de \citet{Bimber2005}.
 }
 
 Enfin, \cite{Buxton1998} repris par \cite{Bimber2005} catégorisent les différents dispositifs d'affichage en RA \reffigureETSp{Bimber2005.jpg}. On retient essentiellement (nous excluons volontairement les projecteurs) :
@@ -72,6 +74,7 @@ Enfin, \cite{Buxton1998} repris par \cite{Bimber2005} catégorisent les différe
   \end{itemize}
   \item Les lentilles : elles sont identiques aux visiocasques mais posées directement sur les yeux. Peu utilisées, elles sont encore au stade de prototype mais une fois maîtrisées, elles pourront être à l'avenir le dispotif de RA idéal \citep{VanKrevelen2010}.
 \end{itemize}
+\medskip
 
 \figureETS[0.6]{CAVE.jpg}{
   Un CAVE : un cube immersif d'écrans à taille humaine réagissant aux déplacement de l'utilisateur. Ici, l'utilisateur tape la main de son propre hologramme.\\
@@ -99,7 +102,6 @@ Dans leur état de l'art \cite{Azuma2001} identifient les trois obstables à dé
 
 \subsection{IHMs en RA}
 \label{subsec:litterature_ar_hci_presentation}
-Une IHM constitue la principale interface avec laquelle un utilisateur va interagir avec un ordinateur. La bonne conception de cet intermédiaire est donc nécessaire pour rendre accessible et efficace le travail sur une machine. Son rôle est simple : comme le montre la \reffigureETS{Billinghurst2005}, il s'agit de lier des entrées utilisateurs issues de capteurs physiques (souris, écran tactile, images d'une caméra) à des actions sur l'ordinateur (affichage, son, commande) via une technique d'interaction \citep{Billinghurst2005}. La technique d'interaction est donc \emph{une} méthode qui permet de traduire ces entrées en commandes : par exemple, le même mouvement avec une souris peut déplacer un curseur ou translater un objet le long d'un axe, ou encore un même déplacement de deux doigts sur un écran tactile peut faire une rotation ou un zoom sur un objet. Elle est également une métaphore qui permet à l'utilisateur d'associer ses actions avec des résultats sur l'ordinateur. Il existe de nombreux dispositifs d'entrée, de sortie et de techniques d'interaction, le défi étant de : \textquote{\texten{combine these together in a way that is most appropriate to the desired task, facilitates ease of use and learning and provides a high level of user performance and satisfaction}} \citep{Billinghurst2005}.
 
 \figureLayoutETS{Billinghurst2005}{%
   \begin{tikzpicture}[font=\footnotesize]
@@ -119,6 +121,8 @@ Une IHM constitue la principale interface avec laquelle un utilisateur va intera
   Adapté de \cite{Billinghurst2005}.
 }
 
+Une IHM constitue la principale interface avec laquelle un utilisateur va interagir avec un ordinateur. La bonne conception de cet intermédiaire est donc nécessaire pour rendre accessible et efficace le travail sur une machine. Son rôle est simple : comme le montre la \reffigureETS{Billinghurst2005}, il s'agit de lier des entrées utilisateurs issues de capteurs physiques (souris, écran tactile, images d'une caméra) à des actions sur l'ordinateur (affichage, son, commande) via une technique d'interaction \citep{Billinghurst2005}. La technique d'interaction est donc \emph{une} méthode qui permet de traduire ces entrées en commandes : par exemple, le même mouvement avec une souris peut déplacer un curseur ou translater un objet le long d'un axe, ou encore un même déplacement de deux doigts sur un écran tactile peut faire une rotation ou un zoom sur un objet. Elle est également une métaphore qui permet à l'utilisateur d'associer ses actions avec des résultats sur l'ordinateur. Il existe de nombreux dispositifs d'entrée, de sortie et de techniques d'interaction, le défi étant de : \textquote{\texten{combine these together in a way that is most appropriate to the desired task, facilitates ease of use and learning and provides a high level of user performance and satisfaction}} \citep{Billinghurst2005}.
+
 Un des but de la recherche en IHM est de réduire cet écart entre les éléments physiques et d'affichages \cite{VanDam1997}. \cite{Jacob2008} rapellent que les IHMs ont traversé plusieurs génerations visant à chaque fois une utilisation plus simple, plus directe et plus proche des actions quotidiennes. Les ordinateurs s'utilisaient avant les années 1960 par des cartes de commandes et imprimaient leurs résultats, puis avec une ligne de commandes et un clavier sur un terminal jusque dans les années 1980, enfin par des IHMs graphiques \reffigureETSp{Jacob2008.jpg}. Cette dernière génération suit le paradigme WIMP : c'est-à-dire un ensemble de fenêtres (\texten{windows}), d'icônes (\texten{icons}) et de menus (\texten{menus}) accessibles par un appareil de pointage (\texten{pointing device}), comme une souris. Elles sont excellentes pour des applications graphiques en 2D, mais limitées, entre autres, pour celles en 3D (les lignes de commandes sont toujours utilisées et parfois plus adaptées que les interfaces graphiques). \cite{VanDam1997} appella alors à développer une nouvelle génération d'IHMs post-WIMP, c'est-à-dire contenant des techniques d'interactions non dépendantes de fenêtre, icônes ou de menu en 2D. L'objectif étant de diversifier les types d'IHMs pour proposer le plus adapté selon les besoins de l'utilisateur.
 
 \figureETS[0.5]{Jacob2008.jpg}{
@@ -134,7 +138,7 @@ Si de nombreuses IHMs post-WIMP ont par la suite été développées, comme cell
   \item Interfaces naturelles : utilisant les mouvements du corps de l'utilisateur, par exemple des commandes gestuelles.
   \item Interfaces multimodales : utilisant simultanément des commandes vocales et gestuelles.
 \end{itemize}
-\bigskip
+\medskip
 
 Pour \cite{Billinghurst2015}, toutes ces IHMs importent et appliquent des techniques d'interactions des IHMs WIMP, de la RV ou utilisées avec des écrans tactiles. En ce sens, elles atteignent seulement les première et deuxième étapes du processus de \cite{Billinghurst2005} qui décrit les étapes de développement d'un paradigme d'IHM pour un nouveau média :
 \begin{enumerate}
@@ -143,11 +147,11 @@ Pour \cite{Billinghurst2015}, toutes ces IHMs importent et appliquent des techni
   \item développement de métaphores et paradigmes d'IHMs adaptés au média ;
   \item développement de modèles théoriques pour ces paradigmes.
 \end{enumerate}
-\bigskip
+\medskip
 
 Pourtant, la RA présente un excellent média car l'écart entre les éléments physiques et d'affichage (le contenu virtuel) y est très réduit. Cela permettrait de fondre la présence de l'ordinateur dans l'environnement de l'utilisateur sans le restreindre sur un écran. Une bonne IHM de RA permettrait alors de manipuler naturellement et efficacement du contenu virtuel en 3D avec des techniques d'interactions basées sur des objets physiques, des commandes vocales ou des gestes utilisés au quotidien \citep{Billinghurst2005}. C'est pourquoi il est important de consacrer un effort de recherche pour atteindre cette troisième étape, comme nous souhaitons le faire avec notre concept de téléphone à écran étendu, en utilisant des IHMs en 3D, les IHMs naturelles et les IUTs. Enfin, on remarque que la classification des IHMs de RA de \cite{Billinghurst2015} se concentre quasi exclusivement sur les techniques d'interactions. Pourtant, les données affichées ont toute leur importance, et il s'agit également de dépasser les concepts de fenêtre, menu et icônes des IHMs WIMP.
 
-\subsection{Interfaces en 3D et interfaces naturelles}
+\subsection{IHMs en 3D et IHMs naturelles}
 \label{subsec:litterature_ar_hci_interactions}
 Les IHMs en 3D sont importées des recherches de la RV et dans les environnements virtuels (EV) en 3D. La recherche sur les EVs explore les interfaces et les interactions avec du contenu en 3D affiché sur un écran (et non de manière immersive comme en RA). \cite{Bowman2004} classent les techniques d'interactions en trois catégories : (1) navigation, (2) sélection (un ou plusieurs objets) et (3) manipulation (translation et rotation). Seules ces deux dernières sont applicables à la RA, le contenu virtuel étant aligné et intégré avec l'environnement réel, l'utilisateur se déplace simplement lui-même pour y naviguer.
 
@@ -164,8 +168,6 @@ De nombreux dispositifs d'entrée ont été développés pour les IHMs en 3D : d
 
 Les IHMs naturelles utilisent quant à elle directement les mouvements du corps de l'utilisateur comme dispositif d'entrée, en particulier les mains. De nombreuses méthodes de vision par ordinateur permettent ce suivi en utilisant simplement les images d'une caméra \citep{Billinghurst2015}. Un utilisateur peut alors en théorie agir directement avec du contenu virtuel comme il le ferait avec des objets réels. Malgré tout, de telles interactions demandent souvent des mouvements complexes et fatiguants à l'utilisateur \citep{Bowman2001}. De plus, ces IHMs ne peuvent répliquer exactement de monde réel : le manque de contraintes physiques rends les interactions imprécises \citep{Chan2010} et il peut être difficile de comprendre comment interagir avec un environnement virtuel utilisant une IHM naturelle \citep{Argelaguet2013}.
 
-Un écart existant donc toujours entre éléments physiques et éléments graphiques, des techniques d'interactions sont toujours nécessaires ; deux types de techniques sont majoritairement utilisées. La \emph{main virtuelle} affiche un modèle 3D de main pouvant interagir avec le contenu virtuel et suivant la main réelle de l'utilisateur \reffigureETSp{Argelaguet2013_1.jpg}. Elle est la plus naturelle, mais souffre particulièrement des problématiques que nous venons d'énoncer, mais aussi de problème d'occlusion, car elle peut cacher des objets virtuels. La technique du \emph{pointeur virtuel} permet à l'inverse de projeter un rayon, depuis la main ou la tête, pour sélectionner des objets \reffigureETSp{Argelaguet2013_2.jpg} : il permet de facilement atteindre des objets lointains avec peu d'effort, mais cela est difficile s'ils sont de trop petite taille. De plus, si l'action de sélection peut entraîner un déplacement involontaire du pointeur, par exemple en pressant un bouton \citep{Argelaguet2013}. Cette technique a notamment été choisie pour le HoloLens : le pointeur suit les mouvements de la tête, stables et précis \citep{Kitoe2018}, tandis que la sélection se fait avec un geste de la main pour ne pas perturber le pointage.
-
 \figureLayoutETS{NaturalControllers}{%
   \subfigureETS[0.2]{Taylor2016.jpg}{Main virtuelle.}%
   \figurehspace%
@@ -175,9 +177,9 @@ Un écart existant donc toujours entre éléments physiques et éléments graphi
   Tiré de a) \cite{Taylor2016} et b) \cite{Argelaguet2013}.
 }
 
-La difficulté pour ce type d'IHM est donc de permettre des sélections et manipulations rapides, sans erreurs ainsi que d'être faciles à comprendre et peu fatiguantes \citep{Argelaguet2013}. Pour cela, il est crucial de fournir des retours à l'utilisateur : \cite{Chan2010} propose la combinaison de retours continus, pour que l'utilisateur situe le suivi de son corps, et de retours discret pour confirmer ses ses actions. Le modèle 3D de la main virtuelle avec des ombres portées ou le rayon du pointeur virtuel sont donc des retours visuels continus, tandis qu'un bref changement de couleur de l'objet peut confirmer une sélection. Ces retours ne doivent cependant pas être excessifs, au risque de produire une distraction et réduire la performance des utilisateurs \citep{Argelaguet2013}.
+Un écart existant donc toujours entre éléments physiques et éléments graphiques, des techniques d'interactions sont toujours nécessaires ; deux types de techniques sont majoritairement utilisées. La \emph{main virtuelle} affiche un modèle 3D de main pouvant interagir avec le contenu virtuel et suivant la main réelle de l'utilisateur \reffigureETSp{Taylor2016.jpg}. Elle est la plus naturelle, mais souffre particulièrement des problématiques que nous venons d'énoncer, mais aussi de problème d'occlusion, car elle peut cacher des objets virtuels. La technique du \emph{pointeur virtuel} permet à l'inverse de projeter un rayon, depuis la main ou la tête, pour sélectionner des objets \reffigureETSp{Argelaguet2013.jpg} : il permet de facilement atteindre des objets lointains avec peu d'effort, mais cela est difficile s'ils sont de trop petite taille. De plus, si l'action de sélection peut entraîner un déplacement involontaire du pointeur, par exemple en pressant un bouton \citep{Argelaguet2013}. Cette technique a notamment été choisie pour le HoloLens : le pointeur suit les mouvements de la tête, stables et précis \citep{Kitoe2018}, tandis que la sélection se fait avec un geste de la main pour ne pas perturber le pointage.
 
-Si l'utilisation du pointeur virtuel par le HoloLens fait actuellement consensus \citep{Kitoe2018}, ce n'est pas le cas pour la main virtuelle dans les IHMs de RA malgré de nombreux prototypes \citep{Piumsomboon2013}. \citeauthor{Piumsomboon2013} ont alors établi de manière rigoureuse une liste de gestes utilisables avec une main virtuelle en RA. Pour cela, ils ont tout d'abord montré des animations de quarante tâches courantes dans la littérature dans un visocasque de RA à vingt participants et leur ont demandé de mimer en même temps que chaque animation le geste qu'ils utiliseraient. Ils ont alors sélectionné les \emph{poses} de main les plus utilisées \reffigureETSp{Piumsomboon2013_1.jpg}, ainsi que le ou les \emph{gestes} majoritaires avec un score de consensus pour chaque tâche \reffigureETSp{Piumsomboon2013_2.jpg}. Beaucoup de tâches ont un faible consensus (peu de participants ont utilisé le même geste), néanmoins ceux pour les menus ont un haut score $\geq 80\%$ \reffigureETSp{Piumsomboon2013_3.jpg}. Enfin, on remarque que la majorité de ces gestes sont réalisés \textquote{en l'air}, à l'exception de ceux ouvrant, fermant et sélectionant un menu horizontal qui ont été réalisés sur la surface de la table \reffigureETSp{Piumsomboon2013_2.jpg}.
+La difficulté pour ce type d'IHM est donc de permettre des sélections et manipulations rapides, sans erreurs ainsi que d'être faciles à comprendre et peu fatiguantes \citep{Argelaguet2013}. Pour cela, il est crucial de fournir des retours à l'utilisateur : \cite{Chan2010} propose la combinaison de retours continus, pour que l'utilisateur situe le suivi de son corps, et de retours discret pour confirmer ses ses actions. Le modèle 3D de la main virtuelle avec des ombres portées ou le rayon du pointeur virtuel sont donc des retours visuels continus, tandis qu'un bref changement de couleur de l'objet peut confirmer une sélection. Ces retours ne doivent cependant pas être excessifs, au risque de produire une distraction et réduire la performance des utilisateurs \citep{Argelaguet2013}.
 
 \figureETS[1]{Piumsomboon2013_1.jpg}{
   Les onze poses de mains utilisées pour des gestes en RA.\\
@@ -186,67 +188,94 @@ Si l'utilisation du pointeur virtuel par le HoloLens fait actuellement consensus
 
 \figureETS[1]{Piumsomboon2013_2.jpg}{
   Extrait de la liste de gestes pour différentes tâches en RA. Les positions de mains utilisables sont indiquées entre crochets.\\
-  Adapté de \cite{Piumsomboon2013}.
+  Tiré de \cite{Piumsomboon2013}.
 }
+
+Si l'utilisation du pointeur virtuel par le HoloLens fait actuellement consensus \citep{Kitoe2018}, ce n'est pas le cas pour la main virtuelle dans les IHMs de RA malgré de nombreux prototypes \citep{Piumsomboon2013}. \citeauthor{Piumsomboon2013} ont alors établi de manière rigoureuse une liste de gestes utilisables avec une main virtuelle en RA. Pour cela, ils ont tout d'abord montré des animations de quarante tâches courantes dans la littérature dans un visocasque de RA à vingt participants et leur ont demandé de mimer en même temps que chaque animation le geste qu'ils utiliseraient. Ils ont alors sélectionné les \emph{poses} de main les plus utilisées \reffigureETSp{Piumsomboon2013_1.jpg}, ainsi que le ou les \emph{gestes} majoritaires avec un score de consensus pour chaque tâche \reffigureETSp{Piumsomboon2013_2.jpg}. Beaucoup de tâches ont un faible consensus (peu de participants ont utilisé le même geste), néanmoins ceux pour les menus ont un haut score $\geq 80\%$ \reffigureETSp{Piumsomboon2013_3.jpg}. Enfin, on remarque que la majorité de ces gestes sont réalisés \textquote{en l'air}, à l'exception de ceux ouvrant, fermant et sélectionant un menu horizontal qui ont été réalisés sur la surface de la table \reffigureETSp{Piumsomboon2013_2.jpg}.
 
 \figureETS[0.9]{Piumsomboon2013_3.jpg}{
   Score de consensus sur le geste à utiliser (barres bleues) ainsi que ratio de gestes à deux mains (ligne rouge) parmi les participants pour chaque tâche.\\
   Tiré de \cite{Piumsomboon2013}.
 }
 
-Par la suite, \cite{Piumsomboon2014} ont comparé formellement quelques-unes de ces techniques avec des commandes vocales pour la sélection et la manipulation d'objets en 3D dans un visiocasque de RA \reffigureETSp{Piumsomboon2014_2}. Leurs résultats indiquent que les participants étaient globalement plus rapides et préféraient utiliser des gestes pour manipuler les objets, mais des commandes vocales pour les redimensionner. Il serait cependant intéressant de reproduire cette étude avec des IHMs plus complexes que de simples objets 3D, par exemple avec des IHMs WIMP appliquées à la RA, comme le fait le HoloLens.
-
-\figureLayoutETS{Piumsomboon2014_2}{%
-  \subfigureETS[0.3]{Piumsomboon2014_3.jpg}{Photo d'un utilisateur saisissant un objet en 3D.}%
-  \figurehspace%
-  \subfigureETS[0.3]{Piumsomboon2014_4.jpg}{Vue d'un utilisateur saisissant un objet en 3D.}%
-}{
-  Utilisation d'une main virtuelle dans une IHM de RA pour manipuler des objets en 3D.\\
-  Adapté de \cite{Piumsomboon2014}.
-}
-
-Enfin, \cite{Piumsomboon2013} et \cite{Piumsomboon2014} recommandent, à la suite d'études pilotes, que pour éviter les problèmes d'occlusion, les objets virtuels doivent toujours êtres visibles : soit en utilisant une main virtuelle transparente plutôt qu'opaque, soit en affichant leurs contours si elle les cache \reffigureETSp{Piumsomboon2014_1}.
+Par la suite, \cite{Piumsomboon2014} ont comparé formellement quelques-unes de ces techniques avec des commandes vocales pour la sélection et la manipulation d'objets en 3D dans un visiocasque de RA. Leurs résultats indiquent que les participants étaient globalement plus rapides et préféraient utiliser des gestes pour manipuler les objets, mais des commandes vocales pour les redimensionner. Il serait cependant intéressant de reproduire cette étude avec des IHMs plus complexes que de simples objets 3D, par exemple avec des IHMs WIMP appliquées à la RA, comme le fait le HoloLens.
 
 \figureLayoutETS{Piumsomboon2014_1}{%
-  \subfigureETS[0.2]{Piumsomboon2014_1.jpg}{Main virtuelle faisant occlusion avec le contenu 3D.}%
+  \subfigureETS[0.17]{Piumsomboon2014_1.jpg}{La main virtuelle fait occlusion avec le contenu 3D.}%
   \figurehspace%
-  \subfigureETS[0.2]{Piumsomboon2014_2.jpg}{Contenu 3D transparent laissant la main virtuelle visible.}%
+  \subfigureETS[0.17]{Piumsomboon2014_2.jpg}{Le contenu 3D est transparent, laissant visible la main de l'utilisateur.}%
 }{
   Différentes techniques d'occlusion de la main.\\
   Tiré de \cite{Piumsomboon2014}.
 }
 
-\subsection{Interfaces utilisateur tangibles}
+Enfin, \cite{Piumsomboon2013} et \cite{Piumsomboon2014} recommandent, à la suite d'études pilotes, que pour éviter les problèmes d'occlusion, les objets virtuels doivent toujours êtres visibles : soit en utilisant une main virtuelle transparente plutôt qu'opaque, soit en affichant leurs contours si elle les cache \reffigureETSp{Piumsomboon2014_1}.
+
+\subsection{IHMs de RA tangibles}
 \label{subsec:litterature_ar_hci_tui}
-Les IHMs de RA tangible utilisent des objets réels comme dispositifs d'entrées et d'affichages, qui sont alors augmentés par RA \cite{Kato2000}. Autrement dit, chaque objet virtuel est aligné avec un objet réel et est manipulé via cet objet réel \cite{Billinghurst2005} : les espaces d'interactions et d'affichage sont donc alignés \cite{Billinghurst2015}. Les interactions sont donc familières, faciles et intuitives et peuvent s'appuyer sur les contraintes physiques de ces objets réels \cite{Zhou2008}.
-
-Cependant, des techniques d'interactions sont toujours nécessaires pour certaines commandes où il existe encore un écart entre entrées et affichages : par exemple changer les dimensions de l'objet virtuel ou, de manière générale, ses propriétés, l'activer ou encore réaliser des opérations de copie.
-
-Les IHMs tangibles sont une autre approche pour la RA car elles utilisent des objets réels pour afficher des objets virtuels. Si les interactions de sélection et de manipulation sont donc totalement naturelles, l'utilisateur interagissant directement avec les objets réels, cela présente certaines limites pour d'autres actions sur les objets virtuels, par exemple changer leurs dimensions, les activer ou encore réaliser des opérations de copie : il y a parfois un écart entre les espaces de visualisation et d'interactions.
-
-Les objets physiques ont l'avantage d'êtres familiers, facile à utiliser et de présenter des contraintes physiques sur lesquelles l'IHM peut s'appuyer \citep{ZhouDuhBillinghurst2008}. La voie de recherche de la RA tangible a été initiée par \cite{FeinerMacIntyreHauptEtAl1993} qui ont proposé un prototype accrochant des fenêtres virtuelles aux objets~; \citeauthor{FeinerMacIntyreHauptEtAl1993} parlaient alors, à juste titre, de \emph{design spatial}. Cependant, \citeauthor{ZhouDuhBillinghurst2008} soulignent que l'utilisation de telle IHM pose le défi de faire comprendre à l'utilisateur les commandes possibles avec les objets physiques et les conséquences de ces actions.
-
-\cite{Lee2004} proposèrent \reffigureETSp{Lee2004}
+Les IHMs de RA tangibles utilisent des objets réels comme dispositifs d'entrées et d'affichages, qui sont alors augmentés par RA \citep{Kato2000}. Autrement dit, chaque objet virtuel est aligné avec un objet réel et est manipulé via cet objet réel \citep{Billinghurst2005} : les espaces d'interactions et d'affichage sont donc alignés \citep[p. 170]{Billinghurst2015}. Ainsi, les interactions sont familières, faciles et intuitives et peuvent s'appuyer sur les contraintes physiques de ces objets réels \citep{Zhou2008}. Le principal inconvénient de ces IHM est de récquerir des objets physiques, qui peuvent ne pas être présents dans l'environnement de l'utilisateur ou difficiles à transporter dans un usage mobile.
 
 \figureLayoutETS{Lee2004}{%
-  \subfigureETS[0.2]{Lee2004_1.jpg}{Main virtuelle.}%
+  \subfigureETS[0.25]{Lee2004_1.jpg}{L'utilisateur presse les boutons du navigateur, puis créé l'objet courant en le pointant avec le cube de manipulation.}%
   \figurehspace%
-  \subfigureETS[0.2]{Lee2004_2.jpg}{Redimensionnement d'un cube .}%
+  \subfigureETS[0.25]{Lee2004_2.jpg}{L'utilisateur déplace l'objet crée avec le cube, puis le fixe en cachant le haut du cube. Il le place dans la corbeille pour le détruire.}%
+  \figurehspace%
+  \subfigureETS[0.25]{Lee2004_3.jpg}{Redimensionnement d'un cube à l'aide d'un clavier connecté à un outil inspecteur affichant la propriété de taille du cube.}%
 }{
-  Deux techniques d'interactions de sélection dans les IHMs naturelles.\\
+  Exemple d'une IHM de RA tangible : les objets virtuels sont alignés avec des objets réels suivis avec 6 DoF et manipulés via des objets virtuels spécifiques utilisés comme outils.\\
   Tiré de \cite{Lee2004}.
 }
 
-Space multiplexed (ex la souris qui se déplace sur bureau) vs time multiplexed
-Tangible user interfaces are extremely intuitive to use because physical object manipulations are mapped one-to-one to virtual
-object operations, and they follow a spacemultiplexed input design [5]. In general, input devices can be classified as either space- or time-multiplexed. With a space-multiplexed interface, each function has a single physical device occupying its own space. In contrast in a time-multiplexed design, a single device controls different functions as different points in time. The mouse is a good example of a time-multiplexed device. Space-multiplexed devices are faster to use than time-multiplexed because users do not have to make the extra step of mapping the physical device input to one of several logical functions. \cite{Billinghurst2005}
+Il existe encore un écart entre entrées et affichages pour ce type d'IHM, en particulier pour certaines commandes : par exemple, pour changer les dimensions de l'objet virtuel ou, de manière générale, ses propriétés, l'activer ou encore réaliser des opérations de copie. Des techniques d'interactions sont donc toujours nécessaires, la difficulté étant de faire comprendre l'utilisateur les commandes possibles et les conséquences de ces actions \citep{Zhou2008}. \cite{Lee2004} proposent par exemple d'utiliser certains objets réels comme des outils pour créer, détruire les autres objets virtuels ainsi que visualiser et modifier leurs propriétés : l'utilisateur place les outils proches des objets pour les faires interagir puis passe son doigt dessus comme pour effectuer un clic pour les activer \reffigureETSp{Lee2004}.
 
-Lee2011 : Graphical Menus Using a Mobile Phone for Wearable AR Systems\\
-White2009 : shake menus
+Il existe deux approches pour concevoir une IHM de RA tangible : une seule fonction est attribuée à chaque outil dans une IHM à \emph{multiplexage spatial}, tandis qu'un même outil est utilisé pour plusieurs fonctions selon le contexte dans une IHM à \emph{multiplexage temporel} \cite[p. 171]{Billinghurst2015}. Le multiplexage spatial est plus facile à apprendre, mais le multiplexage temporel permet plus de flexibilité dans la conception de l'IHM. Par exemple, le cube de manipulation dans l'IHM de \cite{Lee2004} est à multiplexage spatial (il a une seule fonction), tandis que l'outil inspecteur est à multiplexage temporel, car il affiche des données différentes en fonction de l'objet et de la propriété inspectés.
+
+\figureLayoutETS{Lee2011}{%
+  \subfigureETS[0.15]{Lee2011_1.jpg}{Navigateur d'information : le menu apparaît à distance fixe de l'utilisateur.}%
+  \figurehspace%
+  \subfigureETS[0.15]{Lee2011_2.jpg}{Tangible et aligné avec l'écran d'un téléphone tenu en main.}%
+  \figurehspace%
+  \subfigureETS[0.15]{Lee2011_3.jpg}{Tangible et aligné avec un objet de l'environnement.}%
+}{
+  Affichage d'un même menu selon différents types d'IHM de RA.\\
+  Tiré de \cite{Lee2011}.
+}
+
+\figureLayoutETS{White2009}{%
+  \parbox{0.965\textwidth}{% Allow line breaks
+    \centering%
+    \subfigureETS[0.15]{White2009_1.jpg}{Quand le menu est activé, il est aligné avec un objet tenu en main.}%
+    \figurehspace%
+    \subfigureETS[0.15]{White2009_2.jpg}{Le menu peut alors rester tenu en main.}%
+    \figurehspace%
+    \subfigureETS[0.15]{White2009_3.jpg}{Le menu peut rester attaché à la tête de l'utilisateur.}%
+    \\%
+    \subfigureETS[0.15]{White2009_4.jpg}{Le menu peut rester fixe dans l'espace.}%
+    \figurehspace%
+    \subfigureETS[0.15]{White2009_5.jpg}{Le menu peut être attaché à une planche : la sélection est alors bi-manuelle.}%
+    \figurehspace%
+    \subfigureETS[0.15]{White2009_6.jpg}{La sélection d'un élément du menu se fait en le pointant avec l'objet tenu en main.}%
+  }%
+}{
+  Différents placements possibles d'un menu de RA.\\
+  Tiré de \cite{White2009}.
+}
+
+Un téléphone peut donc être utilisé comme base d'IHM de RA tangible, par exemple pour afficher des menus alignés avec l'écran \reffigureETSp{Lee2011}. \cite{White2009} ont comparé l'usage un tel menu aligné avec d'autres placements possibles, par rapport à la tête de l'utilisateur ou par rapport à l'environnement \reffigureETSp{White2009}. L'utilisateur sélectionne un élément du menu en le pointant avec l'objet tenu en main. Dans les résultats de leur étude expérimentale, où treize participants ont effectué chacun 80 sélections avec chaque type de menu, leurs résultats indiquent que les sélections ont été statistiquement plus rapides dans les cas du menu tenu en main ou attaché à la tête de l'utilisateur (en moyenne en \SI{3}{\s} contre \SIrange{7}{8}{\s}). Les utilisateurs ont également préféré ces deux techniques. Pour \citeauthor{White2009} ces deux conditions étaient les plus stables et les plus faciles à utiliser. Pourtant le menu attaché à la main est plus intéressant car l'utilisateur peut facilement le déplacer ou changer son orientation. Cette étude supporte donc la faisaibilité d'une IHM de RA tangible basée sur un téléphone tenu en main.
 
 \subsection{Évaluation d'IHM en RA}
 \label{subsec:litterature_ar_hci_evaluation}
-Enfin, pour déterminer si une IHM est pertinente, fonctionne et prouve son efficacité, il convient de l'évaluer. Il existe plusieurs méthodes :
+Pour déterminer si une IHM est fonctionnelle et pertinente, il convient de l'évaluer dans avec des études utilisateurs \cite[p. 189]{Billinghurst2015}. En outre, cela permet de donner des clés de conceptions à d'autres chercheurs dans le domaine.
+
+\cite{Swan2005} et \cite{Duenser2008} catégorisent les études utilisateurs en RA en trois catégories, selon les questions qu'elles visent :
+\begin{enumerate}
+  \item perception : comment la perception et la cognition humaine fonctionnent en RA ;
+  \item interaction : comment des utilisateurs interagissent avec du contenu virtuel en RA et avec quelles performances ;
+  \item collaboration : comment des utilisateurs peuvent communiquer et collaborer en RA.
+\end{enumerate}
+\medskip
+
+Il existe plusieurs méthodes :
 (1) Objective measurements : performance (temps, erreurs, efficacité), surtout temps de complétion et taux d'erreur, ou encore score, position, nombre d'actions, mouvements\\
 (2) Subjective measurements : engagament, retour utilisateur, questionnaires, notes utilisateurs, retours utilisateurs\\
 (3) Qualitative analysis : avis d'experts, observations, interviews formelles, classification des comportements utilisateurs\\
@@ -271,7 +300,7 @@ La séparation entre les styles d'IHMs présentées \cite{Rekimoto1995} \reffigu
 
 Google Glass a été une expérience novatrice de visiocasque. Malgré les problèmes de vie privée et d'acceptation sociale que son usage a posé, \cite{Koelle2015} rappellent que cela a montré qu'il était intéressant de combiner un visiocasque de RA avec un téléphone intelligent : l'utilisateur interagissant avec son téléphone via le visiocasque, par des interactions multimodales à la voix ou encore avec des gestes en l'air décodés par la caméra du visiocasque. Cette expérience montre ainsi que les visiocasques de RA vont d'abord prendre place dans nos quotididiens professionnels où ils seront mieux acceptés ; c'est également la stratégie de la nouvelle version de ce visiocasque \cite{Levi2017}. Il est donc plus intéressant d'orienter des recherches en IHM pour la RA
 
-Le Google Glass était un prototype limité visible seulement par l'\oe il droit avec un faible champ de vision \reffigureETSp{Phandroid2013_1.jpg}, mais surtout sans proposer une véritable IHM de RA : affichée sur un unique plan virtuel à une distance fixe des yeux \reffigureETSp{Phandroid2013_2.jpg}, elle ne répond pas à l'alignement virtuel-réel dans la définition d'\cite{Azuma1997}. Aussi, cette fenêtre virtuelle peut faire occlusion avec l'environnement réel, et gêner la vue de l'utilisateur. De nombreux autres visiocasques, comme Epson Moverio ou Vusix, souffrent de ces mêmes limites. C'est pourquoi le HoloLens a apporté une innovation majeure dans l'industrie de la RA en proposant de placer de multiples fenêtres virtuelles contre les mur, comme on peut accrocher un tableau, donnant réellement le sentiment qu'elles font partie de l'environnement réel.
+Le Google Glass était un prototype limité visible seulement par l'\oe il droit avec un faible champ de vision \reffigureETSp{Phandroid2013_1.jpg}, mais surtout sans proposer une véritable IHM de RA : affichée sur un unique plan virtuel à une distance fixe des yeux de l'utilisateur \reffigureETSp{Phandroid2013_2.jpg}, comme sur la \reffigureETS{White2009_3.jpg}, elle ne répond pas à l'alignement virtuel-réel dans la définition d'\cite{Azuma1997}. Aussi, cette fenêtre virtuelle peut faire occlusion avec l'environnement réel, et gêner la vue de l'utilisateur. De nombreux autres visiocasques, comme Epson Moverio ou Vusix, souffrent de ces mêmes limites. C'est pourquoi le HoloLens a apporté une innovation majeure dans l'industrie de la RA en proposant de placer de multiples fenêtres virtuelles contre les mur, comme on peut accrocher un tableau, donnant réellement le sentiment qu'elles font partie de l'environnement réel.
 
 \figureLayoutETS{Glass}{%
   \subfigureETS[0.2]{Phandroid2013_1.jpg}{Utilisateur portant le visiocasque : le champ de vision est très petit et limité à l'\oe il droit.}%
@@ -299,6 +328,7 @@ Avec MultiFi, \cite{Grubert2015} explorent de leur côté comment combiner les e
   \item mode \texten{device-aligned} : la fenêtre est centrée et alignée sur l'appareil mobile dont elle étend l'écran \reffigureETSp{Grubert2015_2.jpg} ;
   \item mode \texten{side-by-side} : un des appareils, visiocasque compris, redirige ces interactions vers un autre appareil, par exemple les interactions tactiles du téléphone vers une fenêtre virtuelle.
 \end{enumerate}
+\medskip
 
 \figureETS{Grubert2015_1.jpg}{
   Illustrations des alignements possibles de contenu entre un visiocasque de RA et un appareil mobile : le mode \texten{body-aligned} à gauche, le mode \texten{device-aligned} au milieu et le mode \texten{side-by-side} à droite.\\
@@ -364,6 +394,7 @@ On peut mieux comprendre comment toutes ces IHMs s'articulent entre elles en uti
     \item \emph{Discrétisation} : décrit la fragmentation de l'espace virtuel, qui est plutôt \emph{continu} (un seul affichage) ou \emph{discret} (de multiples affichages disjoints).
   \end{itemize}
 \end{itemize}
+\medskip
 
 Par exemple, \cite{Ens2014a} évaluent leur Personal Cockpit comme egocentrique et mobile, proche de l'utilisateur, à interactions indirectes et intangibles, avec une petite visibilité et continu (les écrans forment une \textquote{bulle} continue autour de l'utilisateur). Ils classent de la même manière un échantillon de 34 IHMs dans la littérature dans leur cadre en cinq catégories \reffigureETSp{Ens2014a.jpg}. De même, nous classons les applications de RA sur mobile, utilisant ARCore ou ARKit, où la RA est vue à travers le téléphone tenu en main font partie de la catégorie \texten{peephole}, tandis que le HoloLens fait partie de la catégorie \texten{floating} où des fenêtres virtuelles sont placées par rapport aux murs. Ce cadre est également utile pour décrire plusieurs modes d'une IHM : un utilisateur de Desktop-Gluey place par exemple les fenêtres autour de l'écran d'un ordinateur dans un cadre alors exocentrique et fixé, ou autour d'un téléphone tenu en main dans un cadre egocentrique et mobile.
 
@@ -396,6 +427,7 @@ Une approche est d'utiliser des IHMs multi-échelles (\texten{multiscale interfa
   \item Overview+Detail : une vue zoomée (\texten{detail}) et une vue sur le document en entier (\texten{overview}) sont affichées simultanément \reffigureETSp{Guiard2004_5.png}. Elles sont placées côte-à-côte ou superposées et peuvent être déplacées indépendamment. Cependant, la navigation peut-être difficile si la différence d'échelle est trop grande entre les deux vues.
   \item Focus+Context : une seule vue permet d'afficher le document en entier et le document zoomé, grâce à une distortion optique \reffigureETSp{Guiard2004_6.png}. Aucune partie du document n'est cachée, mais il peut être difficile d'interpréter le contenu de la vue à cause de la distortion.
 \end{itemize}
+\medskip
 
 \figureLayoutETS{Guiard2004_1}{%
   \subfigureETS[0.2]{Guiard2004_4.png}{\texten{Pan+Zoom} : permet de défiler et zoomer à travers une seule vue dans le document.}%
@@ -462,8 +494,9 @@ Notre concept de VESAD a ainsi l'avantage d'être portable par rapport à \cite{
 
 \section{Problématique}
 \label{sec:research_problem}
+En résumé, nous avons vu dans cette revue de littérature qu'il y a eu des efforts importants pour rendre la RA techniquement possible \citep{Azuma2001, VanKrevelen2010}, cependant, malgré plusieurs cadres théoriques proposés \citep{Milgram1994, Rekimoto1995, Bimber2005, Ens2014a}, il y a encore un besoin de conception pour les IHMs en RA \citep{Billinghurst2015} : en particulier la conception d'interfaces spécifiques à ce média et non importées d'autres types d'IHMs comme WIMP ou les écrans tactiles \citep{VanDam1997, Billinghurst2005}. En outre, il est peut clair quelles techniques d'interactions sont les plus adaptées et dans quels contextes \citep{Argelaguet2013, Piumsomboon2013, Piumsomboon2014}. Pourtant, une des applications clé de la RA est, selon nous, dans un usage professionnel où le visiocasque de RA prendrait une place centrale parmi tous nos appareils numériques \citep{Rekimoto1995, Serrano2015, Grubert2015}. Ainsi, nous souhaitons explorer le cas particulier d'une IHM où un visiocasque de RA étend l'écran d'un téléphone intelligent. C'est un thème courant dans la littérature \citep{Bi2011, Jones2013, Benko2015}, en particulier quand les écrans des ordinateurs se sont aggrandit dans les années 2000 \citep{Baudisch2002}, ou à l'apparition les écrans muraux \citep{Liu2014, Berge2014}, permettant de travailler avec de larges documents \citep{Guiard2004}.
 
-Cette revue de littérature a permit d'identifier un besoin de conception d'IHMs en RA s'appuyant sur des visiocasques. En particulier, nous souhaitons explorer la conception d'une IHM pour un visiocasque de RA combiné avec un téléphone intelligent. Ainsi, nous définissons la problématique de ce mémoire ainsi : est-ce qu'un téléphone à écran étendu donne un avantage à un utilisateur par rapport à un téléphone non étendu ? Est-il mieux d'interagir avec une main virtuelle directement sur l'écran étendu ou seulement sur l'écran tactile ?
+Ainsi, nous définissons la problématique de ce mémoire ainsi : est-ce qu'un téléphone à écran étendu donne un avantage à un utilisateur par rapport à un téléphone non étendu ? Est-il préférable d'interagir avec une main virtuelle directement sur l'écran virtuel ou en utilisant seulement l'écran tactile ?
 
 Nous formulons les hypothèses suivantes par rapport à cette problématique :
 \begin{enumerate}[label={(H\arabic*)}]
@@ -471,12 +504,14 @@ Nous formulons les hypothèses suivantes par rapport à cette problématique :
   \item Les utilisateurs apprécieront d'avantage pouvoir interagir directement avec la fenêtre virtuelle autour du téléphone, l'utilisateur agissant directement sur le contenu qu'il voit, cela lui semblera plus naturel et possiblement plus intuitif.
   \item Les utilisateurs seront en revanche plus performants en interagissant seulement avec l'écran physique tactile du téléphone, car les gestes y sont plus précis et moins fatiguant sur un petit écran tactile tenu de manière stable.
 \end{enumerate}
-
+\medskip
+ 
 Enfin, pour y répondre, nous divisons cette problématique en trois sous-problèmes :
 \begin{enumerate}
   \item Concevoir une IHM d'un téléphone à écran étendu.
   \item Développer un visiocasque de RA à large champ de vision.
   \item Réaliser une expérimentation évaluant différentes techniques d'interactions sur téléphone à écran étendu comparées à un téléphone non étendu.
 \end{enumerate}
+\medskip
 
 Les résultats à ces objectifs permettront de donner des recommandations pour de futures recherches d'IHM en RA.

@@ -52,14 +52,14 @@ Notre visiocasque fonctionne sur le principe suivant :
   \item Une caméra stéréoscopique virtuelle va filmer des éléments virtuels ainsi que les deux images de la caméra physique en arrière-plan \reffigureETSp{ArRiftMarker_3.jpg}.
   \item Les deux images sont affichées dans le visiocasque, une pour chaque \oe il, affichant environnements virtuels et physiques superposés \reffigureETSp{ArRiftMarker_4.jpg}.
 \end{enumerate}
-\bigskip
+\medskip
 Pour donner l'illusion que les éléments virtuels sont alignés avec l'environnement réel, nous devons donc \emph{aligner} la caméra virtuelle avec la caméra physique, dans un travail qui se fait en trois temps :
 \begin{enumerate}
   \item \emph{Étalonner} (\texten{calibrate} en anglais) la caméra physique, c'est-à-dire mesurer ses \emph{paramètres intrinsèques} (ses propriétés, comme son champ de vision), et les \emph{distorsions} de ses objectifs (les déformations sur les images capturées). L'étalonnage est à faire seulement une seule fois par caméra.
   \item Au démarrage du visiocasque, aligner la caméra virtuelle en la configurant avec les paramètres intrinsèques de la caméra physique.
   \item Pour chaque image capturée par la caméra physique, appliquer le procédé de la \reffigureETS{ArRiftMarker}.
 \end{enumerate}
-\bigskip
+\medskip
 
 La caméra virtuelle filmant ainsi du \emph{même point de vue} que la caméra physique, on peut donc placer les éléments virtuels comme s'ils faisaient partie de l'environnement réel. On utilise alors un algorithme de \emph{suivi de marqueurs} (\texten{fiducial marker tracking} en anglais) : ce sont des codes-barres en 2D imprimés \reffigureETSp{ArRiftMarker_2.jpg} et dont on peut déterminer très rapidement la position et l'orientation par rapport une caméra physique dont on connaît les paramètres intrinsèques \cite{Garrido-Jurado2014}. Les marqueurs étant détectés en temps réel sur chaque image, on place les éléments virtuels à ces mêmes positions et orientations par rapport à la caméra virtuelle \reffigureETSp{ArRiftMarker_3.jpg}, donnant donc l'illusion qu'ils font partie de l'environnement réel \reffigureETSp{ArRiftMarker_4.jpg}.
 
@@ -407,7 +407,7 @@ Avec ces scripts nous mettons aussi en place le fonctionnement de notre visiocas
   \item \code{ArucoCameraCalibration} étalonne la caméra physique.
   \item \code{CameraParametersController} gère les paramètres de l'étalonnage.
 \end{itemize}
-\bigskip
+\medskip
 
 Pour chacune de ces interfaces, nous utilisons le patron de conception stratégie : nous créons une classe abstraite implémentant le procédé (nous les décrivons à la \autoref{sec:ar_hmd}) mais laissant les détails spécifiques à un type de caméra à des enfants de cette classe. Cela permet de multiples combinaisons entre les implémentations d'\code{IArucoCamera}, de \code{IArucoCameraDisplay} et de \code{IArucoCameraUndistortion}. Un développeur peut donc ajouter facilement le support dans Aruco Unity d'une nouvelle caméra, d'un nouveau type d'affichage ou la correction d'un nouveau type d'objectif photographique.
 
@@ -580,7 +580,7 @@ On crée alors notre échiquier d'étalonnage \reffigureETSp{CharucoBoardCreatio
   \item On démarre la scène Unity : l'image de l'échiquier s'affiche et est enregistrée sur le disque dur dans le dossier du projet (le chemin est indiqué par \code{OutputFolder}).
   \item On imprime l'image que l'on colle fermement sur une surface rigide pour qu'elle reste la plus plate possible.
 \end{itemize}
-\bigskip
+\medskip
 
 \figureLayoutETS{PinholeCameraCalibration}{%
   \subfigureETS[0.4]{PinholeCameraCalibration_1.jpg}{Sélection de la première webcam disponible (identifiant \code{0} dans le champ \code{WebcamId}).}%
@@ -714,7 +714,7 @@ Aruco Unity effectue automatiquement la correction des images, lors du suivi de 
   \item Dans l'objet \code{ArucoWebcam}, sur le script \code{ArucoCameraParametersController}, on renseigne le nom du fichier d'étalonnage dans le champ \code{CameraParametersFilename}.
   \item Le script \code{ArucoCameraUndistortion} est déjà configuré pour utiliser la caméra physique et le fichier d'étalonnage.
 \end{enumerate}
-\bigskip
+\medskip
 
 Dans les scripts de correction, on calcule tout d'abord (1) la nouvelle matrice intrinsèque et (2) la fonction de mappage \autorefp{lst:pinhole_camera_undistortion} puis (3) on l'applique sur chaque image capturée par la caméra \autorefp{lst:aruco_camera_undistortion}.
 
