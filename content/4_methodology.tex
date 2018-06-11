@@ -398,7 +398,7 @@ Nous avons également ajouté quelques fonctions de conversion, Unity et OpenCV 
 
 Ce travail avec les images des caméras et les conversions montre pourquoi nous avons besoin d'une couche supplémentaire de scripts C\# au-dessus de celle de la liaison pour faciliter l'usage d'OpenCV dans Unity. Les deux systèmes ne sont en effet pas conçus pour travailler ensemble : on masque ainsi cette complexité avec les scripts, formant une façade supplémentaire.
 
-Avec ces scripts nous mettons aussi en place le fonctionnement de notre visiocasque décrit à la \autoref{subsec:prototype_operation} en suivant la procédure que nous décrivons à la \autoref{sec:ar_hmd}. Nous avons donc d'abord écrit premier script d'étalonnage et un second qui configurait au démarrage puis qui corrigeait à chaque \texten{frame} les images et plaçait les éléments virtuels. Nous y avons rapidement appliqué quelques principes de conception pour l'améliorer. Nous utilisons donc une seule responsabilité par classe \autorefp{ArucoUnityArchitecture} :
+Avec ces scripts nous mettons aussi en place le fonctionnement de notre visiocasque décrit à la \autoref{subsec:prototype_operation} en suivant la procédure que nous décrivons à la \autoref{sec:ar_hmd}. Nous avons donc d'abord écrit premier script d'étalonnage et un second qui configurait au démarrage puis qui corrigeait à chaque \texten{frame} les images et plaçait les éléments virtuels. Nous y avons rapidement appliqué quelques principes de conception pour l'améliorer. Nous utilisons donc une seule responsabilité par classe \reffigureETSp{ArucoUnityArchitecture} :
 \begin{itemize}
   \item \code{IArucoCamera} récupère les images de la caméra physique.
   \item \code{IArucoCameraUndistortion} corrige les images capturées.
