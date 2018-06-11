@@ -645,7 +645,7 @@
 \setlength\belowcaptionskip{0.5\baselineskip}
 \setlength\floatsep{1.5\baselineskip}
 \setlength\textfloatsep{1.5\baselineskip}
-\setlength\intextsep{1.5\baselineskip}
+\setlength\intextsep{\baselineskip}
 
 
 
@@ -1828,6 +1828,7 @@
   % espace ajouté directement  dans le texte (a l endroit ou se trouve la figure) pour decaler vers le bas
   \vspace{0.5\baselineskip}%   % ajout decalage vers bas
   \@float{figure}%
+  \vspace{0.5\baselineskip}%   % ajout decalage vers bas
   \centering
 }{%
   \end@float

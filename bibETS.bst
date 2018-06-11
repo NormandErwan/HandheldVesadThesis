@@ -364,7 +364,7 @@ FUNCTION {format.year.month.day.par}
     	{ "(" year *  extra.label * ")" * }
     	{ day empty$
     		{ "(" year *  extra.label * ",~" * month * ")" * }
-    	    { "(" year *  extra.label * ",~" * day * "~" * month * ")" * }
+    	    { "(" year *  extra.label * ",~" * month * ",~" * day * ")" * }
 			if$ }
     	if$}
   if$
