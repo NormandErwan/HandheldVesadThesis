@@ -4,22 +4,42 @@
 ]{thETS}
 
 \usepackage{textcomp} % Correct display of characters such as \degree
-\usepackage{csquotes} % Quotations
-\usepackage[binary-units=true, locale=FR]{siunitx} % Correct display of units
 \usepackage{pdfpages} % Include PDFs
 \usepackage{color} % Declare colorst
 \usepackage{inconsolata} % Better typewriter font
-\usepackage{tikz-uml} % UML diagrams
 \usepackage{xfrac} % Inline fractions
 \usepackage{multirow} % Multiple rows in tables
 
-% Quotations configuration (use \texten{})
+% Quotations
+\usepackage{csquotes}
 \let\oldforeignlanguage\foreignlanguage
 \renewcommand{\foreignlanguage}[2]{\oldforeignlanguage{#1}{\emph{#2}}}
-\babeltags{en = english}
+\babeltags{en = english} % \texten
 
-% Refs
-\newcommand{\autorefp}[2][]{(\textit{Voir} \autoref{#2}#1)}
+% Units
+\usepackage[binary-units=true, locale=FR]{siunitx}
+\DeclareSIUnit\fps{FPS}
+\DeclareSIUnit\inch{po}
+\DeclareSIUnit\pt{pt}
+\DeclareSIUnit\px{px}
+\DeclareSIUnit[per-mode=symbol]\ppd{\px\per\degree}
+
+% UML diagrams
+\usepackage{tikz-uml}
+\tikzumlset{
+  fill class = white,
+  fill component = white,
+  fill note = white,
+  fill object = white,
+  fill package = white,
+  fill template = white,
+  font = {\fontsize{9pt}{12}\selectfont}
+}
+
+% Custom commands
+\newcommand{\variable}[1]{\textsc{#1}} % Independent variable
+\newcommand{\condition}[1]{\textit{#1}} % Levels of an independent variable
+\newcommand{\autorefp}[2][]{(\textit{Voir} \autoref{#2}#1)} % References with parentheses
 
 % Figure with ÉTS style
 \newcommand{\figureLayoutETS}[4]{%
@@ -67,13 +87,6 @@
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
-% Units
-\DeclareSIUnit\fps{FPS}
-\DeclareSIUnit\inch{po}
-\DeclareSIUnit\pt{pt}
-\DeclareSIUnit\px{px}
-\DeclareSIUnit[per-mode=symbol]\ppd{\px\per\degree}
-
 % Listings
 \lstloadlanguages{C++, [Sharp]C, XML}
 
@@ -84,8 +97,7 @@
 \definecolor{maroon}{rgb}{0.6,0,0}
 \definecolor{red}{rgb}{0.9,0,0}
 
-% Based on https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Encoding_issue
-\lstset{literate=
+\lstset{literate= % Based on https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Encoding_issue
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
@@ -141,20 +153,6 @@
 
 \newcommand{\code}[2][cs]{\lstinline[language=#1, basicstyle=\ttfamily\normalsize]|#2|}
 
-% UML configuration
-\tikzumlset{
-  fill class = white,
-  fill component = white,
-  fill note = white,
-  fill object = white,
-  fill package = white,
-  fill template = white,
-  font = {\fontsize{9pt}{12}\selectfont}
-}
-
-% Custom commands
-\newcommand{\variable}[1]{\textsc{#1}} % Independent variable
-\newcommand{\condition}[1]{\textit{#1}} % Levels of an independent variable
 
 % Thesis configuration
 \title{Extension de l'écran d'un téléphone intelligent par réalité augmentée}
@@ -168,6 +166,7 @@
 \directeur{M.}{Michael J. McGuffin}{Département de génie logiciel et des TI à l’École de technologie supérieure}
 \president{M.}{Prénom Nom}{département et institution}
 \examinexterne{M.}{Prénom Nom}{département et institution}{}
+
 
 % Document
 \begin{document}
@@ -224,7 +223,6 @@
 
 \newpage
 \begin{spacing}{1}
-  \nocite{*}
   \bibliographystyle{bibETS}
   \addcontentsline{toc}{chapter}{BIBLIOGRAPHIE}
   \bibliography{bibliography/thesis}
