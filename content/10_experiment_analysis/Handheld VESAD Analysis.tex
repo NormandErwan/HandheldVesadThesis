@@ -1,0 +1,1765 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[letterpaper, 11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Handheld VESAD Analysis}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=.75in,bmargin=.75in,lmargin=.75in,rmargin=.75in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    The analysis of the experiment data is also accessible online:
+\url{https://github.com/NormandErwan/HandheldVesadAnalysis/blob/master/Handheld\%20VESAD\%20Analysis.ipynb}.
+
+    \subsection{1. Data preparation}\label{data-preparation}
+
+    Configuration :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} Imports}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{from} \PY{n+nn}{pandas}\PY{n+nn}{.}\PY{n+nn}{api}\PY{n+nn}{.}\PY{n+nn}{types} \PY{k}{import} \PY{n}{CategoricalDtype}
+        \PY{k+kn}{import} \PY{n+nn}{itertools}
+        
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k}{as} \PY{n+nn}{mpl}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{ticker} \PY{k}{as} \PY{n+nn}{ticker}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{patches} \PY{k}{as} \PY{n+nn}{patches}
+        
+        \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k}{import} \PY{n}{stats}
+        \PY{k+kn}{import} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{api} \PY{k}{as} \PY{n+nn}{sm}
+        \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{formula}\PY{n+nn}{.}\PY{n+nn}{api} \PY{k}{import} \PY{n}{ols}
+        \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{stats}\PY{n+nn}{.}\PY{n+nn}{multicomp} \PY{k}{import} \PY{p}{(}\PY{n}{MultiComparison}\PY{p}{,} \PY{n}{pairwise\PYZus{}tukeyhsd}\PY{p}{)}
+        \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{stats}\PY{n+nn}{.}\PY{n+nn}{multitest} \PY{k}{import} \PY{n}{multipletests}
+        \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{stats}\PY{n+nn}{.}\PY{n+nn}{libqsturng} \PY{k}{import} \PY{n}{psturng}
+        
+        \PY{k+kn}{from} \PY{n+nn}{ast} \PY{k}{import} \PY{n}{literal\PYZus{}eval}
+        \PY{k+kn}{from} \PY{n+nn}{os} \PY{k}{import} \PY{n}{listdir}
+        \PY{k+kn}{from} \PY{n+nn}{os}\PY{n+nn}{.}\PY{n+nn}{path} \PY{k}{import} \PY{n}{join}
+        
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{html}\PY{n+nn}{.}\PY{n+nn}{services}\PY{n+nn}{.}\PY{n+nn}{config} \PY{k}{import} \PY{n}{ConfigManager}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}Erwan\textbackslash{}Miniconda\textbackslash{}envs\textbackslash{}master-thesis\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}IPython\textbackslash{}html.py:14: ShimWarning: The `IPython.html` package has been deprecated since IPython 4.0. You should import from `notebook` instead. `IPython.html.widgets` has moved to `ipywidgets`.
+  "`IPython.html.widgets` has moved to `ipywidgets`.", ShimWarning)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Notebook configuration}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        
+        \PY{c+c1}{\PYZsh{} Ruler}
+        \PY{n}{ip} \PY{o}{=} \PY{n}{get\PYZus{}ipython}\PY{p}{(}\PY{p}{)}
+        \PY{n}{cm} \PY{o}{=} \PY{n}{ConfigManager}\PY{p}{(}\PY{n}{parent}\PY{o}{=}\PY{n}{ip}\PY{p}{)}
+        \PY{n}{cm}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{notebook}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ruler\PYZus{}column}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{80}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Style and size of the figures}
+        \PY{n}{subplotsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{legend\PYZus{}fontsize} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{plotting\PYZus{}context}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{notebook}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{axes.labelsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{legend\PYZus{}title\PYZus{}fontsize} \PY{o}{=} \PY{n}{legend\PYZus{}fontsize} \PY{o}{+} \PY{l+m+mi}{1}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{context}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{notebook}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{style}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{whitegrid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{font\PYZus{}scale}\PY{o}{=}\PY{l+m+mf}{1.25}\PY{p}{,}
+                \PY{n}{rc}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{legend.fontsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{legend\PYZus{}fontsize}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{savefig.dpi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{300}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{savefig.bbox}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Render the plots with this language}
+        \PY{c+c1}{\PYZsh{}language = \PYZsq{}English\PYZsq{}}
+        \PY{n}{language} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Français}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    Data are loaded in the following variables: - Participants information,
+from the questionary before the trials: \texttt{participants} - The
+summary of the trials of the participants: \texttt{raw\_trials} - Trials
+averaged so that each participants ends up with a single observation
+(there was two trials per condition per participant) (Tip 9 of
+Dragicevic (2016)) : \texttt{trials} - The detailed measures of the
+trials: \texttt{trial\_details} - The ranks of the participants from the
+post-questionary: \texttt{ranks}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{participants} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participants.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{raw\PYZus{}trials} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participant\PYZus{}trials.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{trials\PYZus{}for\PYZus{}anova} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participant\PYZus{}trials.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ranks} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participant\PYZus{}ranks.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} Detailled trials are long to load, keep commented if unused}
+        
+        \PY{c+c1}{\PYZsh{}trial\PYZus{}details = []}
+        \PY{c+c1}{\PYZsh{}for file in listdir(\PYZsq{}.\PYZsq{}):}
+        \PY{c+c1}{\PYZsh{}    if file.endswith(\PYZsq{}details.csv\PYZsq{}): \PYZsh{} The trial files end with *\PYZhy{}details.csv}
+        \PY{c+c1}{\PYZsh{}        details.append(pd.read\PYZus{}csv(file))}
+        \PY{c+c1}{\PYZsh{}trial\PYZus{}details = pd.concat(details, ignore\PYZus{}index=True)}
+\end{Verbatim}
+
+
+    Creates independent variables lists (\texttt{participants\_ivs},
+\texttt{trials\_ivs}) and dependent variables lists
+(\texttt{ranks\_dvs}, \texttt{trials\_dvs}) to make easier to use
+algorithms and to plot figures.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Participants IVs}
+        \PY{k}{if} \PY{n}{language} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Français}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{participants\PYZus{}iv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Numéro participant}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sexe}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Porte des lunettes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Porte des lentilles}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Est daltonien}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Intervalle d}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{âge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Main dominante}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Main utilisée pour la souris}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Activité principale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Utilisation de l}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{ordinateur (heures/jours)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Logiciels 3D utilisés}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Visiocasques RV/RA utilisés}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Techniques d}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{interactions RV/RA utilisées}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{participants\PYZus{}iv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Participant Id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Has Glasses}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Has Contact Lenses}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Is Color Blind}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age Class}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dominant Hand}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hand Used for Mouse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Activity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Computer Hours per Day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3D Softwares Used}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HMD Used}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Known Interactions Techniques on HMD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{n}{participants\PYZus{}ivs} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{participants\PYZus{}iv\PYZus{}labels}\PY{p}{,}
+                                     \PY{n}{index}\PY{o}{=}\PY{n}{participants}\PY{o}{.}\PY{n}{columns}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Trials IVs}
+        \PY{k}{if} \PY{n}{language} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Français}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{trials\PYZus{}iv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Taille du texte}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Groupe}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Méthode d}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{entrée}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Méthode d}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{affichage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{trials\PYZus{}iv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Text Size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Technique Input}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Technique Output}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{n}{trials\PYZus{}ivs} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text\PYZus{}size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{input}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{output}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{trials\PYZus{}ivs} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{n}{trials\PYZus{}ivs}\PY{p}{,}\PYZbs{}
+                                  \PY{n}{index}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{default\PYZus{}palette} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{color\PYZus{}palette}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Set2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{iv\PYZus{}index}\PY{p}{,} \PY{n}{iv\PYZus{}label} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{columns}\PY{p}{,} \PY{n}{trials\PYZus{}iv\PYZus{}labels}\PY{p}{)}\PY{p}{:}
+            \PY{n}{iv\PYZus{}categories} \PY{o}{=} \PY{n}{raw\PYZus{}trials}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{[}\PY{n}{iv\PYZus{}index} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PYZbs{}
+            \PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{n}{iv\PYZus{}index}\PY{p}{)}\PY{p}{[}\PY{n}{iv\PYZus{}index}\PY{p}{]}
+            \PY{n}{iv\PYZus{}categorical} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Categorical}\PY{p}{(}\PY{n}{iv\PYZus{}categories}\PY{p}{,} \PY{n}{iv\PYZus{}categories}\PY{p}{,} \PY{n}{ordered}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+            \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{iv\PYZus{}label}\PY{p}{,} \PY{n}{iv\PYZus{}categorical}\PY{p}{,} \PY{n}{default\PYZus{}palette}\PY{p}{]}
+        
+        \PY{n}{technique\PYZus{}palette} \PY{o}{=} \PY{p}{[}\PY{n}{default\PYZus{}palette}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{default\PYZus{}palette}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{default\PYZus{}palette}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}
+        \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{technique\PYZus{}palette}
+        \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text\PYZus{}size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{light\PYZus{}palette}\PY{p}{(}
+            \PY{n}{default\PYZus{}palette}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}  \PY{c+c1}{\PYZsh{} Brown paired colors}
+        \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{light\PYZus{}palette}\PY{p}{(}
+            \PY{n}{default\PYZus{}palette}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}  \PY{c+c1}{\PYZsh{} Green paired colors}
+        \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{technique\PYZus{}palette}
+        \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{input}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{default\PYZus{}palette}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{default\PYZus{}palette}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}
+        \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{output}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{default\PYZus{}palette}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                                              \PY{n}{sns}\PY{o}{.}\PY{n}{color\PYZus{}palette}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{muted}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Trials DVs}
+        \PY{k}{if} \PY{n}{language} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Français}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{trials\PYZus{}dv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temps de complétion (s)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sélections}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temps en sélection}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance 3D en sélection}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance en sélection}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Déselections}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Erreurs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Disques classés}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Défilements}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temps de défilement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance 3D de défilement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance de défilement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temps de zoom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance 3D de zoom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance de zoom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mouvements tête\PYZhy{}téléphone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance relative tête\PYZhy{}téléphone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{trials\PYZus{}dv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Task Completion Time (s)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Selections}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Selection Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Selection Distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Selection Distance on Grid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Deselections}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Errors}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Items Classified}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pans}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pan Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pan Distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pan Distance on Grid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zooms}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zoom Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zoom Distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zoom Distance on Grid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phone\PYZhy{}Head Motion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Signed Phone\PYZhy{}Head Motion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{n}{trials\PYZus{}dvs} \PY{o}{=} \PY{n}{raw\PYZus{}trials}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signed\PYZus{}head\PYZus{}phone\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{columns}
+        \PY{n}{trials\PYZus{}dvs} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{trials\PYZus{}dv\PYZus{}labels}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{trials\PYZus{}dvs}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Ranks DVs}
+        \PY{k}{if} \PY{n}{language} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Français}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{ranks\PYZus{}dv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Facile à comprendre}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mentalement facile à utiliser}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Physiquement facile à utiliser}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rapidité}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Réussite}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frustration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Préférence}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{ranks\PYZus{}dv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Easy to Understand}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mentally Easy to Use}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Physically Easy to Use}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Subjective Speed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Subjective Performance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frustration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Preference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{n}{ranks\PYZus{}dv\PYZus{}scales} \PY{o}{=} \PY{p}{[}\PY{n}{pd}\PY{o}{.}\PY{n}{Categorical}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{list}\PY{p}{(}
+            \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{ordered}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{]} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n}{ranks\PYZus{}dv\PYZus{}labels}\PY{p}{)}
+        
+        \PY{n}{RdYlBu} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{color\PYZus{}palette}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RdYlBu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{ranks\PYZus{}dv\PYZus{}palettes} \PY{o}{=} \PY{p}{[}\PY{n}{sns}\PY{o}{.}\PY{n}{color\PYZus{}palette}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RdYlBu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{]} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n}{ranks\PYZus{}dv\PYZus{}labels}\PY{p}{)}
+        
+        \PY{n}{ranks\PYZus{}dvs} \PY{o}{=} \PY{n}{ranks}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{easy\PYZus{}understand}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{columns}
+        \PY{n}{ranks\PYZus{}dvs} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{p}{[}\PY{n}{ranks\PYZus{}dv\PYZus{}labels}\PY{p}{,} \PY{n}{ranks\PYZus{}dv\PYZus{}scales}\PY{p}{,}
+                                       \PY{n}{ranks\PYZus{}dv\PYZus{}palettes}\PY{p}{]}\PY{p}{,}
+                                 \PY{n}{columns}\PY{o}{=}\PY{n}{ranks\PYZus{}dvs}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{ranks\PYZus{}dvs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Categorical}\PY{p}{(}
+            \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{ordered}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{ranks\PYZus{}dvs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{RdYlBu}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{,} \PY{n}{RdYlBu}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{RdYlBu}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Shortcuts}
+        \PY{n}{participant\PYZus{}id} \PY{o}{=} \PY{n}{participants\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participant\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{technique} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{text\PYZus{}size} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text\PYZus{}size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{distance} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{ordering} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{iv\PYZus{}input} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{input}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{iv\PYZus{}output} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{output}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    Clean the data:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} Set better and translated columns to participants, trials and ranks}
+         \PY{n}{participants}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{participants\PYZus{}ivs}
+         
+         \PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{column} \PY{o+ow}{in} \PY{n}{raw\PYZus{}trials}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+             \PY{k}{if} \PY{p}{(}\PY{n}{column} \PY{o+ow}{in} \PY{n}{participants\PYZus{}ivs}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{columns}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{participants\PYZus{}ivs}\PY{p}{[}\PY{n}{column}\PY{p}{]}\PY{p}{)}
+             \PY{k}{elif} \PY{p}{(}\PY{n}{column} \PY{o+ow}{in} \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{columns}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{column}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{k}{elif} \PY{p}{(}\PY{n}{column} \PY{o+ow}{in} \PY{n}{trials\PYZus{}dvs}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{columns}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{n}{column}\PY{p}{]}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{columns}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{)}
+         
+         \PY{n}{raw\PYZus{}trials}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{columns}
+         
+         \PY{n}{ranks}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{n}{participant\PYZus{}id}\PY{p}{,} \PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                          \PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{+} \PY{n}{ranks\PYZus{}dvs}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Set the participant\PYZus{}id column as the index in participants}
+         \PY{n}{participants}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{n}{participants\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participant\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} Some participants are non valid or don\PYZsq{}t have complete measures}
+         \PY{n}{non\PYZus{}valid\PYZus{}participants} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}
+         \PY{n}{participants} \PY{o}{=} \PY{n}{participants}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{participants}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{non\PYZus{}valid\PYZus{}participants}\PY{p}{)}\PY{p}{]}
+         \PY{n}{ranks} \PY{o}{=} \PY{n}{ranks}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{ranks}\PY{p}{[}\PY{n}{participants\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participant\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+                       \PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{non\PYZus{}valid\PYZus{}participants}\PY{p}{)}\PY{p}{]}
+         
+         \PY{n}{incomplete\PYZus{}trials\PYZus{}participant\PYZus{}ids} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}
+         \PY{n}{raw\PYZus{}trials} \PY{o}{=} \PY{n}{raw\PYZus{}trials}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{raw\PYZus{}trials}\PY{p}{[}\PY{n}{participants\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participant\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+                                 \PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{incomplete\PYZus{}trials\PYZus{}participant\PYZus{}ids}\PY{p}{)}
+                                 \PY{p}{]}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{trials\PYZus{}for\PYZus{}anova} \PY{o}{=} \PY{n}{trials\PYZus{}for\PYZus{}anova}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{trials\PYZus{}for\PYZus{}anova}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participant\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                                             \PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{incomplete\PYZus{}trials\PYZus{}participant\PYZus{}ids}\PY{p}{)}
+                                             \PY{p}{]}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} Some participants have wrong head phone mesures}
+         \PY{k}{for} \PY{n}{head\PYZus{}distance\PYZus{}column} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{absolute\PYZus{}head\PYZus{}phone\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{signed\PYZus{}head\PYZus{}phone\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+             \PY{n}{raw\PYZus{}trials}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{raw\PYZus{}trials}\PY{p}{[}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{n}{head\PYZus{}distance\PYZus{}column}\PY{p}{]}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{,}
+                            \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{absolute\PYZus{}head\PYZus{}phone\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+             \PY{n}{trials\PYZus{}for\PYZus{}anova}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{trials\PYZus{}for\PYZus{}anova}\PY{p}{[}\PY{n}{head\PYZus{}distance\PYZus{}column}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{,}
+                                  \PY{n}{head\PYZus{}distance\PYZus{}column}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} Setup categorical columns participants, trials and ranks}
+         \PY{n}{participants}\PY{p}{[}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{ranks}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}
+             \PY{n}{participant\PYZus{}id}\PY{p}{)}\PY{p}{[}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{first}\PY{p}{(}\PY{p}{)}
+         \PY{n}{participants}\PY{p}{[}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{participants}\PY{p}{[}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}
+             \PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{iv\PYZus{}index} \PY{o+ow}{in} \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+             \PY{n}{iv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}index}\PY{p}{]}
+             \PY{n}{raw\PYZus{}trials}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{raw\PYZus{}trials}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{n}{trials\PYZus{}for\PYZus{}anova}\PY{p}{[}\PY{n}{iv\PYZus{}index}\PY{p}{]} \PY{o}{=} \PY{n}{raw\PYZus{}trials}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         
+         \PY{n}{ranks}\PY{p}{[}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{ranks}\PY{p}{[}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}
+             \PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{ranks}\PY{p}{[}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{ranks}\PY{p}{[}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}
+             \PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Rename categories}
+         \PY{k}{if} \PY{n}{language} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Français}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+             \PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Téléphone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VESAD tactile}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VESAD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{text\PYZus{}size}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Grand}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petit}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{distance}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Proche}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Groupe 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Groupe 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Groupe 3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{iv\PYZus{}input}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tactile}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Autour du téléphone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{iv\PYZus{}output}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Téléphone seul}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Téléphone étendu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Group 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Group 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Group 3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Set renamed categories to data}
+         \PY{n}{participants}\PY{p}{[}\PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                      \PY{p}{]}\PY{o}{.}\PY{n}{cat}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories}
+         
+         \PY{k}{for} \PY{n}{iv\PYZus{}index} \PY{o+ow}{in} \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+             \PY{n}{iv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}index}\PY{p}{]}
+             \PY{n}{raw\PYZus{}trials}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{cat}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories}
+         
+         \PY{n}{ranks}\PY{p}{[}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{cat}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories}
+         \PY{n}{ranks}\PY{p}{[}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{cat}\PY{o}{.}\PY{n}{categories} \PY{o}{=} \PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{categories}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Eval the arrays in some dvs}
+         \PY{k}{def} \PY{n+nf}{eval\PYZus{}if\PYZus{}str}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n}{literal\PYZus{}eval}\PY{p}{(}\PY{n}{data}\PY{p}{)} \PY{k}{if} \PY{n+nb}{isinstance}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n+nb}{str}\PY{p}{)} \PY{k}{else} \PY{n}{data}
+         
+         \PY{n}{raw\PYZus{}trials}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grid\PYZus{}config}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{raw\PYZus{}trials}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grid\PYZus{}config}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{eval\PYZus{}if\PYZus{}str}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Create trials}
+         \PY{n}{trials\PYZus{}groupby\PYZus{}ivs} \PY{o}{=} \PY{p}{[}\PY{n}{participants\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{participant\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PYZbs{}
+                              \PY{o}{+} \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+         \PY{n}{trials} \PY{o}{=} \PY{n}{raw\PYZus{}trials}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{trials\PYZus{}groupby\PYZus{}ivs}\PY{p}{,} \PY{n}{observed}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PYZbs{}
+                  \PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    Utilities:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{} Figure labels in the selected language}
+         \PY{n}{labels} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{p}{)}
+         
+         \PY{k}{if} \PY{n}{language} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Français}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Catégorie}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nombre total}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance moyenne (m)}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Variable dépendante}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Variable indépendante}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valeur VI}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Différence des moyennes}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference\PYZus{}percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Différence des moyennes (}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}rank}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Note moyenne}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preferences}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Premier}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Deuxième}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Troisième}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valeur p}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{question}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Question}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rank}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Note}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temps moyen (s)}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}statistic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Statistique T}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{votes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Participants}\PY{l+s+s1}{\PYZsq{}}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Category}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Count}\PY{l+s+s1}{\PYZsq{}}    
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Distance (m)}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dependent Variable}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Independent Variable}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IV Value}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Difference}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference\PYZus{}percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Difference Percentage}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}rank}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Rank}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preferences}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{First}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Second}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Third}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{question}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Question}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rank}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rank}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean Time (s)}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}statistic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{T statistic}\PY{l+s+s1}{\PYZsq{}}
+             \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{votes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Participants}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{def} \PY{n+nf}{mean\PYZus{}ci}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+m+mi}{95}\PY{p}{,} \PY{n}{n\PYZus{}boot}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Returns the confidence interval of the mean\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{x2} \PY{o}{=} \PY{p}{[}\PY{n}{i} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{x} \PY{k}{if} \PY{o+ow}{not} \PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{]}
+             \PY{n}{boots} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{algorithms}\PY{o}{.}\PY{n}{bootstrap}\PY{p}{(}\PY{n}{x2}\PY{p}{,} \PY{n}{n\PYZus{}boot}\PY{o}{=}\PY{n}{n\PYZus{}boot}\PY{p}{)}
+             \PY{k}{return} \PY{n}{sns}\PY{o}{.}\PY{n}{utils}\PY{o}{.}\PY{n}{ci}\PY{p}{(}\PY{n}{boots}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{n}{which}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{def} \PY{n+nf}{print\PYZus{}mean\PYZus{}ci}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{ci\PYZus{}which}\PY{o}{=}\PY{l+m+mi}{95}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Returns a string containing the mean with the CI of x\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{ci1}\PY{p}{,} \PY{n}{ci2} \PY{o}{=} \PY{n}{mean\PYZus{}ci}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{n}{ci\PYZus{}which}\PY{p}{)}
+             \PY{k}{return} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{ [}\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{]}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{ci1}\PY{p}{,} \PY{n}{ci2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{def} \PY{n+nf}{mean\PYZus{}difference}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Returns the mean difference value and percentage between a and b\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{mean\PYZus{}diff} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+             \PY{n}{mean\PYZus{}diff\PYZus{}percentage} \PY{o}{=} \PY{n}{mean\PYZus{}diff} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{b}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}
+             \PY{k}{return} \PY{p}{(}\PY{n}{mean\PYZus{}diff}\PY{p}{,} \PY{n}{mean\PYZus{}diff\PYZus{}percentage}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k}{def} \PY{n+nf}{p\PYZus{}values\PYZus{}correction}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{n}{correction\PYZus{}method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fdr\PYZus{}bh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{correction\PYZus{}method} \PY{o}{!=} \PY{k+kc}{None}\PY{p}{:}
+                 \PY{n}{reject}\PY{p}{,} \PY{n}{p\PYZus{}values\PYZus{}corrected}\PY{p}{,} \PY{n}{a1}\PY{p}{,} \PY{n}{a2} \PY{o}{=}\PYZbs{}
+                     \PY{n}{multipletests}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{n}{alpha}\PY{p}{,}
+                                   \PY{n}{method}\PY{o}{=}\PY{n}{correction\PYZus{}method}\PY{p}{)}
+                 \PY{n}{data}\PY{p}{[}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{p\PYZus{}values\PYZus{}corrected}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k}{def} \PY{n+nf}{subplots}\PY{p}{(}\PY{n}{nsubplots}\PY{p}{,} \PY{n}{ncols\PYZus{}max}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{subplotsize}\PY{o}{=}\PY{n}{subplotsize}\PY{p}{,} \PY{o}{*}\PY{n}{plt\PYZus{}args}\PY{p}{)}\PY{p}{:}
+             \PY{n}{ncols} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{ncols\PYZus{}max}\PY{p}{,} \PY{n}{nsubplots}\PY{p}{)}
+             \PY{n}{nrows} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{nsubplots} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/}\PY{o}{/} \PY{n}{ncols}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1}
+             \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{n}{nrows}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{n}{ncols}\PY{p}{,}\PYZbs{}
+                                     \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{n}{subplotsize}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{ncols}\PY{p}{,} \PY{n}{subplotsize}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{nrows}\PY{p}{)}\PY{p}{,}
+                                     \PY{o}{*}\PY{n}{plt\PYZus{}args}\PY{p}{)}
+         
+             \PY{k}{if} \PY{n}{nrows} \PY{o}{==} \PY{l+m+mi}{1} \PY{o+ow}{and} \PY{n}{ncols} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                 \PY{n}{axs} \PY{o}{=} \PY{p}{[}\PY{n}{axs}\PY{p}{]}
+             \PY{k}{elif} \PY{n}{nrows} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{2} \PY{o+ow}{and} \PY{n}{ncols} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{2}\PY{p}{:}
+                 \PY{n}{axs} \PY{o}{=} \PY{p}{[}\PY{n}{ax} \PY{k}{for} \PY{n}{ax\PYZus{}row} \PY{o+ow}{in} \PY{n}{axs} \PY{k}{for} \PY{n}{ax} \PY{o+ow}{in} \PY{n}{ax\PYZus{}row}\PY{p}{]}
+         
+             \PY{k}{for} \PY{n}{ax} \PY{o+ow}{in} \PY{n}{axs}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n+nb}{len}\PY{p}{(}\PY{n}{axs}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{nsubplots}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{fig}\PY{o}{.}\PY{n}{delaxes}\PY{p}{(}\PY{n}{ax}\PY{p}{)}
+         
+             \PY{k}{return} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{def} \PY{n+nf}{fix\PYZus{}legend\PYZus{}fontsize}\PY{p}{(}\PY{n}{ax\PYZus{}legend}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{n}{legend\PYZus{}title\PYZus{}fontsize}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{ax\PYZus{}legend}\PY{o}{.}\PY{n}{get\PYZus{}title}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{n}{fontsize}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{k}{def} \PY{n+nf}{config\PYZus{}legend}\PY{p}{(}\PY{n}{ax}\PY{p}{,} \PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{n}{legend\PYZus{}title\PYZus{}fontsize}\PY{p}{)}\PY{p}{:}
+             \PY{n}{legend} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{iv\PYZus{}id}\PY{p}{]}\PY{p}{,} \PY{n}{frameon}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+                                \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+             \PY{n}{fix\PYZus{}legend\PYZus{}fontsize}\PY{p}{(}\PY{n}{legend}\PY{p}{)}
+             \PY{k}{return} \PY{n}{legend}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{k}{def} \PY{n+nf}{log\PYZus{}mean}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{2. Participant ranks}\label{participant-ranks}
+
+    Some functions for the analysis:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{k}{def} \PY{n+nf}{get\PYZus{}ranks\PYZus{}count}\PY{p}{(}\PY{n}{iv\PYZus{}index}\PY{p}{,} \PY{n}{dv\PYZus{}index}\PY{p}{)}\PY{p}{:}
+             \PY{n}{iv}\PY{p}{,} \PY{n}{dv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}index}\PY{p}{]}\PY{p}{,} \PY{n}{ranks\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}index}\PY{p}{]}
+             
+             \PY{n}{ranks\PYZus{}counts\PYZus{}index} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{MultiIndex}\PY{o}{.}\PY{n}{from\PYZus{}product}\PY{p}{(}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                                              \PY{n}{dv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,}
+                                                             \PY{n}{names}\PY{o}{=}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                                                    \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rank}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} Zero counts by default and gets the counts}
+             \PY{n}{default\PYZus{}counts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{ranks\PYZus{}counts\PYZus{}index}\PY{p}{)}
+             \PY{n}{ranks\PYZus{}counts} \PY{o}{=} \PY{n}{ranks}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{dv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)} 
+             
+             \PY{c+c1}{\PYZsh{} Merge and remove duplicated defaults}
+             \PY{n}{ranks\PYZus{}counts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{ranks\PYZus{}counts}\PY{p}{,} \PY{n}{default\PYZus{}counts}\PY{p}{]}\PY{p}{)} 
+             \PY{n}{ranks\PYZus{}counts} \PY{o}{=} \PY{n}{ranks\PYZus{}counts}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{ranks\PYZus{}counts}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{first}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+             
+             \PY{n}{ranks\PYZus{}counts}\PY{o}{.}\PY{n}{sort\PYZus{}index}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+             \PY{n}{ranks\PYZus{}counts}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{ranks\PYZus{}counts\PYZus{}index} \PY{c+c1}{\PYZsh{} Restore the index}
+             \PY{k}{return} \PY{n}{ranks\PYZus{}counts}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k}{def} \PY{n+nf}{cumulated\PYZus{}barplot}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{palette}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{row\PYZus{}id}\PY{p}{,} \PY{n}{row} \PY{o+ow}{in} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{data}\PY{o}{.}\PY{n}{columns}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{n}{row}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{n}{row\PYZus{}id}\PY{p}{,}
+                             \PY{n}{color}\PY{o}{=}\PY{n}{palette}\PY{p}{[}\PY{n}{row\PYZus{}id}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{orient}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}ranks\PYZus{}distributions}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}ids}\PY{p}{)}\PY{p}{:}
+             \PY{n}{iv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}id}\PY{p}{]}
+             
+             \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dv\PYZus{}ids}\PY{p}{)}\PY{p}{)}
+             \PY{k}{for} \PY{n}{dv\PYZus{}id}\PY{p}{,} \PY{n}{ax} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{dv\PYZus{}ids}\PY{p}{,} \PY{n}{axs}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{dv} \PY{o}{=} \PY{n}{ranks\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}
+         
+                 \PY{n}{cumulated\PYZus{}ranks\PYZus{}count} \PY{o}{=} \PY{n}{get\PYZus{}ranks\PYZus{}count}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{)}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{n}{level}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PYZbs{}
+                                         \PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{cumulated\PYZus{}barplot}\PY{p}{(}\PY{n}{cumulated\PYZus{}ranks\PYZus{}count}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{dv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{)}
+                 \PY{n}{ax}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{xlabel}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{votes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{xlim}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{cumulated\PYZus{}ranks\PYZus{}count}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{ticker}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Fix the axis ticks}
+         
+                 \PY{n}{ax\PYZus{}handles}\PY{p}{,} \PY{n}{ax\PYZus{}labels} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{get\PYZus{}legend\PYZus{}handles\PYZus{}labels}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{legend} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{ax\PYZus{}handles}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{ax\PYZus{}labels}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{frameon}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+                                    \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lower center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+                                    \PY{n}{mode}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{ncol}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{n}{dv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                    \PY{n}{fontsize}\PY{o}{=}\PY{n}{legend\PYZus{}fontsize}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}
+                 \PY{n}{fix\PYZus{}legend\PYZus{}fontsize}\PY{p}{(}\PY{n}{legend}\PY{p}{)}
+                 
+             \PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{n}{h\PYZus{}pad}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{c+c1}{\PYZsh{} Add padding to avoir legend and labels overlap}
+             \PY{k}{return} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}ranks}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}ids}\PY{p}{,} \PY{n}{estimator}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{)}\PY{p}{:}
+             \PY{n}{iv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}id}\PY{p}{]}
+             
+             \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dv\PYZus{}ids}\PY{p}{)}\PY{p}{)}
+             \PY{k}{for} \PY{n}{dv\PYZus{}id}\PY{p}{,} \PY{n}{ax} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{dv\PYZus{}ids}\PY{p}{,} \PY{n}{axs}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{dv} \PY{o}{=} \PY{n}{ranks\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}
+         
+                 \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{dv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                             \PY{n}{data}\PY{o}{=}\PY{n}{ranks}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{,} \PY{n}{estimator}\PY{o}{=}\PY{n}{estimator}\PY{p}{)}
+                 \PY{n}{ax}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{ylim}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{dv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{ax}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{ticker}\PY{o}{.}\PY{n}{MultipleLocator}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Fix the axis ticks}
+                 
+             \PY{k}{return} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{k}{def} \PY{n+nf}{rank\PYZus{}samples}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Returns the list of ranks (DV) for each IV value\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{samples} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{iv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}id}\PY{p}{]}
+             \PY{k}{for} \PY{n}{iv\PYZus{}value} \PY{o+ow}{in} \PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{dv\PYZus{}label} \PY{o}{=} \PY{n}{ranks\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                 \PY{n}{sample} \PY{o}{=} \PY{n}{ranks}\PY{p}{[}\PY{n}{ranks}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{==} \PY{n}{iv\PYZus{}value}\PY{p}{]}\PY{p}{[}\PY{n}{dv\PYZus{}label}\PY{p}{]}\PYZbs{}
+                          \PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+                 \PY{n}{samples}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{sample}\PY{p}{)}
+             \PY{k}{return} \PY{n}{samples}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{k}{def} \PY{n+nf}{test\PYZus{}ranks}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}ids}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+             \PY{n}{results} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{iv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}id}\PY{p}{]}
+             
+             \PY{k}{for} \PY{n}{dv\PYZus{}id} \PY{o+ow}{in} \PY{n}{dv\PYZus{}ids}\PY{p}{:}
+                 \PY{n}{dv} \PY{o}{=} \PY{n}{ranks\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}
+                 \PY{n}{samples} \PY{o}{=} \PY{n}{rank\PYZus{}samples}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{)}
+                 \PY{n}{H}\PY{p}{,} \PY{n}{p} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{kruskal}\PY{p}{(}\PY{o}{*}\PY{n}{samples}\PY{p}{)}
+                 \PY{n}{results}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{dv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{H}\PY{p}{,} \PY{n}{p}\PY{p}{]}\PY{p}{)}
+         
+             \PY{n}{results} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kruskal\PYZhy{}Wallis H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                                      \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{n}{p\PYZus{}values\PYZus{}correction}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+             \PY{k}{return} \PY{n}{results}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{k}{def} \PY{n+nf}{test\PYZus{}pairwise\PYZus{}ranks}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}ids}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+             \PY{n}{iv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}id}\PY{p}{]}
+             \PY{n}{iv\PYZus{}category\PYZus{}ids} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             
+             \PY{n}{results} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{dv\PYZus{}id} \PY{o+ow}{in} \PY{n}{dv\PYZus{}ids}\PY{p}{:}
+                 \PY{n}{dv} \PY{o}{=} \PY{n}{ranks\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}
+                 \PY{n}{samples} \PY{o}{=} \PY{n}{rank\PYZus{}samples}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{)}
+                 \PY{n}{sample\PYZus{}pairs} \PY{o}{=} \PY{n}{itertools}\PY{o}{.}\PY{n}{combinations}\PY{p}{(}\PY{n}{iv\PYZus{}category\PYZus{}ids}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{id1}\PY{p}{,} \PY{n}{id2} \PY{o+ow}{in} \PY{n}{sample\PYZus{}pairs}\PY{p}{:}
+                     \PY{n}{U}\PY{p}{,} \PY{n}{p} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{mannwhitneyu}\PY{p}{(}\PY{n}{samples}\PY{p}{[}\PY{n}{id1}\PY{p}{]}\PY{p}{,} \PY{n}{samples}\PY{p}{[}\PY{n}{id2}\PY{p}{]}\PY{p}{)}
+                     \PY{n}{mean\PYZus{}diff}\PY{p}{,} \PY{n}{mean\PYZus{}diff\PYZus{}per} \PY{o}{=} \PY{n}{mean\PYZus{}difference}\PY{p}{(}\PY{n}{samples}\PY{p}{[}\PY{n}{id1}\PY{p}{]}\PY{p}{,} \PY{n}{samples}\PY{p}{[}\PY{n}{id2}\PY{p}{]}\PY{p}{)}
+                     \PY{n}{results}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{id1}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{id2}\PY{p}{]}\PY{p}{,} \PY{n}{dv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{mean\PYZus{}diff}\PY{p}{,} \PY{n}{mean\PYZus{}diff\PYZus{}per}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{p}\PY{p}{]}\PY{p}{)}
+         
+             \PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                        \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference\PYZus{}percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mann\PYZhy{}Whitney U}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+             \PY{n}{results} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{columns}\PY{p}{)}
+             \PY{n}{p\PYZus{}values\PYZus{}correction}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+             \PY{k}{return} \PY{n}{results}
+\end{Verbatim}
+
+
+    We display the rank and preference distributions:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)} \PY{o}{=} \PY{n}{plot\PYZus{}ranks\PYZus{}distributions}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ranks\PYZus{}dvs}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ranks\PYZus{}distributions.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)} \PY{o}{=} \PY{n}{plot\PYZus{}ranks\PYZus{}distributions}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{ax\PYZus{}handles}\PY{p}{,} \PY{n}{ax\PYZus{}labels} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{get\PYZus{}legend\PYZus{}handles\PYZus{}labels}\PY{p}{(}\PY{p}{)}
+         \PY{n}{legend} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{ax\PYZus{}handles}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preferences}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{,}
+                                \PY{n}{title}\PY{o}{=}\PY{n}{ranks\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{fix\PYZus{}legend\PYZus{}fontsize}\PY{p}{(}\PY{n}{legend}\PY{p}{)}
+         
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preferences\PYZus{}distribution.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_43_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We use the Kruskal-Wallis test (Benjamini--Hochberg correction) on each
+question to check if there is statistical significative differences
+between the ranks among TECHNIQUE:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{test\PYZus{}ranks}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ranks\PYZus{}dvs}\PY{p}{,} \PY{n}{correction\PYZus{}method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fdr\PYZus{}bh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:}   Variable indépendante             Variable dépendante  Kruskal-Wallis H  \textbackslash{}
+         0             Technique             Facile à comprendre         11.001420   
+         1             Technique   Mentalement facile à utiliser         10.905742   
+         2             Technique  Physiquement facile à utiliser          4.148121   
+         3             Technique                        Rapidité          7.130846   
+         4             Technique                        Réussite         13.784269   
+         5             Technique                     Frustration          4.500057   
+         6             Technique                      Préférence         12.638889   
+         
+            Valeur p  
+         0  0.007497  
+         1  0.007497  
+         2  0.125674  
+         3  0.039599  
+         4  0.006303  
+         5  0.122962  
+         6  0.006303  
+\end{Verbatim}
+            
+    All the questions, except Physically Easy to Use and Frustration, are
+statistically significants: Easy to Understand (\(p=0.007\)), Mentally
+Easy to Use (\(p=0.007\)), Subjective Speed (\(p=0.04\)), Subjective
+Performance (\(p=0.006\)), Preference (\(p=0.006\)).
+
+    We use then pairwise Mann-Whitney tests (Benjamini--Hochberg correction)
+for the significant questions above:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{test\PYZus{}pairwise\PYZus{}ranks}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{easy\PYZus{}understand}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mentally\PYZus{}easy\PYZus{}use}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{could\PYZus{}go\PYZus{}fast}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{subjective\PYZus{}performance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{correction\PYZus{}method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fdr\PYZus{}bh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}36}]:}    Variable indépendante    Valeur VI 1    Valeur VI 2  \textbackslash{}
+         0              Technique      Téléphone  VESAD tactile   
+         1              Technique      Téléphone          VESAD   
+         2              Technique  VESAD tactile          VESAD   
+         3              Technique      Téléphone  VESAD tactile   
+         4              Technique      Téléphone          VESAD   
+         5              Technique  VESAD tactile          VESAD   
+         6              Technique      Téléphone  VESAD tactile   
+         7              Technique      Téléphone          VESAD   
+         8              Technique  VESAD tactile          VESAD   
+         9              Technique      Téléphone  VESAD tactile   
+         10             Technique      Téléphone          VESAD   
+         11             Technique  VESAD tactile          VESAD   
+         12             Technique      Téléphone  VESAD tactile   
+         13             Technique      Téléphone          VESAD   
+         14             Technique  VESAD tactile          VESAD   
+         
+                       Variable dépendante  Différence des moyennes  \textbackslash{}
+         0             Facile à comprendre                 0.083333   
+         1             Facile à comprendre                 0.750000   
+         2             Facile à comprendre                 0.666667   
+         3   Mentalement facile à utiliser                -1.166667   
+         4   Mentalement facile à utiliser                -1.083333   
+         5   Mentalement facile à utiliser                 0.083333   
+         6                        Rapidité                -0.500000   
+         7                        Rapidité                 0.750000   
+         8                        Rapidité                 1.250000   
+         9                        Réussite                -1.166667   
+         10                       Réussite                 0.333333   
+         11                       Réussite                 1.500000   
+         12                     Préférence                 1.166667   
+         13                     Préférence                 0.333333   
+         14                     Préférence                -0.833333   
+         
+             Différence des moyennes (\%)  Mann-Whitney U  Valeur p  
+         0                      1.694915            66.0  0.215732  
+         1                     17.647059            36.0  0.008605  
+         2                     15.686275            40.5  0.020977  
+         3                    -25.925926            23.0  0.005031  
+         4                    -24.528302            28.5  0.010151  
+         5                      1.886792            69.5  0.475027  
+         6                    -11.538462            70.5  0.475027  
+         7                     24.324324            48.5  0.126838  
+         8                     40.540541            21.0  0.004655  
+         9                    -25.000000            22.5  0.004655  
+         10                    10.526316            57.0  0.215732  
+         11                    47.368421            17.5  0.003904  
+         12                    87.500000            16.0  0.003904  
+         13                    15.384615            56.0  0.215732  
+         14                   -38.461538            32.0  0.013011  
+\end{Verbatim}
+            
+    We display the mean and 95\% CI of each question:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{ranks}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PYZbs{}
+              \PY{o}{.}\PY{n}{aggregate}\PY{p}{(}\PY{n}{print\PYZus{}mean\PYZus{}ci}\PY{p}{)}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{ranks\PYZus{}dvs}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:} Technique                               Téléphone      VESAD tactile  \textbackslash{}
+         Facile à comprendre             5.00 [5.00, 5.00]  4.92 [4.75, 5.00]   
+         Mentalement facile à utiliser   3.33 [2.83, 3.83]  4.50 [4.08, 4.83]   
+         Physiquement facile à utiliser  3.50 [2.67, 4.33]  4.08 [3.42, 4.67]   
+         Rapidité                        3.83 [2.92, 4.67]  4.33 [4.00, 4.67]   
+         Réussite                        3.50 [2.83, 4.00]  4.67 [4.25, 5.00]   
+         Frustration                     3.50 [2.67, 4.33]  4.00 [3.33, 4.58]   
+         Préférence                      2.50 [2.17, 2.83]  1.33 [1.08, 1.58]   
+         
+         Technique                                   VESAD  
+         Facile à comprendre             4.25 [3.75, 4.67]  
+         Mentalement facile à utiliser   4.42 [3.83, 4.92]  
+         Physiquement facile à utiliser  2.92 [2.17, 3.67]  
+         Rapidité                        3.08 [2.50, 3.58]  
+         Réussite                        3.17 [2.58, 3.75]  
+         Frustration                     2.83 [2.17, 3.42]  
+         Préférence                      2.17 [1.75, 2.58]  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)} \PY{o}{=} \PY{n}{plot\PYZus{}ranks}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ranks\PYZus{}dvs}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ranks.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_51_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)} \PY{o}{=} \PY{n}{plot\PYZus{}ranks}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preferences.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_52_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Overall significant results are:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Easy to Understand}: \emph{PhoneOnly} is significantly better
+  than \emph{MidAirInArOut} (\(p = 0.009\)), and seems a little better
+  than \emph{PhoneInArOut}.
+\item
+  \textbf{Physically Easy to Use}: There is no significant differences
+  due to TECHNIQUE; they seem scored similar.
+\item
+  \textbf{Mentally Easy to Use}: \emph{PhoneOnly} is statistically and
+  practically worst than \emph{PhoneInArOut} (\(p = 0.005\)) and
+  \emph{MidAirInArOut} (\(p = 0.01\)).
+\item
+  \textbf{Subjective Speed}: \emph{PhoneInArOut} is significantly better
+  than \emph{MidAirInArOut} (\(p = 0.05\)).
+\item
+  \textbf{Subjective Performance}: \emph{PhoneInArOut} is statistically
+  better than \emph{PhoneOnly} (\(p = 0.005\)) and \emph{MidAirInArOut}
+  (\(p = 0.004\)).
+\item
+  \textbf{Frustration}: There is no significant differences due to
+  TECHNIQUE; they seem scored similar.
+\item
+  \textbf{Preference}: \emph{PhoneInArOut} is significantly prefered to
+  \emph{PhoneOnly} (\(p = 0.004\)) and \emph{MidAirInArOut}
+  (\(p = 0.01\)).
+\end{itemize}
+
+    \subsection{3. Participant trials}\label{participant-trials}
+
+    Some functions for the analysis:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{k}{def} \PY{n+nf}{trial\PYZus{}samples}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{)}\PY{p}{:}
+             \PY{n}{iv}\PY{p}{,} \PY{n}{dv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}id}\PY{p}{]}\PY{p}{,} \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}
+             \PY{k}{return} \PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{==} \PY{n}{iv\PYZus{}value}\PY{p}{]}\PY{p}{[}\PY{n}{dv}\PY{p}{]}\PYZbs{}
+                     \PY{k}{for} \PY{n}{iv\PYZus{}value} \PY{o+ow}{in} \PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{k}{def} \PY{n+nf}{trial\PYZus{}means}\PY{p}{(}\PY{n}{iv\PYZus{}ids}\PY{p}{,} \PY{n}{dv\PYZus{}ids}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{)}\PY{p}{:}
+             \PY{n}{iv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{iv\PYZus{}id}\PY{p}{]} \PY{k}{for} \PY{n}{iv\PYZus{}id} \PY{o+ow}{in} \PY{n}{iv\PYZus{}ids}\PY{p}{]}
+             \PY{n}{dv\PYZus{}labels} \PY{o}{=} \PY{p}{[}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]} \PY{k}{for} \PY{n}{dv\PYZus{}id} \PY{o+ow}{in} \PY{n}{dv\PYZus{}ids}\PY{p}{]}
+             \PY{k}{return} \PY{n}{data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{iv\PYZus{}labels}\PY{p}{)}\PY{o}{.}\PY{n}{aggregate}\PY{p}{(}\PY{n}{print\PYZus{}mean\PYZus{}ci}\PY{p}{)}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{dv\PYZus{}labels}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{k}{def} \PY{n+nf}{melt\PYZus{}trials}\PY{p}{(}\PY{n}{value\PYZus{}vars}\PY{p}{,} \PY{n}{var\PYZus{}name}\PY{p}{,} \PY{n}{value\PYZus{}name}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n}{pd}\PY{o}{.}\PY{n}{melt}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{id\PYZus{}vars}\PY{o}{=}\PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{,}
+                            \PY{n}{value\PYZus{}vars}\PY{o}{=}\PY{n}{value\PYZus{}vars}\PY{p}{,} \PY{n}{var\PYZus{}name}\PY{o}{=}\PY{n}{var\PYZus{}name}\PY{p}{,}
+                            \PY{n}{value\PYZus{}name}\PY{o}{=}\PY{n}{value\PYZus{}name}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{k}{def} \PY{n+nf}{filter\PYZus{}trials\PYZus{}outliers}\PY{p}{(}\PY{n}{dv\PYZus{}id}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{,} \PY{n}{nth\PYZus{}percentile\PYZus{}trimed}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{:}
+             \PY{n}{dv} \PY{o}{=} \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}
+             \PY{n}{pmin}\PY{p}{,} \PY{n}{pmax} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nanpercentile}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{dv}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{nth\PYZus{}percentile\PYZus{}trimed}\PY{p}{,}
+                                                      \PY{l+m+mi}{100} \PY{o}{\PYZhy{}} \PY{n}{nth\PYZus{}percentile\PYZus{}trimed}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{n}{data}\PY{p}{[}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{dv}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{k+kc}{False}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{pmin} \PY{o}{\PYZlt{}} \PY{n}{data}\PY{p}{[}\PY{n}{dv}\PY{p}{]}\PY{p}{)}\PYZbs{}
+                         \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{dv}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{pmax}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{k}{def} \PY{n+nf}{test\PYZus{}pairwise\PYZus{}trials}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+             \PY{n}{results} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{iv}\PY{p}{,} \PY{n}{dv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}id}\PY{p}{]}\PY{p}{,} \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}
+             \PY{n}{iv\PYZus{}category\PYZus{}ids} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             
+             \PY{n}{samples} \PY{o}{=} \PY{n}{trial\PYZus{}samples}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{,} \PY{n}{data}\PY{p}{)}
+             \PY{n}{sample\PYZus{}pairs} \PY{o}{=} \PY{n}{itertools}\PY{o}{.}\PY{n}{combinations}\PY{p}{(}\PY{n}{iv\PYZus{}category\PYZus{}ids}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+             \PY{k}{for} \PY{n}{id1}\PY{p}{,} \PY{n}{id2} \PY{o+ow}{in} \PY{n}{sample\PYZus{}pairs}\PY{p}{:}
+                 \PY{n}{T}\PY{p}{,} \PY{n}{p} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{ttest\PYZus{}ind}\PY{p}{(}\PY{n}{samples}\PY{p}{[}\PY{n}{id1}\PY{p}{]}\PY{p}{,} \PY{n}{samples}\PY{p}{[}\PY{n}{id2}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{mean\PYZus{}diff}\PY{p}{,} \PY{n}{mean\PYZus{}diff\PYZus{}per} \PY{o}{=} \PY{n}{mean\PYZus{}difference}\PY{p}{(}\PY{n}{samples}\PY{p}{[}\PY{n}{id1}\PY{p}{]}\PY{p}{,} \PY{n}{samples}\PY{p}{[}\PY{n}{id2}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{results}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{id1}\PY{p}{]}\PY{p}{,}
+                                 \PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{id2}\PY{p}{]}\PY{p}{,} \PY{n}{dv}\PY{p}{,} \PY{n}{mean\PYZus{}diff}\PY{p}{,}
+                                 \PY{n}{mean\PYZus{}diff\PYZus{}per}\PY{p}{,} \PY{n}{T}\PY{p}{,} \PY{n}{p}\PY{p}{]}\PY{p}{)}
+         
+             \PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                        \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                        \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference\PYZus{}percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                        \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}statistic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+             \PY{n}{results} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{columns}\PY{p}{)}
+         
+             \PY{n}{p\PYZus{}values\PYZus{}correction}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+             \PY{k}{return} \PY{n}{results}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{k}{def} \PY{n+nf}{test\PYZus{}non\PYZus{}normal\PYZus{}trials}\PY{p}{(}\PY{n}{iv\PYZus{}ids}\PY{p}{,} \PY{n}{dv\PYZus{}ids}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+             \PY{n}{results} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             
+             \PY{k}{for} \PY{n}{dv\PYZus{}id} \PY{o+ow}{in} \PY{n}{dv\PYZus{}ids}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{iv\PYZus{}id} \PY{o+ow}{in} \PY{n}{iv\PYZus{}ids}\PY{p}{:}
+                     \PY{n}{samples} \PY{o}{=} \PY{n}{trial\PYZus{}samples}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{,} \PY{n}{data}\PY{p}{)}
+                     \PY{n}{H}\PY{p}{,} \PY{n}{p} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{kruskal}\PY{p}{(}\PY{o}{*}\PY{n}{samples}\PY{p}{)}
+                     \PY{n}{results}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{iv\PYZus{}id}\PY{p}{]}\PY{p}{,} \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{H}\PY{p}{,} \PY{n}{p}\PY{p}{]}\PY{p}{)}
+         
+             \PY{n}{results} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kruskal\PYZhy{}Wallis H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                                      \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{n}{p\PYZus{}values\PYZus{}correction}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+             \PY{k}{return} \PY{n}{results}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{k}{def} \PY{n+nf}{test\PYZus{}pairwise\PYZus{}non\PYZus{}normal\PYZus{}trials}\PY{p}{(}\PY{n}{iv\PYZus{}ids}\PY{p}{,} \PY{n}{dv\PYZus{}ids}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+             \PY{n}{results} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             
+             \PY{k}{for} \PY{n}{dv\PYZus{}id} \PY{o+ow}{in} \PY{n}{dv\PYZus{}ids}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{iv\PYZus{}id} \PY{o+ow}{in} \PY{n}{iv\PYZus{}ids}\PY{p}{:}
+                     \PY{n}{iv}\PY{p}{,} \PY{n}{dv} \PY{o}{=} \PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{iv\PYZus{}id}\PY{p}{]}\PY{p}{,} \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}
+                     \PY{n}{samples} \PY{o}{=} \PY{n}{trial\PYZus{}samples}\PY{p}{(}\PY{n}{iv\PYZus{}id}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{,} \PY{n}{data}\PY{p}{)}
+                 
+                     \PY{n}{iv\PYZus{}category\PYZus{}ids} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                     \PY{n}{sample\PYZus{}pairs} \PY{o}{=} \PY{n}{itertools}\PY{o}{.}\PY{n}{combinations}\PY{p}{(}\PY{n}{iv\PYZus{}category\PYZus{}ids}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+                     \PY{k}{for} \PY{n}{id1}\PY{p}{,} \PY{n}{id2} \PY{o+ow}{in} \PY{n}{sample\PYZus{}pairs}\PY{p}{:}
+                         \PY{n}{U}\PY{p}{,} \PY{n}{p} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{mannwhitneyu}\PY{p}{(}\PY{n}{samples}\PY{p}{[}\PY{n}{id1}\PY{p}{]}\PY{p}{,} \PY{n}{samples}\PY{p}{[}\PY{n}{id2}\PY{p}{]}\PY{p}{)}
+                         \PY{n}{mean\PYZus{}diff}\PY{p}{,} \PY{n}{mean\PYZus{}diff\PYZus{}per} \PY{o}{=} \PY{n}{mean\PYZus{}difference}\PY{p}{(}\PY{n}{samples}\PY{p}{[}\PY{n}{id1}\PY{p}{]}\PY{p}{,}
+                                                                    \PY{n}{samples}\PY{p}{[}\PY{n}{id2}\PY{p}{]}\PY{p}{)}
+                         \PY{n}{results}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{id1}\PY{p}{]}\PY{p}{,}
+                                         \PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{id2}\PY{p}{]}\PY{p}{,} \PY{n}{dv}\PY{p}{,} \PY{n}{mean\PYZus{}diff}\PY{p}{,}
+                                         \PY{n}{mean\PYZus{}diff\PYZus{}per}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{p}\PY{p}{]}\PY{p}{)}
+         
+             \PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iv\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                        \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}difference\PYZus{}percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mann\PYZhy{}Whitney U}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZus{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+             \PY{n}{results} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{columns}\PY{p}{)}
+             \PY{n}{p\PYZus{}values\PYZus{}correction}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+             \PY{k}{return} \PY{n}{results}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}trials}\PY{p}{(}\PY{n}{iv\PYZus{}ids\PYZus{}list}\PY{p}{,} \PY{n}{dv\PYZus{}id}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+             \PY{n}{dv} \PY{o}{=} \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{n}{dv\PYZus{}id}\PY{p}{]}
+             \PY{k}{if} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{iv\PYZus{}ids\PYZus{}list}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{iv\PYZus{}ids\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{n}{iv\PYZus{}id}\PY{p}{]} \PY{k}{for} \PY{n}{id\PYZus{}id} \PY{o+ow}{in} \PY{n}{trials\PYZus{}ivs}\PY{o}{.}\PY{n}{columns}\PY{p}{]}
+                 
+             \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{iv\PYZus{}ids\PYZus{}list}\PY{p}{)}\PY{p}{)}
+             \PY{k}{for} \PY{n}{id\PYZus{}ids}\PY{p}{,} \PY{n}{ax} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{iv\PYZus{}ids\PYZus{}list}\PY{p}{,} \PY{n}{axs}\PY{p}{)}\PY{p}{:}
+                 
+                 \PY{n}{ivs} \PY{o}{=} \PY{p}{[}\PY{n}{trials\PYZus{}ivs}\PY{p}{[}\PY{n}{id\PYZus{}id}\PY{p}{]} \PY{k}{for} \PY{n}{id\PYZus{}id} \PY{o+ow}{in} \PY{n}{id\PYZus{}ids}\PY{p}{]}
+                 \PY{k}{if} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ivs}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{iv} \PY{o}{=} \PY{n}{ivs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                     
+                     \PY{k}{if} \PY{p}{(}\PY{n}{kind} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{dv}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{data}\PY{p}{,}
+                                     \PY{n}{palette}\PY{o}{=}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+                         
+                     \PY{k}{elif} \PY{p}{(}\PY{n}{kind} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{box}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{dv}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{data}\PY{p}{,}
+                                     \PY{n}{palette}\PY{o}{=}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+                         
+                     \PY{k}{elif} \PY{p}{(}\PY{n}{kind} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{hue}\PY{o}{=}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{n}{dv}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{data}\PY{p}{,}
+                                       \PY{n}{palette}\PY{o}{=}\PY{n}{iv}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+                         \PY{n}{ax}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                         \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upper right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                   \PY{n}{frameon}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+                     
+                 \PY{k}{elif} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ivs}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+                     \PY{k}{if} \PY{p}{(}\PY{n}{kind} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{ivs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{dv}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{n}{ivs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{data}\PY{o}{=}\PY{n}{data}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{ivs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+                     \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{frameon}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upper left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                     
+             \PY{k}{return} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{3.1. Task completion time}\label{task-completion-time}
+
+    We perform a full factorial ANOVA with the model: TCT \textasciitilde{}
+TECHNIQUE x TEXT\_SIZE x DISTANCE + TECHNIQUE x ORDERING.
+
+We should test all the assumptions of an ANOVA : independence of measure
+points, normality, homogeneity of variance. The trials are independent
+from each other, since they are generated randomly. The data is
+non-normal, but the ANOVA can tolerate non-normal data with skewed
+distribution. The homogeneity of variance is less important when the
+sample sizes are equal.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{tct\PYZus{}model} \PY{o}{=} \PY{n}{ols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}time \PYZti{} technique * text\PYZus{}size * distance}\PY{l+s+s1}{\PYZsq{}}
+                         \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{+ technique * ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials\PYZus{}for\PYZus{}anova}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
+         \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{anova\PYZus{}lm}\PY{p}{(}\PY{n}{tct\PYZus{}model}\PY{p}{,} \PY{n}{typ}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}48}]:}                                      sum\_sq     df          F        PR(>F)
+         technique                     256284.863291    2.0  52.727496  4.664381e-20
+         text\_size                       6524.396184    1.0   2.684630  1.024855e-01
+         distance                         273.284406    1.0   0.112450  7.376324e-01
+         ordering                       12606.272262    2.0   2.593587  7.661302e-02
+         technique:text\_size            10779.057863    2.0   2.217660  1.108428e-01
+         technique:distance              1129.444917    2.0   0.232370  7.928115e-01
+         text\_size:distance             10418.141005    1.0   4.286812  3.935962e-02
+         technique:ordering             47629.511187    4.0   4.899597  7.897650e-04
+         technique:text\_size:distance   17350.562563    2.0   3.569667  2.950225e-02
+         Residual                      656174.846745  270.0        NaN           NaN
+\end{Verbatim}
+            
+    The main significant effect on TCT is TECHNIQUE (\(F=52.7\),
+\(p<0.0001\)). There is also interaction effects: TEXT\_SIZE x DISTANCE
+(\(F=4.3\), \(p = 0.04\)), TECHNIQUE x ORDERING (\(F=4.9\),
+\(p = 0.0007\)) and TECHNIQUE x TEXT\_SIZE x DISTANCE (\(F=3.0\),
+\(p = 0.03\)).
+
+    We display mean TCT values with 95\% CI for these conditions:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{trial\PYZus{}means}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}49}]:}                Temps de complétion (s)
+         Technique                             
+         Téléphone         88.70 [79.44, 97.51]
+         VESAD tactile     66.86 [60.82, 73.78]
+         VESAD          138.17 [121.86, 156.24]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                          \PY{n}{palette}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{get\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tct.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_70_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{trial\PYZus{}means}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}51}]:}           Temps de complétion (s)                        \textbackslash{}
+         Technique               Téléphone         VESAD tactile   
+         Groupe                                                    
+         Groupe 1   111.98 [95.69, 129.01]  75.15 [67.83, 82.57]   
+         Groupe 2     79.19 [69.86, 90.43]  81.97 [71.06, 92.69]   
+         Groupe 3     74.93 [66.13, 85.17]  43.46 [38.51, 48.20]   
+         
+                                             
+         Technique                    VESAD  
+         Groupe                              
+         Groupe 1   128.82 [111.16, 146.32]  
+         Groupe 2   136.32 [112.82, 157.68]  
+         Groupe 3   149.36 [114.44, 190.34]  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{pointplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                           \PY{n}{hue}\PY{o}{=}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                           \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{,} \PY{n}{dodge}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{config\PYZus{}legend}\PY{p}{(}\PY{n}{ax}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{get\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tct\PYZus{}ordering.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_72_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    It seems that participants who started with \emph{PhoneOnly} were slower
+with this technique than the the other groups. Similarly, participants
+who finished with \emph{PhoneInArOut} were faster with this technique.
+It indicates there is a learning curve on the task, but interestingly
+participants from all groups performed equally with \emph{MidAirInArOut}
+technique.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{trial\PYZus{}means}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text\PYZus{}size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}53}]:}                          Temps de complétion (s)                        \textbackslash{}
+         Technique                              Téléphone         VESAD tactile   
+         Taille du texte Distance                                                 
+         Grand           Proche     89.98 [73.86, 105.05]  65.81 [52.90, 80.86]   
+                         Loin       92.24 [71.66, 114.40]  65.35 [52.55, 77.78]   
+         Petit           Proche      80.44 [67.00, 94.63]  70.61 [58.01, 83.72]   
+                         Loin       92.13 [76.62, 110.48]  65.67 [53.22, 79.23]   
+         
+                                                            
+         Technique                                   VESAD  
+         Taille du texte Distance                           
+         Grand           Proche    167.33 [131.76, 216.83]  
+                         Loin      135.29 [111.80, 162.08]  
+         Petit           Proche     107.43 [84.19, 136.76]  
+                         Loin      142.61 [115.30, 169.66]  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{g} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{distance}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                            \PY{n}{col}\PY{o}{=}\PY{n}{text\PYZus{}size}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                            \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{g}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tct\PYZus{}2.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_75_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Interactions on TCT due to TEXT\_SIZE x DISTANCE don't seem importants.
+
+    We compare the TCT for the three techniques only with pairwise t-tests
+(Benjamini--Hochberg correction) .
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{test\PYZus{}pairwise\PYZus{}trials}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{correction\PYZus{}method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fdr\PYZus{}bh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:}   Variable indépendante    Valeur VI 1    Valeur VI 2  \textbackslash{}
+         0             Technique      Téléphone  VESAD tactile   
+         1             Technique      Téléphone          VESAD   
+         2             Technique  VESAD tactile          VESAD   
+         
+                Variable dépendante  Différence des moyennes  \textbackslash{}
+         0  Temps de complétion (s)                21.840362   
+         1  Temps de complétion (s)               -49.467731   
+         2  Temps de complétion (s)               -71.308093   
+         
+            Différence des moyennes (\%)  Statistique T      Valeur p  
+         0                    32.666819       3.891218  1.862003e-04  
+         1                   -35.803106      -5.143480  2.201995e-06  
+         2                   -51.610437      -7.746559  3.247150e-11  
+\end{Verbatim}
+            
+    Results:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{PhoneInArOut} is \(71 s\) \((+52\%)\) faster than
+  \emph{MidAirInArOut} (\(p < 0.0001\)).
+\item
+  \emph{PhoneOnly} is \(49 s\) \((+36\%)\) faster than
+  \emph{MidAirInArOut} (\(p < 0.0001\)).
+\item
+  \emph{PhoneInArOut} is \(22 s\) \((+33\%)\) faster than
+  \emph{PhoneOnly} (\(p = 0.0004\)).
+\end{itemize}
+
+Differences due to interactions don't seem importants.
+
+    \subsubsection{3.2. Errors}\label{errors}
+
+    We visualize first the SELECTIONS and ERRORS distributions:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{g} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{pairplot}\PY{p}{(}\PY{n}{trials}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{reg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                          \PY{n+nb}{vars}\PY{o}{=}\PY{p}{[}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errors}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,}
+                          \PY{n}{palette}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;}
+         \PY{n}{g}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}errors\PYZus{}distributions.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_82_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    It seems that a user makes as much errors as she makes selections. The
+relation is almost the same for each technique, even if users seems to
+make more selections for the same number of errors with PhoneOnly.
+
+    We can't use ANOVA on SELECTIONS and ERRORS variables as their
+distributions are exponentials. We use instead the Kruskal-Wallis test
+(Benjamini--Hochberg correction) to check if there is significative
+differences due to TECHNIQUE, TEXT\_SIZE, DISTANCE or ORDERING.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{test\PYZus{}non\PYZus{}normal\PYZus{}trials}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text\PYZus{}size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errors}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:}   Variable indépendante Variable dépendante  Kruskal-Wallis H  Valeur p
+         0             Technique          Sélections         15.125918  0.004155
+         1       Taille du texte          Sélections          0.003897  0.950224
+         2              Distance          Sélections          0.052701  0.935347
+         3                Groupe          Sélections         11.510535  0.010095
+         4             Technique             Erreurs          5.201541  0.148433
+         5       Taille du texte             Erreurs          0.103661  0.935347
+         6              Distance             Erreurs          0.201599  0.935347
+         7                Groupe             Erreurs         11.153096  0.010095
+\end{Verbatim}
+            
+    Only TECHNIQUE (\(p=0.004\)) and ORDERING (\(p=0.01\)) have a
+significant effect on SELECTIONS. But, only ORDERING (\(p=0.01\)) have a
+significant effect on ERRORS.
+
+    We use then pairwise Mann-Whitney tests (Benjamini--Hochberg correction)
+for the significant questions above:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{n}{test\PYZus{}pairwise\PYZus{}non\PYZus{}normal\PYZus{}trials}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                         \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errors}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}58}]:}    Variable indépendante    Valeur VI 1    Valeur VI 2 Variable dépendante  \textbackslash{}
+         0              Technique      Téléphone  VESAD tactile          Sélections   
+         1              Technique      Téléphone          VESAD          Sélections   
+         2              Technique  VESAD tactile          VESAD          Sélections   
+         3                 Groupe       Groupe 1       Groupe 2          Sélections   
+         4                 Groupe       Groupe 1       Groupe 3          Sélections   
+         5                 Groupe       Groupe 2       Groupe 3          Sélections   
+         6              Technique      Téléphone  VESAD tactile             Erreurs   
+         7              Technique      Téléphone          VESAD             Erreurs   
+         8              Technique  VESAD tactile          VESAD             Erreurs   
+         9                 Groupe       Groupe 1       Groupe 2             Erreurs   
+         10                Groupe       Groupe 1       Groupe 3             Erreurs   
+         11                Groupe       Groupe 2       Groupe 3             Erreurs   
+         
+             Différence des moyennes  Différence des moyennes (\%)  Mann-Whitney U  \textbackslash{}
+         0                  1.864583                    29.537954           627.0   
+         1                  1.041667                    14.598540           864.5   
+         2                 -0.822917                   -11.532847           915.0   
+         3                  1.729167                    26.265823           755.0   
+         4                  1.583333                    23.529412           755.0   
+         5                 -0.145833                    -2.167183          1136.0   
+         6                  0.125000                    42.857143          1083.5   
+         7                 -0.166667                   -28.571429           957.0   
+         8                 -0.291667                   -50.000000           873.0   
+         9                  0.333333                   103.225806           846.5   
+         10                 0.343750                   110.000000           761.5   
+         11                 0.010417                     3.333333          1039.0   
+         
+             Valeur p  
+         0   0.000635  
+         1   0.029356  
+         2   0.059881  
+         3   0.005196  
+         4   0.005196  
+         5   0.454285  
+         6   0.312007  
+         7   0.083050  
+         8   0.026306  
+         9   0.020183  
+         10  0.005196  
+         11  0.205336  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{trial\PYZus{}means}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errors}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:}                       Sélections            Erreurs
+         Technique                                          
+         Téléphone      8.18 [7.46, 9.03]  0.42 [0.24, 0.61]
+         VESAD tactile  6.31 [5.98, 6.68]  0.29 [0.18, 0.41]
+         VESAD          7.14 [6.54, 7.83]  0.58 [0.39, 0.81]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)} \PY{o}{=} \PY{n}{plot\PYZus{}trials}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_90_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axs}\PY{p}{)} \PY{o}{=} \PY{n}{plot\PYZus{}trials}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errors}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errors.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_91_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{n}{trial\PYZus{}means}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errors}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}62}]:}                                  Sélections            Erreurs
+         Groupe   Technique                                            
+         Groupe 1 Téléphone      10.44 [8.75, 12.34]  0.81 [0.44, 1.31]
+                  VESAD tactile    6.88 [6.38, 7.47]  0.44 [0.22, 0.69]
+                  VESAD            7.62 [6.50, 9.12]  0.72 [0.41, 1.03]
+         Groupe 2 Téléphone        6.75 [6.25, 7.31]  0.22 [0.06, 0.41]
+                  VESAD tactile    6.53 [5.88, 7.25]  0.38 [0.16, 0.62]
+                  VESAD            6.47 [5.84, 7.19]  0.38 [0.16, 0.62]
+         Groupe 3 Téléphone        7.34 [6.75, 8.06]  0.22 [0.06, 0.41]
+                  VESAD tactile    5.53 [5.25, 5.88]  0.06 [0.00, 0.16]
+                  VESAD            7.31 [6.22, 8.62]  0.66 [0.25, 1.19]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{pointplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                            \PY{n}{hue}\PY{o}{=}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                            \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{,} \PY{n}{dodge}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{config\PYZus{}legend}\PY{p}{(}\PY{n}{ax}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{get\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}ordering.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_93_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{pointplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errors}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                            \PY{n}{hue}\PY{o}{=}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{ordering}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                            \PY{n}{data}\PY{o}{=}\PY{n}{trials}\PY{p}{,} \PY{n}{dodge}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{config\PYZus{}legend}\PY{p}{(}\PY{n}{ax}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ordering}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{get\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errors\PYZus{}ordering.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_94_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{3.3. Navigation}\label{navigation}
+
+    Variable meanings:
+
+\begin{itemize}
+\tightlist
+\item
+  Selection Time = time spent looking for where to drop an item that had
+  been picked
+\item
+  Selection Distance = distance travelled by the finger with an item
+  selected
+\item
+  Head Phone Distance = sum of the distance between the head and the
+  phone
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{c+c1}{\PYZsh{} Data preparation}
+         \PY{n}{trial\PYZus{}counts} \PY{o}{=} \PY{n}{melt\PYZus{}trials}\PY{p}{(}\PY{n}{var\PYZus{}name}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                    \PY{n}{value\PYZus{}name}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} 
+                                    \PY{n}{value\PYZus{}vars}\PY{o}{=}\PY{p}{[}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pan\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                               \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zoom\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{trial\PYZus{}times} \PY{o}{=} \PY{n}{melt\PYZus{}trials}\PY{p}{(}\PY{n}{var\PYZus{}name}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                   \PY{n}{value\PYZus{}name}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                   \PY{n}{value\PYZus{}vars}\PY{o}{=}\PY{p}{[}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                               \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pan\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                               \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zoom\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{trial\PYZus{}distances\PYZus{}dvs} \PY{o}{=} \PY{p}{[}\PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}projected\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pan\PYZus{}projected\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zoom\PYZus{}projected\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                \PY{n}{trials\PYZus{}dvs}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{absolute\PYZus{}head\PYZus{}phone\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         \PY{n}{trial\PYZus{}distances} \PY{o}{=} \PY{n}{melt\PYZus{}trials}\PY{p}{(}\PY{n}{var\PYZus{}name}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                       \PY{n}{value\PYZus{}name}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                       \PY{n}{value\PYZus{}vars}\PY{o}{=}\PY{n}{trial\PYZus{}distances\PYZus{}dvs}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{n}{trial\PYZus{}means}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pan\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zoom\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}66}]:}                         Défilements                 Zooms
+         Technique                                                
+         Téléphone      28.70 [24.02, 33.95]  15.53 [13.68, 17.50]
+         VESAD tactile  31.81 [26.34, 36.75]     7.14 [5.71, 8.78]
+         VESAD             1.83 [0.82, 3.04]     0.83 [0.29, 1.52]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                          \PY{n}{hue}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                          \PY{n}{data}\PY{o}{=}\PY{n}{trial\PYZus{}counts}\PY{p}{)}
+         \PY{n}{config\PYZus{}legend}\PY{p}{(}\PY{n}{ax}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{get\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{navigation\PYZus{}count.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_99_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}68}]:} \PY{n}{trial\PYZus{}means}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pan\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zoom\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}68}]:}                  Temps en sélection   Temps de défilement  \textbackslash{}
+         Technique                                                   
+         Téléphone      55.74 [49.67, 62.01]  17.12 [14.76, 19.92]   
+         VESAD tactile  38.98 [34.49, 43.86]  14.53 [12.59, 16.69]   
+         VESAD          69.68 [60.93, 79.01]    5.97 [2.43, 10.61]   
+         
+                               Temps de zoom  
+         Technique                            
+         Téléphone      15.18 [13.08, 17.17]  
+         VESAD tactile     6.70 [4.99, 8.57]  
+         VESAD            6.24 [1.57, 12.36]  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}69}]:} \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trial\PYZus{}times}\PY{p}{,}
+                          \PY{n}{hue}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{config\PYZus{}legend}\PY{p}{(}\PY{n}{ax}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{get\PYZus{}figure}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{navigation\PYZus{}time.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_101_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}70}]:} \PY{n}{trial\PYZus{}means}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{technique}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selections\PYZus{}projected\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pan\PYZus{}projected\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zoom\PYZus{}projected\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{absolute\PYZus{}head\PYZus{}phone\PYZus{}distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}70}]:}               Distance en sélection Distance de défilement   Distance de zoom  \textbackslash{}
+         Technique                                                                       
+         Téléphone         4.87 [4.03, 5.72]      1.50 [1.20, 1.85]  2.11 [1.74, 2.54]   
+         VESAD tactile     2.83 [2.36, 3.29]      1.09 [0.91, 1.29]  0.69 [0.51, 0.89]   
+         VESAD            8.72 [7.16, 10.37]      0.47 [0.19, 0.86]  0.62 [0.16, 1.19]   
+         
+                       Mouvements tête-téléphone  
+         Technique                                
+         Téléphone             3.18 [2.34, 4.07]  
+         VESAD tactile         1.57 [1.25, 1.92]  
+         VESAD                 6.12 [4.86, 7.61]  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}71}]:} \PY{n}{g} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{factorplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{distance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                            \PY{n}{col}\PY{o}{=}\PY{n}{labels}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{trial\PYZus{}distances}\PY{p}{,}
+                            \PY{n}{palette}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{col\PYZus{}wrap}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         
+         \PY{n}{g}\PY{o}{.}\PY{n}{set\PYZus{}titles}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}col\PYZus{}name\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} Replace subplot titles}
+         \PY{k}{for} \PY{n}{ax} \PY{o+ow}{in} \PY{n}{g}\PY{o}{.}\PY{n}{axes}\PY{p}{:}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{title}\PY{o}{.}\PY{n}{set\PYZus{}position}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.12}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{g}\PY{o}{.}\PY{n}{set\PYZus{}axis\PYZus{}labels}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} Custom legend}
+         \PY{n}{g}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+         \PY{n}{legend\PYZus{}handles} \PY{o}{=} \PY{p}{[}\PY{n}{patches}\PY{o}{.}\PY{n}{Patch}\PY{p}{(}\PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{n}{value}\PY{p}{)}\PYZbs{}
+                           \PY{k}{for} \PY{n}{value}\PY{p}{,} \PY{n}{color} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                                   \PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{palette}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+         \PY{n}{legend} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{handles}\PY{o}{=}\PY{n}{legend\PYZus{}handles}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                             \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{1.1}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{n}{technique}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{fix\PYZus{}legend\PYZus{}fontsize}\PY{p}{(}\PY{n}{legend}\PY{p}{)}
+         
+         \PY{n}{g}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{navigation\PYZus{}distance.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_103_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

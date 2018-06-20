@@ -1,0 +1,6 @@
+To update this appendix:
+
+- Download and setup the notebook: https://github.com/NormandErwan/HandheldVesadAnalysis
+- On the notebook, run: File > Download as > LaTeX
+- Unzip and edit the LaTeX file, line 271 : \geometry{letterpaper,verbose,tmargin=.75in,bmargin=.75in,lmargin=.75in,rmargin=.75in}
+- Run to get the PDF file
