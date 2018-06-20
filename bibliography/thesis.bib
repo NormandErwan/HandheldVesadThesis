@@ -3,6 +3,8 @@
 @String{acm_address = {New York, NY, USA}}
 @String{apr = {avril}}
 @String{aug = {ao{\^u}t}}
+@String{chi2010_booktitle = {Proceedings of the 28\textsuperscript{th} International Conference on Human Factors in Computing Systems, {CHI} 2010, Atlanta, GA, USA, April 10-15, 2010}}
+@String{chi2010_editor = {Elizabeth D. Mynatt and Don Schoner and Geraldine Fitzpatrick and Scott E. Hudson and W. Keith Edwards and Tom Rodden}}
 @String{chi2013_booktitle = {Proceedings of the 31\textsuperscript{st} International Conference on Human Factors in Computing Systems, {CHI} 2013, Paris, France, April 27 - May 2, 2013}}
 @String{chi2013_editor = {Wendy E. Mackay and Stephen A. Brewster and Susanne B{\o}dker}}
 @String{chi2014_booktitle = {Proceedings of the 32\textsuperscript{nd} International Conference on Human Factors in Computing Systems, {CHI} 2014, Toronto, ON, Canada, April 26 - May 1, 2014}}
@@ -34,6 +36,18 @@
   pages     = {1--2},
   address   = ieee_address,
   file      = {:Adcock2003 - Augmented Reality Haptics_ Using ARToolKit for Display of Haptic Applications.pdf:PDF},
+}
+
+@InCollection{Andrews2010,
+  author    = {Christopher Andrews and Alex Endert and Chris North},
+  title     = {Space to think: large high-resolution displays for sensemaking},
+  booktitle = chi2010_booktitle,
+  publisher = {ACM},
+  year      = {2010},
+  pages     = {55--64},
+  address   = acm_address,
+  doi       = {10.1145/1753326.1753336},
+  file      = {:Andrews2010 - Space to Think_ Large High Resolution Displays for Sensemaking.pdf:PDF},
 }
 
 @Article{Argelaguet2013,
@@ -129,6 +143,18 @@
   file      = {:Berge2014 - Exploring Smartphone Based Interaction with Overview+detail Interfaces on 3D Public Displays.pdf:PDF},
 }
 
+@Article{Besancon2017,
+  author  = {Lonni Besan{\c{c}}on and Paul Issartel and Mehdi Ammi and Tobias Isenberg},
+  title   = {Hybrid Tactile/Tangible Interaction for 3D Data Exploration},
+  journal = {IEEE Transactions on Visualization and Computer Graphics},
+  year    = {2017},
+  volume  = {23},
+  number  = {1},
+  pages   = {881--890},
+  doi     = {10.1109/TVCG.2016.2599217},
+  file    = {:Besancon2017 - Hybrid Tactile_Tangible Interaction for 3D Data Exploration.pdf:PDF},
+}
+
 @InCollection{Bi2011,
   author    = {Xiaojun Bi and Tovi Grossman and Justin Matejka and George W. Fitzmaurice},
   title     = {Magic desk: Bringing multi-touch surfaces into desktop work},
@@ -219,20 +245,6 @@
 }
 
 @Article{Burigat2011,
-  author    = {Stefano Burigat and Luca Chittaro},
-  title     = {On the effectiveness of Overview+Detail visualization on mobile devices},
-  journal   = {Personal and Ubiquitous Computing},
-  year      = {2011},
-  volume    = {17},
-  number    = {2},
-  pages     = {371--385},
-  address   = {London, United Kingdom},
-  doi       = {10.1007/s00779-011-0500-3},
-  file      = {:Burigat2011 - On the Effectiveness of Overview+Detail Visualization on Mobile Devices.pdf:PDF},
-  publisher = {Springer London},
-}
-
-@Article{Burigat2011a,
   author  = {Stefano Burigat and Luca Chittaro},
   title   = {Visualizing references to off-screen content on mobile devices: A comparison of Arrows, Wedge, and Overview+Detail},
   journal = {Interacting with Computers},
@@ -242,6 +254,20 @@
   pages   = {156--166},
   doi     = {10.1016/j.intcom.2011.02.005},
   file    = {:Burigat2011a - Visualizing References to off Screen Content on Mobile Devices_ a Comparison of Arrows, Wedge, and Overview+ Detail.pdf:PDF},
+}
+
+@Article{Burigat2013,
+  author    = {Stefano Burigat and Luca Chittaro},
+  title     = {On the effectiveness of Overview+Detail visualization on mobile devices},
+  journal   = {Personal and Ubiquitous Computing},
+  year      = {2013},
+  volume    = {17},
+  number    = {2},
+  pages     = {371--385},
+  address   = {London, United Kingdom},
+  doi       = {10.1007/s00779-011-0500-3},
+  file      = {:Burigat2011 - On the Effectiveness of Overview+Detail Visualization on Mobile Devices.pdf:PDF},
+  publisher = {Springer London},
 }
 
 @Article{Buxton1998,
@@ -269,26 +295,38 @@
 @InCollection{Chan2010,
   author    = {Li{-}Wei Cha and HuiShan Kao and Mike Y. Chen and Ming{-}Sui Lee and Jane Yung{-}jen Hsu and Yi{-}Ping Hung},
   title     = {Touching the void: Direct-touch interaction for intangible displays},
-  booktitle = {Proceedings of the 28\textsuperscript{th} International Conference on Human Factors in Computing Systems, {CHI} 2010, Atlanta, GA, USA, April 10-15, 2010},
+  booktitle = chi2010_booktitle,
   publisher = {ACM},
   year      = {2010},
-  editor    = {Elizabeth D. Mynatt and Don Schoner and Geraldine Fitzpatrick and Scott E. Hudson and W. Keith Edwards and Tom Rodden},
+  editor    = chi2010_editor,
   pages     = {2625--2634},
   address   = acm_address,
   doi       = {10.1145/1753326.1753725},
   file      = {:Chan2010 - Touching the Void_ Direct Touch Interaction for Intangible Displays.pdf:PDF},
 }
 
+@InCollection{Czerwinski2003,
+  author    = {Mary Czerwinski and Greg Smith and Tim Regan and Brian Meyers and George G. Robertson and Gary K. Starkweather},
+  title     = {Toward Characterizing the Productivity Benefits of Very Large Displays},
+  booktitle = {INTERACT 2003: 9\textsuperscript{th} IFIP TC.13 International Conference on Human-Computer Interaction, Zurich, Switzerland, September 1-5, 2003},
+  publisher = {{IOS} Press},
+  year      = {2003},
+  editor    = {Matthias Rauterberg and Marino Menozzi and Janet Wesson},
+  pages     = {9--16},
+  address   = {Amsterdam, The Netherlands},
+  file      = {:Czerwinski2003 - Toward Characterizing the Productivity Benefits of Very Large Displays.pdf:PDF},
+  journal   = {Interact},
+}
+
 @InCollection{Dragicevic2016,
-  author        = {Dragicevic, Pierre},
-  title         = {Fair statistical communication in HCI},
-  booktitle     = {Modern Statistical Methods for HCI},
-  publisher     = {Springer},
-  year          = {2016},
-  pages         = {291--330},
-  __markedentry = {[Erwan:6]},
-  doi           = {10.1007/978-3-319-26633-6_13},
-  file          = {:Dragicevic2016 - Fair Statistical Communication in HCI.pdf:PDF},
+  author    = {Dragicevic, Pierre},
+  title     = {Fair statistical communication in HCI},
+  booktitle = {Modern Statistical Methods for HCI},
+  publisher = {Springer},
+  year      = {2016},
+  pages     = {291--330},
+  doi       = {10.1007/978-3-319-26633-6_13},
+  file      = {:Dragicevic2016 - Fair Statistical Communication in HCI.pdf:PDF},
 }
 
 @TechReport{Duenser2008,
@@ -470,16 +508,16 @@
 }
 
 @InCollection{Jones2013,
-  author   = {Jone, Brett R and Benko, Hrvoje and Ofek, Eyal and Wilson, Andrew D},
-  title    = {IllumiRoom: Peripheral projected illusions for interactive experiences},
-  pages    = {869--878},
+  author    = {Brett R. Jones and Hrvoje Benko and Eyal Ofek and Andrew D. Wilson},
+  title     = {IllumiRoom: Peripheral projected illusions for interactive experiences},
   booktitle = chi2013_booktitle,
   publisher = {ACM},
   year      = {2013},
   editor    = chi2013_editor,
+  pages     = {869--878},
   address   = acm_address,
-  doi      = {10.1145/2503368.2503375},
-  file     = {:Jones2013 - IllumiRoom_ Peripheral Projected Illusions for Interactive Experiences.pdf:PDF},
+  doi       = {10.1145/2503368.2503375},
+  file      = {:Jones2013 - IllumiRoom_ Peripheral Projected Illusions for Interactive Experiences.pdf:PDF},
 }
 
 @Book{Kaehler2017,
@@ -640,6 +678,18 @@
   file     = {:Markussen2014 - Vulture.pdf:PDF},
 }
 
+@Article{Mehra2006,
+  author  = {Sumit Mehra and Peter J. Werkhoven and Marcel Worring},
+  title   = {Navigating on handheld displays: Dynamic versus static peephole navigation},
+  journal = {{ACM} Transactions on Computer-Human Interaction},
+  year    = {2006},
+  volume  = {13},
+  number  = {4},
+  pages   = {448--457},
+  doi     = {10.1145/1188816.1188818},
+  file    = {:Mehra2006 - Navigating on Handheld Displays_ Dynamic Versus Static Peephole Navigation.pdf:PDF},
+}
+
 @InCollection{Mei2007,
   author    = {Christopher Me and Patrick Rives},
   title     = {Single view point omnidirectional camera calibration from planar grids},
@@ -783,6 +833,19 @@
   day    = {29},
 }
 
+@Article{Rubio2004,
+  author        = {Rubio, Susana and D{\'\i}az, Eva and Mart{\'\i}n, Jes{\'u}s and Puente, Jos{\'e} M},
+  title         = {Evaluation of subjective mental workload: A comparison of SWAT, NASA-TLX, and workload profile methods},
+  journal       = {Applied Psychology},
+  year          = {2004},
+  volume        = {53},
+  number        = {1},
+  pages         = {61--86},
+  __markedentry = {[Erwan:6]},
+  doi           = {10.1111/j.1464-0597.2004.00161.x},
+  file          = {:Rubio2004 - Evaluation of Subjective Mental Workload_ a Comparison of SWAT, NASA TLX, and Workload Profile Methods.pdf:PDF},
+}
+
 @InCollection{Serrano2015,
   author   = {Marcos Serrano and Barrett Ens and Xing{-}Dong Yang and Pourang Irani},
   title    = {Gluey: Developing a head-worn display interface to unify the interaction experience in distributed display environments},
@@ -807,6 +870,20 @@
   address   = acm_address,
   doi      = {10.1145/2786567.2794348},
   file     = {:Serrano2015a - Desktop Gluey_ Augmenting Desktop Environments with Wearable Devices.pdf:PDF},
+}
+
+@InCollection{Sollich2016,
+  author        = {Hendrik Sollich and Ulrich von Zadow and Tobias Pietzsch and Pavel Tomancak and Raimund Dachselt},
+  title         = {Exploring Time-dependent Scientific Data Using Spatially Aware Mobiles and Large Displays},
+  booktitle     = {Proceedings of the 2016 {ACM} on Interactive Surfaces and Spaces, {ISS} 2016, Niagara Falls, ON, Canada, November 6-9, 2016},
+  publisher     = {{ACM}},
+  year          = {2016},
+  editor        = {Mark Hancock and Nicolai Marquardt and Johannes Sch{\"{o}}ning and Melanie Tory},
+  pages         = {349--354},
+  address       = acm_address,
+  __markedentry = {[Erwan:]},
+  doi           = {10.1145/2992154.2996779},
+  file          = {:Sollich2016 - Exploring Time Dependent Scientific Data Using Spatially Aware Mobiles and Large Displays.pdf:PDF},
 }
 
 @Article{Soukoreff2004,
@@ -895,7 +972,7 @@
 }
 
 @Article{VanDam1997,
-  author  = {Andries {Van Dam}},
+  author  = {Andries {van Dam}},
   title   = {Post-WIMP user interfaces},
   journal = {Communications of the ACM},
   year    = {1997},
@@ -907,7 +984,7 @@
 }
 
 @Article{VanKrevelen2010,
-  author  = {D.W.F. {Van Krevelen} and R. Poelman},
+  author  = {D.W.F. {van Krevelen} and R. Poelman},
   title   = {A survey of augmented reality technologies, applications and limitations},
   journal = {International Journal of Virtual Reality},
   year    = {2010},
@@ -966,6 +1043,7 @@
   pages     = {1221--1232},
   address   = acm_address,
   doi       = {10.1145/2858036.2858212},
+  file      = {:Xiao2016 - Augmenting the Field of View of Head Mounted Displays with Sparse Peripheral Displays.pdf:PDF},
 }
 
 @InCollection{Zhou2008,
