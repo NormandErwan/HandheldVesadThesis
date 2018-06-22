@@ -99,7 +99,7 @@ Nous pourrions simplifier le visiocasque en utilisant une caméra monoscopique, 
 
 Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image affichée. La densité visuelle permet de mesurer la finesse d'affichage d'une image à partir de sa définition horizontale et du champ de vision : $Densite = \sfrac{d_x}{FoV_x}$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} quand la fovéa d'un \oe il humain est de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Une définition de 8K (\SI{7680x4320}{\px}), à champ de vision égal, par \oe il est alors nécessaire pour atteindre la même densité visuelle : $Densite_{8K} = \sfrac{7680}{110} = \SI{69.8}{\ppd}$.
 
-\begin{tableETS}{tab:visual_densities}{Caractéristiques d'affichage de l'Ovrvision Pro et de visiocasques de RV et RA}
+\begin{tableETS}{tab:visual_densities}{Caractéristiques d'affichage de l'Ovrvision Pro et de visiocasques de RV et RA.}
   \begin{tabular}{| C{3.5cm} | C{3.25cm} | C{3.25cm} | C{3cm} |}
     \hline \textbf{Nom} & \textbf{Définition\newline(pour chaque \oe il)} & \textbf{Champ de vision\newline(pour chaque \oe il)} & \textbf{Densité visuelle}\\
     \hline Ovrvision Pro & \SI{960x950}{\px} & \SI{100x98}{\degree} & \SI{9.6}{\ppd} \\

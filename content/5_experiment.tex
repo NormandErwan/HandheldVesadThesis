@@ -5,7 +5,9 @@
 \label{sec:experiment_task}
 
 \subsection{Motivations}
-Comme le téléphone et les écrans ont des basses résolutions et comme les techniques d'interactions sont peu maitrisées en IHM pour la RA/3D \citep{Piumsomboon2013}, il nous faut des tâches les plus fondamentales possibles : pointage et compréhension. Il faut pouvoir zoomer et naviguer pour compléter une tâche plus rapidement que si on avait le téléphone seul.
+\label{subsec:experiment_task_motivations}
+
+Comme le téléphone et les écrans ont des basses résolutions et comme les techniques d'interactions sont peu maitrisées en IHM pour la RA/3D \citep{Piumsomboon2013}, il nous faut des tâches les plus fondamentales possibles : pointage \citep{Kitoe2018} et compréhension \cite{Berge2014}. Il faut pouvoir zoomer et naviguer pour compléter une tâche plus rapidement que si on avait le téléphone seul.
 
 3D interaction is more physically-demanding and might hinder user tasks by increasing the required dexterity. Compare for example the act of selecting an object using a mouse pointer to that of grasping a 3D object in free space. Mouse movement involves small, fast muscles whereas grasping often requires a complex arm movement involving larger and slower muscles [23, 48]. Furthermore, current immersive VEs, even the most sophisticated ones, \cite{Argelaguet2013}
 
@@ -22,6 +24,7 @@ Nous on veut juste une tâche simple de navigation et de pointage (target acquis
 On a pas gardé le difficulty : une lettre par cellule de la grille. mais gardé le principe de distance.
 
 \subsection{Description}
+\label{subsec:experiment_task_description}
 
 \figureLayoutETS{ExperimentTechniques}{%
   \subfigureETS{ExperimentPhoneOnly}{Condition \condition{Téléphone}}%
@@ -44,6 +47,7 @@ L'expérience a demandé un long effort de conception et de développement de qu
 
 \section{Plan expérimental}
 \label{sec:experiment_design}
+
 On veut évaluer un téléphone à affichage étendu contre le téléphone seul, ainsi que deux techniques d'interactions (pointage sur l'écran tactile et pointage avec une main virtuelle). Cependant, la combinaison téléphone seul avec une main virtuelle est absurde ; c'est pourquoi nous avons créée une seule variable la \variable{TECHNIQUE}  Par manque de temps, nous n'évaluons pas le pointeur virtuelle ni les commandes vocales.
 On pourrait faire une taxonomie des INPUT (PhoneTouch, MidAirTouch) et OUTPUT (PhoneOnly, ExtendedPhone) mais certains sont absurdes donc combiner en une variable à trois modalités (TECHNIQUE). Après, cela reste utile pour les analyses : les deux inputs en versus et les deux outputs en versus.
 
@@ -107,7 +111,7 @@ Variables parasites :
 
 
 \section{Conception de techniques d'interactions pour le VESAD}
-\label{sec:experiment_interaction_techniques}
+\label{sec:experiment_interactions}
 
 In all three techniques, the user performed pick-and-drop actions to move mis-classified items into their correct container. Each pick-and-drop action was initiated by selecting an item and later selecting the container to drop it in. The user could also pan and zoom the entire grid.
 
@@ -143,6 +147,7 @@ zoom centré sur le téléphone et non sur la grille : The focus point is genera
 
 \section{Participants}
 \label{sec:experiment_participants}
+
 Nous avons recruté 12 personnes volontaires pour participer à l'expérience, agés entre 18 et 49 ans : six hommes et six femmes. Tous avaient une vision normale ou portaient un dispositif de correction de vision.
 
 We recruited 12 volunteers (3 females), aged from 18 to 49 (two above 25). Twelve have normal or corrected vision, and one self-reported to be color blind but was able to distinguish all the task elements. Ten were right-handed and 2 left-handed; we asked each participant to hold the phone in their non-dominant hand. Eight had already used a VR HMD, and 1 also an AR HMD. Eight regularly use 3D software and all use a computer daily.
@@ -150,6 +155,7 @@ We recruited 12 volunteers (3 females), aged from 18 to 49 (two above 25). Twelv
 
 \section{Procédure de l'expérience}
 \label{sec:experiment_procedure}
+
 Le formulaire d'information et de consentement se trouve à l'\autoref{annex:experiment_forms}.
 
 Nous avons bien évidemment utilisé notre visiocasque de RA, conçut avec un large champs de vision pour cette expérience et décrit au \autoref{ch:methodology}. Pour le faire tourner, nous avons utilisé un ordinateur de bureau roulant sous Windows 10, avec un processeur Intel Core i5 7400 (\SI[product-units = single]{4x3.0}{\GHz}), \SI{8}{\giga\byte} DDR4 de mémoire vive, une carte graphique NVIDIA GeForce GTX 1060 de \SI{6}{\giga\byte}. Pour le téléphone, nous avons utilisé un Xiaomi Redmi Note 4 : roulant sous Android 7, il est récent et léger, à faible prix et possède une bonne puissance de calcul ainsi qu'écran \SI{1920x1080}{\px} de \SI{5.5}{\inch}.
@@ -161,6 +167,7 @@ Enfin, nous développé une bibliothèque, DevicesSyncUnity (\url{https://github
 
 \section{Mesures}
 \label{sec:experiment_measures}
+
 Pré-questionnaire
 
 Mesures :
@@ -189,53 +196,99 @@ Post-questionnaire, inspiré du NASA TLX (enlevé charge physique, mais ajouté 
 
 \subsection{Temps de complétion}
 \label{subsec:experiment_results_time}
-Task Completion Time was analyzed with ANOVA, which found a significant effect due to \variable{TECHNIQUE} ($F=49.9$, $p < 0.0001$), but no effect due to \variable{DISTANCE}, \variable{TAILLE}, nor \variable{GROUPE} ($p > 0.05$). There were, however, significant interactions involving \variable{TAILLE} $\times$ \variable{DISTANCE} ($F=4.06$, $p < 0.05$) and \variable{TECHNIQUE} $\times$ \variable{TAILLE} $\times$ \variable{DISTANCE} ($F=3.38$, $p < 0.05$) \reffigureETSp{TCT}.
 
-ANOVA :
-- les groupes sont indépendants : chaque essai est généré aléatoirement. Cependant effet d'apprentissage des participants ?
-- tester la normalité des groupes : on peut simplement analyser la normalité des résidus avec un test de shapiro wilk
-- on a pas besoin de tester l'homogénéité de la variance : la méthode est robuste si les groupes sont de même taille (ce qui est vrai) et qu'il y a 30 ou plus valeurs testées par groupe
+On transforme tout d'abord les mesures de temps de complétion d'un essai avec un logarithmique népérien pour rendre leurs distributions approximativement normales et réduire l'influence des mesures extrêmes \citep[Tip 12 (p. 25)]{Dragicevic2016}. La \reffigureETS{tct_distributions_all} montre les distributions des temps mesurés et transformés. On vérifie ensuite la normalité des distributions avec le test de Shapiro-Wilk\footnote{L'hypothèse nulle testée est que la distribution suit la loi normale ; on attend donc une valeur-p supérieure à \num{0.05} pour ne pas la rejeter.} \citep{Wobbrock2016} pour chaque \variable{TECHNIQUE}, car c'est la variable indépendante nous importe le plus : elles sont normales pour les trois techniques \condition{Téléphone} ($W=$\num{0.98} ; $p=$\num{0.76}), \condition{VESAD tactile} ($W=$\num{0.97} ; $p=$\num{0.45}) et \condition{VESAD} ($W=$\num{0.97} ; $p=$\num{0.45}). En outre, le test de Levene\footnote{L'hypothèse nulle testée est que les variances des distributions sont égales.} \citep{Wobbrock2016} nous permet de vérifier que leurs variances sont égales ($W=$\num{0.76} ; $p=$\num{0.47}).
 
-\figureETS[0.5]{tct}{
+\figureLayoutETS{tct_distributions_all}{%
+  \parbox{0.9\textwidth}{%
+    \centering%
+    \subfigureETS[0.2]{tct_distributions}{Données mesurées.}%
+    \\%
+    \subfigureETS[0.2]{tct_distributions_log}{Données transformées avec le logarithme népérien.}%
+  }
+}{
+  Histogrammes du temps de complétion d'un essai pour chaque \variable{TECHNIQUE}.
+}
+
+\begin{tableETS}{tab:tct_anova}{Résultats de l'ANOVA sur le temps de complétion pour toutes les variables indépendantes.}
+  \begin{tabular}{| l | C{1.5cm} | C{1.5cm} | C{1.8cm} | c | c |}
+    \hline \textbf{Effet} & \textbf{Somme des carrés} & \textbf{Degrés de liberté}\footnotemark & \textbf{Degrés de liberté de l'erreur}\footnotemark & \textbf{F} & \textbf{p} \\
+    \hline \variable{TECHNIQUE} & \num{12.3} & 2 & 22 & \num{62.2} & \num{2e-19} \\
+    \hline \variable{TAILLE} & \num{0.1} & 1 & 11 & \num{1.5} & \num{2e-1} \\
+    \hline \variable{DISTANCE} & \num{0.03} & 1 & 11 & \num{0.3} & \num{6e-1} \\
+    \hline \variable{GROUPE} & \num{2.1} & 2 & 22 & \num{10.8} & \num{5e-5} \\
+    \hline \variable{TECHNIQUE}$\times$\variable{TAILLE} & \num{0.4} & 2 & 22 & \num{2.0} & \num{1e-1} \\
+    \hline \variable{TECHNIQUE}$\times$\variable{DISTANCE} & \num{0.07} & 2 & 22 & \num{0.4} & \num{7e-1} \\
+    \hline \variable{TAILLE}$\times$\variable{DISTANCE} & \num{0.3} & 1 & 11 & \num{2.9} & \num{9e-2} \\
+    \hline \variable{TECHNIQUE}$\times$\variable{GROUPE} & \num{3.1} & 4 & 44 & \num{7.8} & \num{1e-5} \\
+    \hline \variable{TECHNIQUE}$\times$\variable{TAILLE}$\times$\variable{DISTANCE} & \num{0.5} & 2 & 22 & \num{2.5} & \num{8e-2} \\
+    \hline Résidus & \num{12.5} & \num{126} & & & \\
+    \hline
+  \end{tabular}
+\end{tableETS}
+
+On analyse alors l'effet de toutes les variables indépendantes sur le temps de complétion avec une analyse de variance (ANOVA). Nous pouvons utiliser ce test car les distributions testées sont normales, indépendantes et ont la même variance \citep{Wobbrock2016}. On utilise le modèle suivant : \variable{TEMPS} $\sim$ \variable{TECHNIQUE} $\times$ \variable{TAILLE} $\times$ \variable{DISTANCE} $+$ \variable{TECHNIQUE} $\times$ \variable{GROUPE}. Le \autoref{tab:tct_anova} donne les résultats : ainsi, les variables \variable{TECHNIQUE} ($F=$\num{60.5}, $p=$\num{1e-19}) et \variable{GROUPE} ($F=$\num{2.0}, $p=$\num{5e-5}), ainsi que leur interaction \variable{TECHNIQUE} $\times$ \variable{GROUPE} ($F=$\num{3.0}, $p=$\num{1e-5}) ont un effet significatif sur le temps de complétion.
+
+On les compare alors deux-à-deux avec le test t de Student, avec une correction de Benjamini-Hochberg pour limiter le nombre de faux positifs \autorefp{subsec:litterature_ar_hci_evaluation}. Ce test suppose aussi la normalité, l'indépendance et une variance égale des distributions. Les résultats, au \autoref{tab:tct_ttest}, indiquent des différences significatives entre les trois techniques. Le \condition{VESAD tactile} est plus rapide de \SI{22}{\s} (+33\%) que le \condition{Téléphone}, lui même plus rapide de \SI{49}{\s} (+36\%) que le \condition{VESAD} \reffigureETSp{tct}.
+
+\footnotetext[4]{$Ddl_{variable} = conditions - 1$.}
+\footnotetext{$Ddl_{erreur} = Ddl_{variable} \times (observations - 1)$.}
+
+\begin{tableETS}{tab:tct_ttest}{Résultats de tests t sur toutes les paires de \variable{TECHNIQUE}.}
+  \begin{tabular}{| c | c | c | c |}
+    \hline \textbf{Technique 1} & \textbf{Technique 2} & \textbf{T} & \textbf{p} \\
+    \hline \condition{Téléphone} & \condition{VESAD tactile} & \num{4.1} & \num{9e-5} \\
+    \hline \condition{VESAD} & \condition{Téléphone} & \num{5.6} & \num{3e-5} \\
+    \hline \condition{VESAD} & \condition{VESAD tactile} & \num{9.0} & \num{6e-14} \\
+    \hline
+  \end{tabular}
+\end{tableETS}
+
+\figureETS[0.65]{tct}{
   Temps de complétion moyens par essai pour chaque \variable{TECHNIQUE} (les barres d'erreurs montrent l'intervalle de confiance à 95\%).
 }
 
-\figureETS[0.9]{tct_2}{
-  Temps de complétion moyens par essai pour chaque condition \variable{TECHNIQUE} $\times$ \variable{TAILLE} $\times$ \variable{DISTANCE} (les barres d'erreurs montrent l'intervalle de confiance à 95\%).
-}
+Cependant, la \reffigureETS{tct_ordering} semble indiquer que le \variable{GROUPE} n'a pas d'effet important, mais seulement dans certaines conditions : les participants qui ont commencé avec le \condition{Téléphone} (\condition{Groupe 1}) ont été plus lents avec cette technique, tandis que ceux qui ont terminé avec \condition{VESAD tactile} (\condition{Groupe 3}) ont été plus rapide sur cette technique. Dans les autres conditions, il paraît ne pas avoir de différence entre les temps de complétion. Cela semble indiquer que, d'une part, il y a effectivement une courbe d'apprentissage avec cette tâche, en particulier quand les utilisateurs doivent reconstruire mentalement la grille, le \condition{Téléphone} en affichant une vue non entière. D'autre part, le \condition{VESAD tactile} semble être la technique la plus rapide quand la tâche est maîtrisée.
 
-A pairwise t-test (with Benjamini-Hochberg correction) compared the TCT for the 3 techniques, and found them to all be significantly different from each other ($p < 0.0001$ for all pairs). The fastest technique is \condition{VESAD tactile}, which is 22 seconds or 33\% faster than \condition{Téléphone}, which is itself 50 seconds or 36\% faster than \condition{VESAD}.
+\figureETS[0.8]{tct_ordering}{
+  Temps de complétion moyens (IC à 95\%) par essai pour chaque condition \variable{TECHNIQUE} $\times$ \variable{GROUPE}.
+}
 
 \subsection{Taux d'erreur}
 \label{subsec:experiment_results_errors}
+
 Two kinds of mistakes could happen during trials. First, a user could select an item and attempt to drop it in an incorrect container. This was counted toward the number of errors for the trial. Second, a user could select one item, and while searching for the container to drop it in, they might decide to select a different item (possibly because they forgot the letter of the first item), causing their previous selection to be canceled. This was not counted toward errors, but was counted toward the total number of selections. Because there were 5 mis-classified items to move during each trial, selections was at least 5 in each trial, and in general, selections = 5 + errors + (number of times the user canceled a selection). Hence, errors is a more conservative measure of classification errors, whereas selections includes both kinds of mistakes.
 
-\reffigureETS{Errors} shows both selections and errors, which were analyzed using Kruskal-Wallis tests (with Benjamini-Hochberg correction) to check for effects due to \variable{TECHNIQUE}, \variable{TAILLE}, \variable{DISTANCE}, and \variable{GROUPE}. We found that \variable{TECHNIQUE} ($p < 0.001$) and \variable{GROUPE} ($p < 0.001$) had significant effects on selections, but \variable{TAILLE} and \variable{DISTANCE} did not. When analyzing errors, we found that \variable{GROUPE} ($p<0.05$) still had a significant effect, but that \variable{TECHNIQUE} ($p<0.08$) had only a moderately significant effect.
+It seems that a user makes as much errors as she makes selections \reffigureETSp{selections_errors_distributions}. The relation is almost the same for each technique, even if users seems to make more selections for the same number of errors with PhoneOnly. We analyzed both selections and errors using Kruskal-Wallis tests (Benjamini-Hochberg correction) to check for effects due to \variable{TECHNIQUE}, \variable{TAILLE}, \variable{DISTANCE}, and \variable{GROUPE}. We found that \variable{TECHNIQUE} ($H = 15.1$, $p = 0.004$) and \variable{GROUPE} ($H = 11.5$, $p = 0.01$) had significant effects on selections, but only \variable{GROUPE} ($H = 11.1$, $p  = 0.01$) had a significant effect on errors. We didn't found an effect for the other independent variables.
 
-\figureLayoutETS{Errors}{%
+\figureETS[0.5]{selections_errors_distributions}{
+}
+
+\figureLayoutETS{selections_errors}{%
   \subfigureETS[0.25]{selections}{Nombre moyen d'éléments sélectionnés.}%
   \figurehspace%
-  \subfigureETS[0.25]{errors}{Nombre moyen d'erreurs.}%
+  \subfigureETS[0.25]{errors}{Nombre moyen d'erreurs (éléments qui ont été mal classés par le participant).}%
 }{
-  Erreurs moyennes par essai pour chaque technique (les barres d'erreurs montrent l'intervalle de confiance à 95\%).
+  Sélections et erreurs moyennes (IC à 95\%) par essai pour chaque \variable{TECHNIQUE}.
 }
 
-To further analyze the effect of \variable{TECHNIQUE} on selections, we used a Mann-Whitney U test (with Benjamini-Hochberg correction). This found that all 3 techniques produced significantly different selections ($p < 0.05$ for all three pairs of techniques), with \condition{VESAD tactile} the best of the techniques.
-
-\figureETS[0.8]{selections_errors_distributions}{
-  Distributions du nombre de sélections et d'erreurs pour chaque essai.
-}
+To further analyze the effect of \variable{TECHNIQUE} on selections, we used a Mann-Whitney U test (with Benjamini-Hochberg correction). There were significant difference for the \condition{Téléphone} - \condition{VESAD tactile} ($p = 0.0006$) and \condition{Téléphone} - \condition{VESAD} ($p = 0.03$) pairs, but not for the \condition{VESAD tactile} - \condition{VESAD} ($p = 0.06$) pair. However, the \autoref{fig:mistakes} points that  \condition{VESAD tactile} requires the less selections of the three techniques.
 
 The poor performance of \condition{Téléphone} in terms of selections agrees with our observation that, when using \condition{Téléphone}, users sometimes forgot what they had selected or changed their mind during the drop operation, increasing the number of selections. At the same time, the poor performance of \condition{VESAD} in terms of errors agrees with our observation that, with this technique, users sometimes dropped items in the wrong container, not voluntarily but because they were too zoomed out and/or the sensing limitations of the Leap Motion made it difficult to successfully aim at targets, especially when arms were crossed (i.e., the user was trying to drop an item on the opposite side of the arm holding the phone).
 
-Breaking selections down by \variable{GROUPE} \reffigureETSp{selections_ordering}, it appears that users committed more mistakes in the conditionvariable{Téléphone} condition when that was the first condition they experienced, suggesting that this technique was initially more prone to mistakes, possibly due to the limited screen size.
+Finally, breaking Selections down by Ordering \reffigureETSp{errors_ordering}, it appears that users committed more mistakes in the \condition{Téléphone} condition when that was the first condition they experienced (\condition{Group1}), suggesting that this technique was initially more prone to mistakes, possibly due to the limited screen size.
 
-\figureETS[0.9]{selections_ordering}{
-  L'ordre des techniques a un effet significatif sur le nombre moyen d'éléments sélectionnés par essai.
+\figureLayoutETS{selections_errors_ordering}{%
+  \subfigureETS[0.25]{selections_ordering}{Nombre moyen d'éléments sélectionnés.}%
+  \figurehspace%
+  \subfigureETS[0.25]{errors_ordering}{Nombre moyen d'erreurs.}%
+}{
+  Sélections et erreurs moyennes (IC à 95\%) par essai pour chaque condition \variable{TECHNIQUE} $\times$ \variable{GROUPE}.
 }
 
 \subsection{Navigation}
 \label{subsec:experiment_results_navigation}
+
 - Both for *PhoneInArOut* and *PhoneOnly*, participants used pans more than zooms : in count, in time and in distance.
 - Participants were the most effective in **selection time** for *PhoneInArOut* (38.98±19.21 s) rather than for *PhoneOnly* (55.74±27.54 s). We observed that the screen size in *PhoneInArOut* helped to make decisions on items to select or where to drop the selected items.
 - Participants used as much **pans** in *PhoneInArOut* as in *PhoneOnly* (~30±19). But it seems they were slightly more effective with in *PhoneInArOut* rather than *PhoneOnly* both in time (14.53±8.10 s / 17.12±10.66 s) and distance (1.09±0.76 m / 1.50±1.31 m). 
@@ -276,6 +329,7 @@ A third question: what explains the smaller TCT with the \condition{VESAD tactil
 
 \subsection{Évaluations des participants}
 \label{subsec:experiment_results_evaluations}
+
 Users rated the three techniques according to 6 criteria on Likert scales (\textit{Voir} \reffigureETS{ranks_distributions} et \reffigureETS{ranks}) and also gave a ranking for overall Preference \reffigureETSp{preferences}. A Kruskal-Wallis test (Benjamini–Hochberg correction) on each criterion checked for significant differences due to \variable{TECHNIQUE}. Five of the criteria were significantly affected by \variable{TECHNIQUE}: Easy to Understand ($p<0.01$), Mentally Easy to Use ($p<0.01$), Subjective Speed ($p<0.05$), Subjective Performance ($p<0.01$), and overall Preference ($p<0.01$), whereas Physically Easy to Use and Frustration were not significantly affected.
 
 We then used pairwise Mann-Whitney test (with Benjamini–Hochberg correction) for the appropriate criteria, finding the following:
@@ -301,5 +355,3 @@ We then used pairwise Mann-Whitney test (with Benjamini–Hochberg correction) f
 
 Users were also asked their opinion on various concept applications for VESADs. More than half the participants thought the extended map application \reffigureETSp{HandheldVESADMap} would be useful, and all of them thought the multi-tasking support \reffigureETSp{HandheldVESADApp} would be valuable.
 %gave also their opinions about the following applications of the VESAD: an app with an extended view like a map (\autoref{fig:map}); multiple screens around the phone  (\autoref{fig:apps}); and notifications on top of the phone. Participants found in majority that the map app could benefit from the extended view. All of them said that the multiple screens could be very interesting, especially for multi-tasking. %But almost none of them found the notifications concept useful. Michael says: they were not shown the latest version of this.
-
-Enfin, on confirme de manière informelle un des résultats de Grasp Shell : si le contenu virtuel est transparent et permet aux participants de voir leur main, ça suffit : l'occlusion n'est pas nécessaire. Personne m'a fait une remarque là dessus et j'en discuté avec quelqu'uns qui m'ont dit que ça ne les avaient pas dérangés.
