@@ -24,6 +24,7 @@
 \DeclareSIUnit\px{px}
 \DeclareSIUnit[per-mode=symbol]\ppd{\px\per\degree}
 \DeclareSIUnit[per-mode=symbol]\ppi{\px\per\inch}
+\newcommand{\numrel}[1]{\,\num{#1}}
 
 % UML diagrams
 \usepackage{tikz-uml}
@@ -38,9 +39,16 @@
 }
 
 % Custom commands
-\newcommand{\variable}[1]{\textsc{#1}} % Independent variable
+\newcommand{\variable}[1]{\textsc{\footnotesize #1}} % Independent variable
 \newcommand{\condition}[1]{\textit{#1}} % Levels of an independent variable
+
 \newcommand{\autorefp}[2][]{(\textit{Voir} \autoref{#2}#1)} % References with parentheses
+
+\newcommand{\appendixref}[1]{\hyperref[appendix:#1]{Annexe~\ref{appendix:#1}}}
+\newcommand{\appendixrefp}[2][]{(\textit{Voir} \appendixref{#2}#1)}
+
+\newcommand{\figref}[1]{\autoref{fig:#1}}
+\newcommand{\figrefp}[2][]{\autorefp[#1]{fig:#2}}
 
 % Figure with ÉTS style
 \newcommand{\figureLayoutETS}[4]{%
@@ -67,9 +75,6 @@
 \newcommand{\figurehspace}[1][1]{\hspace{#1\fboxsep}}
 
 \setcounter{lofdepth}{2} % Display subfigures in list of figures
-
-\newcommand{\reffigureETS}[1]{\autoref{fig:#1}}
-\newcommand{\reffigureETSp}[2][]{\autorefp[#1]{fig:#2}}
 
 % Table with ÉTS style
 \newenvironment{tableETS}[2]{%
@@ -205,10 +210,10 @@
   %\input{content/1_introduction}
 %\end{introduction}
 
-\input{content/2_litterature_review}
+%\input{content/2_litterature_review}
 %\input{content/3_concept}
 %\input{content/4_methodology}
-%\input{content/5_experiment}
+\input{content/5_experiment}
 %\input{content/6_discussion}
 
 %\chapter*{Conclusion}

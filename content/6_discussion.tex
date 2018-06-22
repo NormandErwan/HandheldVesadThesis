@@ -4,6 +4,8 @@
 \section{Leçons apprises}
 \label{sec:discussion_lessons}
 
+limites : Cependant, d'autre variables parasites ont été difficiles à contrôler, augmentant la variabilité de nos résultats : le visiocasque peut parfois être mal mis rendant l'image plus floue donc les lettres plus difficiles à lire, et le participant peut comprendre au cours de l'expérience qu'un disque n'a qu'une seule bonne cellule et qu'une cellule n'a que cinq disques associés. Ainsi il a juste besoin de permuter les items mal classés et n'a pas besoin de regarder les cellules avec cinq items biens classés.
+
 Although users preferred the \condition{VESAD tactile} technique overall, some participants felt that \condition{VESAD} is the technique with the most potential because it allows directly selecting items. We observed users spontaneously reaching out to touch items on the VESAD before being prompted to do so. Several users wished that they could pan and zoom in the \condition{VESAD} technique without having to switch modes through a menu, similar to pinch-to-zoom on status quo phone interfaces. Unfortunately, despite our use of off-the-shelf sensing technology (Leap Motion), the sensing of the finger position was not always reliable. Better hand-tracking techniques \cite{Taylor2016} could improve this in the future.
 
 The physical navigation performed by users in the \condition{VESAD} technique was often to bring a distant target (e.g., located in a corner) closer to the dominant hand. This suggests that targets for the input on the VESAD should not be placed too far from the phone, and this also recalls the recommendation by Ens et al. \cite{Ens2014} that windows suspended in front of the user should be given an equidistant, spherical layout.
@@ -49,7 +51,7 @@ Pour LeapIn le côté non dominant est horrible à interagir car croiser les mai
 Quelles interactions sont plus intéressantes et dans quels contextes ? Direct (leap), indirect (hololens), touch
 Quelles techniques d'interactions sont à utiliser ?
 
-Based on our observations of users and their feedback, we recommend avoiding placing VESAD input elements in areas that require crossing arms. We suggest the zones in \reffigureETS{HandheldVESADZones} as a guide for laying out user interfaces. These zones avoid crossing of arms during input by the right hand, and the narrow margin below the phone avoids interference with the user's body when the phone is held in a comfortably low position. Of course, the layout would need to be flipped if held in the right hand of a left-handed user. Furthermore, since users sometimes prefer or need to operate their phone with a single hand, there should be a way to access all input elements on the phone's physical screen, either by scrolling through input elements or by switching to a single-handed mode.
+Based on our observations of users and their feedback, we recommend avoiding placing VESAD input elements in areas that require crossing arms. We suggest the zones in \figref{HandheldVESADZones} as a guide for laying out user interfaces. These zones avoid crossing of arms during input by the right hand, and the narrow margin below the phone avoids interference with the user's body when the phone is held in a comfortably low position. Of course, the layout would need to be flipped if held in the right hand of a left-handed user. Furthermore, since users sometimes prefer or need to operate their phone with a single hand, there should be a way to access all input elements on the phone's physical screen, either by scrolling through input elements or by switching to a single-handed mode.
 
 \figureLayoutETS{DesignConsequences}{%
   \subfigureETS{HandheldVESADZones}{
@@ -57,12 +59,12 @@ Based on our observations of users and their feedback, we recommend avoiding pla
   }%
   \figurehspace%
   \subfigureETS{HandheldVESADApps3}{
-    Redesign of \reffigureETS{HandheldVESADMap} based on the zones in \reffigureETS{HandheldVESADZones} (mock-up).
+    Redesign of \figref{HandheldVESADMap} based on the zones in \figref{HandheldVESADZones} (mock-up).
   }%
 }{
 }
 
-We used the layout guide in \reffigureETS{HandheldVESADZones} to redesign one of our earlier mock-ups \reffigureETSp{HandheldVESADApps3}. As on the original mock-up, the hand is rotating the phone $\approx$\ang{90} to access alternative screens, which now show up on the side of the user's right (dominant) hand to facilitate selection of an alternative screen. Notifications appear above the screen, since they are for output only.
+We used the layout guide in \figref{HandheldVESADZones} to redesign one of our earlier mock-ups \figrefp{HandheldVESADApps3}. As on the original mock-up, the hand is rotating the phone $\approx$\ang{90} to access alternative screens, which now show up on the side of the user's right (dominant) hand to facilitate selection of an alternative screen. Notifications appear above the screen, since they are for output only.
 
 %Based on our experimental results, observations of users, and user feedback, 
 Finally, we propose the following guidelines for future VESAD designs:
