@@ -13,7 +13,7 @@ Plusieurs tâches auraient pu convenir à cette expérience. Comme le VESAD est 
 
 Nous avons finalement décidé de répliquer la tâche de classification de \cite{Liu2014} : sa validité externe est plus importante (plus réaliste) qu'une pure tâche de pointage, demande beaucoup de navigations et de reconstruction mentale comme un large document tout en demandant de sélectionner et manipuler le contenu, enfin est plus facile à implémenter et à contrôler qu'un scénario multi-tâches. Cette tâche consistait en une grille de plusieurs cellules contenant des disques \figrefp{Liu2014}. Quelques disques étant mal classés, les participants devaient les déplacer dans la bonne cellule, avec des disques de même type. Une lettre de petite taille inscrite en leur centre permettait de connaître leur type et les disques mal classés étaient colorés en rouge : cela facilitait la recherche et équilibrait avec le temps consacré au classement. Une tâche plus réaliste demanderai d'examiner en détail chaque disque pour savoir les classer (\citeauthor{Liu2014} prennent l'exemple de catégoriser les articles d'une conférence). Enfin, les déplacements se faisaient par un pointage vers le disque puis une sélection par un bouton, puis un second pointage et sélection dans la cellule. Le but de la tâche peut être résumé au participants avec la consigne de [traduction ]\textquote{tout mettre en vert} \citep{Liu2014}.
 
-Notre grille comporte $3 \times 5$ cellules rectangulaires, pouvant chacune en contenir six maximum. Elle est générée aléatoirement à chaque nouvel essai, avec cinq disques par cellules dont au moins quatre correctement classés, et cinq disques mal classés dans la grille \figrefp{TaskGrid}. Il y a 15 cellules $\times$ 5 disques/cellule $=$ 75 disques au total dans la grille. Au début de chaque essai (pour toutes les conditions), elle est affiché à l'échelle, la taille d'une cellule étant celle de l'écran du téléphone que nous avons utilisé \autorefp{sec:experiment_material}. Ainsi, la grille a une forme approximativement carrée.
+Notre grille comporte $3 \times 5$ cellules rectangulaires, pouvant chacune contenir six disques maximum. La grille est générée aléatoirement à chaque nouvel essai, avec cinq disques par cellules dont au moins quatre correctement classés, et cinq disques mal classés au total dans la grille \figrefp{TaskGrid}. Il y a donc 15 cellules $\times$ 5 disques/cellule $=$ 75 disques dans la grille. Au début de chaque essai (pour toutes les conditions), elle est affiché à l'échelle, la taille d'une cellule étant celle de l'écran du téléphone que nous avons utilisé, soit \SI{68x121}{\mm} (un disque mesure \SI{33x33}{\mm}) \autorefp{sec:experiment_material}. Ainsi, la grille a une forme approximativement carrée.
 
 \figureETS[0.55]{TaskGrid}{
   La grille de notre tâche expérimentale au début d'un essai dans la condition \variable{TAILLE}=\condition{Grand}.
@@ -146,25 +146,21 @@ Ces 12 participants, dont trois femmes, étaient agés entre 18 et 49 ans (deux 
 \section{Mesures}
 \label{sec:experiment_measures}
 
-Toutes nos données mesurées ainsi que nos analyses sont disponibles en ligne (\url{https://github.com/NormandErwan/HandheldVesadAnalysis}), dans le domaine public (\url{http://unlicense.org}).
-
 Pré-questionnaire
 
-Comme nous avons synchronisé les IHMs du téléphone et du visiocasque, nous avons effectué les mesures des essais seulement  
-Mesures :
+Comme nous avons synchronisé les IHMs du téléphone et du visiocasque, nous avons effectué les mesures des essais seulement sur l'ordinateur. Nous avons tout d'abord mesuré le temps de complétion de chaque essai, comme principale mesure de la performance, ainsi que le nombres d'erreurs, c'est-à-dire 
+
+Two kinds of mistakes could happen during trials. First, a user could select an item and attempt to drop it in an incorrect container. This was counted toward the number of errors for the trial. Second, a user could select one item, and while searching for the container to drop it in, they might decide to select a different item (possibly because they forgot the letter of the first item), causing their previous selection to be canceled. This was not counted toward errors, but was counted toward the total number of selections. Because there were 5 mis-classified items to move during each trial, selections was at least 5 in each trial, and in general, selections = 5 + errors + (number of times the user canceled a selection). Hence, errors is a more conservative measure of classification errors, whereas selections includes both kinds of mistakes.
+
+Notre post-questionnaire est principalement inspiré du NASA TLX \cite{Rubio2004}. Nous avons supprimé la question sur la charge physique, que nous ne trouvions pas pertinente dans notre cas et ajouté une question sur la facilité de compréhension de l'IHM. A toutes ces questions, le participant évaluait chaque technique avec une échelle de Likert. Le participant devait ensuite classer par ordre de préférence les trois techniques. Enfin, nous avons présenté des scénarios d'application d'un téléphone à affichage étendu (carte de navigation, application multi-fenêtres et notifications en 3D) et recueilli leurs commentaires.
+
+Nos hypothèses par rapport à ces mesures sont :
 \begin{itemize}
   \item Temps total : \condition{VESAD tactile} > \condition{Téléphone} > \condition{VESAD} : imprécisions interactions sur \condition{VESAD} vs. grand espace et précision touch sur \condition{VESAD tactile} (donc moins besoin de zoomer/dezoomer)
   \item Erreurs, nombre de sélections, nombre de déselections : \condition{VESAD} > \condition{Téléphone} > \condition{VESAD tactile} : imprécisions interactions sur \condition{VESAD} vs. grand espace et précision touch sur \condition{VESAD tactile}
   \item Pan count, time, distance : \condition{Téléphone} > (\condition{VESAD tactile} = \condition{VESAD}) : si on voit un espace plus grand, moins de drags et plus efficaces
   \item Zoom count, time, distance : \condition{Téléphone} > (\condition{VESAD tactile} = \condition{VESAD}) : si on voit un espace plus grand, moins de zooms et plus efficaces
   \item Head phone distane : (\condition{VESAD tactile} = \condition{VESAD}) > \condition{Téléphone} : pour mieux voir les lettres qui sont loins du téléphone
-\end{itemize}
-
-Two kinds of mistakes could happen during trials. First, a user could select an item and attempt to drop it in an incorrect container. This was counted toward the number of errors for the trial. Second, a user could select one item, and while searching for the container to drop it in, they might decide to select a different item (possibly because they forgot the letter of the first item), causing their previous selection to be canceled. This was not counted toward errors, but was counted toward the total number of selections. Because there were 5 mis-classified items to move during each trial, selections was at least 5 in each trial, and in general, selections = 5 + errors + (number of times the user canceled a selection). Hence, errors is a more conservative measure of classification errors, whereas selections includes both kinds of mistakes.
-
-Notre post-questionnaire est principalement inspiré du NASA TLX \citep{}
-Post-questionnaire, inspiré du NASA TLX (enlevé charge physique, mais ajouté facilité de compréhension (pour évaluer l'intuitif))
-\begin{itemize}
   \item facilité de compréhension : \condition{VESAD} est plus difficile à comprendre et demande un temps d'essai
   \item charge mentale : notre tâche demande de la recherche, de l'observation, de la mémorisation et des décisions ; je pense que \condition{VESAD tactile} demande moins de charge mentale
   \item fatigue : \condition{VESAD} est la plus fatiguante car bras en l'air et longtemps car lent, \condition{VESAD tactile} la moins fatiguante car la plus rapide
@@ -315,7 +311,7 @@ A third question: what explains the smaller TCT with the \condition{VESAD tactil
 \subsection{Évaluations des participants}
 \label{subsec:experiment_results_evaluations}
 
-Users rated the three techniques according to 6 criteria on Likert scales (\textit{Voir} \figref{ranks_distributions} et \figref{ranks}) and also gave a ranking for overall Preference \figrefp{preferences}. A Kruskal-Wallis test (Benjamini–Hochberg correction) on each criterion checked for significant differences due to \variable{TECHNIQUE}. Five of the criteria were significantly affected by \variable{TECHNIQUE}: Easy to Understand ($p<0.01$), Mentally Easy to Use ($p<0.01$), Subjective Speed ($p<0.05$), Subjective Performance ($p<0.01$), and overall Preference ($p<0.01$), whereas Physically Easy to Use and Frustration were not significantly affected.
+A Kruskal-Wallis test (Benjamini–Hochberg correction) on each criterion checked for significant differences due to \variable{TECHNIQUE}. Five of the criteria were significantly affected by \variable{TECHNIQUE}: Easy to Understand ($p<0.01$), Mentally Easy to Use ($p<0.01$), Subjective Speed ($p<0.05$), Subjective Performance ($p<0.01$), and overall Preference ($p<0.01$), whereas Physically Easy to Use and Frustration were not significantly affected.
 
 We then used pairwise Mann-Whitney test (with Benjamini–Hochberg correction) for the appropriate criteria, finding the following:
 \begin{itemize}
