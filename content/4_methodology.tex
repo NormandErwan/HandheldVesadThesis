@@ -2,6 +2,8 @@
 \label{ch:methodology}
 
 \section{Motivation}
+\label{sec:methodology_motivation}
+
 Pour concevoir un VESAD, nous avons besoin d'un visiocasque avec un champ de vision suffisamment large pour visualiser complètement l'écran étendu, le cas contraire limite l'intérêt de notre concept. Notre second sous-problème a donc été de développer un visiocasque de RA à large champ de vision.
 
 Un téléphone est tenu en moyenne à une distance $D=\SI{34}{\cm}$ \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de $(L,H)=\SI{53x30}{\cm}$, on peut calculer le champ de vision $(FoV_x,FoV_y)$ nécessaire pour chaque \oe il pour le visualiser complètement \figrefp{Fov}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
@@ -28,6 +30,7 @@ Nous avons d'abord voulu utiliser le Microsoft HoloLens, un visiocasque optique 
 
 \subsection{Fonctionnement du visiocasque}
 \label{subsec:prototype_operation}
+
 Nous avons donc réalisé notre propre prototype, similaire à l'AR-Rift \citep{Steptoe2013} : c'est un visiocasque de RA vidéo de conception simple qui a fait ses preuves, utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}. Il consiste à coller une caméra physique \emph{stéréoscopique} (avec deux objectifs capturant chacun une image pour un \oe il) à un visiocasque de RV.
 
 \figureLayoutETS{ArRiftMarker}{%
@@ -67,6 +70,7 @@ La \figref{ArRiftMarker} montre ce processus pour une caméra \emph{monoscopique
 
 \subsection{Choix techniques}
 \label{subsec:technical_choices}
+
 Nous avons tout d'abord choisi l'Ovrvision Pro comme caméra physique stéréoscopique (\url{http://ovrvision.com/}). Annoncée par son comme solution clé en main pour réaliser un visiocasque de RA, elle prévue pour fonctionner avec le visiocasque de RV Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Composée de deux objectifs \texten{fisheye} (en \oe il de poisson) d'une définition de \SI{960x950}{\px} et un champ de vision de \SI{100x98}{\degree}, ses caractéristiques correspondent bien à ceux de l'Oculus DK2 \autorefp{tab:visual_densities}. Elle est de plus intégrée avec les moteurs de jeu standards dans l'industrie : Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \figref{ArRift_1}, et en le connectant par USB 3.0 au PC.
 
 \figureETS[0.6]{ArRift_1}{
@@ -87,6 +91,7 @@ Nous avons donc réalisé la bibliothèque libre de RA par suivi de marqueur Aru
 
 \subsection{Discussion et limites}
 \label{subsec:solution_discusion}
+
 Nous pourrions simplifier le visiocasque en utilisant une caméra monoscopique, et afficher l'image capturée aux deux yeux. Cependant, comme le souligne \cite{Bourke1999}, la vision stéréoscopique est l'un des principaux indices utilisés par le cerveau pour percevoir la profondeur : les yeux étant séparés horizontalement par une distance appelée écart pupillaire, chaque \oe il perçoit une image légèrement différente \figrefp{Ovrvision} permettant au cerveau de percevoir en 3D. C'est pourquoi nous choisissons d'utiliser une caméra stéréoscopique.
 
 \figureLayoutETS{Ovrvision}{%
@@ -97,7 +102,7 @@ Nous pourrions simplifier le visiocasque en utilisant une caméra monoscopique, 
   Images corrigées de l'Ovrvision Pro : les deux objectifs sont décalés horizontalement d'environ \SI{60}{\mm} pour simuler un écart pupillaire humain.
 }
 
-Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image affichée. La densité visuelle permet de mesurer la finesse d'affichage d'une image à partir de sa définition horizontale et du champ de vision : $Densite = \sfrac{d_x}{FoV_x}$ \citep{Boger2017}. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} quand la fovéa d'un \oe il humain est de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Une définition de 8K (\SI{7680x4320}{\px}), à champ de vision égal, par \oe il est alors nécessaire pour atteindre la même densité visuelle : $Densite_{8K} = \sfrac{7680}{110} = \SI{69.8}{\ppd}$.
+Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image affichée. La densité visuelle permet de mesurer la finesse d'affichage d'une image à partir de sa définition horizontale et du champ de vision : $Densite = \sfrac{d_x}{FoV_x}$. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} quand la fovéa d'un \oe il humain est de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Une définition de 8K (\SI{7680x4320}{\px}), à champ de vision égal, par \oe il est alors nécessaire pour atteindre la même densité visuelle : $Densite_{8K} = \sfrac{7680}{110} = \SI{69.8}{\ppd}$.
 
 \begin{tableETS}{tab:visual_densities}{Caractéristiques d'affichage de l'Ovrvision Pro et de visiocasques de RV et RA.}
   \begin{tabular}{| C{3.5cm} | C{3.25cm} | C{3.25cm} | C{3cm} |}
@@ -144,6 +149,7 @@ D'autres alternatives existent. Nous aurions pu par exemple nous appuyer sur la 
 
 \subsection{Motivation}
 \label{subsec:aruco_unity_motivation}
+
 Unity est un moteur de jeux-vidéos ainsi qu'une excellente solution pour développer avec des visiocasques de RV. Cependant, nous avons besoin de fonctionnalités manquantes pour permettre de la RA avec notre visiocasque. La bibliothèque OpenCV répond parfaitement à nos besoins, mais étant écrite en C++, elle est incompatible avec Unity utilisant le C\#. Nous avons donc réalisé la bibliothèque ArucoUnity pour rendre disponible OpenCV dans Unity. Son utilisation est décrite dans la \autoref{sec:ar_hmd}.
 
 La solution que nous avons retenue est d'utiliser le système de greffons (\texten{plugin} en anglais, \url{https://docs.unity3d.com/Manual/Plugins.html}) d'Unity pour appeler des bibliothèques externes en C\# ou en C. Cette technique, appelée \emph{liaison} (\texten{binding} en anglais) est classique dans les domaines des jeux-vidéos et des simulations physiques : elle permet de réutiliser du code existant sans avoir à le transposer dans un autre langage et surtout d'optimiser des portions de code critiques, le C++ étant conçu pour la performance.
@@ -331,7 +337,6 @@ Nous avons aussi besoin d'accéder à la caméra Ovrvision Pro. La caméra est f
 
 Nous avons également ajouté quelques fonctions de conversion, Unity et OpenCV utilisant des conventions et des classes différentes pour encoder les transformations d'objets dans la scène. Pour encoder la position, Unity utilise un système de coordonnées main gauche \figrefp{CoordinatesSystemLeft} tandis qu'OpenCV utilise un système main droite \figrefp{CoordinatesSystemRight}. On inverse alors l'axe des Y pour passer de l'un à l'autre avec la fonction \code{Vector3 Vec3d.ToPosition()}. En outre, OpenCV utilise des matrices de rotation ou des angles de rotations, selon les fonctions. OpenCV propose des fonctions de conversions, que nous avons retranscrites dans la liaison. On convertit les angles de rotations en quaternions d'Unity suivant l'algorithme de \cite{Baker1998} avec la fonction \code{Quaternion Vec3.ToRotation()}.
 
-
 \subsection{Réalisation des scripts pour Unity}
 \label{subsec:aruco_unity_scripts}
 
@@ -462,6 +467,7 @@ Enfin, nous améliorons les performances en externalisant certains calculs sur p
 
 \subsection{Procédure}
 \label{subsec:ar_hmd_procedure}
+
 Les fonctionnalités d'OpenCV étant maintenant disponibles dans Unity \autorefp{sec:aruco_unity}, nous pouvons maintenant enfin mettre en place la RA dans notre visiocasque. Pour cela, nous devons tout d'abord comprendre le principe d'une caméra \autorefp{subsec:camera_theory}. Puis nous étudions le cas le plus simple de l'alignement d'une caméra physique monoscopique avec un objectif rectilinéaire \autorefp{subsec:pinhole_camera_calibration}. Nous itérons ensuite avec notre caméra stéréoscopique à objectifs \texten{fisheye} \autorefp{subsec:ovrvision_camera_calibration}. Les caméras physiques et virtuelles alignées nous pourrons alors utiliser les fonctions de suivi de marqueurs pour placer les éléments virtuels.
 
 ArucoUnity permet d'étalonner une caméra facilement et directement dans Unity, sans avoir à programmer. Après l'étalonnage, notre bibliothèque de RA corrige la caméra physique et aligne la caméra virtuelle automatiquement sans que l'utilisateur n'ait à s'en soucier lors du suivi de marqueurs. Nous décrivons ainsi dans cette section l'utilisation des scripts C\# d'ArucoUnity, le code OpenCV qu'ils exécutent en arrière-plan ainsi que la théorie nécessaire ; le lecteur peut se référer à \cite[chap. 18-19]{Kaehler2017} pour une théorie et des procédures plus complètes.
@@ -536,7 +542,7 @@ On résume donc la projection d'un point $P=(X,Y,Z)$ de la scène par une camér
   x = f_x \frac{X}{Z} + c_x,\qquad y = f_y \frac{Y}{Z} + c_x
 \end{equation}
 
-Enfin, une caméra physique monoscopique requiert également un objectif photographique. En effet, l'ouverture infiniment petite du sténopé ne laissant passer que trop peu de lumière demande infiniment de temps pour qu'une image visible se forme. C'est un problème pour une caméra si l'on souhaite capturer plusieurs images par secondes. La solution est de faire une ouverture plus grande pour laisser passer plus de lumière et de placer donc un objectif photographique pour continuer à concentrer la lumière sur le plan image en une seule image nette. L'inconvénient est que les lentilles utilisées introduisent nécessairement des distorsions en barillet dans l'image figrefSp{Distorsion}. De plus, le capteur et l'objectif ne sont pas forcément bien montés parallèles, entraînant une distorsion tangente supplémentaire, le plan image ne coïncidant pas totalement avec le capteur. D'autres types de distorsions existent mais peuvent être négligés \citep[p. 377]{Bradski2008}. L'ensemble des \emph{paramètres de distorsion} qui sont mesurés est noté $D$. Pour plus de détails sur ces paramètres, nous redirigeons le lecteur vers \cite[p. 375]{Bradski2008}.
+Enfin, une caméra physique monoscopique requiert également un objectif photographique. En effet, l'ouverture infiniment petite du sténopé ne laissant passer que trop peu de lumière demande infiniment de temps pour qu'une image visible se forme. C'est un problème pour une caméra si l'on souhaite capturer plusieurs images par secondes. La solution est de faire une ouverture plus grande pour laisser passer plus de lumière et de placer donc un objectif photographique pour continuer à concentrer la lumière sur le plan image en une seule image nette. L'inconvénient est que les lentilles utilisées introduisent nécessairement des distorsions en barillet dans l'image \figrefp{Distorsion}. De plus, le capteur et l'objectif ne sont pas forcément bien montés parallèles, entraînant une distorsion tangente supplémentaire, le plan image ne coïncidant pas totalement avec le capteur. D'autres types de distorsions existent mais peuvent être négligés \citep[p. 377]{Bradski2008}. L'ensemble des \emph{paramètres de distorsion} qui sont mesurés est noté $D$. Pour plus de détails sur ces paramètres, nous redirigeons le lecteur vers \cite[p. 375]{Bradski2008}.
 
 \figureLayoutETS{Distorsion}{%
   \subfigureETS[0.15]{Distorsion_1}{Aucune distorsion.}%
@@ -552,6 +558,7 @@ Ces distorsions éloignent le fonctionnement de la caméra du modèle idéal du 
 
 \subsection{Étalonnage d'une caméra}
 \label{subsec:pinhole_camera_calibration}
+
 Étalonner une caméra monoscopique rectilinéaire consiste donc à déterminer sa matrice intrinsèque $K$ et ses paramètres de distorsion $D$. Nous avons décrit les équations qui permettent de projeter un point $P$ de la scène en un point $p$ sur le plan image. Connaissant les coordonnées de ces deux points, nous pouvons donc écrire les vecteurs de translation $t = (t_x, t_y, t_z)$ et rotation $r = (r_x, r_y, r_z)$ permettant de transformer un point $P$ de la scène en un point $p$ sur le plan image. En connaissant assez de couple de points $(P_i, p_i)$, on peut alors poser un ensemble d'équations pour résoudre $K$. Ainsi, les déviations des points $p_i$ du modèle de sténopé ainsi calculé permettent de déterminer $D$.
 
 \figureETS{Bradski2008_2}{
@@ -559,7 +566,7 @@ Ces distorsions éloignent le fonctionnement de la caméra du modèle idéal du 
   Tiré de \cite{Bradski2008}.
 }
 
-Concrètement, on utilise une image d'un échiquier qu'on capture avec la caméra dans plusieurs positions et angles de vues figrefSp{Bradski2008_2}, les points utilisés étant les intersections entre les carrés noirs et blancs. On connaît par avance les coordonnées relatives des points $P_i$ entre eux (il suffit de le mesurer sur l'échiquier) et ces intersections sont détectées facilement sur l'image capturée par la caméra. La première étape de l'étalonnage consiste donc à capturer avec la caméra quelques images d'un échiquier dont on connaît la configuration.
+Concrètement, on utilise une image d'un échiquier qu'on capture avec la caméra dans plusieurs positions et angles de vues \figrefp{Bradski2008_2}, les points utilisés étant les intersections entre les carrés noirs et blancs. On connaît par avance les coordonnées relatives des points $P_i$ entre eux (il suffit de le mesurer sur l'échiquier) et ces intersections sont détectées facilement sur l'image capturée par la caméra. La première étape de l'étalonnage consiste donc à capturer avec la caméra quelques images d'un échiquier dont on connaît la configuration.
 
 \figureETS[1]{CharucoBoardCreation}{
   Création d'un échiquier d'étalonnage avec ArucoUnity : à gauche les scripts de configuration, à droite l'échiquier vu dans la scène Unity. Les marqueurs, décrits dans la \autoref{sec:aruco_unity}, dans les carrés blancs permettent l'amélioration de la détection de l'échiquier.
@@ -778,7 +785,7 @@ Cependant, lors de l'application de la fonction de mappage, il y a une ambiguït
 
 Nous pouvons maintenant configurer la caméra virtuelle en l'alignant avec la caméra physique corrigée. La matrice intrinsèque associée avec les images corrigées pouvant être modifiée par la correction, l'alignement doit donc se faire après.
 
-Comme pour la correction, ArucoUnity aligne automatiquement la caméra virtuelle lors du suivi de marqueurs. En reprenant la scène de la \autoref{subsec:pinhole_camera_undistortion}, on voit le script déjà configuré pour utiliser la caméra physique figrefSp{TrackMarkersCamera}.
+Comme pour la correction, ArucoUnity aligne automatiquement la caméra virtuelle lors du suivi de marqueurs. En reprenant la scène de la \autoref{subsec:pinhole_camera_undistortion}, on voit le script déjà configuré pour utiliser la caméra physique \figrefp{TrackMarkersCamera}.
 
 On crée alors dans les scripts : (1) une caméra virtuelle dans Unity, placée à l'origine, avec un champ de vision calculé \autorefp{eq:fov} depuis la matrice intrinsèque corrigée, puis (2) l'arrière-plan sous forme d'un rectangle face à la caméra virtuelle, le long de son axe optique (nous avons corrigé le centre optique) à une distance arbitraire lontaine pour éviter une intersection avec les éléments virtuels \autorefp{lst:aruco_camera_display}. Enfin, on calcule la taille de ce rectangle en utilisant les triangles semblables : $d_x' = \text{distance} \times \sfrac{d_x}{f_x}$ \figrefp{Fov}.
 
@@ -871,7 +878,7 @@ Comme les fonctions aruco détectent tous les marqueurs physiques sur l'image, n
   Tiré de \cite{Bradski2008}.
 }
 
-Enfin, la position des marqueurs détectés est estimée avec une méthode de résolution au problème \texten{perspective-n-points}, en utilisant la fonction \code{solvePnP} d'OpenCV (\url{https://github.com/opencv/opencv/blob/master/modules/calib3d/src/solvepnp.cpp}). La projection perspective faisant \textquote{perdre} une dimension, il existe de multiples solutions à la position d'un marqueur détecté : cela peut être l'image d'un petit marqueur proche de la caméra comme celle d'un grand marqueur loin de la caméra figrefSp{Bradski2008_3}. C'est pourquoi on doit fournir à l'algorithme la taille du marqueur, donc la longueur d'un côté, car c'est un carré. La fonction d'estimation de pose travaille en une fois avec tous les marqueurs détectés, en ne prenant qu'une seule longueur de côté. Comme l'on souhaite utiliser des marqueurs de tailles différentes, on fournit une longueur fictive pour ensuite corriger les positions calculées avec la vraie longueur des différents marqueurs \autorefp[(4)]{lst:aruco_camera_tracker}. Ce \texten{hack} (\textquote{triche}) nous évite de nombreux appels inutiles et coûteux à cette fonction.
+Enfin, la position des marqueurs détectés est estimée avec une méthode de résolution au problème \texten{perspective-n-points}, en utilisant la fonction \code{solvePnP} d'OpenCV (\url{https://github.com/opencv/opencv/blob/master/modules/calib3d/src/solvepnp.cpp}). La projection perspective faisant \textquote{perdre} une dimension, il existe de multiples solutions à la position d'un marqueur détecté : cela peut être l'image d'un petit marqueur proche de la caméra comme celle d'un grand marqueur loin de la caméra \figrefp{Bradski2008_3}. C'est pourquoi on doit fournir à l'algorithme la taille du marqueur, donc la longueur d'un côté, car c'est un carré. La fonction d'estimation de pose travaille en une fois avec tous les marqueurs détectés, en ne prenant qu'une seule longueur de côté. Comme l'on souhaite utiliser des marqueurs de tailles différentes, on fournit une longueur fictive pour ensuite corriger les positions calculées avec la vraie longueur des différents marqueurs \autorefp[(4)]{lst:aruco_camera_tracker}. Ce \texten{hack} (\textquote{triche}) nous évite de nombreux appels inutiles et coûteux à cette fonction.
 
 
 \subsection{Alignement avec une caméra stéréoscopique avec objectifs \texten{fisheye}}
