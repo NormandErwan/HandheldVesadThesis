@@ -9,11 +9,11 @@ Dans l'ensemble, nos résultats indiquent que le \condition{VESAD tactile} a ét
 Il est facile de comparer le \condition{VESAD tactile} et le \condition{Téléphone}, car les techniques d'interactions étant les mêmes, seule change la taille de l'écran. Nous avons en effet observé que les participants s'habituaient très vite à fusionner l'affichage sur l'écran tactile avec l'affichage virtuel autour du téléphone. La différence importante de temps de complétion entre ces deux IHMs va donc dans le sens des résultats \cite{Raedle2014}, qui avaient mis en évidence qu'une tâche de navigation dans un grand document devenait difficile avec un écran plus petit que celui d'une tablette (\SI{23.5x13.2}{\cm}). En revanche, cette différence contraste avec ceux de \cite{Grubert2015}, qui avaient mesuré, dans une tâche de navigation, qu'une montre intelligente à l'écran étendu performait moins qu'un téléphone seul. Cependant, leur implémentation de l'écran étendu jouait en sa défaveur : le plan virtuel était bien aligné mais affiché \SI{2.5}{\m} en arrière de la montre, en plus d'un écart de résolution entre l'écran et le visiocasque, qu'une latence importante entre les deux affichages \figrefp{Grubert2015_5}. Malgré tout, certains participants l'avaient préféré aux autres IHMs. Ainsi, il nous semble qu'un VESAD bien conçu et implémenté est plus performant que l'écran seul.
 
 \figureETS[0.5]{Grubert2015_5}{
-  Démonstration de la montre à écran étendu de \cite{Grubert2015}, similaire à notre technique \condition{VESAD tactile}.\\
+  Démonstration de la montre à écran étendu de \cite{Grubert2015} (condition SWRef), similaire à notre technique \condition{VESAD tactile}.\\
   Tiré de \cite{Grubert2015a}, à \SI{2}{\minute} \SI{4}{\second}.
 }
 
-En outre, nous avons observé des tactiques similaires de sélection des disques avec le \condition{VESAD tactile} et le \condition{Téléphone}. Une première tactique consiste à zoomer suffisamment la grille pour pouvoir lire le texte sur les disques et à parcourir toutes les cellules de la grilles jusqu'à trouver celle correspondant au disque sélectionné. \cite{Raedle2014} avaient également remarqué ces mouvements de \textquote{\texten{scanning}} \figrefp{Raedle2014_3} avec les tailles d'écrans correspondant à la tablette et au téléphone, quand les participants découvraient le document ; ces similitudes entre nos défilements statiques et leurs défilements physiques et dynamiques sont intéressantes. La seconde tactique est similaire a celle qui avait été décrite par \cite{Guiard2004} pour les IHMs Pan+Zoom sur ordinateurs : (i) un dé-zoom pour repérer une cible ou la placer dans la vue, (ii) suivi de zooms et défilement pour la rendre assez grosse pour enfin (iii) la sélectionner \figrefp{Guiard2004_8}. Les participants de notre expérience effectuaient ce mouvement pour lire le texte des disques rouges ou des cellules. Cependant, \cite{Guiard2004} indiquaient à juste titre que la première phase n'était pas nécessaire si la difficulté était assez faible, ce que nous avons vu être souvent le cas pour le \condition{VESAD tactile}. Certains participants profitait en effet du grand écran et la résolution suffisante pour le laisser zoomé et seulement le défiler pour atteindre les disques ou cellules. Cela avait également été observé par \cite{Raedle2014} quand les participants connaissaient le document \figrefp{Raedle2014_4}.
+En outre, nous avons observé des tactiques similaires de sélection des disques avec le \condition{VESAD tactile} et le \condition{Téléphone}. Une première tactique consiste à zoomer suffisamment la grille pour pouvoir lire le texte sur les disques et à parcourir toutes les cellules de la grilles jusqu'à trouver celle correspondant au disque sélectionné. \cite{Raedle2014} avaient également remarqué ces mouvements de \textquote{\texten{scanning}} \figrefp{Raedle2014_3} avec les tailles d'écrans correspondant à la tablette et au téléphone, quand les participants découvraient le document ; ces similitudes entre nos défilements statiques et leurs défilements physiques et dynamiques sont intéressantes. La seconde tactique est similaire a celle qui avait été décrite par \cite{Guiard2004} pour les IHMs Pan+Zoom sur ordinateurs : (i) un dé-zoom pour repérer une cible ou la placer dans la vue, (ii) suivi de zooms et défilement pour la rendre assez grosse pour enfin (iii) la sélectionner \figrefp{Guiard2004_8}. Les participants de notre expérience effectuaient ce mouvement pour lire le texte des disques rouges ou des cellules. Cependant, \cite{Guiard2004} indiquaient à juste titre que la première phase n'était pas nécessaire si la difficulté était assez faible, ce que nous avons vu être souvent le cas pour le \condition{VESAD tactile}. Certains participants profitait en effet du grand écran et la résolution suffisante pour le laisser zoomé et seulement le défiler pour atteindre les disques ou cellules. Cela est en accord avec les mouvements observés par \cite{Raedle2014} quand les participants connaissaient le document (en avait une carte mentale) \figrefp{Raedle2014_4}.
 
 \figureLayoutETS{Raedle2014Movements}{%
   \subfigureETS[0.18]{Raedle2014_3}{Mouvements de \textquote{\texten{scanning}} lors des premiers essais (exploration du document).}%
@@ -79,8 +79,6 @@ Malgré tout, le \condition{VESAD} a eu les plus longs temps de complétion. Cel
 
 Il nous semble tout d'abord essentiel que le VESAD soit bien implémenté, c'est-à-dire avoir : (1) un excellent suivi avec 6 DoFs de l'écran étendu, (2) un bon alignement entre les affichages et (3) une synchronisation sans latence. Plusieurs participants nous ont indiqué d'améliorer ce dernier point. Un grand champ de vision permet de profiter de multiples et grands écrans virtuels. Enfin, une bonne résolution d'affichage est meilleure mais un critère moins important que les précédents.
 
-Nous avons observé que les participants utilisaient également de la navigation physique avec toutes les techniques en rapprochant le téléphone du visage : ce mouvement semblait plus rapide et précis qu'effectuer un zoom avec l'écran tactile -> détecter ses mouvements avec le visiocasque et concevoir une technique d'interaction ? Par ex, faire un "vrai" zoom (mise à l'échelle) du contenu du téléphone en même temps que le mouvement ? Ce serait comme mettre un gain à ce mouvement de zoom physique (sinon c'est 1:1). Ce serait à étudier.
-
 Based on our observations of users and their feedback, we recommend avoiding placing VESAD input elements in areas that require crossing arms. We suggest the zones in \figref{HandheldVESADZones} as a guide for laying out user interfaces. These zones avoid crossing of arms during input by the right hand, and the narrow margin below the phone avoids interference with the user's body when the phone is held in a comfortably low position. Of course, the layout would need to be flipped if held in the right hand of a left-handed user. Furthermore, since users sometimes prefer or need to operate their phone with a single hand, there should be a way to access all input elements on the phone's physical screen, either by scrolling through input elements or by switching to a single-handed mode.
 
 \figureETS[0.4]{HandheldVESADZones}{
@@ -105,46 +103,47 @@ En résumé, nous proposons les recommandations de conceptions suivantes pour un
 \end{itemize}
 
 
-\section{Directions futures}
-\label{sec:future_work}
+%\section{Directions futures}
+%\label{sec:future_work}
 
-Mettre les directions futures et les recommendations : évaluer les scénarios du \autoref{ch:concept} au regard des résultats.
+%Mettre les directions futures et les recommendations : évaluer les scénarios du \autoref{ch:concept} au regard des résultats.
 
-Unfortunately, despite our use of off-the-shelf sensing technology (Leap Motion), the sensing of the finger position was not always reliable. Better hand-tracking techniques \cite{Taylor2016} could improve this in the future.
+%Unfortunately, despite our use of off-the-shelf sensing technology (Leap Motion), the sensing of the finger position was not always reliable. Better hand-tracking techniques \cite{Taylor2016} could improve this in the future.
 
-how to determine the size of the display zone (we used arbitrarily 
+%how to determine the size of the display zone (we used arbitrarily 
 
-How can we do the pan and zoom gestures in 3D? Or they always need to be done on a physical surface (track-pad ideas for \condition{VESAD tactile})? Grasp-Shell found that vocal commands were better that mid-air interaction technique for scaling tasks 3D object in AR (but mid-air were better for translation and rotation tasks).
+%How can we do the pan and zoom gestures in 3D? Or they always need to be done on a physical surface (track-pad ideas for \condition{VESAD tactile})? Grasp-Shell found that vocal commands were better that mid-air interaction technique for scaling tasks 3D object in AR (but mid-air were better for translation and rotation tasks).
 
-Refaire expérience avec technique d'interaction à la hololens et peephole + comparer main virtuelle et pointeur virtuel quand on passe la fenêtre virtuelle en floating
+%Refaire expérience avec technique d'interaction à la hololens et peephole + comparer main virtuelle et pointeur virtuel quand on passe la fenêtre virtuelle en floating
 
-Refaire l'expérience de wedge avec téléphone seul, wedge, phone touch+ar, mid-air+ar, phone+mid-air+ar
+%Refaire l'expérience de wedge avec téléphone seul, wedge, phone touch+ar, mid-air+ar, phone+mid-air+ar
 
-multi-apps + Tâche de commutation d'affichages
+%multi-apps + Tâche de commutation d'affichages
 
-bureau en realité augmentée
+%bureau en realité augmentée
 
-Dans le cadre Ethereal Planes : rester avec des fenêtres 2D mais à organiser en 3D (data mountain)
+%Dans le cadre Ethereal Planes : rester avec des fenêtres 2D mais à organiser en 3D (data mountain)
 
-Tester les applications : Google Maps, multi-application (comme le Personal Cockpit)
+%Tester les applications : Google Maps, multi-application (comme le Personal Cockpit)
 
-Interaction pour le multi écran / écran étendu : vise avec regard, qui donne l'intention, (ou tête à défaut, voir l'étude pursuit target \citep{Esteves2017}) et agit avec le doigt. Serait bien pour scroller sur une app sur l'écran étendu (car on a vu que difficile de pan avec le doigt). Citer les article utilisation du regard sur les table de travail pour select les outils
+%Interaction pour le multi écran / écran étendu : vise avec regard, qui donne l'intention, (ou tête à défaut, voir l'étude pursuit target \citep{Esteves2017}) et agit avec le doigt. Serait bien pour scroller sur une app sur l'écran étendu (car on a vu que difficile de pan avec le doigt). Citer les article utilisation du regard sur les table de travail pour select les outils
 
-Nous n'étudions que Zooming, car c'est le plus courant sur les appareils mobiles. Or on compare les techniques d'interactions de notre solution à un mobile seul. Il aurait été intéressant cependant, dans une deuxième expérimentation, de comparer ces techniques de visualization sur notre solution versus sur un appareil mobile seul.
+%Nous n'étudions que Zooming, car c'est le plus courant sur les appareils mobiles. Or on compare les techniques d'interactions de notre solution à un mobile seul. Il aurait été intéressant cependant, dans une deuxième expérimentation, de comparer ces techniques de visualization sur notre solution versus sur un appareil mobile seul.
 
-Future work could include improvements to the \condition{VESAD} technique with better sensing of mid-air finger positions, adding haptic feedback
-with a hand-worn device to let the user know when they are in contact with the VESAD plane, or comparing direct touch with allowing the user to point at locations on the VESAD using the HMD's view vector (similar to how the HoloLens allows users to aim at targets). A variant of the \condition{VESAD} technique could also be developed where the phone acts like a touchpad that can reach the entire surface of the VESAD using an appropriate gain or cursor acceleration function.
+%Future work could include improvements to the \condition{VESAD} technique with better sensing of mid-air finger positions, adding haptic feedback
+%with a hand-worn device to let the user know when they are in contact with the VESAD plane, or comparing direct touch with allowing the user to point at locations on the VESAD using the HMD's view vector (similar to how the HoloLens allows users to aim at targets). A variant of the \condition{VESAD} technique could also be developed where the phone acts like a touchpad that can reach the entire surface of the VESAD using an appropriate gain or cursor acceleration function.
 
-TODO evaluate the layout in fig 19,
-determine best extents of margins zones,
-experiment with ways to automatically and manually switch handedness
-and double- and single-handed modes.
+%TODO evaluate the layout in fig 19,
+%determine best extents of margins zones,
+%experiment with ways to automatically and manually switch handedness
+%and double- and single-handed modes.
 
-TODO
-compare \condition{VESAD} with trackpad interaction technique (the phone screen is mapped to the VESAD entire view) and with a cursor controlled by the gaze (the phone screen is used to interact as a "big button": the actions are done where the cursor is, and interactions can be done with finger anywhere on the phone screen
+%TODO
+%compare \condition{VESAD} with trackpad interaction technique (the phone screen is mapped to the VESAD entire view) and with a cursor controlled by the gaze (the phone screen is used to interact as a "big button": the actions are done where the cursor is, and interactions can be done with finger anywhere on the phone screen
 
-TODO
-Compare with peephole displays,
-compare with pointing with head (like HoloLens),
-try accelerated physical navigation,
-try accelerated virtual navigation.
+%TODO
+%Compare with peephole displays,
+%compare with pointing with head (like HoloLens),
+%try accelerated physical navigation,
+%try accelerated virtual navigation.
+%Nous avons observé que les participants utilisaient également de la navigation physique avec toutes les techniques en rapprochant le téléphone du visage : ce mouvement semblait plus rapide et précis qu'effectuer un zoom avec l'écran tactile -> détecter ses mouvements avec le visiocasque et concevoir une technique d'interaction ? Par ex, faire un "vrai" zoom (mise à l'échelle) du contenu du téléphone en même temps que le mouvement ? Ce serait comme mettre un gain à ce mouvement de zoom physique (sinon c'est 1:1). Ce serait à étudier.
