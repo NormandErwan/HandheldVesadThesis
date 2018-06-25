@@ -1145,7 +1145,7 @@
   \vspace{-\baselineskip}
 }
 {
-  \vspace{\baselineskip} %Ajout de 3 retours à la ligne avant les Mot clés
+  \\[2\baselineskip]% \ \vspace{\baselineskip}%Ajout de 3 retours à la ligne avant les Mot clés
   {\KeyWordsName} % \KeyWords
   %% tabulation Nicolas Lussier-Clément 2012
   \newdimen\stringwidth
