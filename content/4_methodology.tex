@@ -448,10 +448,8 @@ Pour chacune de ces interfaces, nous utilisons le patron de conception stratégi
         \begin{umlfragment}[type=par, inner xsep=3]
           \begin{umlcallself}[op={CopyImages()}]{ArucoObjectsTracker}
           \end{umlcallself}
-          \begin{umlcall}[op={PlaceArucoObjects()}]{ArucoObjectsTracker}{ArucoCameraDisplay}
-          \end{umlcall}
           \umlfpart[thread]
-          \begin{umlcallself}[op={TrackArucoObjects()}]{ArucoObjectsTracker}
+          \begin{umlcallself}[op={PlaceArucoObjects()}]{ArucoObjectsTracker}
           \end{umlcallself}
         \end{umlfragment}
       \end{umlcall}

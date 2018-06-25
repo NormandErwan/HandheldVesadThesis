@@ -217,7 +217,7 @@ Par la suite, \cite{Piumsomboon2014} ont comparé formellement quelques-unes de 
 
 Enfin, \cite{Piumsomboon2013} et \cite{Piumsomboon2014} recommandent, à la suite d'études pilotes, que pour éviter les problèmes d'occlusion, les objets virtuels doivent toujours êtres visibles : soit en utilisant une main virtuelle transparente plutôt qu'opaque, soit en affichant leurs contours si elle les cache \figrefp{Piumsomboon2014_1}.
 
-TODO citer études avec mains virtuelles : \cite{Chan2010}, \cite{Markussen2014}, \cite{Hincapie-Ramos2014} et \cite{Jones2012}
+%TODO citer études avec mains virtuelles : \cite{Chan2010}, \cite{Markussen2014}, \cite{Hincapie-Ramos2014} et \cite{Jones2012}
 
 \subsection{IHMs de RA tangibles}
 \label{subsec:litterature_ar_hci_tui}
@@ -472,17 +472,18 @@ $\left\{
   Adapté de a) \cite{Burigat2013} et b) \cite{Guiard2004}.
 }
 
-Une approche à ce problème est d'utiliser des IHMs multi-échelles (\texten{multiscale interfaces} en anglais). Le principe est d'afficher à l'écran une ou plusieurs \emph{vues} du document à différentes échelles et positions. Trois techniques courantes sont décrites par \cite{Guiard2004} :
+Une approche à ce problème est d'utiliser des IHMs multi-échelles (\texten{multiscale interfaces} en anglais). Le principe est d'afficher à l'écran une ou plusieurs \emph{vues} du document à différentes échelles et positions. Trois techniques courantes sont décrites par \cite{Guiard2004}, auxquelles \cite{Cockburn2008} en rajoute une quatrième :
 \begin{itemize}
   \item Pan+Zoom : une vue peut-être déplacée sur le document par défilement (\texten{pan}), tandis que le zoom permet de changer l'échelle du document \figrefp{Guiard2004_4}.
   \item Overview+Detail : une vue zoomée (\texten{detail}) et une vue sur le document en entier (\texten{overview}) sont affichées simultanément \figrefp{Guiard2004_5}. Elles sont placées côte-à-côte ou superposées et peuvent être déplacées indépendamment \figrefp{Burigat2013}. Cependant, la navigation peut-être difficile si la différence d'échelle est trop grande entre les deux vues.
   \item Focus+Context : une seule vue permet d'afficher le document en entier et le document zoomé \figrefp{Guiard2004_6}, par exemple grâce à une distorsion optique \figrefp{Guiard2004_7}. Aucune partie du document n'est cachée, mais il peut être difficile d'interpréter le contenu de la vue à cause de la distorsion.
+  \item .
 \end{itemize}
 \medskip
 
-TODO Toutes ces techniques ont été explorées pour les ordinateurs et pour les téléphones intelligents.
-\cite{Cockburn2008} - A review of overview+detail, zooming, and focus+context interfaces / 
-\cite{Burigat2013}. La taille maximale possible des téléphones intelligent semble aujourd'hui
+%TODO Toutes ces techniques ont été explorées pour les ordinateurs et pour les téléphones intelligents.
+%\cite{Cockburn2008} - A review of overview+detail, zooming, and focus+context interfaces / 
+%\cite{Burigat2013}. La taille maximale possible des téléphones intelligent semble aujourd'hui
 
 Une autre approche, complémentaire aux IHMs multi-échelles, est donc d'augmenter la taille et la définition de l'écran. \cite{Baudisch2002} ont par exemple agrandit un écran d'ordinateur par un projecteur : cette combinaison forme une IHM Focus+Context, le projecteur ayant une résolution beaucoup plus réduite que celle de l'écran \figrefp{Baudisch2002}. Comparé à des IHMs sur ordinateur Pan+Zoom et Overview+Detail dans une étude utilisateur avec deux tâches de navigation (une carte et un plan de circuit électronique), leur prototype est 21\% à 36\% plus rapide. Cela est dû probablement à sa grande taille qui permet, malgré sa faible résolution, à un utilisateur de reconstruire plus facilement une image mentale du document.
 
@@ -576,8 +577,8 @@ Une alternative portable pour augmenter le champ de vision d'un visiocasque de V
 
 \cite{Berge2014} explorent l'aspect public d'un affichage mural, en proposant une IHM Overview+Detail utilisant le téléphone (vue \texten{detail}) pour en voir une vue privée (vue \texten{overview}). Ils comparent alors dans leurs deux études expérimentales trois techniques de défilement de la vue \texten{detail} \figrefp{Berge2014} : soit avec l'écran tactile (défilement statique sur la vue du téléphone, via des joysticks), soit en déplaçant le téléphone face au mur (défilement dynamique), soit avec une main virtuelle (un bouton sur l'écran tactile active le suivi ou non de la main). Contrairement à la plupart des articles que nous avons présentés, la navigation est ici en 3D et non en 2D (translation avec 3 DoFs). Leurs résultats indiquent que la main virtuelle et le suivi du téléphone étaient les plus rapides et préférés des participants ; cependant, l'usage de joysticks plutôt que des défilements directs avec un doigt, et zoom avec deux doigts, ont pu jouer en défaveur de l'écran tactile. \cite{Nancel2011} avaient comparé des techniques d'interactions similaires pour zoomer seulement (translation avec 1 DoF) sur un affichage mural et avaient mis en évidence que les gestes utilisant une main virtuelles étaient moins efficaces et plus fatigant que ceux utilisant un écran tactile ou une molette tenue en main \figrefp{Nancel2011}. Il serait alors intéressant de comparer ces techniques de navigation avec un contenu en 2D.
 
-TODO \cite{Sollich2016} - Exploring Time-dependent Scientific Data Using Spatially Aware Mobiles and Large Displays /
-\cite{Besancon2017} - Hybrid Tactile/Tangible Interaction for 3D Data Exploration
+%TODO \cite{Sollich2016} - Exploring Time-dependent Scientific Data Using Spatially Aware Mobiles and Large Displays /
+%\cite{Besancon2017} - Hybrid Tactile/Tangible Interaction for 3D Data Exploration
 
 \figureETS[0.6]{Bi2011}{
   MagicDesk : le clavier et la souris d'un ordinateur sont posés sur et augmentés par une table tactile.\\
@@ -598,7 +599,7 @@ Nous formulons les hypothèses suivantes par rapport à cette problématique :
 \begin{enumerate}[label={(H\arabic*)}]
   \item Un téléphone à écran étendu permettra à un utilisateur d'être plus performant sur des tâches de navigation, de classification ou demandant d'utiliser plusieurs applications en parallèle que sur un téléphone non étendu, quelle que soit la technique d'interaction utilisée.
   \item Les utilisateurs apprécieront d'avantage pouvoir interagir directement avec la fenêtre virtuelle autour du téléphone : l'utilisateur agissant sur le contenu qu'il voit, cela lui semblera plus naturel et possiblement plus intuitif.
-  \item Les utilisateurs seront en revanche plus performants en interagissant seulement avec l'écran physique tactile du téléphone, car les gestes y sont plus précis et moins fatiguant sur un petit écran tactile tenu de manière stable.
+  \item Les utilisateurs seront en revanche plus performants en interagissant seulement avec l'écran physique tactile du téléphone qu'en utilisant un main virtuelle, car les gestes y sont plus précis et moins fatiguant sur un petit écran tactile tenu de manière stable.
 \end{enumerate}
 \medskip
  
