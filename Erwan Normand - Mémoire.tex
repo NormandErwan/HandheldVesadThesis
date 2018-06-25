@@ -1,7 +1,10 @@
 \PassOptionsToPackage{english, main=french}{babel}
 \documentclass[letterpaper, twoside, 12pt,%
  memoire, french, creativecommons, hyperref, withAlgo2e%
+ %, draft % Uncomment to visualize overfull figures
 ]{thETS}
+
+%\overfullrule=1mm % Uncomment to visualize overfull lines
 
 \usepackage{textcomp} % Correct display of characters such as \degree
 \usepackage{pdfpages} % Include PDFs
@@ -50,11 +53,14 @@
 \newcommand{\figrefp}[2][]{\autorefp[#1]{fig:#2}}
 
 % Figure with ÉTS style
+\newlength{\maxfigwidth}
+\setlength{\maxfigwidth}{0.98\textwidth} % Set figure width easily (taking account of the fbox padding)
+
 \newcommand{\figureLayoutETS}[4]{%
   \begin{figure}%
     \centering%
     \fbox{#2}\\%
-    \parbox{0.9\textwidth}{%
+    \parbox{0.9\maxfigwidth}{%
       \caption{#3}%
       \label{fig:#1}%
     }%
@@ -62,7 +68,7 @@
 }
 \newcommand{\figureETS}[3][0.75]{%
   \figureLayoutETS{#2}{%
-    \includegraphics[width=#1\textwidth]{Figures/#2}%
+    \includegraphics[width=#1\maxfigwidth]{Figures/#2}%
   }{#3}%
 }
 \newcommand{\subfigureETS}[3][0.25]{%
@@ -159,7 +165,7 @@
 \newcommand{\code}[2][cs]{\lstinline[language=#1, basicstyle=\ttfamily\normalsize]|#2|}
 
 % Thesis configuration
-\title{Extension de l'écran d'un téléphone intelligent par réalité augmentée}
+\title{Agrandissement d'un écran mobile par réalité augmentée}
 
 \author{Erwan NORMAND}
 \authorcopyright{Erwan Normand}

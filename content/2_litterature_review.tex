@@ -206,7 +206,7 @@ Si l'utilisation du pointeur virtuel telle qu'elle est faite par le HoloLens fon
 
 Par la suite, \cite{Piumsomboon2014} ont comparé formellement quelques-unes de ces techniques avec des commandes vocales pour la sélection et la manipulation d'objets en 3D dans un visiocasque de RA. Leurs résultats indiquent que les participants étaient globalement plus rapides et préféraient utiliser des gestes pour manipuler les objets, mais des commandes vocales pour les redimensionner. Il serait cependant intéressant de reproduire cette étude avec des IHMs plus complexes que de simples objets 3D, par exemple avec des IHMs WIMP appliquées à la RA, comme le fait le HoloLens.
 
-\figureLayoutETS{Piumsomboon2014_1}{%
+\figureLayoutETS{Piumsomboon2014}{%
   \subfigureETS[0.17]{Piumsomboon2014_1}{La main virtuelle fait occlusion avec le contenu 3D.}%
   \figurehspace%
   \subfigureETS[0.17]{Piumsomboon2014_2}{Le contenu 3D est transparent, laissant visible la main de l'utilisateur.}%
@@ -215,7 +215,7 @@ Par la suite, \cite{Piumsomboon2014} ont comparé formellement quelques-unes de 
   Tiré de \cite{Piumsomboon2014}.
 }
 
-Enfin, \cite{Piumsomboon2013} et \cite{Piumsomboon2014} recommandent, à la suite d'études pilotes, que pour éviter les problèmes d'occlusion, les objets virtuels doivent toujours êtres visibles : soit en utilisant une main virtuelle transparente plutôt qu'opaque, soit en affichant leurs contours si elle les cache \figrefp{Piumsomboon2014_1}.
+Enfin, \cite{Piumsomboon2013} et \cite{Piumsomboon2014} recommandent, à la suite d'études pilotes, que pour éviter les problèmes d'occlusion, les objets virtuels doivent toujours êtres visibles : soit en utilisant une main virtuelle transparente plutôt qu'opaque, soit en affichant leurs contours si elle les cache \figrefp{Piumsomboon2014}.
 
 %TODO citer études avec mains virtuelles : \cite{Chan2010}, \cite{Markussen2014}, \cite{Hincapie-Ramos2014} et \cite{Jones2012}
 
@@ -358,11 +358,11 @@ Avec MultiFi, \cite{Grubert2015} explorent de leur côté comment combiner les e
 Leurs résultats expérimentaux, dans une tâche de recherche d'information et de pointage, montrent que le couplage des appareils mobiles avec un visiocasque de RA peut permettre des temps plus rapides par rapport aux appareils seuls, visiocasque compris, mais au détriment d'un plus grand effort perçu par les utilisateurs. En outre, les préférences des utilisateurs étaient variées, ce qui montre que le choix du couplage entre appareils mobiles et visiocasque doit être laissé à l'utilisateur. Cependant, le visiocasque utilisé était lourd et avait aussi un petit champ de vision de $\ang{31} \times \ang{17}$ : ne pouvant pas voir de large contenu en une fois, les participants devaient fréquemment bouger la tête. De plus, seules des interactions sur les écrans tactiles, ou en plaçant l'appareil mobile dans l'espace, ont été évaluées. Il serait intéressant de les comparer avec des interactions utilisant une main virtuelle, et dans un visiocasque avec un large champ de vision.
 
 \figureLayoutETS{Grubert2015_Demos}{%
-  \subfigureETS[0.17]{Grubert2015_2}{Une montre intelligente à écran étendu par RA en haut (mode \texten{device-aligned}). Un téléphone intelligent placé sur la partie virtuelle de l'écran étendu (vue \texten{overview}) permet de le voir plus détaillé (vue \texten{detail}).}%
+  \subfigureETS[0.16]{Grubert2015_2}{Une montre intelligente à écran étendu par RA en haut (mode \texten{device-aligned}). Un téléphone intelligent placé sur la partie virtuelle de l'écran étendu (vue \texten{overview}) permet de le voir plus détaillé (vue \texten{detail}).}%
   \figurehspace%
-  \subfigureETS[0.17]{Grubert2015_3}{L'utilisateur pointe son téléphone vers des éléments affichés par le visiocasque en mode \texten{body-aligned} pour les voir en détail.}%
+  \subfigureETS[0.16]{Grubert2015_3}{L'utilisateur pointe son téléphone vers des éléments affichés par le visiocasque en mode \texten{body-aligned} pour les voir en détail.}%
   \figurehspace%
-  \subfigureETS[0.17]{Grubert2015_4}{L'écran haute résolution (vue \texten{focus}) d'une montre intelligente étendu par le visiocasque de plus basse résolution (vue \texten{context}).}%
+  \subfigureETS[0.16]{Grubert2015_4}{L'écran haute résolution (vue \texten{focus}) d'une montre intelligente étendu par le visiocasque de plus basse résolution (vue \texten{context}).}%
 }{
   Démonstrations de MultiFi.\\
   Tiré de \cite{Grubert2015}.
@@ -431,7 +431,7 @@ On pourrait s'étonner que toutes ces IHMs que nous venons de voir se limitent �
 \section{IHMs multi-échelles et larges affichages}
 \label{sec:litterature_multiscale_displays}
 
-\figureLayoutETS{Guiard2004_1}{%
+\figureLayoutETS{Guiard2004Document}{%
   \subfigureETS[0.4]{Guiard2004_1}{La vue de l'écran sur le document représentée par un rectangle noir.}%
   \figurehspace%
   \subfigureETS[0.4]{Guiard2004_2}{Le document représenté à différents niveaux d'échelle, le long de l'axe S, la vue restant de taille constante.}%
@@ -442,7 +442,7 @@ On pourrait s'étonner que toutes ces IHMs que nous venons de voir se limitent �
   Adapté de \cite{Guiard2004}.
 }
 
-Dépasser les limites physiques d'un écran est un thème courant dans la littérature. En effet, à partir des années 1990, les écrans des PCs ont été largement dépassés en taille par celle de certains documents \citep{Guiard2004}. Ces documents peuvent être des cartes géographiques, des plans, de la création graphique ; l'écran manquant de pixels (basse définition)\footnotemark\ ou étant trop petit, il n'est alors pas possible de travailler correctement avec, car il est impossible visualiser en même temps une vue des détails et une vue d'ensemble \figrefp{Guiard2004_1}. En outre, \cite{Guiard2004} montrent que la difficulté pour naviguer dans un grand document est inversement proportionnelle à la taille de l'écran (jusqu'à une certain seuil de taille). De même, un écran de petite taille complique le multi-tâche \citep{Ens2014}.
+Dépasser les limites physiques d'un écran est un thème courant dans la littérature. En effet, à partir des années 1990, les écrans des PCs ont été largement dépassés en taille par celle de certains documents \citep{Guiard2004}. Ces documents peuvent être des cartes géographiques, des plans, de la création graphique ; l'écran manquant de pixels (basse définition)\footnotemark\ ou étant trop petit, il n'est alors pas possible de travailler correctement avec, car il est impossible visualiser en même temps une vue des détails et une vue d'ensemble \figrefp{Guiard2004Document}. En outre, \cite{Guiard2004} montrent que la difficulté pour naviguer dans un grand document est inversement proportionnelle à la taille de l'écran (jusqu'à une certain seuil de taille). De même, un écran de petite taille complique le multi-tâche \citep{Ens2014}.
 
 \footnotetext{La résolution d'un écran, en pixels par pouce, permet de convertir sa définition $(d_x,d_y)$, en pixels, vers sa taille physique $(L,H)$, en centimètres, et vice-versa : 
 $\left\{
@@ -452,7 +452,7 @@ $\left\{
   \end{array}
 \right.$.}
 
-\figureLayoutETS{Guiard2004_1}{%
+\figureLayoutETS{Guiard2004Techniques}{%
   \subfigureETS[0.2]{Guiard2004_4}{Pan+Zoom : permet de défiler et zoomer à travers une seule vue dans le document.}%
   \figurehspace%
   \subfigureETS[0.2]{Guiard2004_5}{Overview+Detail : affiche simultanément une vue zoomée et une vue du document entier.}%

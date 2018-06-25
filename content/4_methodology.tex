@@ -347,7 +347,7 @@ Nous avons également ajouté quelques fonctions de conversion, Unity et OpenCV 
 
       \umlsimpleclass[type=interface, x=5]{IArucoCamera}
 
-      \umlsimpleclass[type=interface, x=11]{IArucoCameraController}
+      \umlsimpleclass[type=interface, x=10.5]{IArucoCameraController}
       \umluniassoc{IArucoCameraController}{IArucoCamera}
 
       \umlsimpleclass[type=interface, x=5, y=-2]{IArucoCameraUndistortion}
@@ -369,22 +369,22 @@ Nous avons également ajouté quelques fonctions de conversion, Unity et OpenCV 
     \end{umlpackage}
 
     \begin{umlpackage}{Objects}
-      \umlsimpleclass[type=abstract, x=10.5, y=-7]{ArucoObject}
+      \umlsimpleclass[type=abstract, x=10, y=-7]{ArucoObject}
 
-      \umlsimpleclass[x=7.5, y=-8.5]{ArucoMarker}
+      \umlsimpleclass[x=7, y=-8.5]{ArucoMarker}
       \umlVHVinherit{ArucoMarker}{ArucoObject}
 
-      \umlsimpleclass[type=abstract, x=10.5, y=-8.5]{ArucoBoard}
+      \umlsimpleclass[type=abstract, x=10, y=-8.5]{ArucoBoard}
       \umlVHVinherit{ArucoBoard}{ArucoObject}
-      \umlHVHuniassoc[anchor1=0, arm1=2.5, anchor2=0]{ArucoCameraCalibration}{ArucoBoard}
+      \umlHVHuniassoc[anchor1=0, arm1=2, anchor2=0]{ArucoCameraCalibration}{ArucoBoard}
 
       \begin{umlpackage}{Trackers}
         \umlsimpleclass[type=interface, x=5, y=-10, anchor=north]{IArucoObjectsController}
         \umlVHuniassoc{IArucoObjectsController}{ArucoObject}
         
-        \umlsimpleclass[type=interface, x=10, y=-10, anchor=north]{IHasDetectorParameter}
+        \umlsimpleclass[type=interface, x=9.5, y=-10, anchor=north]{IHasDetectorParameter}
 
-        \umlsimpleclass[type=interface, x=10, y=-12, anchor=north]{IArucoObjectsTracker}
+        \umlsimpleclass[type=interface, x=9.5, y=-12, anchor=north]{IArucoObjectsTracker}
         \umlVHVinherit{IArucoObjectsTracker}{IArucoObjectsController}
         \umlVHVinherit{IArucoObjectsTracker}{IHasDetectorParameter}
         \umlHVinherit[anchor2=-17]{IArucoObjectsTracker}{IArucoCameraController}
@@ -419,37 +419,39 @@ Pour chacune de ces interfaces, nous utilisons le patron de conception stratégi
 \figureLayoutETS{ArucoUnitySequence}{
   \begin{tikzpicture}
     \begin{umlseqdiag}
-      \umlobject{ArucoCamera}
-      \umlobject{ArucoCameraUndistortion}
-      \umlobject{ArucoObjectsTracker}
-      \umlobject{ArucoCameraDisplay}
+      \umlobject[no ddots]{ArucoCamera}
+      \umlobject[no ddots]{ArucoCameraUndistortion}
+      \umlobject[no ddots]{ArucoObjectsTracker}
+      \umlobject[no ddots]{ArucoCameraDisplay}
 
       \begin{umlcallself}[op=UpdateImages()]{ArucoCamera}
-        \begin{umlfragment}[type=par, inner xsep=3]
-          \begin{umlcallself}[op={SwapImages()}]{ArucoCamera}
+        \begin{umlfragment}[type=par, inner xsep=3, inner ysep=0.5] % inner xsep : ajouter marge pour afficher "[thread]", inner ysep : réduire la marge entre les appels
+          \begin{umlcallself}[op=SwapImages()]{ArucoCamera}
           \end{umlcallself}
           \umlfpart[thread]
-          \begin{umlcallself}[op={GetImages()}]{ArucoCamera}
+          \begin{umlcallself}[op=GetImages()]{ArucoCamera}
           \end{umlcallself}
         \end{umlfragment}
       \end{umlcallself}
 
-      \begin{umlcall}[op={UndistortImages()}]{ArucoCamera}{ArucoCameraUndistortion}
-        \begin{umlfragment}[type=par, inner xsep=3]
-          \begin{umlcallself}[op={SwapImages()}]{ArucoCameraUndistortion}
+      \begin{umlcall}[op=UndistortImages()]{ArucoCamera}{ArucoCameraUndistortion}
+        \begin{umlfragment}[type=par, inner xsep=3, inner ysep=0.5]
+          \begin{umlcallself}[op=SwapImages()]{ArucoCameraUndistortion}
           \end{umlcallself}
           \umlfpart[thread]
-          \begin{umlcallself}[op={Undistort()}]{ArucoCameraUndistortion}
+          \begin{umlcallself}[op=Undistort()]{ArucoCameraUndistortion}
           \end{umlcallself}
         \end{umlfragment}
       \end{umlcall}
 
-      \begin{umlcall}[op={ImagesUpdated()}]{ArucoCamera}{ArucoObjectsTracker}
-        \begin{umlfragment}[type=par, inner xsep=3]
-          \begin{umlcallself}[op={CopyImages()}]{ArucoObjectsTracker}
+      \begin{umlcall}[op=ImagesUpdated(), dt=4]{ArucoCamera}{ArucoObjectsTracker} % dt : ajouter marge avec précédent appel
+        \begin{umlfragment}[type=par, inner xsep=3, inner ysep=0.5]
+          \begin{umlcallself}[op=CopyImages()]{ArucoObjectsTracker}
           \end{umlcallself}
+          \begin{umlcall}[op=PlaceArucoObjects()]{ArucoObjectsTracker}{ArucoCameraDisplay}
+          \end{umlcall}
           \umlfpart[thread]
-          \begin{umlcallself}[op={PlaceArucoObjects()}]{ArucoObjectsTracker}
+          \begin{umlcallself}[op=TrackArucoObjects()]{ArucoObjectsTracker}
           \end{umlcallself}
         \end{umlfragment}
       \end{umlcall}
