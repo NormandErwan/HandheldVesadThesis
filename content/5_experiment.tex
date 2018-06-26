@@ -31,12 +31,12 @@ Nous avons placé le code source de l'expérience en ligne (\url{https://github.
   \figurehspace%
   \subfigureETS[0.24]{ExperimentMidAirInArOut}{Condition \condition{VESAD}.}%
 }{
-  La grille de notre tâche expérimentale pour chaque \variable{TECHNIQUE}. Pour \condition{VESAD tactile}, la main de l'utilisateur est cachée par l'écran étendu et un disque est sélectionné (en bleu). Pour \condition{VESAD}, une sphère blanche indique la position repérée de l'index de l'utilisateur, une croix sur la grille est la projection de cette sphère et un segment noir les relie ; ils deviennent bleus quand la sphère touche la grille.
+  La grille de notre tâche expérimentale pour chaque \variable{IHM}. Pour \condition{VESAD tactile}, la main de l'utilisateur est cachée par l'écran étendu et un disque est sélectionné (en bleu). Pour \condition{VESAD}, une sphère blanche indique la position repérée de l'index de l'utilisateur, une croix sur la grille est la projection de cette sphère et un segment noir les relie ; ils deviennent bleus quand la sphère touche la grille.
 }
 
 Nous avons manipulé simultanément les variables indépendantes suivantes :
 \begin{itemize}
-  \item \variable{TECHNIQUE} : l'IHM évaluée, soit :
+  \item \variable{IHM} : l'IHM évaluée, soit utilisation ou non d'un écran étendu, et la technique d'interaction :
   \begin{itemize}
     \item \condition{Téléphone} : affichage et interactions seulement sur le téléphone \figrefp{ExperimentPhoneOnly} ;
     \item \condition{VESAD tactile} : affichage sur l'écran étendu et interactions sur le téléphone \figrefp{ExperimentPhoneInArOut} ;
@@ -56,15 +56,15 @@ Nous avons manipulé simultanément les variables indépendantes suivantes :
 \end{itemize}
 \medskip
 
-La variable indépendante \variable{TECHNIQUE} combine les deux affichages et les deux techniques d'interaction que nous souhaitons évaluer. La combinaison affichage sur le téléphone seul et interaction avec une main virtuelle ne nous intéressait pas. \cite{Jones2012} l'ont déjà été évaluée contre le téléphone seul \autorefp{subsec:litterature_ar_hci_interactions}.
+La variable indépendante \variable{IHM} combine les deux affichages et les deux techniques d'interaction que nous souhaitons évaluer. La combinaison affichage sur le téléphone seul et interaction avec une main virtuelle ne nous intéressait pas. \cite{Jones2012} l'ont déjà été évaluée contre le téléphone seul \autorefp{subsec:litterature_ar_hci_interactions}.
 
 La \variable{TAILLE} et la \variable{DISTANCE} nous permettent de contrôler la difficulté de la tâche. En réduisant la \variable{TAILLE} de la lettre dans chaque disque, on impose au participant d'effectuer des zooms plus importants pour les lire, ce qui l'empêche alors de voir beaucoup de disques à la fois. En augmentant la \variable{DISTANCE}, on impose plus de recherches au participant pour trouver la cellule correspondant à un disque à classer. Dans les deux cas, on lui demande un effort de mémoire plus important.
 
 Comme \citeauthor{Liu2014}, nous utilisons la distance euclidienne pour calculer la \variable{DISTANCE} entre un disque mal classé et sa cellule respective. Nous considérons dans le calcul qu'une cellule fait une unité de largeur et une unité de hauteur : il y a donc une distance de 1 entre deux cellules adjacentes. La variable indépendante donne alors le nombre de cellules d'écart entre un disque mal classé et sa cellule respective, par exemple entre 2,5 et 2,75 cellules d'écart en moyenne pour la condition \condition{Loin}. Les valeurs que nous utilisons sont celles de \cite{Liu2014}. À la génération de la grille, on vérifie qu'elle respecte la condition courante, autrement on en régénère une nouvelle. Nous avions mené une étude pilote avec trois participants, demandant de classer dix disques avec de plus petites tailles de texte. Cependant, cette configuration rendait les essais particulièrement éprouvants et longs à compléter. C'est pourquoi nous avons réduit le nombre de disques à classer et augmenté la taille du texte (tout en la gardant suffisamment petite pour que les participants aient besoin de zoomer).
 
-Notre plan expérimental est quasi complet. Les variables indépendantes \variable{TECHNIQUE}, \variable{TAILLE} et \variable{DISTANCE} sont croisées : les participants passent à travers toutes les conditions (les combinaisons des valeurs des variables). Cependant, pour contrôler un effet d'apprentissage parasite à travers les techniques, les participants sont partagés en trois \variable{GROUPE} emboîtés : chaque groupe passe à travers les conditions \variable{TECHNIQUE} dans un ordre différent, suivant un carré latin $3 \times 3$ \autorefp{tab:experiment_groups}. L'ordre de passage de la \variable{TAILLE} et de la \variable{DISTANCE} est par contre fixe : du plus simple (avec les conditions \condition{Grand} et \condition{Proche}), au plus difficile (\condition{Petit} et \condition{Loin}). Nous avons donc mesuré 12 participants $\times$ 3 techniques $\times$ 2 distances $\times$ 2 tailles = 144 observations. Pour réduire la variabilité de nos résultats, chaque participant a répété deux essais par condition, que nous avons ensuite moyennés pour avoir une observation par participant, et non par essai \citep[p. 24]{Dragicevic2016}.
+Notre plan expérimental est quasi complet. Les variables indépendantes \variable{IHM}, \variable{TAILLE} et \variable{DISTANCE} sont croisées : les participants passent à travers toutes les conditions (les combinaisons des valeurs des variables). Cependant, pour contrôler un effet d'apprentissage parasite à travers les techniques, les participants sont partagés en trois \variable{GROUPE} emboîtés : chaque groupe passe à travers les conditions \variable{IHM} dans un ordre différent, suivant un carré latin $3 \times 3$ \autorefp{tab:experiment_groups}. L'ordre de passage de la \variable{TAILLE} et de la \variable{DISTANCE} est par contre fixe : du plus simple (avec les conditions \condition{Grand} et \condition{Proche}), au plus difficile (\condition{Petit} et \condition{Loin}). Nous avons donc mesuré 12 participants $\times$ 3 techniques $\times$ 2 distances $\times$ 2 tailles = 144 observations. Pour réduire la variabilité de nos résultats, chaque participant a répété deux essais par condition, que nous avons ensuite moyennés pour avoir une observation par participant, et non par essai \citep[p. 24]{Dragicevic2016}.
 
-\begin{tableETS}{tab:experiment_groups}{Ordre de passage pour chaque \variable{GROUPE} de chaque \variable{TECHNIQUE} suivant un carré latin.}
+\begin{tableETS}{tab:experiment_groups}{Ordre de passage pour chaque \variable{GROUPE} de chaque \variable{IHM} suivant un carré latin.}
   \begin{tabular}{| c | c | c | c |}
     \hline
     \textbf{Groupe} & \textbf{Technique 1} & \textbf{Technique 2} & \textbf{Technique 3}\\
@@ -84,7 +84,7 @@ Enfin, les participants ont porté le visiocasque de RA \autorefp{ch:methodology
 \section{Techniques d'interactions}
 \label{sec:experiment_interactions}
 
-Les interactions des participants consistent à déplacer les disques pour les classer et naviguer dans la grille (par défilements et zooms). Le déplacement d'un disque consistait à, quelle que soit la \variable{TECHNIQUE} : (1) pointer puis sélectionner le disque puis (2) sélectionner un espace libre dans une cellule. Une deuxième sélection sur le disque sélectionné permettait de le désélectionner, tandis que sélectionner un second disque désélectionnait automatiquement le précédent. Si un disque est déposé dans une mauvaise cellule, il est alors coloré en rouge, et cela est compté comme une erreur, augmentant d'un le nombre de disques à classer pour l'essai courant.
+Les interactions des participants consistent à déplacer les disques pour les classer et naviguer dans la grille (par défilements et zooms). Le déplacement d'un disque consistait à, quelle que soit la \variable{IHM} : (1) pointer puis sélectionner le disque puis (2) sélectionner un espace libre dans une cellule. Une deuxième sélection sur le disque sélectionné permettait de le désélectionner, tandis que sélectionner un second disque désélectionnait automatiquement le précédent. Si un disque est déposé dans une mauvaise cellule, il est alors coloré en rouge, et cela est compté comme une erreur, augmentant d'un le nombre de disques à classer pour l'essai courant.
 
 Avec les techniques \condition{Téléphone} et \condition{VESAD tactile}, les interactions se font via l'écran tactile : la sélection d'un disque se fait par un \texten{tap} \figrefp{Wobbrock2009_1}, le défilement par un \texten{pan} \figrefp{Wobbrock2009_2} et le zoom par un \texten{pinch} \figrefp{Wobbrock2009_3}. Ces gestes, recommandés par \cite{Wobbrock2009}, sont standards et connus des utilisateurs de téléphones intelligents (par exemple pour Android : \url{https://material.io/design/interaction/gestures.html}). Il s'agit d'un défilement statique \citep{Mehra2006}. Pour ces deux techniques, l'écran étant étendu ou non, il faut donc d'abord amener sur l'écran tactile le disque ou la cellule que l'on souhaite sélectionner, en déplaçant la grille par un défilement ou un zoom.
 
@@ -153,7 +153,7 @@ Nous avons effectué les mesures des essais seulement sur l'ordinateur, comme no
 
 Nous avons en outre fait des mesures sur la navigation des participants lors des essais : le nombre de défilements et de zooms, ainsi que le temps passé et la distance parcourue durant ces opérations. Même si la main virtuelle était désactivée pour certaines techniques, nous suivions en continu la position de la main dominante, lors des essais ; la distance que nous avons enregistrée est celle de la projection de l'index de la main sur la grille. C'est une mesure simple mais fonctionnelle et permettant de comparer les trois techniques. Nous avons également compté le temps passé avec un disque sélectionné, pour quantifier le temps de recherche. Enfin, nous avons enregistré la distance entre la tête et le téléphone pour mesurer la navigation physique.
 
-Notre post-questionnaire nous a permis de relever des mesures subjectives sur chaque \variable{TECHNIQUE}. Nous nous sommes principalement inspiré du NASA TLX \cite{Rubio2004}, avec des questions portant sur l'exigence mentale, l'exigence physique, la performance et la frustration, auxquelles nous avons ajouté des questions sur la facilité de compréhension et la rapidité. Pour chaque question, le participant notait les trois techniques sur une échelle de Likert (de 1 à 5). Nous avons par contre supprimé la question sur la charge temporelle, que nous trouvions redondante avec les autres. Le participant devait ensuite classer par ordre de préférence les trois techniques. Enfin, nous avons présenté des scénarios d'application d'un téléphone à écran étendu (carte de navigation, application multi-fenêtres et notifications en 3D) et recueilli leurs commentaires.
+Notre post-questionnaire nous a permis de relever des mesures subjectives sur chaque \variable{IHM}. Nous nous sommes principalement inspiré du NASA TLX \cite{Rubio2004}, avec des questions portant sur l'exigence mentale, l'exigence physique, la performance et la frustration, auxquelles nous avons ajouté des questions sur la facilité de compréhension et la rapidité. Pour chaque question, le participant notait les trois techniques sur une échelle de Likert (de 1 à 5). Nous avons par contre supprimé la question sur la charge temporelle, que nous trouvions redondante avec les autres. Le participant devait ensuite classer par ordre de préférence les trois techniques. Enfin, nous avons présenté des scénarios d'application d'un téléphone à écran étendu (carte de navigation, application multi-fenêtres et notifications en 3D) et recueilli leurs commentaires.
 
 
 \section{Participants}
@@ -182,32 +182,32 @@ Toutes les barres d'erreurs dans nos figures montrent l'intervalle de confiance 
     \subfigureETS[0.2]{tct_distributions_log}{Données transformées avec le logarithme népérien.}%
   }
 }{
-  Histogrammes du temps de complétion d'un essai pour chaque \variable{TECHNIQUE}.
+  Histogrammes du temps de complétion d'un essai pour chaque \variable{IHM}.
 }
 
-On transforme tout d'abord les mesures de temps de complétion d'un essai avec un logarithmique népérien pour rendre leurs distributions approximativement normales et réduire l'influence des mesures extrêmes \citep[p. 25]{Dragicevic2016}. La \figref{tct_distributions_all} montre les distributions des temps mesurés et transformés. On vérifie ensuite la normalité des distributions avec le test de Shapiro-Wilk\footnote{L'hypothèse nulle testée est que la distribution suit la loi normale ; on attend donc une valeur-p supérieure à 0,05 pour ne pas la rejeter.} \citep{Wobbrock2016} pour chaque \variable{TECHNIQUE}, car c'est la variable indépendante nous importe le plus : elles sont normales pour les trois techniques \condition{Téléphone} ($W = \num{0.98}$ ; $p = \num{0.76}$), \condition{VESAD tactile} ($W = 0,97$ ; $p = \num{0.45}$) et \condition{VESAD} ($W = \num{0.97}$ ; $p = \num{0.45}$). En outre, le test de Levene\footnote{L'hypothèse nulle testée est que les variances des distributions sont égales.} ($W = \num{0.76}$ ; $p = \num{0.47}$) nous permet de vérifier que leurs variances sont égales \citep{Wobbrock2016}.
+On transforme tout d'abord les mesures de temps de complétion d'un essai avec un logarithmique népérien pour rendre leurs distributions approximativement normales et réduire l'influence des mesures extrêmes \citep[p. 25]{Dragicevic2016}. La \figref{tct_distributions_all} montre les distributions des temps mesurés et transformés. On vérifie ensuite la normalité des distributions avec le test de Shapiro-Wilk\footnote{L'hypothèse nulle testée est que la distribution suit la loi normale ; on attend donc une valeur-p supérieure à 0,05 pour ne pas la rejeter.} \citep{Wobbrock2016} pour chaque \variable{IHM}, car c'est la variable indépendante nous importe le plus : elles sont normales pour les trois techniques \condition{Téléphone} ($W = \num{0.98}$ ; $p = \num{0.76}$), \condition{VESAD tactile} ($W = 0,97$ ; $p = \num{0.45}$) et \condition{VESAD} ($W = \num{0.97}$ ; $p = \num{0.45}$). En outre, le test de Levene\footnote{L'hypothèse nulle testée est que les variances des distributions sont égales.} ($W = \num{0.76}$ ; $p = \num{0.47}$) nous permet de vérifier que leurs variances sont égales \citep{Wobbrock2016}.
 
-On analyse alors l'effet de toutes les variables indépendantes sur le temps de complétion avec une analyse de variance (ANOVA). Nous pouvons utiliser ce test, car les distributions testées sont normales, indépendantes et ont la même variance \citep{Wobbrock2016}. On utilise le modèle suivant : \variable{TEMPS} $\sim$ \variable{TECHNIQUE} $\times$ \variable{TAILLE} $\times$ \variable{DISTANCE} $+$ \variable{TECHNIQUE} $\times$ \variable{GROUPE}. Le \autoref{tab:tct_anova} donne les résultats : les variables \variable{TECHNIQUE} ($F_{2,22} = \num{62.2}$ ; $p = \num{2e-19}$) et \variable{GROUPE} ($F_{2,22} = \num{2.1}$ ; $p = \num{5e-5}$), ainsi que leur interaction \variable{TECHNIQUE} $\times$ \variable{GROUPE} ($F_{4,44} = \num{3.1}$ ; $p = \num{1e-5}$) ont un effet significatif sur le temps de complétion.
+On analyse alors l'effet de toutes les variables indépendantes sur le temps de complétion avec une analyse de variance (ANOVA). Nous pouvons utiliser ce test, car les distributions testées sont normales, indépendantes et ont la même variance \citep{Wobbrock2016}. On utilise le modèle suivant : \variable{TEMPS} $\sim$ \variable{IHM} $\times$ \variable{TAILLE} $\times$ \variable{DISTANCE} $+$ \variable{IHM} $\times$ \variable{GROUPE}. Le \autoref{tab:tct_anova} donne les résultats : les variables \variable{IHM} ($F_{2,22} = \num{62.2}$ ; $p = \num{2e-19}$) et \variable{GROUPE} ($F_{2,22} = \num{2.1}$ ; $p = \num{5e-5}$), ainsi que leur interaction \variable{IHM} $\times$ \variable{GROUPE} ($F_{4,44} = \num{3.1}$ ; $p = \num{1e-5}$) ont un effet significatif sur le temps de complétion.
 
 \begin{tableETS}{tab:tct_anova}{Résultats de l'ANOVA sur le temps de complétion pour toutes les variables indépendantes.}
   \begin{tabular}{| l | C{1.5cm} | C{1.5cm} | C{1.8cm} | c | c |}
     \hline \textbf{Effet} & \textbf{Somme des carrés} & \textbf{Degrés de liberté}\footnotemark & \textbf{Degrés de liberté de l'erreur}\footnotemark & \textbf{F} & \textbf{p} \\
-    \hline \variable{TECHNIQUE} & 12,3 & 2 & 22 & 62,2 & \num{2e-19} \\
+    \hline \variable{IHM} & 12,3 & 2 & 22 & 62,2 & \num{2e-19} \\
     \hline \variable{TAILLE} & 0,1 & 1 & 11 & 1,5 & \num{2e-1} \\
     \hline \variable{DISTANCE} & 0,03 & 1 & 11 & 0,3 & \num{6e-1} \\
     \hline \variable{GROUPE} & 2,1 & 2 & 22 & 10,8 & \num{5e-5} \\
-    \hline \variable{TECHNIQUE}$\times$\variable{TAILLE} & 0,4 & 2 & 22 & 2,0 & \num{1e-1} \\
-    \hline \variable{TECHNIQUE}$\times$\variable{DISTANCE} & 0,07 & 2 & 22 & 0,4 & \num{7e-1} \\
+    \hline \variable{IHM}$\times$\variable{TAILLE} & 0,4 & 2 & 22 & 2,0 & \num{1e-1} \\
+    \hline \variable{IHM}$\times$\variable{DISTANCE} & 0,07 & 2 & 22 & 0,4 & \num{7e-1} \\
     \hline \variable{TAILLE}$\times$\variable{DISTANCE} & 0,3 & 1 & 11 & 2,9 & \num{9e-2} \\
-    \hline \variable{TECHNIQUE}$\times$\variable{GROUPE} & 3,1 & 4 & 44 & 7,8 & \num{1e-5} \\
-    \hline \variable{TECHNIQUE}$\times$\variable{TAILLE}$\times$\variable{DISTANCE} & 0,5 & 2 & 22 & 2,5 & \num{8e-2} \\
+    \hline \variable{IHM}$\times$\variable{GROUPE} & 3,1 & 4 & 44 & 7,8 & \num{1e-5} \\
+    \hline \variable{IHM}$\times$\variable{TAILLE}$\times$\variable{DISTANCE} & 0,5 & 2 & 22 & 2,5 & \num{8e-2} \\
     \hline Résidus & 12,5 & 126 & & & \\
     \hline
   \end{tabular}
 \end{tableETS}
 
 \figureETS[0.575]{tct}{
-  Temps de complétion moyens par essai pour chaque \variable{TECHNIQUE}.
+  Temps de complétion moyens par essai pour chaque \variable{IHM}.
 }
 
 On les compare alors deux-à-deux avec le test t de Student, avec une correction de Benjamini-Hochberg pour limiter le nombre de faux positifs \autorefp{subsec:litterature_ar_hci_evaluation}. Ce test suppose aussi la normalité, l'indépendance et une variance égale des distributions. Les résultats, au \autoref{tab:tct_ttest}, indiquent des différences significatives entre les trois techniques. On calcule les moyennes avec intervalles de confiances à 95\% sur les données transformées et y applique la fonction exponentielle. La \figref{tct} donne une donc une bonne preuve que les différences sont également importantes : le \condition{VESAD tactile} est plus rapide de \SI{22}{\s} (+33\%) que le \condition{Téléphone}, lui-même plus rapide de \SI{49}{\s} (+36\%) que le \condition{VESAD}.
@@ -215,7 +215,7 @@ On les compare alors deux-à-deux avec le test t de Student, avec une correction
 \footnotetext[4]{On calcule les degrés de liberté (ddl) d'une variable indépendante ainsi : $ddl = conditions - 1$.}
 \footnotetext{On calcule les ddl de l'erreur pour une variable indépendante ainsi : $ddl_{erreur} = ddl \times (observations - 1)$.}
 
-\begin{tableETS}{tab:tct_ttest}{Résultats des tests t sur toutes les paires de \variable{TECHNIQUE}.}
+\begin{tableETS}{tab:tct_ttest}{Résultats des tests t sur toutes les paires de \variable{IHM}.}
   \begin{tabular}{| c | c | c | c |}
     \hline \textbf{Technique 1} & \textbf{Technique 2} & \textbf{T} & \textbf{p} \\
     \hline \condition{Téléphone} & \condition{VESAD tactile} & \num{4.1} & \num{9e-5} \\
@@ -226,7 +226,7 @@ On les compare alors deux-à-deux avec le test t de Student, avec une correction
 \end{tableETS}
 
 \figureETS[0.7]{tct_ordering}{
-  Temps de complétion moyens (moyennes géometriques) par essai pour chaque condition \variable{TECHNIQUE} $\times$ \variable{GROUPE}.
+  Temps de complétion moyens (moyennes géometriques) par essai pour chaque condition \variable{IHM} $\times$ \variable{GROUPE}.
 }
 
 Cependant, la \figref{tct_ordering} donne une bonne preuve que le \variable{GROUPE} a un effet important seulement dans certaines conditions : les participants qui ont commencé avec le \condition{Téléphone} (\condition{Groupe 1}) ont été plus lents avec cette technique, tandis que ceux qui ont terminé avec \condition{VESAD tactile} (\condition{Groupe 3}) ont été plus rapide sur cette technique. Dans les autres conditions, il paraît ne pas avoir de différence entre les temps de complétion. Cela semble indiquer que, d'une part, il y a effectivement une courbe d'apprentissage avec cette tâche, en particulier quand les utilisateurs doivent reconstruire mentalement la grille, le \condition{Téléphone} en affichant une vue non entière. D'autre part, le \condition{VESAD tactile} semble être la technique la plus rapide quand la tâche est maîtrisée.
@@ -240,17 +240,17 @@ Cependant, la \figref{tct_ordering} donne une bonne preuve que le \variable{GROU
 
 On visualise tout d'abord les distributions des erreurs et du nombre de sélections. La \figref{selections_errors_distributions} donne une bonne indication qu'il y a corrélation entre erreurs et sélections pour chaque technique. Il semble également que les utilisateurs \condition{Téléphone} font plus de sélections, à erreurs égales, que sur les autres techniques.
 
-Les distributions des deux variables ne suivant pas une loi normale, nous utilisons des tests non-paramétrique \citep{Wobbrock2016}. On utilise alors le test de Kruskal-Wallis (avec une correction de Benjamini-Hochberg) pour vérifier les effets des variables indépendantes. Les résultats indiquent que seuls la \variable{TECHNIQUE} ($H = \num{15.1}$ ; $p = \num{0.004}$) et le \variable{GROUPE} ($H = \num{11.5}$ ; $p = \num{0.01}$) ont un effet significatif sur le nombre de sélections, mais que seul le \variable{GROUPE} ($H = \num{11.1}$ ; $p = \num{0.01}$) a un effet significatif sur les erreurs. La \figref{errors} nous confirme que nous n'avons pas mesuré de différences importantes en terme d'erreurs pour la \variable{TECHNIQUE}.
+Les distributions des deux variables ne suivant pas une loi normale, nous utilisons des tests non-paramétrique \citep{Wobbrock2016}. On utilise alors le test de Kruskal-Wallis (avec une correction de Benjamini-Hochberg) pour vérifier les effets des variables indépendantes. Les résultats indiquent que seuls la \variable{IHM} ($H = \num{15.1}$ ; $p = \num{0.004}$) et le \variable{GROUPE} ($H = \num{11.5}$ ; $p = \num{0.01}$) ont un effet significatif sur le nombre de sélections, mais que seul le \variable{GROUPE} ($H = \num{11.1}$ ; $p = \num{0.01}$) a un effet significatif sur les erreurs. La \figref{errors} nous confirme que nous n'avons pas mesuré de différences importantes en terme d'erreurs pour la \variable{IHM}.
 
 \figureLayoutETS{selections_errors}{%
   \subfigureETS[0.25]{selections}{Nombre moyen d'éléments sélectionnés.}%
   \figurehspace%
   \subfigureETS[0.25]{errors}{Nombre moyen d'erreurs (éléments qui ont été mal classés par le participant).}%
 }{
-  Sélections et erreurs moyennes par essai pour chaque \variable{TECHNIQUE}.
+  Sélections et erreurs moyennes par essai pour chaque \variable{IHM}.
 }
 
-Pour mieux comprendre l'effet sur le nombre de sélection, on compare deux-à-deux les conditions \variable{TECHNIQUE} avec le test de Wilcoxon-Mann-Whitney (avec une correction de Benjamini-Hochberg). Les résultats indiquent qu'il y a des différences significatives entre pour les paires \{\condition{Téléphone}, \condition{VESAD tactile}\} ($p = \num{6e-4}$) et \{\condition{Téléphone}, \condition{VESAD}\} ($p = \num{0.03}$), mais pas pour la paire \{\condition{VESAD tactile}, \condition{VESAD}\} ($p = \num{0.06}$). La \figref{selections} nous confirme que le \condition{Téléphone} demande le plus de sélections, soit \num{8.18} [\num{7.42} ; \num{9.06}] en moyenne, et que le \condition{VESAD tactile} en demande le moins, soit \num{6.31} [\num{5.97} ; \num{6.66}] en moyenne, mais cette différence est peu importante.
+Pour mieux comprendre l'effet sur le nombre de sélection, on compare deux-à-deux les conditions \variable{IHM} avec le test de Wilcoxon-Mann-Whitney (avec une correction de Benjamini-Hochberg). Les résultats indiquent qu'il y a des différences significatives entre pour les paires \{\condition{Téléphone}, \condition{VESAD tactile}\} ($p = \num{6e-4}$) et \{\condition{Téléphone}, \condition{VESAD}\} ($p = \num{0.03}$), mais pas pour la paire \{\condition{VESAD tactile}, \condition{VESAD}\} ($p = \num{0.06}$). La \figref{selections} nous confirme que le \condition{Téléphone} demande le plus de sélections, soit \num{8.18} [\num{7.42} ; \num{9.06}] en moyenne, et que le \condition{VESAD tactile} en demande le moins, soit \num{6.31} [\num{5.97} ; \num{6.66}] en moyenne, mais cette différence est peu importante.
 
 \figureLayoutETS{selections_errors_ordering}{%
   \parbox{.71\textwidth}{%
@@ -260,10 +260,10 @@ Pour mieux comprendre l'effet sur le nombre de sélection, on compare deux-à-de
     \subfigureETS[0.25]{errors_ordering}{Nombre moyen d'erreurs.}%
   }%
 }{
-  Sélections et erreurs moyennes par essai pour chaque condition \variable{TECHNIQUE} $\times$ \variable{GROUPE}.
+  Sélections et erreurs moyennes par essai pour chaque condition \variable{IHM} $\times$ \variable{GROUPE}.
 }
 
-Comme pour le temps de complétion, il y une bonne indication que le \variable{GROUPE} n'a un effet important que dans certaines conditions \figref{selections_errors_ordering} : le \condition{Groupe 1} a commis un plus d'erreurs et effectué plus de sélections en commençant avec le \condition{Téléphone}, tandis que le \condition{Groupe 3} a fait un peu moins d'erreurs et sélections en terminant avec le \condition{VESAD tactile}. Les autres conditions \variable{TECHNIQUE} $\times$ \variable{GROUPE} ne paraissent pas importantes. Les participants dans la condition \{\condition{Groupe 1}, \condition{Téléphone}\}, n'ayant pas encore une bonne image mentale de la grille, pouvaient probablement parfois oublier quel disque était sélectionné ou changer d'avis sur le disque à classer. Enfin, le nombre un peu plus élevé d'erreurs pour \condition{VESAD tactile} est probablement dû à des erreurs involontaires que nous avons parfois observées, le suivi de la main par le Leap Motion n'étant pas toujours bon.
+Comme pour le temps de complétion, il y une bonne indication que le \variable{GROUPE} n'a un effet important que dans certaines conditions \figref{selections_errors_ordering} : le \condition{Groupe 1} a commis un plus d'erreurs et effectué plus de sélections en commençant avec le \condition{Téléphone}, tandis que le \condition{Groupe 3} a fait un peu moins d'erreurs et sélections en terminant avec le \condition{VESAD tactile}. Les autres conditions \variable{IHM} $\times$ \variable{GROUPE} ne paraissent pas importantes. Les participants dans la condition \{\condition{Groupe 1}, \condition{Téléphone}\}, n'ayant pas encore une bonne image mentale de la grille, pouvaient probablement parfois oublier quel disque était sélectionné ou changer d'avis sur le disque à classer. Enfin, le nombre un peu plus élevé d'erreurs pour \condition{VESAD tactile} est probablement dû à des erreurs involontaires que nous avons parfois observées, le suivi de la main par le Leap Motion n'étant pas toujours bon.
 
 \subsection{Navigation et classements}
 \label{subsec:experiment_results_operations}
@@ -271,11 +271,11 @@ Comme pour le temps de complétion, il y une bonne indication que le \variable{G
 Les comportements des utilisateurs durant les essais nous permettent de mieux comprendre ces différences entre les techniques.
 
 \figureETS[0.65]{navigation_count}{
-  Nombre total moyen par essai de défilements et de zooms pour chaque \variable{TECHNIQUE}.
+  Nombre total moyen par essai de défilements et de zooms pour chaque \variable{IHM}.
 }
 
 \figureETS[0.85]{navigation_distance}{
-  La distance parcourue par l'index (en haut à gauche) pendant qu'un disque était sélectionné, (en haut à droite) pendant les défilements, (en bas à gauche) pendant les zooms, ainsi que (en bas à droite) la distance des mouvements de la tête par rapport au téléphone. Toutes les mesures sont des moyennes par essai pour chaque \variable{TECHNIQUE}.
+  La distance parcourue par l'index (en haut à gauche) pendant qu'un disque était sélectionné, (en haut à droite) pendant les défilements, (en bas à gauche) pendant les zooms, ainsi que (en bas à droite) la distance des mouvements de la tête par rapport au téléphone. Toutes les mesures sont des moyennes par essai pour chaque \variable{IHM}.
 }
 
 Tout d'abord, nous comparons navigations virtuelles (défilements et zooms) et physiques. La \figref{navigation_count} nous indique que la navigation virtuelle a été principalement utilisée avec les techniques \condition{Téléphone} et \condition{VESAD tactile} avec en moyenne plus de 25 défilements et cinq zooms par essai. Autrement dit, chaque disque a demandé en moyenne plus d'un défilement et au moins un zoom pour être classé avec ces techniques. En revanche, les participants ont peu utilisé les techniques de défilement et de zoom virtuels avec le \condition{VESAD}, mais privilégié une navigation physique \figrefp{navigation_distance} ; nous avons observé des déplacements bi-manuels, ou des rotations de la grille, pour placer au même endroit la main virtuelle et un disque à sélectionner. Des participants ont, par ailleurs, fait la remarque que le suivi du téléphone était plus stable que celui de la main. La navigation physique reste importante pour les deux premières techniques \figrefp{navigation_distance} : nous avons fréquemment observé des mouvements de \textquote{rapides zooms physiques} dans toutes les conditions, où le participant rapprochait le téléphone de son visage, pour pouvoir lire une lettre d'un disque. Le \condition{VESAD tactile} demande moins de ces mouvements, car le grand écran donnait la possibilité aux participants de laisser travailler avec une grille avec un plus fort zoom.
@@ -309,7 +309,7 @@ On peut apporter enfin quelques explications supplémentaires des mauvaises perf
 
 Comme pour les erreurs, nous utilisons des tests non-paramétriques pour analyser les mesures subjectives du post-questionnaire, leurs distributions étant non-normales et le nombre \cite{Wobbrock2016}. La \figref{ranks_distributions} montre les distributions des notes et la \figref{preferences_distribution} celle des préférences. Comme pour le temps de complétion, on transforme d'abord les données avec le logarithme népérien, pour y calculer moyennes avec IC à 95\% que l'on reconvertit avec l'exponentielle.
 
-On utilise alors le test de Kruskal-Wallis pour déterminer s'il y a des différences significatives aux réponses de chaque questions, dû à la \variable{TECHNIQUE}. Puis, on applique un test de Wilcoxon-Mann-Whitney pour comparer les questions avec une différence significative. On utilise une correction de Benjamini–Hochberg aux valeurs-p retournées par les deux tests. Les IC à 95\% des moyennes des réponses aux notes \figrefp{ranks} et au classement \figrefp{preferences} nous indiquent l'importance de l'effet. Les résultats obtenus sont les suivants :
+On utilise alors le test de Kruskal-Wallis pour déterminer s'il y a des différences significatives aux réponses de chaque questions, dû à la \variable{IHM}. Puis, on applique un test de Wilcoxon-Mann-Whitney pour comparer les questions avec une différence significative. On utilise une correction de Benjamini–Hochberg aux valeurs-p retournées par les deux tests. Les IC à 95\% des moyennes des réponses aux notes \figrefp{ranks} et au classement \figrefp{preferences} nous indiquent l'importance de l'effet. Les résultats obtenus sont les suivants :
 \begin{itemize}
   \item Facilité de compréhension ($p = \num{0.007}$) : seul le \condition{Téléphone} est significativement meilleur que le \condition{VESAD} ($p = \num{0.01}$), mais il semble que le \condition{VESAD tactile} soit un peu moins bon aussi. Cela n'est guère étonnant, car le \condition{Téléphone} est connu et maîtrisé des utilisateurs. Les différences ne sont tout de même pas trop importantes
   \item Mentalement exigeant ($p = \num{0.007}$) : le \condition{Téléphone} est significativement pire (-26\%) que le \condition{VESAD tactile} ($p = \num{0.005}$) et le \condition{VESAD} ($p = \num{0.01}$). Cela donne une bonne preuve que le petit écran rend la tâche plus difficile.

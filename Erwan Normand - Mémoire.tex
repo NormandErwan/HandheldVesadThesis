@@ -4,8 +4,6 @@
  %, draft % Uncomment to visualize overfull figures
 ]{thETS}
 
-%\overfullrule=1mm % Uncomment to visualize overfull lines
-
 \usepackage{textcomp} % Correct display of characters such as \degree
 \usepackage{pdfpages} % Include PDFs
 \usepackage{color} % Declare colorst
@@ -41,7 +39,7 @@
 }
 
 % Custom commands
-\newcommand{\variable}[1]{\textsc{\footnotesize #1}} % Independent variable
+\newcommand{\variable}[1]{\textsc{\small #1}} % Independent variable
 \newcommand{\condition}[1]{\textit{#1}} % Levels of an independent variable
 
 \newcommand{\autorefp}[2][]{(\textit{Voir} \autoref{#2}#1)} % References with parentheses
@@ -180,55 +178,56 @@
 % Document
 \begin{document}
 
-\pagenumbering{Roman}
-\maketitle
-\presentjury
+%\pagenumbering{Roman}
+%\maketitle
+%\presentjury
 
-\begin{avantpropos}
-  \input{content/0_1_preface}
-\end{avantpropos}
+%\begin{avantpropos}
+  %\input{content/0_1_preface}
+%\end{avantpropos}
 
-\begin{remerciements}
-  \input{content/0_2_acknowledgements}
-\end{remerciements}
+%\begin{remerciements}
+  %\input{content/0_2_acknowledgements}
+%\end{remerciements}
 
-\input{content/0_3_abstracts}
+%\input{content/0_3_abstracts}
 
-\tableofcontents
-\listoftables
-\listoffigures
-\lstlistoflistings
+%\tableofcontents
+%\listoftables
+%\listoffigures
+%\lstlistoflistings
 
-\begin{listofabbr}[3cm]
-  \input{content/0_4_abbreviations}
-\end{listofabbr}
+%\begin{listofabbr}[3cm]
+  %\input{content/0_4_abbreviations}
+%\end{listofabbr}
 
-\cleardoublepage
+%\cleardoublepage
 
-\pagenumbering{arabic}
-\reversemarginpar
-\setcounter{footnote}{0}
+%\pagenumbering{arabic}
+%\reversemarginpar
+%\setcounter{footnote}{0}
 
-\begin{introduction}
-  \input{content/1_introduction}
-\end{introduction}
+%\begin{introduction}
+  %\label{ch:introduction}
+  %\input{content/1_introduction}
+%\end{introduction}
 
-\input{content/2_litterature_review}
-\input{content/3_concept}
-\input{content/4_methodology}
-\input{content/5_experiment}
+%\input{content/2_litterature_review}
+%\input{content/3_concept}
+%\input{content/4_methodology}
+%\input{content/5_experiment}
 \input{content/6_discussion}
 
-\chapter*{Conclusion}
-\addcontentsline{toc}{chapter}{CONCLUSION}
-\label{ch:conclusion}
-\input{content/7_conclusion}
+%\chapter*{Conclusion}
+%\addcontentsline{toc}{chapter}{CONCLUSION}
+%\label{ch:conclusion}
+%\input{content/7_conclusion}
 
-\appendix
-\multiannexe
-\input{content/8_ovrvision_camera_parameters}
-\input{content/9_experiment_forms}
-\input{content/10_experiment_analysis}
+%\appendix
+%\multiannexe
+%\input{content/8_ovrvision_camera_parameters}
+%\input{content/9_experiment_forms}
+%\input{content/10_experiment_analysis}
 
 \newpage
 \begin{spacing}{1}

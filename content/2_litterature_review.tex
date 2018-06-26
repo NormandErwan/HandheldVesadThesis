@@ -177,13 +177,13 @@ Les IHMs naturelles utilisent quant à elle directement les mouvements du corps 
 \figureLayoutETS{NaturalControllers}{%
   \subfigureETS[0.2]{Taylor2016}{Main virtuelle.}%
   \figurehspace%
-  \subfigureETS[0.2]{Argelaguet2013}{Pointeur virtuel.}%
+  \subfigureETS[0.2]{Argelaguet2013_1}{Pointeur virtuel.}%
 }{
   Deux techniques d'interactions de sélection dans les IHMs naturelles.\\
   Tiré de a) \cite{Taylor2016} et b) \cite{Argelaguet2013}.
 }
 
-Un écart existant donc toujours entre éléments physiques et éléments graphiques, des techniques d'interactions sont encore nécessaires. Deux types de techniques sont majoritairement utilisées. La \emph{main virtuelle} affiche un modèle 3D de main pouvant interagir avec le contenu virtuel et suivant la main réelle de l'utilisateur \figrefp{Taylor2016}. Elle est la plus naturelle, mais souffre particulièrement des problématiques que nous venons d'énoncer, mais aussi de problème d'occlusion, car elle peut cacher des objets virtuels. La technique du \emph{pointeur virtuel} permet à l'inverse de projeter un rayon, depuis la main ou la tête, pour sélectionner des objets \figrefp{Argelaguet2013} : il permet de facilement atteindre des objets lointains avec peu d'effort, mais cela est difficile s'ils sont de trop petite taille. De plus, si l'action de sélection peut entraîner un déplacement involontaire du pointeur, par exemple en pressant un bouton \citep{Argelaguet2013}. Cette technique a notamment été choisie pour le HoloLens : le pointeur suit les mouvements de la tête, stables et précis \citep{Kitoe2018}, tandis que la sélection se fait avec un geste de la main pour ne pas perturber le pointage.
+Un écart existant donc toujours entre éléments physiques et éléments graphiques, des techniques d'interactions sont encore nécessaires. Deux types de techniques sont majoritairement utilisées. La \emph{main virtuelle} affiche un modèle 3D de main pouvant interagir avec le contenu virtuel et suivant la main réelle de l'utilisateur \figrefp{Taylor2016}. Elle est la plus naturelle, mais souffre particulièrement des problématiques que nous venons d'énoncer, mais aussi de problème d'occlusion, car elle peut cacher des objets virtuels. La technique du \emph{pointeur virtuel} permet à l'inverse de projeter un rayon, depuis la main ou la tête, pour sélectionner des objets \figrefp{Argelaguet2013_1} : il permet de facilement atteindre des objets lointains avec peu d'effort, mais cela est difficile s'ils sont de trop petite taille. De plus, si l'action de sélection peut entraîner un déplacement involontaire du pointeur, par exemple en pressant un bouton \citep{Argelaguet2013}. Cette technique a notamment été choisie pour le HoloLens : le pointeur suit les mouvements de la tête, stables et précis \citep{Kitoe2018}, tandis que la sélection se fait avec un geste de la main pour ne pas perturber le pointage.
 
 La difficulté pour ce type d'IHM est donc de permettre des sélections et manipulations rapides, sans erreurs ainsi que d'être faciles à comprendre et peu fatigantes \citep{Argelaguet2013}. Pour cela, il est crucial de fournir des retours à l'utilisateur : \cite{Chan2010} propose la combinaison de retours continus, pour que l'utilisateur situe le suivi de son corps, et de retours discret pour confirmer ses actions. Le modèle 3D de la main virtuelle avec des ombres portées ou le rayon du pointeur virtuel sont donc des retours visuels continus, tandis qu'un bref changement de couleur de l'objet peut confirmer une sélection. Ces retours ne doivent cependant pas être excessifs, au risque de produire une distraction et réduire la performance des utilisateurs \citep{Argelaguet2013}.
 
@@ -315,7 +315,7 @@ La séparation entre les styles d'IHMs faite par \cite{Rekimoto1995} \figrefp{Re
 
 \figureETS[0.7]{Heun2016}{
   Photographie du \texten{Reality Editor}, un navigateur web de RA pour interagir facilement avec les objets intelligents autour de soi. Ici, une personne paye un parc-mètre via son téléphone.\\
-  Tiré de \cite{Heun2016}.
+  Tiré de \cite{Heun2013}.
 }
 
 Google Glass a été une expérience novatrice de visiocasque. Malgré les problèmes de vie privée et d'acceptation sociale que son usage a posé, \cite{Koelle2015} rappellent que cela a montré qu'il était intéressant de combiner un visiocasque de RA avec un téléphone intelligent : l'utilisateur interagissant avec son téléphone via le visiocasque, par des interactions multimodales à la voix ou encore avec des gestes en l'air décodés par la caméra du visiocasque. Cette expérience montre ainsi que les visiocasques de RA vont d'abord prendre place dans nos quotidiens professionnels où ils seront mieux acceptés ; c'est également la stratégie de la nouvelle version de ce visiocasque \cite{Levy2017}. Il est donc plus intéressant d'orienter des recherches en IHM pour la RA
@@ -477,7 +477,7 @@ Une approche à ce problème est d'utiliser des IHMs multi-échelles (\texten{mu
   \item Pan+Zoom : une vue peut-être déplacée sur le document par défilement (\texten{pan}), tandis que le zoom permet de changer l'échelle du document \figrefp{Guiard2004_4}.
   \item Overview+Detail : une vue zoomée (\texten{detail}) et une vue sur le document en entier (\texten{overview}) sont affichées simultanément \figrefp{Guiard2004_5}. Elles sont placées côte-à-côte ou superposées et peuvent être déplacées indépendamment \figrefp{Burigat2013}. Cependant, la navigation peut-être difficile si la différence d'échelle est trop grande entre les deux vues.
   \item Focus+Context : une seule vue permet d'afficher le document en entier et le document zoomé \figrefp{Guiard2004_6}, par exemple grâce à une distorsion optique \figrefp{Guiard2004_7}. Aucune partie du document n'est cachée, mais il peut être difficile d'interpréter le contenu de la vue à cause de la distorsion.
-  \item .
+  \item Indications visuelles, où le contenu est modifié pour pointer vers certaines informations, par exemple en les surlignant ou en effaçant les informations moins importantes.
 \end{itemize}
 \medskip
 
