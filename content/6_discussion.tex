@@ -47,9 +47,12 @@ De manière plus générale, on peut voir l'utilisation nécessaire d'un visioca
 
 Avant la conception d'une IHM, nous pensons crucial que le VESAD soit d'abord bien implémenté, c'est-à-dire avoir : (1) un excellent suivi avec 6 DoFs de l'écran physique à étendre, (2) un bon alignement entre l'écran virtuel et l'écran physique et (3) une synchronisation sans latence entre les deux écrans pour donner l'illusion d'un seul écran étendu. Notre bibliothèque de RA ArucoUnity répond à ces deux premières problématique en utilisant du suivi de marqueur. Plusieurs participants nous ont cependant indiqué d'améliorer le dernier point. En outre, il nous semble important d'utiliser un visiocasque avec un grand champ de vision pour voir complètement l'écran étendu. Enfin, un visiocasque avec une bonne densité visuelle est préférable.
 
-\figureETS[0.5]{Ens2014_3}{
-  Démontration du Personal Cockpit : un ensemble de fenêtres 2D positionnées selon une sphère autour de l'utilisateur.\\
-  Adapté de \cite{Ens2014Video}.
+\figureLayoutETS{HandheldVESADZones}{%
+  \subfigureETS[0.2]{HandheldVESADZones_1}{Interactions avec une main virtuelle, les interactions se font du côté de la main ne tenant pas le téléphone et éventuellement au-dessus et en dessous de l'écran physique.}%
+  \figurehspace%
+  \subfigureETS[0.2]{HandheldVESADZones_2}{Interactions via l'écran tactile : la partie virtuelle autour reste accessible par défilements.}%
+}{
+  Une IHM pour un téléphone à écran étendu contient des zones d'interactions (en vert), des zones pour les interactions moins fréquentes (en jaune) et des zones uniquement dédiée à la visualisation (en blanc).
 }
 
 Pendant la conception de l'IHM pour un écran étendu, il est essentiel de \emph{penser l'interface à travers la technique d'interaction} utilisée. En effet, comme l'ont très bien souligné \cite{Ens2014}, le temps et les erreurs de pointage augmentent pour les cibles plus lointaines en utilisant une main virtuelle. Cela a également été le cas avec le \condition{VESAD tactile} : les participants devaient effectuer beaucoup de défilements et zooms pour amener une cible sur l'écran. Sur un écran tactile seul ou avec une souris sur un écran de PC, l'espace de visualisation est facilement accessible, quand il dépasse facilement celui d'interaction avec un VESAD. Des techniques comme Go-Go permettent d'atténuer ce problème pour la main virtuelle en agrandissant l'espace d'interaction accessible par un gain sur les mouvements de la main \figrefp{Argelaguet2013GoGo}. \citeauthor{Ens2014} suggèrent de positionner des fenêtres virtuelles à équidistance de l'utilisateur dans une disposition sphérique \figrefp{Ens2014_3}. Cette idée serait intéressante à explorer pour un VESAD : nous avons observé plusieurs participants tourner le téléphone pour rapprocher une cible. Une autre approche est d'utiliser des pointeurs virtuels \citep{Argelaguet2013}.
@@ -63,88 +66,63 @@ Pendant la conception de l'IHM pour un écran étendu, il est essentiel de \emph
   Adapté de \cite{Argelaguet2013}.
 }
 
-\figureLayoutETS{HandheldVESADZones}{%
-  \subfigureETS[0.2]{HandheldVESADZones_1}{Interactions avec une main virtuelle, les interactions se font du côté de la main ne tenant pas le téléphone et éventuellement au-dessus et en dessous de l'écran physique.}%
-  \figurehspace%
-  \subfigureETS[0.2]{HandheldVESADZones_2}{Interactions via l'écran tactile : la partie virtuelle autour reste accessible par défilements.}%
-}{
-  Une IHM pour un téléphone à écran étendu contient des zones d'interactions (en vert), des zones pour les interactions moins fréquentes (en jaune) et des zones uniquement dédiée à la visualisation (en blanc).
+\figureETS[0.5]{Ens2014_3}{
+  Démontration du Personal Cockpit : un ensemble de fenêtres 2D positionnées selon une sphère autour de l'utilisateur.\\
+  Adapté de \cite{Ens2014Video}.
 }
-
-Ainsi, nous recommandons de \emph{favoriser les interactions seulement dans des zones facilement accessibles}, que nous résumons avec la \figref{HandheldVESADZones} : les zones blanches sont à réserver seulement pour l'affichage, les vertes sont les plus facilement accessibles tandis que les jaunes, plus difficiles d'accès, sont à réserver pour les interactions peu fréquentes. Ainsi, avec une main virtuelle est utilisée, l'interface est plutôt asymétrique \figrefp{HandheldVESADZones_1} : elle est alignée avec le téléphone qui est tenu avec une main tandis que les interactions se font avec l'autre main ; dès lors, quand le téléphone est tenu de la main gauche, l'espace d'interaction se trouve sur sa droite (et inversement). En outre, nous déconseillons les interactions du côté de la main tenant le téléphone (à gauche de la main gauche pour un droitier) qui demandent de croiser les mains. Par exemple, nous améliorons notre basculement d'affichage wrist \figrefp{HandheldVESADApp}, en plaçant les applications sélectionnables à droite du téléphone, à portée de la main \figrefp{HandheldVESADApps3}. À l'inverse, quand c'est l'écran tactile qui est utilisée, par exemple quand le téléphone est tenu à deux mains ou si un utilisateur préfère utiliser une seule main, l'interface est symétrique \figrefp{HandheldVESADZones_2} : l'écran tactile est bien sûr accessible, ainsi que l'espace immédiatement autour, via des défilements.
 
 \figureETS[0.4]{HandheldVESADApps3}{
   Remaniement de wrist \figrefp{HandheldVESADMap} : les applications sur lesquelles basculer sont placées à droite du téléphone, facilement sélectionnables. Les notifications sont placées au-dessus de l'écrans, car elles sont peu accédées.
 }
 
+Ainsi, nous recommandons de \emph{favoriser les interactions seulement dans des zones facilement accessibles}, que nous résumons avec la \figref{HandheldVESADZones} : les zones blanches sont à réserver seulement pour l'affichage, les vertes sont les plus facilement accessibles tandis que les jaunes, plus difficiles d'accès, sont à réserver pour les interactions peu fréquentes. Ainsi, avec une main virtuelle est utilisée, l'interface est plutôt asymétrique \figrefp{HandheldVESADZones_1} : elle est alignée avec le téléphone qui est tenu avec une main tandis que les interactions se font avec l'autre main ; dès lors, quand le téléphone est tenu de la main gauche, l'espace d'interaction se trouve sur sa droite (et inversement). En outre, nous déconseillons les interactions du côté de la main tenant le téléphone (à gauche de la main gauche pour un droitier) qui demandent de croiser les mains. Par exemple, nous améliorons notre basculement d'affichage wrist \figrefp{HandheldVESADApp}, en plaçant les applications sélectionnables à droite du téléphone, à portée de la main \figrefp{HandheldVESADApps3}. À l'inverse, quand c'est l'écran tactile qui est utilisée, par exemple quand le téléphone est tenu à deux mains ou si un utilisateur préfère utiliser une seule main, l'interface est symétrique \figrefp{HandheldVESADZones_2} : l'écran tactile est bien sûr accessible, ainsi que l'espace immédiatement autour, via des défilements.
+
 Enfin, tout comme la disposition d'un site web doit s'adapter (\texten{responsiveness}) à la taille d'écran des différents appareils qui peuvent y accéder (par exemple : téléphone intelligent, tablette, ordinateur), \emph{une IHM pour un VESAD doit s'adapter à différents scénarios d'interaction}. Ainsi, la navigation physique avec une main virtuelle et la navigation virtuelle via l'écran tactile doivent toutes deux être supportées, au choix de l'utilisateur. De plus, la disposition du contenu doit s'adapter dynamiquement au contexte d'utilisation (comment est tenu le téléphone) et au type d'interaction utilisé.
 
-%Several users wished that they could pan and zoom in the \condition{VESAD} technique without having to switch modes through a menu, similar to pinch-to-zoom on status quo phone interfaces. 
 
-%Le leap capture en continue vs le touch qui fonctionne sur le principe du bouton : est-ce que le leap n'est pas mieux faire pour les interactions naturelles avec des objets tels que notre vie de tous les jours ? Remarque : un téléphone fait partie de notre vie de tous les jours, on peut le simuler en 3d avec interactions. Donc il faut surtout améliorer la précision du tracking.
-%Donc contrairement au tactile où il faut toucher l'écran pour agir dessus, il faut mettre des boites d'interaction autour des objets pour le leap, comme proposé par Grasp Shell. Parce que le tracking est pas fiable à 100\%, fonctionne mal avec la reprojection perspective de l'ovrvision et le doigt n'ayant pas de support physique sur lequel s'arrêter pour appuyer, il y a des mouvements involontraires pour tenir une position en l'air et un intervalle d'erreur quand le doigt veut toucher une cible 3D (même avec de la stéréoscopie et de la parallaxe).
-%Quand on veut combiner le leap et le tactile, il faut penser à désactiver cette boite : sinon on actionne la boite avec le leap avant de toucher le téléphone.
+\section{Directions futures}
+\label{sec:discussion_future}
 
-%Pour LeapIn, on utilise un long press plutôt qu'un tap. La règle est simple à comprendre, mais pas toutes les conditions : ne sais pas vraiment combien de temps doit rester, ni quand le chrono démarre, ou s'arrête si une erreur (si on déplace trop le doigt). Il serait bon d'utiliser un simple cercle qui chargerai autour du doigt, comme les interactions gaze. C'est simple, facilement compréhensible et répond au problème.
-%Pour le LeapIn, faire plus intelligent que bloquer toutes les interactions après une sélection ou un déplacement : on peut vouloir sélectionner, reste le long de la grille et s'arrêter là où on veut déplacer l'item. = pouvoir faire un vrai drag n drop
-%Pour LeapIn le côté non dominant est horrible à interagir car croiser les mains, étendre le bras, mauvais tracking, l'autre main peut bloquer.
+L'amélioration du suivi de la main et de techniques d'interactions avec le \condition{VESAD} nous semble être le plus essentiel.
+Le leap capture en continue vs le touch qui fonctionne sur le principe du bouton : est-ce que le leap n'est pas mieux faire pour les interactions naturelles avec des objets tels que notre vie de tous les jours ? Remarque : un téléphone fait partie de notre vie de tous les jours, on peut le simuler en 3d avec interactions. Donc il faut surtout améliorer la précision du tracking.
+Donc contrairement au tactile où il faut toucher l'écran pour agir dessus, il faut mettre des boites d'interaction autour des objets pour le leap, comme proposé par Grasp Shell. Parce que le tracking est pas fiable à 100\%, fonctionne mal avec la reprojection perspective de l'ovrvision et le doigt n'ayant pas de support physique sur lequel s'arrêter pour appuyer, il y a des mouvements involontraires pour tenir une position en l'air et un intervalle d'erreur quand le doigt veut toucher une cible 3D (même avec de la stéréoscopie et de la parallaxe).
+Quand on veut combiner le leap et le tactile, il faut penser à désactiver cette boite : sinon on actionne la boite avec le leap avant de toucher le téléphone.
+on utilise un long press plutôt qu'un tap. La règle est simple à comprendre, mais pas toutes les conditions : ne sais pas vraiment combien de temps doit rester, ni quand le chrono démarre, ou s'arrête si une erreur (si on déplace trop le doigt). Il serait bon d'utiliser un simple cercle qui chargerai autour du doigt, comme les interactions gaze. C'est simple, facilement compréhensible et répond au problème. (dwell de chan)
+faire plus intelligent que bloquer toutes les interactions après une sélection ou un déplacement : on peut vouloir sélectionner, reste le long de la grille et s'arrêter là où on veut déplacer l'item. = pouvoir faire un vrai drag n drop -> Avec un pinch, car il y a une notion de bouton dans ce geste
+LeapMotion2018 : multiplexage spatial avec une zone pour manipuler, laissant le reste seulement sélectionable + multiplexage temporel doigt : pincement pour manipuler (geste H2 de \cite{Piumsomboon2013}), pointer avec le doigt pour sélectionner (geste H11 de \cite{Piumsomboon2013}). Ce travail est intéressant car il montre des experts qui conçoivent une IHM de RA avec une main virtuelle pour des fenêtres en 2D et travaillant avec tous les jours. Cela correspond à mener des évaluations informelles sur un prototype dans une étude pilote \citep{Duenser2008}, et donne donc de bonnes pistes de conceptions d'IHM de RA à évaluer plus formellement.
 
-%LeapMotion2018 : multiplexage spatial avec une zone pour manipuler, laissant le reste seulement sélectionable + multiplexage temporel doigt : pincement pour manipuler (geste H2 de \cite{Piumsomboon2013}), pointer avec le doigt pour sélectionner (geste H11 de \cite{Piumsomboon2013}). Ce travail est intéressant car il montre des experts qui conçoivent une IHM de RA avec une main virtuelle pour des fenêtres en 2D et travaillant avec tous les jours. Cela correspond à mener des évaluations informelles sur un prototype dans une étude pilote \citep{Duenser2008}, et donne donc de bonnes pistes de conceptions d'IHM de RA à évaluer plus formellement.
-% Slide to hang avec le pinch
+\figureLayoutETS{LeapMotion2018}{%
+  \subfigureETS[0.23]{LeapMotion2018_1}{La zone au-dessus d'une fenêtre	virtuelle permet de la manipuler.}%
+  \figurehspace%
+  \subfigureETS[0.23]{LeapMotion2018_2}{La manipulation est activée par un pincement sur le haut de la fenêtre virtuelle.}%
+  \figurehspace%
+  \subfigureETS[0.23]{LeapMotion2018_3}{Le reste de la fenêtre réagit seulement aux sélections par pointage d'un doigt.}%
+}{
+  Démontration de l'IHM du visiocasque de RA North Star.\\
+  Adapté de \cite{LeapMotion2018}.
+}
 
-%\figureLayoutETS{LeapMotion2018}{%
-  %\subfigureETS[0.23]{LeapMotion2018_1}{La zone au-dessus d'une fenêtre	virtuelle permet de la manipuler.}%
-  %\figurehspace%
-  %\subfigureETS[0.23]{LeapMotion2018_2}{La manipulation est activée par un pincement sur le haut de la fenêtre virtuelle.}%
-  %\figurehspace%
-  %\subfigureETS[0.23]{LeapMotion2018_3}{Le reste de la fenêtre réagit seulement aux sélections par pointage d'un doigt.}%
-%}{
-%  Démontration de l'IHM du visiocasque de RA North Star.\\
-%  Adapté de \cite{LeapMotion2018}.
-%}
+Il serait intéressant alors de reproduire notre étude expérimentale et d'y comparer d'autres techniques d'interactions comme un pointeur virtuel (répandue parmi les visiocasques de l'industrie, comme le Microsoft HoloLens) ou des commandes vocales
++ A variant of the \condition{VESAD} technique could also be developed where the phone acts like a touchpad that can reach the entire surface of the VESAD using an appropriate gain or cursor acceleration function (cote à cote dans la dimension alignement, seuls les inputs sont alignés, plus les outputs)
++ with a cursor controlled by the gaze (the phone screen is used to interact as a "big button": the actions are done where the cursor is, and interactions can be done with finger anywhere on the phone screen Serait bien pour scroller sur une app sur l'écran étendu (car on a vu que difficile de pan avec le doigt). Citer les article utilisation du regard sur les table de travail pour select les outils
 
+\figureLayoutETS{Pfeuffer}{%
+  \subfigureETS[0.2]{Pfeuffer2014}{Gaze+Touch : les interactions sur l'écran tactile sont redirigées vers la cible du regard.}%
+  \figurehspace%
+  \subfigureETS[0.2]{Pfeuffer2017}{Gaze+Pinch : un geste de pincement sélectionne la cible du regard.}%
+}{
+  Interactions avec un pointeur virtuel suivant le regard.\\
+  Adapté de a) \cite{Pfeuffer2014} et b) \cite{Pfeuffer2017}.
+}
 
-%\section{Directions futures}
-%\label{sec:discussion_future}
+Notre concept de téléphone à écran étendu devrait être évalué sur d'autre d'autres types de tâche comme, par exemple, un scénario de multi-tâche, plus proche des usages quotidiens avec un téléphone intelligent
+Tâche de commutation d'affichages (wrist)
+évaluer slide to hang, si compatible avec hololens
 
-%Mettre les directions futures et les recommendations : évaluer les scénarios du \autoref{ch:concept} au regard des résultats.
-
-%Unfortunately, despite our use of off-the-shelf sensing technology (Leap Motion), the sensing of the finger position was not always reliable. Better hand-tracking techniques \cite{Taylor2016} could improve this in the future.
-
-%how to determine the size of the display zone (we used arbitrarily 
-
-%How can we do the pan and zoom gestures in 3D? Or they always need to be done on a physical surface (track-pad ideas for \condition{VESAD tactile})? Grasp-Shell found that vocal commands were better that mid-air interaction technique for scaling tasks 3D object in AR (but mid-air were better for translation and rotation tasks).
-
-%Refaire expérience avec technique d'interaction à la hololens et peephole + comparer main virtuelle et pointeur virtuel quand on passe la fenêtre virtuelle en floating
-
-%Refaire l'expérience de wedge avec téléphone seul, wedge, phone touch+ar, mid-air+ar, phone+mid-air+ar
-
-%multi-apps + Tâche de commutation d'affichages
-
-%bureau en realité augmentée
-
-%Dans le cadre Ethereal Planes : rester avec des fenêtres 2D mais à organiser en 3D (data mountain)
-
-%Tester les applications : Google Maps, multi-application (comme le Personal Cockpit)
-
-%Interaction pour le multi écran / écran étendu : vise avec regard, qui donne l'intention, (ou tête à défaut, voir l'étude pursuit target \citep{Esteves2017}) et agit avec le doigt. Serait bien pour scroller sur une app sur l'écran étendu (car on a vu que difficile de pan avec le doigt). Citer les article utilisation du regard sur les table de travail pour select les outils
-
-%Nous n'étudions que Zooming, car c'est le plus courant sur les appareils mobiles. Or on compare les techniques d'interactions de notre solution à un mobile seul. Il aurait été intéressant cependant, dans une deuxième expérimentation, de comparer ces techniques de visualization sur notre solution versus sur un appareil mobile seul.
-
-%Future work could include improvements to the \condition{VESAD} technique with better sensing of mid-air finger positions, adding haptic feedback
-%with a hand-worn device to let the user know when they are in contact with the VESAD plane, or comparing direct touch with allowing the user to point at locations on the VESAD using the HMD's view vector (similar to how the HoloLens allows users to aim at targets). A variant of the \condition{VESAD} technique could also be developed where the phone acts like a touchpad that can reach the entire surface of the VESAD using an appropriate gain or cursor acceleration function.
-
-%TODO evaluate the layout in fig 19,
-%determine best extents of margins zones,
-%experiment with ways to automatically and manually switch handedness
-%and double- and single-handed modes.
-
-%TODO
-%compare \condition{VESAD} with trackpad interaction technique (the phone screen is mapped to the VESAD entire view) and with a cursor controlled by the gaze (the phone screen is used to interact as a "big button": the actions are done where the cursor is, and interactions can be done with finger anywhere on the phone screen
-
-%TODO
-%Compare with peephole displays,
-%compare with pointing with head (like HoloLens),
-%try accelerated physical navigation,
-%try accelerated virtual navigation.
-%Nous avons observé que les participants utilisaient également de la navigation physique avec toutes les techniques en rapprochant le téléphone du visage : ce mouvement semblait plus rapide et précis qu'effectuer un zoom avec l'écran tactile -> détecter ses mouvements avec le visiocasque et concevoir une technique d'interaction ? Par ex, faire un "vrai" zoom (mise à l'échelle) du contenu du téléphone en même temps que le mouvement ? Ce serait comme mettre un gain à ce mouvement de zoom physique (sinon c'est 1:1). Ce serait à étudier.
+Explorer le concept
++ determine the size of the display zone (we used arbitrarily) comme sweetspot / évaluer les zones
++ experiment with ways to automatically and manually switch handedness and double- and single-handed modes
++ Nous avons observé que les participants utilisaient également de la navigation physique avec toutes les techniques en rapprochant le téléphone du visage : ce mouvement semblait plus rapide et précis qu'effectuer un zoom avec l'écran tactile -> détecter ses mouvements avec le visiocasque et concevoir une technique d'interaction ? Par ex, faire un "vrai" zoom (mise à l'échelle) du contenu du téléphone en même temps que le mouvement ? Ce serait comme mettre un gain à ce mouvement de zoom physique (sinon c'est 1:1). Ce serait à étudier.
++ concevoir des vrais apps du \cite{ch:concept} : carte, gallerie image, navigateur web, app de message. faire des évaluations d'expert en design web ou mobile
++ explorer des applications industrielles, au dela du bureau : a worker in a warehouse searching for an item, or a supervisor of a  construction site, or an assembly-line repair technician looking for a machine that isn't working, could all benefit from a large, interactive, mobile display area showing an overview of their physical workplace (wolrd in miniature, interactions sur mobile) + intérêt du + slide-to-hang pour pouvoir travailler seulement avec fenetres virtuelles et aller et venir sur la dimension alignement \cite{tab:ar_os}
+rester avec des fenêtres 2D mais à organiser en 3D (data mountain)
