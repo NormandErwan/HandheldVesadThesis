@@ -6,7 +6,7 @@
 
 Pour concevoir un VESAD, nous avons besoin d'un visiocasque avec un champ de vision suffisamment large pour visualiser complètement l'écran étendu, le cas contraire limite l'intérêt de notre concept. Notre second sous-problème a donc été de développer un visiocasque de RA à large champ de vision.
 
-Un téléphone est tenu en moyenne à une distance $D=\SI{34}{\cm}$ \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de $(L,H)=\SI{53x30}{\cm}$, on peut calculer le champ de vision $(FoV_x,FoV_y)$ nécessaire pour chaque \oe il pour le visualiser complètement \figrefp{Fov}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
+Un téléphone est tenu en moyenne à une distance $D=\SI{34}{\cm}$ \citep{Bababekova2011} de la tête. Ainsi, si l'on souhaite étendre un téléphone à l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{24}{\inch}, soit une taille de $(L,H)=\SI{53x30}{\cm}$, on peut calculer le champ de vision $(FoV_x,FoV_y)$ nécessaire pour chaque œil pour le visualiser complètement \figrefp{Fov}, avec l'\autoref{eq:fov} : il doit être d'au moins \SI{76x48}{\degree}.
 
 \begin{equation}
   \label{eq:fov}
@@ -19,10 +19,10 @@ Un téléphone est tenu en moyenne à une distance $D=\SI{34}{\cm}$ \citep{Babab
 \end{equation}
 
 \figureETS{Fov}{
-  Représentation simplifiée du champ de vision (en anglais : \texten{Field of View}), qui peut être mesuré en degrés horizontalement ($FoV_x$), verticalement ($FoV_y$) ou en diagonale. Comme le décrit l'\autoref{eq:fov}, pour qu'un plan soit visible dans un champ de vision donné, il doit être placé à une certaine distance de la caméra ou de l'\oe il.
+  Représentation simplifiée du champ de vision (en anglais : \texten{Field of View}), qui peut être mesuré en degrés horizontalement ($FoV_x$), verticalement ($FoV_y$) ou en diagonale. Comme le décrit l'\autoref{eq:fov}, pour qu'un plan soit visible dans un champ de vision donné, il doit être placé à une certaine distance de la caméra ou de l'œil.
 }
 
-Nous avons d'abord voulu utiliser le Microsoft HoloLens, un visiocasque optique de RA avec une très courte latence, une excellente résolution et une très bonne documentation et un support natif sur le moteur de jeu Unity. Cependant, son champ de vision de \SI{30x17.5}{\degree} pour chaque \oe il \citep{Kreylos2015} est trop restreint, ne permettant de visualiser seulement l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{7}{\inch}. Il n'existe en fait actuellement aucun visiocasque de RA sur le marché avec un grand champ de vision \citep[p. 25]{Millette2016}.
+Nous avons d'abord voulu utiliser le Microsoft HoloLens, un visiocasque optique de RA avec une très courte latence, une excellente résolution et une très bonne documentation et un support natif sur le moteur de jeu Unity. Cependant, son champ de vision de \SI{30x17.5}{\degree} pour chaque œil \citep{Kreylos2015} est trop restreint, ne permettant de visualiser seulement l'équivalent d'un écran {\NoAutoSpacing 16:9} de \SI{7}{\inch}. Il n'existe en fait actuellement aucun visiocasque de RA sur le marché avec un grand champ de vision \citep[p. 25]{Millette2016}.
 
 
 \section{Solution retenue}
@@ -31,7 +31,7 @@ Nous avons d'abord voulu utiliser le Microsoft HoloLens, un visiocasque optique 
 \subsection{Fonctionnement du visiocasque}
 \label{subsec:prototype_operation}
 
-Nous avons donc réalisé notre propre prototype, similaire à l'AR-Rift \citep{Steptoe2013} : c'est un visiocasque de RA vidéo de conception simple qui a fait ses preuves, utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}. Il consiste à coller une caméra physique \emph{stéréoscopique} (avec deux objectifs capturant chacun une image pour un \oe il) à un visiocasque de RV.
+Nous avons donc réalisé notre propre prototype, similaire à l'AR-Rift \citep{Steptoe2013} : c'est un visiocasque de RA vidéo de conception simple qui a fait ses preuves, utilisé par \cite{Steptoe2014} et \cite{Piumsomboon2014}. Il consiste à coller une caméra physique \emph{stéréoscopique} (avec deux objectifs capturant chacun une image pour un œil) à un visiocasque de RV.
 
 \figureLayoutETS{ArRiftMarker}{%
   \parbox{0.72\textwidth}{% Allow line breaks
@@ -40,7 +40,7 @@ Nous avons donc réalisé notre propre prototype, similaire à l'AR-Rift \citep{
     \figurehspace%
     \subfigureETS{ArRiftMarker_2}{Image corrigée : les lignes droites le sont à nouveau.}%
     \\%
-    \subfigureETS{ArRiftMarker_3}{Image corrigée à travers Unity : l'image est affichée en arrière-plan de l'environnement virtuel filmé par la caméra virtuelle (champ de vision en lignes blanches) pour l'\oe il gauche. Les caméras physique et virtuelle sont alignées pour faire coïncider environnements virtuels et réels.}%
+    \subfigureETS{ArRiftMarker_3}{Image corrigée à travers Unity : l'image est affichée en arrière-plan de l'environnement virtuel filmé par la caméra virtuelle (champ de vision en lignes blanches) pour l'œil gauche. Les caméras physique et virtuelle sont alignées pour faire coïncider environnements virtuels et réels.}%
     \figurehspace%
     \subfigureETS{ArRiftMarker_4}{Image corrigée et augmentée : un objet virtuel se trouve par dessus chacun des trois marqueurs.}%
   }%
@@ -53,7 +53,7 @@ Notre visiocasque fonctionne sur le principe suivant :
   \item La caméra stéréoscopique physique filme l'environnement réel de l'utilisateur \figrefp{ArRiftMarker_1}.
   \item Un algorithme \emph{corrige} les déformations des deux images de cette caméra \figrefp{ArRiftMarker_2}.
   \item Une caméra stéréoscopique virtuelle va filmer des éléments virtuels ainsi que les deux images de la caméra physique en arrière-plan \figrefp{ArRiftMarker_3}.
-  \item Les deux images sont affichées dans le visiocasque, une pour chaque \oe il, affichant environnements virtuels et physiques superposés \figrefp{ArRiftMarker_4}.
+  \item Les deux images sont affichées dans le visiocasque, une pour chaque œil, affichant environnements virtuels et physiques superposés \figrefp{ArRiftMarker_4}.
 \end{enumerate}
 \medskip
 Pour donner l'illusion que les éléments virtuels sont alignés avec l'environnement réel, nous devons donc \emph{aligner} la caméra virtuelle avec la caméra physique, dans un travail qui se fait en trois temps :
@@ -71,7 +71,7 @@ La \figref{ArRiftMarker} montre ce processus pour une caméra \emph{monoscopique
 \subsection{Choix techniques}
 \label{subsec:technical_choices}
 
-Nous avons tout d'abord choisi l'Ovrvision Pro comme caméra physique stéréoscopique (\url{http://ovrvision.com/}). Annoncée par son comme solution clé en main pour réaliser un visiocasque de RA, elle prévue pour fonctionner avec le visiocasque de RV Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Composée de deux objectifs \texten{fisheye} (en \oe il de poisson) d'une définition de \SI{960x950}{\px} et un champ de vision de \SI{100x98}{\degree}, ses caractéristiques correspondent bien à ceux de l'Oculus DK2 \autorefp{tab:visual_densities}. Elle est de plus intégrée avec les moteurs de jeu standards dans l'industrie : Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \figref{ArRift_1}, et en le connectant par USB 3.0 au PC.
+Nous avons tout d'abord choisi l'Ovrvision Pro comme caméra physique stéréoscopique (\url{http://ovrvision.com/}). Annoncée par son comme solution clé en main pour réaliser un visiocasque de RA, elle prévue pour fonctionner avec le visiocasque de RV Oculus DK2 que nous avions déjà à disposition dans notre laboratoire. Composée de deux objectifs \texten{fisheye} (en œil de poisson) d'une définition de \SI{960x950}{\px} et un champ de vision de \SI{100x98}{\degree}, ses caractéristiques correspondent bien à ceux de l'Oculus DK2 \autorefp{tab:visual_densities}. Elle est de plus intégrée avec les moteurs de jeu standards dans l'industrie : Unity et Unreal Engine. Son installation se fait simplement en la collant sur la face avant de l'Oculus DK2, comme le montre la \figref{ArRift_1}, et en le connectant par USB 3.0 au PC.
 
 \figureETS[0.6]{ArRift_1}{
   Notre prototype de visiocasque de RA, basé sur le concept de l'AR-Rift de \cite{Steptoe2013} : il est composé du visiocasque de RV Oculus DK2, de la caméra stéréoscopique Ovrvision Pro et du capteur de reconnaissance des mains Leap Motion (sous la caméra).
@@ -79,7 +79,7 @@ Nous avons tout d'abord choisi l'Ovrvision Pro comme caméra physique stéréosc
 
 Nous souhaitions ensuite rapidement prototyper du contenu sur notre visiocasque. Nous avons alors choisi le moteur de jeu Unity : gratuit (mais au code source propriétaire), il est le standard dans l'industrie du jeu-vidéo pour prototyper et supporte notre caméra et le Leap Motion. Il est de fait très avantageux d'investir un peu de temps dans l'apprentissage d'un moteur de jeu, car il prend complètement en charge le rendu 3D, la simulation de la physique, les entrées sur clavier, souris ou écran tactile, l'affichage dans les visiocasques de RV, un support réseau et propose de nombreuses fonctions mathématiques. Unity est simple plus simple à prendre en main que son concurrent l'Unreal Engine, par son GUI intuitif et l'utilisation de scripts C\#, un langage haut niveau efficace. Enfin, nous avions une expertise dans le laboratoire avec un projet de quatre mois sur le Microsoft HoloLens et la maîtrise de \cite{Millette2016}.
 
-Après plusieurs essais de configuration et une lecture du code source de l'Ovrvision Pro (\url{https://github.com/Wizapply/OvrvisionPro/}), nous avons constaté que la bibliothèque fournie était non fonctionnelle : (1) les images affichées pour chaque \oe il dans le casque étaient décalées, rendant le visiocasque particulièrement inconfortable à utiliser et (2) un décalage important était présent entre le contenu virtuel et l'environnement réel. Nous avons donc besoin de ré-étalonner cette caméra et d'une bibliothèque de RA.
+Après plusieurs essais de configuration et une lecture du code source de l'Ovrvision Pro (\url{https://github.com/Wizapply/OvrvisionPro/}), nous avons constaté que la bibliothèque fournie était non fonctionnelle : (1) les images affichées pour chaque œil dans le casque étaient décalées, rendant le visiocasque particulièrement inconfortable à utiliser et (2) un décalage important était présent entre le contenu virtuel et l'environnement réel. Nous avons donc besoin de ré-étalonner cette caméra et d'une bibliothèque de RA.
 
 Nous avons donc réalisé la bibliothèque libre de RA par suivi de marqueur ArucoUnity (\url{https://github.com/NormandErwan/ArucoUnity/}) pour amener de la RA sur notre visiocasque. Utilisant la bibliothèque libre de vision par ordinateur OpenCV (\url{https://opencv.org/}), elle est la seule bibliothèque libre de RA par suivi de marqueurs sous Unity supportant plusieurs types de caméras : monoscopiques ou stéréoscopiques, avec des objectifs \texten{fisheye} ou \textquote{classiques}, dit \emph{rectilinéaires} (similaire à la vision humaine). Elle est également la seule à permettre l'étalonnage de tout ces types de caméras. On utilise en particulier les modules d'OpenCV suivants :
 \begin{itemize}
@@ -91,7 +91,7 @@ Nous avons donc réalisé la bibliothèque libre de RA par suivi de marqueur Aru
 \subsection{Discussion et limites}
 \label{subsec:solution_discusion}
 
-Nous pourrions simplifier le visiocasque en utilisant une caméra monoscopique, et afficher l'image capturée aux deux yeux. Cependant, comme le souligne \cite{Bourke1999}, la vision stéréoscopique est l'un des principaux indices utilisés par le cerveau pour percevoir la profondeur : les yeux étant séparés horizontalement par une distance appelée écart pupillaire, chaque \oe il perçoit une image légèrement différente \figrefp{Ovrvision} permettant au cerveau de percevoir en 3D. C'est pourquoi nous choisissons d'utiliser une caméra stéréoscopique.
+Nous pourrions simplifier le visiocasque en utilisant une caméra monoscopique, et afficher l'image capturée aux deux yeux. Cependant, comme le souligne \cite{Bourke1999}, la vision stéréoscopique est l'un des principaux indices utilisés par le cerveau pour percevoir la profondeur : les yeux étant séparés horizontalement par une distance appelée écart pupillaire, chaque œil perçoit une image légèrement différente \figrefp{Ovrvision} permettant au cerveau de percevoir en 3D. C'est pourquoi nous choisissons d'utiliser une caméra stéréoscopique.
 
 \figureLayoutETS{Ovrvision}{%
   \subfigureETS[0.2]{Ovrvision_1}{Vue de l'objectif gauche.}%
@@ -101,11 +101,11 @@ Nous pourrions simplifier le visiocasque en utilisant une caméra monoscopique, 
   Images corrigées de l'Ovrvision Pro : les deux objectifs sont décalés horizontalement d'environ \SI{60}{\mm} pour simuler un écart pupillaire humain.
 }
 
-Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image affichée. La densité visuelle permet de mesurer la finesse d'affichage d'une image à partir de sa définition horizontale et du champ de vision : $Densite = \sfrac{d_x}{FoV_x}$. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} quand la fovéa d'un \oe il humain est de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Une définition de 8K (\SI{7680x4320}{\px}), à champ de vision égal, par \oe il est alors nécessaire pour atteindre la même densité visuelle : $Densite_{8K} = \sfrac{7680}{110} = \SI{69.8}{\ppd}$.
+Ensuite, si notre visiocasque est relativement simple à concevoir, son principal inconvénient est la faible densité visuelle de l'image affichée. La densité visuelle permet de mesurer la finesse d'affichage d'une image à partir de sa définition horizontale et du champ de vision : $Densite = \sfrac{d_x}{FoV_x}$. Ainsi, sur les visiocasques de RV du marché et sur l'Ovrvision Pro, la caméra stéréoscopique que nous utilisons, elle est limitée à environ \SI{10}{\ppd} (pixels par degré) \autorefp{tab:visual_densities}. En comparaison, le Microsoft HoloLens a une densité visuelle d'environ \SI{42}{\ppd} quand la fovéa d'un œil humain est de \SIrange{60}{80}{\ppd} en moyenne \citep{Kistner2014}. Nous sommes donc face à une limite technologique : une meilleure qualité des images des caméras serait limitée par le visiocasque de RV, quelque qu'il soit. Une définition de 8K (\SI{7680x4320}{\px}), à champ de vision égal, par œil est alors nécessaire pour atteindre la même densité visuelle : $Densite_{8K} = \sfrac{7680}{110} = \SI{69.8}{\ppd}$.
 
 \begin{tableETS}{tab:visual_densities}{Caractéristiques d'affichage de l'Ovrvision Pro et de visiocasques de RV et RA.}
   \begin{tabular}{| C{3.5cm} | C{3.25cm} | C{3.25cm} | C{3cm} |}
-    \hline \textbf{Nom} & \textbf{Définition\newline(pour chaque \oe il)} & \textbf{Champ de vision\newline(pour chaque \oe il)} & \textbf{Densité visuelle}\\
+    \hline \textbf{Nom} & \textbf{Définition\newline(pour chaque œil)} & \textbf{Champ de vision\newline(pour chaque œil)} & \textbf{Densité visuelle}\\
     \hline Ovrvision Pro & \SI{960x950}{\px} & \SI{100x98}{\degree} & \SI{9.6}{\ppd} \\
     \hline Oculus DK2 & \SI{960x1080}{\px} & \SI{94x105}{\degree} & \SI{10.2}{\ppd} \\
     \hline Oculus Rift & \SI{1080x1200}{\px} & \SI{94x93}{\degree} & \SI{11.5}{\ppd} \\
@@ -812,7 +812,7 @@ On crée alors dans les scripts : (1) une caméra virtuelle dans Unity, placée 
 Nous pouvons utiliser le suivi de marqueur du module aruco pour savoir où placer nos éléments virtuels. ArucoUnity permet un suivi de marqueurs facile, à configurer directement dans l'éditeur d'Unity :
 \begin{enumerate}
   \item On crée tout d'abord des marqueurs comme nous l'avons vu dans la \autoref{subsec:pinhole_camera_calibration} qu'on imprime et place dans l'environnement physique.
-  %\item On reprends la scène configurée aux sections \ref{subsec:pinhole_camera_undistortion} et \ref{subsec:pinhole_camera_display}.
+  \item On reprends la scène configurée aux sections \ref{subsec:pinhole_camera_undistortion} et \ref{subsec:pinhole_camera_display}.
   \item On y crée à nouveau tous marqueurs suivis en y les configurants avec les valeurs en mètres de ceux imprimés, et on y ajoute les éléments que l'on souhaite afficher en RA comme enfants de ces marqueurs \figrefp{TrackMarkersMarker}.
   \item Dans le script \code{ArucoObjectsTracker} sur l'objet du même nom, on dépose les marqueurs virtuels dans la liste \code{ArucoObjects} \figrefp{TrackMarkersTracker}.
   \item En jouant la scène, les marqueurs virtuels sont placés aux même positions et orientations que les marqueurs physiques détectés \figrefp{TrackMarkersDemo}.
@@ -894,7 +894,7 @@ Enfin, la position des marqueurs détectés est estimée avec une méthode de r�
   Modèle d'une caméra stéréoscopique rectilinéaire idéale : les deux plans images sont coplanaires, distants horizontalement, et les deux couples objectif-plan image ont les mêmes paramètres intrinsèques ($f_g = f_d$). Les objectifs pourraient également être placés verticalement.
 }
 
-Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle du sténopé ne s'y applique pas. En effet, contrairement à la perspective de l'\oe il humain ou des objectifs rectilinéaires, ces objectifs utilisent une distorsion en barillet volontairement importante pour capter un très grand champ de vision jusqu'à \ang{180}.
+Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle du sténopé ne s'y applique pas. En effet, contrairement à la perspective de l'œil humain ou des objectifs rectilinéaires, ces objectifs utilisent une distorsion en barillet volontairement importante pour capter un très grand champ de vision jusqu'à \ang{180}.
 
 Nous utilisons alors le modèle de \cite{Mei2007} utilisable pour les objectifs \texten{fisheye} et implémenté par le module ccalib d'OpenCV. La caméra y est modélisée sur le principe suivant : la scène est d'abord projetée sur une sphère, puis une projection perspective rectilinéaire de la sphère est faite sur le plan image \figrefp{Mei2007}. Comme pour une caméra avec un objectif rectilinéaire, nous corrigeons ces distorsions : cela nous permet de reprojetter les images capturées en perspective rectilinéaire pour pouvoir les aligner avec la caméra virtuelle.
 
@@ -983,8 +983,8 @@ Tous les procédés avec les caméras rectilinéaires que nous venons de décrir
 
 Pour l'étalonnage, la procédure à suivre est la même que dans la \autoref{subsec:pinhole_camera_calibration} à la différence que nous travaillons avec les objets \code{OvrvisionArucoCamera} pour la caméra et \code{StereoOmnidirCameraCalibration} pour l'étalonnage que nous glissons dans la scène depuis le dossier \code{Assets/ArucoUnity/Prefabs/} et nous désactivons \code{PinholeCameraCalibration} \figrefp{OvrvisionCalibration}. Ce nouveau script d'étalonnage que nous avons crée est très similaire à \autoref{lst:pinhole_camera_calibration} : nous y avons seulement remplacé la fonction d'étalonnage par \code{Cv.Omnidir.StereoCalibrate}. Cette fonction étalonne chaque caméra individuellement, puis calcule la position et l'orientation relative des deux plans images, et retourne tous ces paramètres que l'on enregistre dans un fichier d'étalonnage.
 
-%On met finalement en place la RA dans notre visiocasque. Comme pour l'étalonnage, la procédure est la même que dans les sous-sections \ref{subsec:pinhole_camera_undistortion} et \ref{subsec:pinhole_camera_display}, mais on utilise des objets différents : on désactive donc les objets de correction et d'affichage pour la webcam et on glisse dans la scène ceux pour une caméra stéréoscopique \texten{fisheye} ainsi que \code{OvrvisionArucoCamera} \figrefp{OvrvisionTracking_1}. Contrairement à la correction des caméras rectilinéaires, les fonctions du module omnidir nous permettent de choisir directement le champ de vision des caméras gauches et droites corrigées. On les définit toutes les deux à un champ de vision vertical de \SI{105}{\deg}, comme le visiocasque de RV que nous nous utilisons. Les marqueurs et leur suivi une fois configurés, notre visiocasque fonctionne comme nous l'avons décrit à la \autoref{subsec:prototype_operation} \figrefp{OvrvisionTracking_2} !
+On met finalement en place la RA dans notre visiocasque. Comme pour l'étalonnage, la procédure est la même que dans les sous-sections \ref{subsec:pinhole_camera_undistortion} et \ref{subsec:pinhole_camera_display}, mais on utilise des objets différents : on désactive donc les objets de correction et d'affichage pour la webcam et on glisse dans la scène ceux pour une caméra stéréoscopique \texten{fisheye} ainsi que \code{OvrvisionArucoCamera} \figrefp{OvrvisionTracking_1}. Contrairement à la correction des caméras rectilinéaires, les fonctions du module omnidir nous permettent de choisir directement le champ de vision des caméras gauches et droites corrigées. On les définit toutes les deux à un champ de vision vertical de \SI{105}{\deg}, comme le visiocasque de RV que nous nous utilisons. Les marqueurs et leur suivi une fois configurés, notre visiocasque fonctionne comme nous l'avons décrit à la \autoref{subsec:prototype_operation} \figrefp{OvrvisionTracking_2} !
 
 Nous effectuons la correction et la rectification dans le même temps \autorefp{lst:stereo_omnidir_camera_undistortion} : nous (1) créons les matrices intrinsèques pour les caméras corrigées rectilinéaires à partir des champs de visions choisis, puis on calcule (2) la rotation des deux plans images pour les rectifier, enfin (3) la fonction de mappage pour chaque caméra. Ces fonctions sont toujours appliquées sur toutes les images capturées dans le script parent \autorefp{lst:aruco_camera_undistortion}.
 
-Pour la configuration des caméras virtuelles, nous devons tout d'abord activer la RV dans Unity avec l'option \code{Virtual Reality Supported} dans le menu \code{Edit/Project Settings/Player/XR Settings}. Nous (1) créons et configurons ensuite deux caméras virtuelles, une pour chaque \oe il avec les champs de visions choisis. Puis nous (2) indiquons à Unity pour quel \oe il chaque caméra rend. Enfin, on (3) décale la caméra droite suivant le vecteur $T$.
+Pour la configuration des caméras virtuelles, nous devons tout d'abord activer la RV dans Unity avec l'option \code{Virtual Reality Supported} dans le menu \code{Edit/Project Settings/Player/XR Settings}. Nous (1) créons et configurons ensuite deux caméras virtuelles, une pour chaque œil avec les champs de visions choisis. Puis nous (2) indiquons à Unity pour quel œil chaque caméra rend. Enfin, on (3) décale la caméra droite suivant le vecteur $T$.
