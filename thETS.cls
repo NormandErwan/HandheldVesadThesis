@@ -350,7 +350,17 @@
 
 \ifthenelse{\equal{\DocLang}{french}}
 {
-	\RequirePackage[french]{babel} %% Francisation du document
+  \RequirePackage[french]{babel} %% Francisation du document
+
+  %% Corrige l'indentation des notes de bas de page : toutes les lignes sont alignées
+  \RequirePackage{changepage}
+  \renewcommand{\@makefntextFB}[1]{%
+    \begin{adjustwidth}{2.5em}{}%
+      \setlength{\parindent}{-0.75em}%
+      \hspace{\parindent}%
+      \insertfootnotemarkFB #1%
+    \end{adjustwidth}%
+  }
 }
 {
 	\RequirePackage[english]{babel}
@@ -660,6 +670,8 @@
 \setlength{\tocLeftMarginSecondLineChapter}{6.1em} % Marge gauche quand on va à la ligne pour les chapitres et annexes
 \newlength{\tocLeftMarginSecondLineFigure}
 \setlength{\tocLeftMarginSecondLineFigure}{6.5em} % Marge gauche quand on va à la ligne pour les figures
+\newlength{\tocLeftMarginFirstLineSubfigure}
+\setlength{\tocLeftMarginFirstLineSubfigure}{2.8em} % Marge gauche de la première ligne pour les subfigures
 \newlength{\tocLeftMarginSecondLineAlgo}
 \newlength{\tocLeftMarginSecondLineTable}
 \ifthenelse{\equal{\DocLang}{french}}
@@ -1465,6 +1477,28 @@
     \endgroup
   \fi}
 
+\renewcommand \thesubfigure
+  {\alph{subfigure}}
+\renewcommand*\l@subfigure[2]{%
+\settowidth{\largNum}{\hss #2}
+\ifnum \c@tocdepth >\m@ne%
+  \addpenalty{-\@highpenalty}%
+  \setlength\@tempdima{\tocLeftMarginFirstLineSubfigure}%
+  \noindent%
+  \begingroup
+    \pretolerance=10000
+    \parindent \z@ \rightskip \tocRightMargin%
+    \parfillskip -\tocRightMargin%
+    \leavevmode \normalsize%
+    \advance\leftskip \tocLeftMarginSecondLineFigure%
+    \hskip -\tocLeftMarginFirstLineSubfigure%
+    {#1}%
+    \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}%
+    \hfil \nobreak\hb@xt@\largNum{\hss #2}\par%
+    \penalty\@highpenalty%
+  \endgroup
+\fi}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Liste des tableaux
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1536,8 +1570,8 @@
       \pretolerance=10000
       \parindent \z@ \rightskip \tocRightMargin%
       \parfillskip -\tocRightMargin%
-     \leavevmode \normalsize%
-     \advance\leftskip \tocLeftMarginSecondLineFigure%
+      \leavevmode \normalsize%
+      \advance\leftskip \tocLeftMarginSecondLineFigure%
       \hskip -\leftskip%
       {\lstlistingname\mbox{\hspace{4pt}}#1}%\nobreak%
        \leaders\hbox{$\m@th%
