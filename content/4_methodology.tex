@@ -800,11 +800,11 @@ On crée alors dans les scripts : (1) une caméra virtuelle dans Unity, placée 
 }
 
 \figureLayoutETS{TrackMarkersDemo}{%
-  \subfigureETS[0.15]{TrackMarkersDemo_1}{ }%
+  \subfigureETS[0.15]{TrackMarkersDemo_1}{Vue de dessus.}%
   \figurehspace%
-  \subfigureETS[0.15]{TrackMarkersDemo_2}{ }%
+  \subfigureETS[0.15]{TrackMarkersDemo_2}{Vue de face.}%
   \figurehspace%
-  \subfigureETS[0.15]{TrackMarkersDemo_3}{ }%
+  \subfigureETS[0.15]{TrackMarkersDemo_3}{Vue de côté.}%
 }{
   Suivi du marqueur configuré à la \figref{TrackMarkersMarker} dans plusieurs angles de vues.
 }
@@ -899,7 +899,7 @@ Les objectifs utilisés sur l'Ovrvision Pro étant \texten{fisheye}, le modèle 
 Nous utilisons alors le modèle de \cite{Mei2007} utilisable pour les objectifs \texten{fisheye} et implémenté par le module ccalib d'OpenCV. La caméra y est modélisée sur le principe suivant : la scène est d'abord projetée sur une sphère, puis une projection perspective rectilinéaire de la sphère est faite sur le plan image \figrefp{Mei2007}. Comme pour une caméra avec un objectif rectilinéaire, nous corrigeons ces distorsions : cela nous permet de reprojetter les images capturées en perspective rectilinéaire pour pouvoir les aligner avec la caméra virtuelle.
 
 \figureETS[0.5]{Bradski2008_4}{%
-  L'étalonnage d'une caméra stéréoscopique mesure deux paramètres supplémentaire : les vecteurs de translation $T$ et de rotation $R$ du plan droit ($\Pi_l$) par rapport au plan image gauche ($\Pi_r$).\\
+  L'étalonnage d'une caméra stéréoscopique mesure en outre les vecteurs de translation $T$ et de rotation $R$ de chaque plan image droit $\Pi_l$ par rapport au plan image gauche $\Pi_r$ correspondant.\\
   Tiré de \cite{Bradski2008}.
 }
 

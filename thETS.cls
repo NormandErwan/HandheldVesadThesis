@@ -743,7 +743,7 @@
 
 \ifthenelse{\equal{\DocLang}{french}}
 {
-   	\ifthenelse{\equal{\TypeDoc}{memoire}}{\newcommand{\lediplome}{DE LA MAÎTRISE\\AVEC MEMOIRE EN GÉNIE\\M. Sc. A.}}{}
+   	\ifthenelse{\equal{\TypeDoc}{memoire}}{\newcommand{\lediplome}{DE LA MAÎTRISE\\AVEC MÉMOIRE EN GÉNIE, CONCENTRATION GÉNIE LOGICIEL\\M. Sc. A.}}{}
    	\ifthenelse{\equal{\TypeDoc}{memoireprojet}}{\newcommand{\lediplome}{DE LA MAÎTRISE\\AVEC PROJET EN GÉNIE\\M. Ing.}}{}
    	\ifthenelse{\equal{\TypeDoc}{these}}{\newcommand{\lediplome}{\\DU DOCTORAT EN GÉNIE\\Ph.D.}}
    }
