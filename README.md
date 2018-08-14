@@ -4,6 +4,8 @@
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
+See also the [analysis](https://github.com/NormandErwan/HandheldVesadAnalysis) and the [presentation](https://github.com/NormandErwan/MasterThesisPresentation).
+
 ## Abstract
 
 Significant and recent progress in research and in industry destined augmented reality to deeply integrate both in our personal and professional life.
