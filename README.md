@@ -1,5 +1,9 @@
 # Extension of a mobile screen by augmented reality
 
+[![Creative Commons License](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/) Erwan Normand, 2018.
+
+This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
 ## Abstract
 
 Significant and recent progress in research and in industry destined augmented reality to deeply integrate both in our personal and professional life.
