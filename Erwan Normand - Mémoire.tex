@@ -50,6 +50,8 @@
 \newcommand{\figref}[1]{\autoref{fig:#1}}
 \newcommand{\figrefp}[2][]{\autorefp[#1]{fig:#2}}
 
+\newcommand{\manualpdfbookmark}[1]{\currentpdfbookmark{#1}{#1}}
+
 % Figure with ÉTS style
 \newlength{\maxfigwidth}
 \setlength{\maxfigwidth}{0.98\textwidth} % Set figure width easily (taking account of the fbox padding)
@@ -179,48 +181,37 @@
 \begin{document}
 
 \pagenumbering{Roman}
-\maketitle
+
+\manualpdfbookmark{Agrandissement d'un écran mobile par réalité augmentée} \maketitle
+
+\phantomsection
+\manualpdfbookmark{Présentation du jury}
 \presentjury
 
-\begin{avantpropos}
-  \input{content/0_1_preface}
-\end{avantpropos}
-
-\begin{remerciements}
-  \input{content/0_2_acknowledgements}
-\end{remerciements}
-
+\input{content/0_1_preface}
+\input{content/0_2_acknowledgements}
 \input{content/0_3_abstracts}
 
-\tableofcontents
-\listoftables
-\listoffigures
-\lstlistoflistings
+\manualpdfbookmark{Table des matières} \tableofcontents
+\manualpdfbookmark{Liste des tableaux} \listoftables
+\manualpdfbookmark{Liste des figures} \listoffigures
+\manualpdfbookmark{Liste des extraits de code} \lstlistoflistings
 
-\begin{listofabbr}[3cm]
-  \input{content/0_4_abbreviations}
-\end{listofabbr}
+\input{content/0_4_abbreviations}
 
 \cleardoublepage
-
 \pagenumbering{arabic}
 \reversemarginpar
 \setcounter{footnote}{0}
+\setcounter{page}{1}
+\doublespacing
 
-\begin{introduction}
-  \label{ch:introduction}
-  \input{content/1_introduction}
-\end{introduction}
-
+\input{content/1_introduction}
 \input{content/2_litterature_review}
 \input{content/3_concept}
 \input{content/4_methodology}
 \input{content/5_experiment}
 \input{content/6_discussion}
-
-\chapter*{Conclusion}
-\addcontentsline{toc}{chapter}{CONCLUSION}
-\label{ch:conclusion}
 \input{content/7_conclusion}
 
 \appendix
@@ -228,10 +219,11 @@
 \input{content/8_experiment_forms}
 \input{content/9_experiment_analysis}
 
-\newpage
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliographie}
 \begin{spacing}{1}
   \bibliographystyle{bibETS}
-  \addcontentsline{toc}{chapter}{BIBLIOGRAPHIE}
   \bibliography{bibliography/thesis}
 \end{spacing}
 
