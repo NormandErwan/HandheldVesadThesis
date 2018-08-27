@@ -2,6 +2,7 @@ gabarit/
 content/9_experiment_analysis/
 .vscode
 .stignore
+__latexindent_temp.tex
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
