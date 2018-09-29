@@ -6,7 +6,7 @@
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
-See also the [experiment analysis](https://github.com/NormandErwan/HandheldVesadAnalysis) and the [thesis presentation](https://github.com/NormandErwan/HandheldVesadPresentation).
+See also the [experiment analysis](https://github.com/NormandErwan/HandheldVesadAnalysis), the [thesis presentation](https://github.com/NormandErwan/HandheldVesadPresentation) and the [experiment prototype](https://github.com/NormandErwan/HandheldVesadPrototype).
 
 ## Abstract
 
